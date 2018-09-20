@@ -11,6 +11,8 @@ import CoreLocation
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
 
+    let locationManager = AppDelegate.shared.locationManager
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -30,7 +32,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             }
            
         }
-        AppDelegate.shared.locationManager.delegate = self
+       locationManager.delegate = self
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
@@ -42,8 +44,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
         self.view.backgroundColor = UIColor.darkGray
-        let loc =  AppDelegate.shared.locationManager
+        
+    }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last{
+            //self.locationManager.location = location
+            
+        }
     }
     
     override func didReceiveMemoryWarning() {
