@@ -104,7 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				208053872151B811002CAAE4 /* Controllers */,
-				208053862151B809002CAAE4 /* Extensions */,
 				208053852151B7FE002CAAE4 /* Services */,
 				208053842151B7F6002CAAE4 /* Models */,
 				208053832151B7E3002CAAE4 /* Support Files */,
@@ -153,13 +152,6 @@
 				20B3834821543B860056F1DA /* GroupServices.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		208053862151B809002CAAE4 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		208053872151B811002CAAE4 /* Controllers */ = {
