@@ -17,6 +17,10 @@
 		2080538A2151B83C002CAAE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 208053892151B83C002CAAE4 /* GoogleService-Info.plist */; };
 		20A0E5CE2151C05100F0F049 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A0E5CC2151C05100F0F049 /* User.swift */; };
 		20A0E5CF2151C05100F0F049 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A0E5CD2151C05100F0F049 /* Group.swift */; };
+		20A0E5D12151C97400F0F049 /* GeoCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A0E5D02151C97400F0F049 /* GeoCoder.swift */; };
+		20B38345215435790056F1DA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B38344215435790056F1DA /* Constant.swift */; };
+		20B3834921543B860056F1DA /* GroupServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B3834821543B860056F1DA /* GroupServices.swift */; };
+		20B3834B21543BA30056F1DA /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B3834A21543BA30056F1DA /* UserServices.swift */; };
 		8243E6592AC80125EF273C66 /* Pods_remindMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 684C993BDBDBCCC97A900CB1 /* Pods_remindMe.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +48,10 @@
 		208053892151B83C002CAAE4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		20A0E5CC2151C05100F0F049 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		20A0E5CD2151C05100F0F049 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		20A0E5D02151C97400F0F049 /* GeoCoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoCoder.swift; sourceTree = "<group>"; };
+		20B38344215435790056F1DA /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		20B3834821543B860056F1DA /* GroupServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupServices.swift; sourceTree = "<group>"; };
+		20B3834A21543BA30056F1DA /* UserServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserServices.swift; sourceTree = "<group>"; };
 		295ED2748E2D9D9F736D0196 /* Pods-remindMeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-remindMeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-remindMeTests/Pods-remindMeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2E90C8EDB96DF7863B6D22D2 /* Pods-remindMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-remindMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-remindMe/Pods-remindMe.release.xcconfig"; sourceTree = "<group>"; };
 		684C993BDBDBCCC97A900CB1 /* Pods_remindMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_remindMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				208053892151B83C002CAAE4 /* GoogleService-Info.plist */,
+				20A0E5D02151C97400F0F049 /* GeoCoder.swift */,
+				20B38344215435790056F1DA /* Constant.swift */,
 			);
 			path = "Support Files";
 			sourceTree = "<group>";
@@ -139,6 +149,8 @@
 		208053852151B7FE002CAAE4 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				20B3834A21543BA30056F1DA /* UserServices.swift */,
+				20B3834821543B860056F1DA /* GroupServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -378,10 +390,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20B3834B21543BA30056F1DA /* UserServices.swift in Sources */,
 				204B9BE5214C82CE000A1619 /* ViewController.swift in Sources */,
 				204B9BE3214C82CE000A1619 /* AppDelegate.swift in Sources */,
 				20A0E5CE2151C05100F0F049 /* User.swift in Sources */,
+				20A0E5D12151C97400F0F049 /* GeoCoder.swift in Sources */,
 				20A0E5CF2151C05100F0F049 /* Group.swift in Sources */,
+				20B38345215435790056F1DA /* Constant.swift in Sources */,
+				20B3834921543B860056F1DA /* GroupServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
