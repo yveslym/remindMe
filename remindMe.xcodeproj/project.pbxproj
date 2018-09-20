@@ -13,6 +13,9 @@
 		204B9BEA214C82D0000A1619 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 204B9BE9214C82D0000A1619 /* Assets.xcassets */; };
 		204B9BED214C82D0000A1619 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 204B9BEB214C82D0000A1619 /* LaunchScreen.storyboard */; };
 		204B9BF8214C82D0000A1619 /* remindMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204B9BF7214C82D0000A1619 /* remindMeTests.swift */; };
+		B83C11F82151B9E800A6BAE3 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83C11F72151B9E800A6BAE3 /* GroupListViewController.swift */; };
+		B8E63EAB2151E9D200DC3C5C /* GroupListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E63EAA2151E9D200DC3C5C /* GroupListTableViewCell.swift */; };
+		B8E63EAE2151EB7D00DC3C5C /* GroupListViewController+Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E63EAD2151EB7D00DC3C5C /* GroupListViewController+Extension .swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		204B9BF3214C82D0000A1619 /* remindMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = remindMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		204B9BF7214C82D0000A1619 /* remindMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = remindMeTests.swift; sourceTree = "<group>"; };
 		204B9BF9214C82D0000A1619 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B83C11F72151B9E800A6BAE3 /* GroupListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
+		B8E63EAA2151E9D200DC3C5C /* GroupListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListTableViewCell.swift; sourceTree = "<group>"; };
+		B8E63EAD2151EB7D00DC3C5C /* GroupListViewController+Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupListViewController+Extension .swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +83,9 @@
 		204B9BE1214C82CE000A1619 /* remindMe */ = {
 			isa = PBXGroup;
 			children = (
+				B8E63EAC2151E9F100DC3C5C /* Extensions */,
+				B8E63EA92151E96900DC3C5C /* Views */,
+				B83C11F62151B99800A6BAE3 /* Controllers */,
 				204B9BE2214C82CE000A1619 /* AppDelegate.swift */,
 				204B9BE4214C82CE000A1619 /* ViewController.swift */,
 				204B9BE6214C82CE000A1619 /* Main.storyboard */,
@@ -94,6 +103,30 @@
 				204B9BF9214C82D0000A1619 /* Info.plist */,
 			);
 			path = remindMeTests;
+			sourceTree = "<group>";
+		};
+		B83C11F62151B99800A6BAE3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B83C11F72151B9E800A6BAE3 /* GroupListViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B8E63EA92151E96900DC3C5C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B8E63EAA2151E9D200DC3C5C /* GroupListTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B8E63EAC2151E9F100DC3C5C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B8E63EAD2151EB7D00DC3C5C /* GroupListViewController+Extension .swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,8 +230,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B83C11F82151B9E800A6BAE3 /* GroupListViewController.swift in Sources */,
 				204B9BE5214C82CE000A1619 /* ViewController.swift in Sources */,
 				204B9BE3214C82CE000A1619 /* AppDelegate.swift in Sources */,
+				B8E63EAB2151E9D200DC3C5C /* GroupListTableViewCell.swift in Sources */,
+				B8E63EAE2151EB7D00DC3C5C /* GroupListViewController+Extension .swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
