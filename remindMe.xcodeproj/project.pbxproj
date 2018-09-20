@@ -23,6 +23,9 @@
 		20B3834B21543BA30056F1DA /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B3834A21543BA30056F1DA /* UserServices.swift */; };
 		8243E6592AC80125EF273C66 /* Pods_remindMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 684C993BDBDBCCC97A900CB1 /* Pods_remindMe.framework */; };
 		B83C11F82151B9E800A6BAE3 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83C11F72151B9E800A6BAE3 /* GroupListViewController.swift */; };
+		B85CD7B82154648D002027A5 /* ReminderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85CD7B72154648D002027A5 /* ReminderListViewController.swift */; };
+		B85CD7BB215464FB002027A5 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85CD7BA215464FB002027A5 /* CreateGroupViewController.swift */; };
+		B85CD7BD21546514002027A5 /* CreateReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85CD7BC21546514002027A5 /* CreateReminderViewController.swift */; };
 		B8E63EAB2151E9D200DC3C5C /* GroupListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E63EAA2151E9D200DC3C5C /* GroupListTableViewCell.swift */; };
 		B8E63EAE2151EB7D00DC3C5C /* GroupListViewController+Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E63EAD2151EB7D00DC3C5C /* GroupListViewController+Extension .swift */; };
 /* End PBXBuildFile section */
@@ -60,10 +63,13 @@
 		684C993BDBDBCCC97A900CB1 /* Pods_remindMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_remindMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72492698F97E105FB4E72A1B /* Pods_remindMeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_remindMeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AC05706959FA26A3636ADC7 /* Pods-remindMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-remindMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-remindMe/Pods-remindMe.debug.xcconfig"; sourceTree = "<group>"; };
-		C0CA9EC832CA9F97D24FE5E7 /* Pods-remindMeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-remindMeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-remindMeTests/Pods-remindMeTests.release.xcconfig"; sourceTree = "<group>"; };
 		B83C11F72151B9E800A6BAE3 /* GroupListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
+		B85CD7B72154648D002027A5 /* ReminderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListViewController.swift; sourceTree = "<group>"; };
+		B85CD7BA215464FB002027A5 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
+		B85CD7BC21546514002027A5 /* CreateReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderViewController.swift; sourceTree = "<group>"; };
 		B8E63EAA2151E9D200DC3C5C /* GroupListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListTableViewCell.swift; sourceTree = "<group>"; };
 		B8E63EAD2151EB7D00DC3C5C /* GroupListViewController+Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupListViewController+Extension .swift"; sourceTree = "<group>"; };
+		C0CA9EC832CA9F97D24FE5E7 /* Pods-remindMeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-remindMeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-remindMeTests/Pods-remindMeTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,30 +140,6 @@
 			path = remindMeTests;
 			sourceTree = "<group>";
 		};
-		B83C11F62151B99800A6BAE3 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				B83C11F72151B9E800A6BAE3 /* GroupListViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		B8E63EA92151E96900DC3C5C /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				B8E63EAA2151E9D200DC3C5C /* GroupListTableViewCell.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		B8E63EAC2151E9F100DC3C5C /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				B8E63EAD2151EB7D00DC3C5C /* GroupListViewController+Extension .swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		208053832151B7E3002CAAE4 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,13 +168,6 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		208053872151B811002CAAE4 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		6D4CF2EF0CB8CDB9E210D47E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +186,33 @@
 				72492698F97E105FB4E72A1B /* Pods_remindMeTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B83C11F62151B99800A6BAE3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B83C11F72151B9E800A6BAE3 /* GroupListViewController.swift */,
+				B85CD7B72154648D002027A5 /* ReminderListViewController.swift */,
+				B85CD7BA215464FB002027A5 /* CreateGroupViewController.swift */,
+				B85CD7BC21546514002027A5 /* CreateReminderViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B8E63EA92151E96900DC3C5C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B8E63EAA2151E9D200DC3C5C /* GroupListTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B8E63EAC2151E9F100DC3C5C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B8E63EAD2151EB7D00DC3C5C /* GroupListViewController+Extension .swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,9 +420,12 @@
 				B83C11F82151B9E800A6BAE3 /* GroupListViewController.swift in Sources */,
 				204B9BE5214C82CE000A1619 /* ViewController.swift in Sources */,
 				204B9BE3214C82CE000A1619 /* AppDelegate.swift in Sources */,
+				B85CD7B82154648D002027A5 /* ReminderListViewController.swift in Sources */,
 				B8E63EAB2151E9D200DC3C5C /* GroupListTableViewCell.swift in Sources */,
 				B8E63EAE2151EB7D00DC3C5C /* GroupListViewController+Extension .swift in Sources */,
 				20A0E5CE2151C05100F0F049 /* User.swift in Sources */,
+				B85CD7BD21546514002027A5 /* CreateReminderViewController.swift in Sources */,
+				B85CD7BB215464FB002027A5 /* CreateGroupViewController.swift in Sources */,
 				20A0E5D12151C97400F0F049 /* GeoCoder.swift in Sources */,
 				20A0E5CF2151C05100F0F049 /* Group.swift in Sources */,
 				20B38345215435790056F1DA /* Constant.swift in Sources */,
