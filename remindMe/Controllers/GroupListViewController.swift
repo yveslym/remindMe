@@ -17,6 +17,7 @@ class GroupListViewController: UIViewController{
     @IBOutlet weak var groupTableView: UITableView!
     @IBOutlet weak var groupNameLabel: UILabel!
     
+    
     // The array that contains the list of all of the user's groups
     var userGroups = [Group](){
         didSet {
@@ -34,5 +35,7 @@ class GroupListViewController: UIViewController{
         groupTableView.dataSource = self as UITableViewDataSource
         
     }
+    
+    // - MARK: SEGUE METHODS
 
 }

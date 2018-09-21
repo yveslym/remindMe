@@ -47,7 +47,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sVb-AL-zjX" userLabel="groupTitle">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sVb-AL-zjX" userLabel="groupTitle">
                                                     <rect key="frame" x="15" y="0.0" width="345" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -75,7 +75,6 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="groupNameLabel" destination="sVb-AL-zjX" id="mPv-nv-7ZM"/>
                         <outlet property="groupTableView" destination="owN-x7-fMQ" id="9z8-Tz-cIZ"/>
                     </connections>
                 </viewController>
@@ -87,21 +86,65 @@
         <scene sceneID="nFY-tu-a1I">
             <objects>
                 <viewController id="14l-cs-lto" customClass="ReminderListViewController" customModule="remindMe" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="IRS-Lh-d5y">
+                    <view key="view" contentMode="scaleToFill" id="IRS-Lh-d5y" userLabel="rootView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ke2-As-L10" userLabel="headerView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="160"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbJ-Sh-CwA">
+                                        <rect key="frame" x="60" y="44" width="255" height="116"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                                        <color key="textColor" name="tcCharcoal"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="PbJ-Sh-CwA" secondAttribute="trailing" constant="60" id="HW3-yV-neU"/>
+                                    <constraint firstAttribute="bottom" secondItem="PbJ-Sh-CwA" secondAttribute="bottom" id="gL4-5t-qJ1"/>
+                                    <constraint firstItem="PbJ-Sh-CwA" firstAttribute="leading" secondItem="ke2-As-L10" secondAttribute="leading" constant="60" id="v8H-h5-Q0y"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4r6-W0-0BY">
+                                <rect key="frame" x="0.0" y="184" width="375" height="594"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reminderCell" id="E5X-oo-uHv" userLabel="reminderCell">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E5X-oo-uHv" id="vDD-tK-Dvn">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" name="tcOffWhite"/>
+                        <constraints>
+                            <constraint firstItem="4r6-W0-0BY" firstAttribute="leading" secondItem="Zw6-4G-Ck0" secondAttribute="leading" id="6eu-0B-KPx"/>
+                            <constraint firstItem="Zw6-4G-Ck0" firstAttribute="trailing" secondItem="4r6-W0-0BY" secondAttribute="trailing" id="Nyj-9z-tWF"/>
+                            <constraint firstItem="Zw6-4G-Ck0" firstAttribute="top" secondItem="ke2-As-L10" secondAttribute="bottom" constant="-116" id="RXq-uG-t1N"/>
+                            <constraint firstItem="ke2-As-L10" firstAttribute="top" secondItem="IRS-Lh-d5y" secondAttribute="top" id="ULe-Ag-2JU"/>
+                            <constraint firstItem="4r6-W0-0BY" firstAttribute="top" secondItem="ke2-As-L10" secondAttribute="bottom" constant="24" id="VYy-ht-e4C"/>
+                            <constraint firstItem="Zw6-4G-Ck0" firstAttribute="top" secondItem="PbJ-Sh-CwA" secondAttribute="top" id="lzC-7Z-bkw"/>
+                            <constraint firstItem="Zw6-4G-Ck0" firstAttribute="trailing" secondItem="ke2-As-L10" secondAttribute="trailing" id="m5O-gV-fT6"/>
+                            <constraint firstItem="Zw6-4G-Ck0" firstAttribute="bottom" secondItem="4r6-W0-0BY" secondAttribute="bottom" id="uxh-Br-JeC"/>
+                            <constraint firstItem="ke2-As-L10" firstAttribute="leading" secondItem="Zw6-4G-Ck0" secondAttribute="leading" id="vds-Lr-HEc"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Zw6-4G-Ck0"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QHs-aD-vOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1078" y="62"/>
+            <point key="canvasLocation" x="1143" y="67"/>
         </scene>
-        <!--View Controller-->
+        <!--Create Group View Controller-->
         <scene sceneID="2bq-iP-PC1">
             <objects>
-                <viewController id="L3y-PL-GgJ" sceneMemberID="viewController">
+                <viewController id="L3y-PL-GgJ" customClass="CreateGroupViewController" customModule="remindMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qTc-Ml-qda">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -111,27 +154,45 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MOk-63-i5l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2038" y="74"/>
+            <point key="canvasLocation" x="238" y="1012"/>
         </scene>
-        <!--View Controller-->
+        <!--Create Reminder View Controller-->
         <scene sceneID="gPk-Jx-HFo">
             <objects>
-                <viewController id="MyR-jE-nO9" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Lss-kw-VET">
+                <viewController id="MyR-jE-nO9" customClass="CreateReminderViewController" customModule="remindMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lss-kw-VET" userLabel="rootView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fk3-ka-M8X" userLabel="headerView">
+                                <rect key="frame" x="0.0" y="44" width="375" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" name="tcOffWhite"/>
+                        <constraints>
+                            <constraint firstItem="HdN-ND-Z1o" firstAttribute="top" secondItem="Fk3-ka-M8X" secondAttribute="bottom" constant="-128" id="Qrq-xR-PR9"/>
+                            <constraint firstItem="HdN-ND-Z1o" firstAttribute="trailing" secondItem="Fk3-ka-M8X" secondAttribute="trailing" id="T1C-wD-xNi"/>
+                            <constraint firstItem="Fk3-ka-M8X" firstAttribute="leading" secondItem="HdN-ND-Z1o" secondAttribute="leading" id="acD-rA-gMy"/>
+                            <constraint firstItem="Fk3-ka-M8X" firstAttribute="top" secondItem="HdN-ND-Z1o" secondAttribute="top" id="qSC-3F-UtL"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="HdN-ND-Z1o"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Z5-jK-NPK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2903" y="80"/>
+            <point key="canvasLocation" x="1161" y="1012"/>
         </scene>
     </scenes>
     <resources>
         <namedColor name="tcCharcoal">
             <color red="0.28999999165534973" green="0.28999999165534973" blue="0.28999999165534973" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tcCharcoal">
+            <color red="0.28999999165534973" green="0.28999999165534973" blue="0.28999999165534973" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tcOffWhite">
+            <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="tcOffWhite">
             <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

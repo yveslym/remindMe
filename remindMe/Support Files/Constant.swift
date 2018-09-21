@@ -18,8 +18,12 @@ struct Constant{
         let ref = Database.database().reference().child("Reminders").child(id)
         return ref
     }
-    static func group(_ id: String) -> DatabaseReference{
-        let ref = Database.database().reference().child("Groups").child(id)
+    static func showGroupRef(_ id: String) -> DatabaseReference{
+        let ref = Database.database().reference().child("Groups").child((Auth.auth().currentUser?.uid)!).child(id)
+        return ref
+    }
+    static func groupRef() -> DatabaseReference{
+        let ref = Database.database().reference().child("Groups").child((Auth.auth().currentUser?.uid)!)
         return ref
     }
     

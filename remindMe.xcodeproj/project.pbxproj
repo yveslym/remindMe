@@ -22,6 +22,9 @@
 		20B3834921543B860056F1DA /* GroupServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B3834821543B860056F1DA /* GroupServices.swift */; };
 		20B3834B21543BA30056F1DA /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B3834A21543BA30056F1DA /* UserServices.swift */; };
 		8243E6592AC80125EF273C66 /* Pods_remindMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 684C993BDBDBCCC97A900CB1 /* Pods_remindMe.framework */; };
+		B80B5FBA2154AD360008675D /* ViewReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B5FB92154AD360008675D /* ViewReminderViewController.swift */; };
+		B80B5FBC2154AED60008675D /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B5FBB2154AED60008675D /* Reminder.swift */; };
+		B80B5FBE2154AF0D0008675D /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B5FBD2154AF0D0008675D /* EventType.swift */; };
 		B83C11F82151B9E800A6BAE3 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83C11F72151B9E800A6BAE3 /* GroupListViewController.swift */; };
 		B85CD7B82154648D002027A5 /* ReminderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85CD7B72154648D002027A5 /* ReminderListViewController.swift */; };
 		B85CD7BB215464FB002027A5 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85CD7BA215464FB002027A5 /* CreateGroupViewController.swift */; };
@@ -63,6 +66,9 @@
 		684C993BDBDBCCC97A900CB1 /* Pods_remindMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_remindMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72492698F97E105FB4E72A1B /* Pods_remindMeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_remindMeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AC05706959FA26A3636ADC7 /* Pods-remindMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-remindMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-remindMe/Pods-remindMe.debug.xcconfig"; sourceTree = "<group>"; };
+		B80B5FB92154AD360008675D /* ViewReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewReminderViewController.swift; sourceTree = "<group>"; };
+		B80B5FBB2154AED60008675D /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
+		B80B5FBD2154AF0D0008675D /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
 		B83C11F72151B9E800A6BAE3 /* GroupListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
 		B85CD7B72154648D002027A5 /* ReminderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListViewController.swift; sourceTree = "<group>"; };
 		B85CD7BA215464FB002027A5 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +161,8 @@
 			children = (
 				20A0E5CD2151C05100F0F049 /* Group.swift */,
 				20A0E5CC2151C05100F0F049 /* User.swift */,
+				B80B5FBB2154AED60008675D /* Reminder.swift */,
+				B80B5FBD2154AF0D0008675D /* EventType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -195,6 +203,7 @@
 				B85CD7B72154648D002027A5 /* ReminderListViewController.swift */,
 				B85CD7BA215464FB002027A5 /* CreateGroupViewController.swift */,
 				B85CD7BC21546514002027A5 /* CreateReminderViewController.swift */,
+				B80B5FB92154AD360008675D /* ViewReminderViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -427,9 +436,12 @@
 				B85CD7BD21546514002027A5 /* CreateReminderViewController.swift in Sources */,
 				B85CD7BB215464FB002027A5 /* CreateGroupViewController.swift in Sources */,
 				20A0E5D12151C97400F0F049 /* GeoCoder.swift in Sources */,
+				B80B5FBE2154AF0D0008675D /* EventType.swift in Sources */,
+				B80B5FBA2154AD360008675D /* ViewReminderViewController.swift in Sources */,
 				20A0E5CF2151C05100F0F049 /* Group.swift in Sources */,
 				20B38345215435790056F1DA /* Constant.swift in Sources */,
 				20B3834921543B860056F1DA /* GroupServices.swift in Sources */,
+				B80B5FBC2154AED60008675D /* Reminder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

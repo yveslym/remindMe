@@ -60,10 +60,5 @@ struct GeoFence{
     
 }
 
-enum EventType: String{
-    case onEntry
-    case onExit
-}
-
 
 
