@@ -25,7 +25,7 @@ struct GeoFence{
     }
     
     /// method to add a single geo fancing within a given region
-    static func addNewGeoFencing(region: CLCircularRegion,event: EventType, completion: @escaping(Bool)->()){
+    static func addNewGeoFencing(locationManager: CLLocationManager, region: CLCircularRegion,event: EventType, completion: @escaping(Bool)->()){
         
         switch event{
         case .onEntry:
@@ -35,9 +35,9 @@ struct GeoFence{
             region.notifyOnEntry = false
             region.notifyOnExit = true
         }
-        
+        locationManager.startMonitoring(for: region)
        // AppDelegate.shared.locationManager.startMonitoring(for: region)
-        startMonitoring(region: region)
+        //startMonitoring(region: region)
         print("start monitoring")
         completion(true)
     }
@@ -53,9 +53,9 @@ struct GeoFence{
             //showAlert(withTitle:"Warning", message: "Your geotification is saved but will only be activated once you grant Geotify permission to access the device location.")
         }
         // 3
-        let locationManager =  AppDelegate.shared.locationManager
+        //let locationManager =  AppDelegate.shared.locationManager
         // 4
-        locationManager.startMonitoring(for: region)
+        //locationManager.startMonitoring(for: region)
     }
     
 }
