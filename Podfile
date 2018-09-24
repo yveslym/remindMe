@@ -15,6 +15,7 @@ target 'remindMe' do
     pod 'GoogleSignIn'
     pod 'Firebase/Messaging'
     pod 'FBSDKLoginKit'
+    pod 'JLocationKit', '~> 1.0.3'
 
   target 'remindMeTests' do
     inherit! :search_paths

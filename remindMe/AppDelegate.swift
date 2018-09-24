@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import CoreLocation
-
+import JLocationKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -18,12 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     class var shared: AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
-     var locationManager : CLLocationManager = CLLocationManager()
-
+   // lazy var locationManager : CLLocationManager = CLLocationManager()
+    let location: LocationManager = LocationManager()
+   
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
        
-        self.locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
+//        self.locationManager.requestAlwaysAuthorization()
+//        locationManager.requestWhenInUseAuthorization()
+        
+         location.requestAccess = .requestAlwaysAuthorization //default is .requestAlwaysAuthorization
          FirebaseApp.configure()
         return true
     }
