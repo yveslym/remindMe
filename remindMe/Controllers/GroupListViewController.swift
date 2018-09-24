@@ -15,7 +15,6 @@ class GroupListViewController: UIViewController{
     
     // - MARK : IBOULETS AND VARIABLES
     @IBOutlet weak var groupTableView: UITableView!
-    @IBOutlet weak var groupNameLabel: UILabel!
     
     
     // The array that contains the list of all of the user's groups
@@ -25,6 +24,7 @@ class GroupListViewController: UIViewController{
         }
     }
     
+    var dummyArray: [String] = ["Home", "Work", "Lake House", "Studio"]
     
     
     
@@ -36,6 +36,10 @@ class GroupListViewController: UIViewController{
         
     }
     
-    // - MARK: SEGUE METHODS
+    // Function to unwind segues for navigation
+    @IBAction func unwindWithSegue(_ segue: UIStoryboardSegue){
+        // empty for now
+    }
+    
 
 }

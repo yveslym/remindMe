@@ -13,4 +13,7 @@ import UIKit
 // This VC is for when a user needs to create a reminder
 class CreateReminderViewController: UIViewController{
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }

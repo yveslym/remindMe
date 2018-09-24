@@ -13,4 +13,7 @@ import UIKit
 // This view controller is for when a user wants to display a single reminder
 class ViewReminderViewController: UIViewController{
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }

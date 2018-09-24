@@ -1,37 +1,40 @@
 //
-//  GroupListViewController+Extension .swift
+//  ReminderListViewController+Extension.swift
 //  remindMe
 //
-//  Created by Medi Assumani on 9/18/18.
+//  Created by Medi Assumani on 9/22/18.
 //  Copyright © 2018 Yves Songolo. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
+extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource{
+    
     
     // function to return the num of rows on a table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return dummyArray.count
+        return 0
     }
+    
+    
     
     // Function to handle action when a cell is selected
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let groupCell = tableView.dequeueReusableCell(withIdentifier: "groupCell", for: indexPath) as! GroupListTableViewCell
+        let reminderCell = tableView.dequeueReusableCell(withIdentifier: "reminderCell", for: indexPath) as! ReminderListTableViewCell
         
-        groupCell.groupNameLabel.text = dummyArray[indexPath.row]
-        groupCell.numberOfRemindersLabel.text = "3 reminders"
-
-        return groupCell
+        
+        
+        return  reminderCell
     }
+    
+    
     
     
     // Function to delete a cell from the table view
     func tableView(_ tableview : UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
         
         
     }

@@ -1,22 +1,25 @@
 //
-//  GroupListTableViewCell.swift
+//  ReminderListTableViewCell.swift
 //  remindMe
 //
-//  Created by Medi Assumani on 9/18/18.
+//  Created by Medi Assumani on 9/22/18.
 //  Copyright © 2018 Yves Songolo. All rights reserved.
 //
 
 import UIKit
 
-class GroupListTableViewCell: UITableViewCell {
+class ReminderListTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var groupNameLabel: UILabel!
-    @IBOutlet weak var numberOfRemindersLabel: UILabel!
+    // - MARK: @IBOULETS
+    @IBOutlet weak var reminderTitleLabel: UILabel!
+    @IBOutlet weak var reminderTypeLabel: UILabel! // Entry or Leave
+    
+    
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
