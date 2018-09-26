@@ -16,8 +16,6 @@ class GroupListViewController: UIViewController{
     // - MARK : IBOULETS AND VARIABLES
     @IBOutlet weak var groupTableView: UITableView!
     
-    
-    // The array that contains the list of all of the user's groups
     var userGroups = [Group](){
         didSet {
             groupTableView.reloadData()

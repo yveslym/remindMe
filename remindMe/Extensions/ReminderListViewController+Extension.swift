@@ -15,7 +15,7 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
     // function to return the num of rows on a table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 0
+        return userReminders.count
     }
     
     
@@ -24,8 +24,10 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let reminderCell = tableView.dequeueReusableCell(withIdentifier: Constant.reminderTableViewCellIdentifier, for: indexPath) as! ReminderListTableViewCell
+        let reminder = userReminders[indexPath.row]
         
-        
+        reminderCell.reminderTitleLabel.text = reminder.name
+        reminderCell.reminderTypeLabel.text = reminder.type.map { $0.rawValue }
         
         return  reminderCell
     }
@@ -38,6 +40,7 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
         
         if editingStyle == .delete{
             // code to delete a reminder from table view and database(FireBase)
+            let reminderToBeDeleted = userReminders[indexPath.row]
         }
     }
 }

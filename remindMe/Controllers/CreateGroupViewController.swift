@@ -16,9 +16,9 @@ class CreateGroupViewController: UIViewController{
     
     // - MARK: @IBOULETS AND CLASS PROPERTIES
     
-    var group: Group?
     @IBOutlet weak var groupNameTextField: UITextField!
     @IBOutlet weak var groupAddressTextField: UITextField!
+    var group: Group?
     
     
     override func viewDidLoad() {

@@ -12,9 +12,16 @@ import UIKit
 // This VC is to show the list of all the reminders
 class ReminderListViewController: UIViewController{
     
+    
+    // - MARK: @IBOULETS AND PROPERTIES
     @IBOutlet weak var reminderTableView: UITableView!
     
-    var dummyArray: [String] = ["Get Keys", "Lower Thermostat", "Feed Dog", "Activate Alarm"]
+    var userReminders = [Reminder](){
+        didSet{
+            reminderTableView.reloadData()
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -8,28 +8,50 @@
 
 import Foundation
 import UIKit
+import MapKit
+import JLocationKit
 
 extension CreateReminderViewController: UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     
+
     
-    // - MARK: PICKERVIEW AND UITEXTFIELD PROTOCOL FUNCTIONS NEEDED
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let segueIdentifier = segue.identifier, let destinationViewController = segue.destination as? ReminderListViewController else {return}
+        
+        switch segueIdentifier {
+            
+        case Constant.saveReminderSegueIdenfier where reminder == nil:
+            guard let name = reminderNameTextField.text, let type = EventType(rawValue: reminderTypeTextFiled.text ?? "none"), let time = reminderTimeTextField.text else {return}
+            
+            
+            var createdReminder = Reminder(name: name, type: type, time: time)
+            destinationViewController.userReminders.append(createdReminder)
+            
+        default:
+            print("Unindentified Indentifier")
+        }
+        
+    }
+    
+    
     
     // FUNCTION TO RETURN THE NUMBER OF COLUMNS TO DISPLAY
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 0
+        return 1
     }
     
     
     // FUNCTION TO RETURN THE NUMBER OF ROWS IN THE PICKER VIEW
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        return typesOfReminderList.count
+        return typesOfReminders.count
     }
     
     // FUNCTION TO RETURN THE TEXT TO BE SHOWN ON EACH ROW OF THE ENTRY TYPE PICKER VIEW
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        return typesOfReminderList[row]
+        return typesOfReminders[row]
     }
     
     
@@ -52,25 +74,6 @@ extension CreateReminderViewController: UIPickerViewDataSource, UIPickerViewDele
         }
         
         return true
-    }
-    
-    
-    // - MARK: SEGUE FUNCTIONS
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        guard let segueIdentifier = segue.identifier, let destination = segue.destination as? ReminderListViewController else {return}
-        /*
-        switch segueIdentifier {
-            
-        case Constant.saveReminderSegueIdenfier where reminder != nil:
-            
-            
-            
-        default:
-            print("Unindentified Indentifier")
-        }
-        */
     }
     
 }

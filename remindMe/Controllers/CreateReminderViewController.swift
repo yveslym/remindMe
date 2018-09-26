@@ -14,15 +14,14 @@ import UIKit
 class CreateReminderViewController: UIViewController{
     
     
-    // - MARK: PROPERTIES
-    let typesOfReminderList: [String] = ["Entry", "Exit"]
-    var reminderTypePickerView: UIPickerView =  UIPickerView()
-    
-    // - MARK: @IBOULETS
+    // - MARK: @IBOULETS AND PROPERTIES
  
     @IBOutlet weak var reminderNameTextField: UITextField!
     @IBOutlet weak var reminderTypeTextFiled: UITextField!
     @IBOutlet weak var reminderTimeTextField: UITextField!
+    let typesOfReminders: [String] = ["Entry", "Exit"]
+    var reminderTypePickerView: UIPickerView =  UIPickerView()
+    var reminder: Reminder?
     
     
 
