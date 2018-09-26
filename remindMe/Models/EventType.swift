@@ -7,7 +7,11 @@
 //
 
 import Foundation
+
+// THIS ENUM DESCRIBE THE TYPE OF REMINDER, COULD BE ENTRY OR EXIT
+
 enum EventType: String{
+    
     case onEntry
     case onExit
 }

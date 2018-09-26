@@ -12,6 +12,8 @@ import Firebase
 import GoogleSignIn
 import FBSDKLoginKit
 
+// THIS STRUCT CONTAINS FUNCTIONS TO CREATE, SHOW, SIGNIN, SIGNUP A USER AND TALK TO THE BACKEND
+
 
 struct UserServices{
     // method to create new user

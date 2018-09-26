@@ -7,11 +7,16 @@
 //
 
 import Foundation
+
+// THIS STRUCT REPRESENT THE BLUE PRINT OF THE GROUP DATA MODEL
+
 struct Group: Codable{
+    
     var id: String
     var name: String
     var longitude: Double
     var latitude: Double
+    static var numOfReminders = 0
     
     func toDictionary() ->[String: Any]{
         let data = try! JSONEncoder().encode(self)

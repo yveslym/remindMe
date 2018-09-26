@@ -14,16 +14,14 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
     // function to return the num of rows on a table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return dummyArray.count
+        return userGroups.count
     }
     
     // Function to handle action when a cell is selected
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let groupCell = tableView.dequeueReusableCell(withIdentifier: "groupCell", for: indexPath) as! GroupListTableViewCell
+        let groupCell = tableView.dequeueReusableCell(withIdentifier: Constant.groupTableViewCellIdentifier, for: indexPath) as! GroupListTableViewCell
         
-        groupCell.groupNameLabel.text = dummyArray[indexPath.row]
-        groupCell.numberOfRemindersLabel.text = "3 reminders"
 
         return groupCell
     }
@@ -32,7 +30,9 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
     // Function to delete a cell from the table view
     func tableView(_ tableview : UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
-        
+        if editingStyle == .delete{
+            // code to delete a group from the tableview and database(FireBase)
+        }
         
     }
 }

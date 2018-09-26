@@ -23,7 +23,7 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
     // Function to handle action when a cell is selected
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let reminderCell = tableView.dequeueReusableCell(withIdentifier: "reminderCell", for: indexPath) as! ReminderListTableViewCell
+        let reminderCell = tableView.dequeueReusableCell(withIdentifier: Constant.reminderTableViewCellIdentifier, for: indexPath) as! ReminderListTableViewCell
         
         
         
@@ -36,6 +36,8 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
     // Function to delete a cell from the table view
     func tableView(_ tableview : UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
-        
+        if editingStyle == .delete{
+            // code to delete a reminder from table view and database(FireBase)
+        }
     }
 }

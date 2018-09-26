@@ -20,11 +20,10 @@ class GroupListViewController: UIViewController{
     // The array that contains the list of all of the user's groups
     var userGroups = [Group](){
         didSet {
-        groupTableView.reloadData()
+            groupTableView.reloadData()
         }
     }
     
-    var dummyArray: [String] = ["Home", "Work", "Lake House", "Studio"]
     
     
     
@@ -37,9 +36,11 @@ class GroupListViewController: UIViewController{
     }
     
     // Function to unwind segues for navigation
-    @IBAction func unwindWithSegue(_ segue: UIStoryboardSegue){
+    @IBAction func unwindtoGroupListViewController(_ segue: UIStoryboardSegue){
         // empty for now
     }
+    
+    
     
 
 }

@@ -18,5 +18,18 @@ class ReminderListViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        reminderTableView.delegate = self as UITableViewDelegate
+        reminderTableView.dataSource = self as UITableViewDataSource
     }
+    
+    
+    
+    // Function to unwind back to this view controller
+    
+    @IBAction func unwindToReminderListViewController(_ segue: UIStoryboardSegue){
+        
+    }
+    
+
 }

@@ -13,7 +13,31 @@ import UIKit
 // This VC is for when a user needs to create a reminder
 class CreateReminderViewController: UIViewController{
     
+    
+    // - MARK: PROPERTIES
+    let typesOfReminderList: [String] = ["Entry", "Exit"]
+    var reminderTypePickerView: UIPickerView =  UIPickerView()
+    
+    // - MARK: @IBOULETS
+ 
+    @IBOutlet weak var reminderNameTextField: UITextField!
+    @IBOutlet weak var reminderTypeTextFiled: UITextField!
+    @IBOutlet weak var reminderTimeTextField: UITextField!
+    
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // SETTING UP PICKER VIEW TO GIVE USER CHOISE TO CHOOSE BETWEEN ENTRY/EXIT
+        reminderTypePickerView.delegate = self as UIPickerViewDelegate
+        reminderTypePickerView.dataSource = self as UIPickerViewDataSource
+        reminderTypeTextFiled.inputView = reminderTypePickerView
+        
+        
+        // SETTING UP DELEGATES FOR ALL TEXTFIELDS
+        reminderNameTextField.delegate = self as UITextFieldDelegate
+        reminderTypeTextFiled.delegate = self as UITextFieldDelegate
+        reminderTimeTextField.delegate = self as UITextFieldDelegate
     }
 }

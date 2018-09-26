@@ -9,9 +9,10 @@
 import Foundation
 import Firebase
 struct GroupServices{
-    static func create(){
-        
-    }
+    
+// THIS STRUCT CONTAINS FUNCTIONS TO CREATE, SHOW A GROUP AND TALK TO THE BACKEND
+    
+    
     static func show(completion: @escaping ([Group]?) ->()){
         
        

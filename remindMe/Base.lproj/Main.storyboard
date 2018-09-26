@@ -66,7 +66,7 @@
                                         <connections>
                                             <outlet property="groupNameLabel" destination="sVb-AL-zjX" id="EMN-bn-MsQ"/>
                                             <outlet property="numberOfRemindersLabel" destination="6I3-3s-ULh" id="mGq-1E-DP3"/>
-                                            <segue destination="14l-cs-lto" kind="show" id="vhw-5o-TsV"/>
+                                            <segue destination="14l-cs-lto" kind="show" identifier="showListOfReminder" id="4Hn-Gg-15p"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -86,7 +86,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="dGX-gm-GAv"/>
+                    <navigationItem key="navigationItem" id="dGX-gm-GAv">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hzW-Ag-6Fo">
+                            <connections>
+                                <segue destination="L3y-PL-GgJ" kind="show" identifier="createSingleGroup" id="pgS-if-rNR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="groupTableView" destination="owN-x7-fMQ" id="9z8-Tz-cIZ"/>
                     </connections>
@@ -170,31 +176,95 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Zw6-4G-Ck0"/>
                     </view>
+                    <navigationItem key="navigationItem" id="3FW-Zc-Esh">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jTU-Qv-nXP">
+                            <connections>
+                                <segue destination="MyR-jE-nO9" kind="show" identifier="createSingleReminder" id="6bd-7v-ifz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="reminderTableView" destination="4r6-W0-0BY" id="5cK-yN-5ly"/>
-                        <segue destination="CJF-fl-m3F" kind="unwind" identifier="unwindSegueGroupVC" unwindAction="unwindWithSegue:" id="byv-G9-7m1"/>
+                        <segue destination="CJF-fl-m3F" kind="unwind" unwindAction="unwindtoGroupListViewController:" id="0ny-l8-ebB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QHs-aD-vOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="qoT-yv-Eny" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2122" y="67"/>
+            <point key="canvasLocation" x="2177" y="67"/>
         </scene>
-        <!--Create Group View Controller-->
+        <!--Title-->
         <scene sceneID="2bq-iP-PC1">
             <objects>
                 <viewController id="L3y-PL-GgJ" customClass="CreateGroupViewController" customModule="remindMe" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="qTc-Ml-qda">
+                    <view key="view" contentMode="scaleToFill" id="qTc-Ml-qda" userLabel="rootView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02b-cE-Aem" userLabel="inputView">
+                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dkk-yn-38y">
+                                        <rect key="frame" x="93" y="125" width="189" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c32-Bt-a6p">
+                                        <rect key="frame" x="93" y="234" width="189" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3eY-lr-AAJ">
+                                        <rect key="frame" x="93" y="330" width="189" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mhv-ut-Nfl">
+                                        <rect key="frame" x="93" y="435" width="189" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="02b-cE-Aem" firstAttribute="leading" secondItem="haM-pY-xZF" secondAttribute="leading" id="KEV-G4-meA"/>
+                            <constraint firstItem="02b-cE-Aem" firstAttribute="top" secondItem="haM-pY-xZF" secondAttribute="top" id="bfW-Rt-nfI"/>
+                            <constraint firstItem="haM-pY-xZF" firstAttribute="bottom" secondItem="02b-cE-Aem" secondAttribute="bottom" id="eAh-gy-g3S"/>
+                            <constraint firstItem="haM-pY-xZF" firstAttribute="trailing" secondItem="02b-cE-Aem" secondAttribute="trailing" id="lSg-fq-VEa"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="haM-pY-xZF"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="D2L-AL-Np9">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="0eU-he-a9R">
+                            <connections>
+                                <segue destination="CJF-fl-m3F" kind="unwind" identifier="saveGroup" unwindAction="unwindtoGroupListViewController:" id="FJ3-DL-gY4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="groupAddressTextField" destination="c32-Bt-a6p" id="os3-W9-vCy"/>
+                        <outlet property="groupCityTextField" destination="3eY-lr-AAJ" id="eUL-1f-7wd"/>
+                        <outlet property="groupNameTextField" destination="dkk-yn-38y" id="RG5-fx-tt9"/>
+                        <outlet property="groupStateTextField" destination="mhv-ut-Nfl" id="Ii1-Tg-nMb"/>
+                        <segue destination="CJF-fl-m3F" kind="unwind" identifier="backToGroups" unwindAction="unwindtoGroupListViewController:" id="cg0-Mf-ZZ7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MOk-63-i5l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="238" y="1012"/>
+            <point key="canvasLocation" x="1180" y="771"/>
         </scene>
-        <!--Create Reminder View Controller-->
+        <!--Reminder Title-->
         <scene sceneID="gPk-Jx-HFo">
             <objects>
                 <viewController id="MyR-jE-nO9" customClass="CreateReminderViewController" customModule="remindMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -202,24 +272,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fk3-ka-M8X" userLabel="headerView">
-                                <rect key="frame" x="0.0" y="44" width="375" height="128"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1nl-du-WxC" userLabel="inputView">
+                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kLt-eA-Sem" userLabel="name">
+                                        <rect key="frame" x="78" y="57" width="190" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Time" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IyR-6f-voz" userLabel="time">
+                                        <rect key="frame" x="78" y="307" width="190" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1e0-ei-UGF" userLabel="type">
+                                        <rect key="frame" x="78" y="179" width="190" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" name="tcOffWhite"/>
                         <constraints>
-                            <constraint firstItem="HdN-ND-Z1o" firstAttribute="top" secondItem="Fk3-ka-M8X" secondAttribute="bottom" constant="-128" id="Qrq-xR-PR9"/>
-                            <constraint firstItem="HdN-ND-Z1o" firstAttribute="trailing" secondItem="Fk3-ka-M8X" secondAttribute="trailing" id="T1C-wD-xNi"/>
-                            <constraint firstItem="Fk3-ka-M8X" firstAttribute="leading" secondItem="HdN-ND-Z1o" secondAttribute="leading" id="acD-rA-gMy"/>
-                            <constraint firstItem="Fk3-ka-M8X" firstAttribute="top" secondItem="HdN-ND-Z1o" secondAttribute="top" id="qSC-3F-UtL"/>
+                            <constraint firstItem="1nl-du-WxC" firstAttribute="leading" secondItem="HdN-ND-Z1o" secondAttribute="leading" id="095-Aa-tj8"/>
+                            <constraint firstItem="1nl-du-WxC" firstAttribute="top" secondItem="HdN-ND-Z1o" secondAttribute="top" id="E4Q-bc-Izr"/>
+                            <constraint firstItem="1nl-du-WxC" firstAttribute="bottom" secondItem="HdN-ND-Z1o" secondAttribute="bottom" id="XbA-H4-w0d"/>
+                            <constraint firstItem="HdN-ND-Z1o" firstAttribute="trailing" secondItem="1nl-du-WxC" secondAttribute="trailing" id="gyQ-e9-KZc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HdN-ND-Z1o"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Reminder Title" id="Bg3-63-8My">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="wPY-st-bex">
+                            <connections>
+                                <segue destination="qoT-yv-Eny" kind="unwind" identifier="saveReminder" unwindAction="unwindToReminderListViewController:" id="etT-BO-VcO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="reminderNameTextField" destination="kLt-eA-Sem" id="k9F-vh-Kln"/>
+                        <outlet property="reminderTimeTextField" destination="IyR-6f-voz" id="NYg-GV-2eH"/>
+                        <outlet property="reminderTypeTextFiled" destination="1e0-ei-UGF" id="Irl-TF-ULj"/>
+                        <segue destination="qoT-yv-Eny" kind="unwind" identifier="backToReminders" unwindAction="unwindToReminderListViewController:" id="Fcp-eZ-88R"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Z5-jK-NPK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1161" y="1012"/>
+            <point key="canvasLocation" x="2177" y="772"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="x5Z-ls-K8c">
@@ -237,7 +343,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YcU-0d-rDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="237.59999999999999" y="66.502463054187189"/>
+            <point key="canvasLocation" x="362" y="67"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="N0D-IN-Lzv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="80t-VS-Mdg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vkn-TJ-ixZ">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="14l-cs-lto" kind="relationship" relationship="rootViewController" id="G9T-2K-5PG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rkz-al-RMl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2177" y="-622"/>
         </scene>
     </scenes>
     <resources>
@@ -248,4 +372,7 @@
             <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="4Hn-Gg-15p"/>
+    </inferredMetricsTieBreakers>
 </document>
