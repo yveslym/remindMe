@@ -19,8 +19,6 @@ class CreateGroupViewController: UIViewController{
     var group: Group?
     @IBOutlet weak var groupNameTextField: UITextField!
     @IBOutlet weak var groupAddressTextField: UITextField!
-    @IBOutlet weak var groupCityTextField: UITextField!
-    @IBOutlet weak var groupStateTextField: UITextField!
     
     
     override func viewDidLoad() {
@@ -28,8 +26,6 @@ class CreateGroupViewController: UIViewController{
         
         groupNameTextField.delegate = self as UITextFieldDelegate
         groupAddressTextField.delegate = self as UITextFieldDelegate
-        groupCityTextField.delegate = self as UITextFieldDelegate
-        groupStateTextField.delegate = self as UITextFieldDelegate
         
     }
 }

@@ -29,21 +29,22 @@ extension CreateGroupViewController: UITextFieldDelegate{
         // code for when the user taps "save" without making any changes to the group attributes
         case Constant.saveGroupSegueIdentifier where group == nil:
             
-            guard let address = groupAddressTextField.text else { return }
+            guard let address = groupAddressTextField.text, let name = groupNameTextField.text else { return }
             GeoFence.addressToCoordinate(address) { (location) in
                 if let location = location{
                     
                     let latitude = location.latitude
                     let longitude = location.longitude
+                    var createdGroup = Group(name: name, latitude: latitude, longitude: longitude)
+                    
+                    destinationViewController.userGroups.append(createdGroup)
                 }
             }
             
             
-           
-            
-            
+        
         default:
-            return
+            print("Unexpected Segue Identifier")
         }
     }
     
@@ -64,17 +65,9 @@ extension CreateGroupViewController: UITextFieldDelegate{
             
             groupAddressTextField.becomeFirstResponder()
             
-        case groupAddressTextField:
-            
-            groupCityTextField.becomeFirstResponder()
-            
-        case groupCityTextField:
-            
-            groupStateTextField.becomeFirstResponder()
-            
         default:
             
-            groupStateTextField.resignFirstResponder()
+            groupAddressTextField.resignFirstResponder()
         }
         
         return true

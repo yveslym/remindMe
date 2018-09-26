@@ -12,15 +12,24 @@ import Foundation
 
 struct Group: Codable{
     
-    var id: String
+    //var id: String
     var name: String
     var longitude: Double
     var latitude: Double
     static var numOfReminders = 0
     
+    init(name: String, latitude: Double, longitude: Double) {
+        
+        self.name = name
+        self.latitude = latitude
+        self.longitude = longitude
+        
+    }
+   
     func toDictionary() ->[String: Any]{
         let data = try! JSONEncoder().encode(self)
         let json = try! JSONSerialization.jsonObject(with: data, options: [])
         return json as! [String : Any]
     }
+ 
 }

@@ -218,20 +218,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3eY-lr-AAJ">
-                                        <rect key="frame" x="93" y="330" width="189" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mhv-ut-Nfl">
-                                        <rect key="frame" x="93" y="435" width="189" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -254,9 +240,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="groupAddressTextField" destination="c32-Bt-a6p" id="os3-W9-vCy"/>
-                        <outlet property="groupCityTextField" destination="3eY-lr-AAJ" id="eUL-1f-7wd"/>
                         <outlet property="groupNameTextField" destination="dkk-yn-38y" id="RG5-fx-tt9"/>
-                        <outlet property="groupStateTextField" destination="mhv-ut-Nfl" id="Ii1-Tg-nMb"/>
                         <segue destination="CJF-fl-m3F" kind="unwind" identifier="backToGroups" unwindAction="unwindtoGroupListViewController:" id="cg0-Mf-ZZ7"/>
                     </connections>
                 </viewController>

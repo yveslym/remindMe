@@ -24,9 +24,7 @@ class GroupListViewController: UIViewController{
         }
     }
     
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,8 +37,6 @@ class GroupListViewController: UIViewController{
     @IBAction func unwindtoGroupListViewController(_ segue: UIStoryboardSegue){
         // empty for now
     }
-    
-    
     
 
 }

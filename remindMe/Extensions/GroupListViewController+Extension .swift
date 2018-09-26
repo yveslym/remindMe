@@ -21,8 +21,11 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let groupCell = tableView.dequeueReusableCell(withIdentifier: Constant.groupTableViewCellIdentifier, for: indexPath) as! GroupListTableViewCell
+        let group = userGroups[indexPath.row]
         
-
+        groupCell.groupNameLabel.text = group.name
+        groupCell.numberOfRemindersLabel.text = "2"
+        
         return groupCell
     }
     
@@ -32,6 +35,7 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         
         if editingStyle == .delete{
             // code to delete a group from the tableview and database(FireBase)
+            //let groupToBeDeleted = userGroups[indexPath.row]
         }
         
     }
