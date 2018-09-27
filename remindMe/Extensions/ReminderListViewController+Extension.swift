@@ -27,14 +27,14 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
         let reminder = userReminders[indexPath.row]
         
         reminderCell.reminderTitleLabel.text = reminder.name
-        reminderCell.reminderTypeLabel.text = reminder.type.map { $0.rawValue }
+        reminderCell.reminderTypeLabel.text = reminder.type
         
         return  reminderCell
     }
     
     
     
-    
+    /*
     // Function to delete a cell from the table view
     func tableView(_ tableview : UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
@@ -43,4 +43,5 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
             let reminderToBeDeleted = userReminders[indexPath.row]
         }
     }
+ */
 }

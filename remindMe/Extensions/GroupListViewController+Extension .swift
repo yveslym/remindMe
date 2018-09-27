@@ -24,7 +24,7 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         let group = userGroups[indexPath.row]
         
         groupCell.groupNameLabel.text = group.name
-        groupCell.numberOfRemindersLabel.text = "2"
+        groupCell.numberOfRemindersLabel.text = Group.numberOfReminders.convertIntToString()
         
         return groupCell
     }

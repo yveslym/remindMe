@@ -19,20 +19,12 @@ class CreateReminderViewController: UIViewController{
     @IBOutlet weak var reminderNameTextField: UITextField!
     @IBOutlet weak var reminderTypeTextFiled: UITextField!
     @IBOutlet weak var reminderTimeTextField: UITextField!
-    let typesOfReminders: [String] = ["Entry", "Exit"]
-    var reminderTypePickerView: UIPickerView =  UIPickerView()
     var reminder: Reminder?
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // SETTING UP PICKER VIEW TO GIVE USER CHOISE TO CHOOSE BETWEEN ENTRY/EXIT
-        reminderTypePickerView.delegate = self as UIPickerViewDelegate
-        reminderTypePickerView.dataSource = self as UIPickerViewDataSource
-        reminderTypeTextFiled.inputView = reminderTypePickerView
-        
         
         // SETTING UP DELEGATES FOR ALL TEXTFIELDS
         reminderNameTextField.delegate = self as UITextFieldDelegate

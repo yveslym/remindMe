@@ -11,7 +11,7 @@ import UIKit
 import MapKit
 import JLocationKit
 
-extension CreateReminderViewController: UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
+extension CreateReminderViewController: UITextFieldDelegate {
     
 
     
@@ -22,10 +22,11 @@ extension CreateReminderViewController: UIPickerViewDataSource, UIPickerViewDele
         switch segueIdentifier {
             
         case Constant.saveReminderSegueIdenfier where reminder == nil:
-            guard let name = reminderNameTextField.text, let type = EventType(rawValue: reminderTypeTextFiled.text ?? "none"), let time = reminderTimeTextField.text else {return}
             
+            guard let name = reminderNameTextField.text, let type = reminderTypeTextFiled.text, let time = reminderTimeTextField.text else {return}
             
-            var createdReminder = Reminder(name: name, type: type, time: time)
+            let createdReminder: Reminder = Reminder(name: name, type: type, time: time)
+            Group.numberOfReminders += 1
             destinationViewController.userReminders.append(createdReminder)
             
         default:
@@ -34,25 +35,6 @@ extension CreateReminderViewController: UIPickerViewDataSource, UIPickerViewDele
         
     }
     
-    
-    
-    // FUNCTION TO RETURN THE NUMBER OF COLUMNS TO DISPLAY
-    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    
-    // FUNCTION TO RETURN THE NUMBER OF ROWS IN THE PICKER VIEW
-    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
-        return typesOfReminders.count
-    }
-    
-    // FUNCTION TO RETURN THE TEXT TO BE SHOWN ON EACH ROW OF THE ENTRY TYPE PICKER VIEW
-    public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        
-        return typesOfReminders[row]
-    }
     
     
     // FUNCTION TO SELECT THE NEXT TEXTFIELD TO PROMPT FOR INPUT

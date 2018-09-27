@@ -16,7 +16,7 @@ struct Group: Codable{
     var name: String
     var longitude: Double
     var latitude: Double
-    static var numOfReminders = 0
+    static var numberOfReminders = 0
     
     init(name: String, latitude: Double, longitude: Double) {
         

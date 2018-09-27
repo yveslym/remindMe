@@ -12,8 +12,8 @@ import Foundation
 
 enum EventType: String{
     
-    case onEntry
-    case onExit
+    case onEntry = "Entry"
+    case onExit = "Exit"
 }
 
 

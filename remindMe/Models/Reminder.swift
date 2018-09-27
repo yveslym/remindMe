@@ -8,18 +8,27 @@
 
 import Foundation
 
-struct Reminder{
+struct Reminder: Codable{
     
     //var id: String
     var name: String
-    var type: EventType?
+    var type: String
     var time: String
     
-    init(name: String, type: EventType, time: String) {
+    init(name: String, type: String, time: String) {
         
         self.name = name
         self.type = type
         self.time = time
+    }
+    
+    
+    // Function convert data  to be sent to the server into a json encoded format
+    func toDictionary() -> [String: Any]{
+        let data = try! JSONEncoder().encode(self)
+        let json = try! JSONSerialization.jsonObject(with: data, options: [])
+        
+        return json as! [String: Any]
     }
     
 }

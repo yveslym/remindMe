@@ -43,9 +43,19 @@ struct Constant{
         return ref
     }
     
+    static func showReminderRef(_ id: String) -> DatabaseReference{
+        let ref = Database.database().reference().child("Reminders").child((Auth.auth().currentUser?.uid)!).child(id)
+        return ref
+    }
+    
     
     static func groupRef() -> DatabaseReference{
         let ref = Database.database().reference().child("Groups").child((Auth.auth().currentUser?.uid)!)
+        return ref
+    }
+    
+    static func reminderRef() -> DatabaseReference{
+        let ref = Database.database().reference().child("Reminders").child((Auth.auth().currentUser?.uid)!)
         return ref
     }
     
