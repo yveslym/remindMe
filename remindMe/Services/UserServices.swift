@@ -17,7 +17,7 @@ import FBSDKLoginKit
 
 struct UserServices{
     // method to create new user
-    static func create(user: User, completion: @escaping(Any)->()){
+   private static func create(user: User, completion: @escaping(Any)->()){
         
         let authUser = Auth.auth().currentUser
        

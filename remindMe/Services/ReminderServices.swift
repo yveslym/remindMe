@@ -19,23 +19,26 @@ struct ReminderServices{
         reference.observeSingleEvent(of: .value) { (snapshot) in
             var reminders = [Reminder]()
             let dispatchGroup = DispatchGroup()
-            
-            snapshot.children.forEach({ (nap) in
+            if snapshot.exists() == false  {return completion(nil)}
+           // snapshot.exists(){
+                snapshot.children.forEach({ (snap) in
+                    dispatchGroup.enter()
+                    guard let snap = snap as? DataSnapshot else { return completion(nil) }
+                    let value = snap.value
+                    let data = try! JSONSerialization.data(withJSONObject: value!, options: [])
+                    let reminder = try! JSONDecoder().decode(Reminder.self, from: data)
+                    reminders.append(reminder)
+                    dispatchGroup.leave()
+                })
                 
-                dispatchGroup.enter()
-                guard let snap = snapshot as? DataSnapshot else { return completion(nil) }
-                let value = snap.value
-                let reminder = try! JSONDecoder().decode(Reminder.self, withJSONObject: value!)
-                reminders.append(reminder)
-                dispatchGroup.leave()
-            })
-            
-            dispatchGroup.notify(queue: .global(), execute: {
-                completion(reminders)
-            })
+                dispatchGroup.notify(queue: .global(), execute: {
+                    completion(reminders)
+                })
+            }
         }
-    }
+    //}
     
+    /// method tocreate reminder
     static func create(_ reminder: Reminder, completion: @escaping()->()){
         
         let ref = Constant.reminderRef().childByAutoId()

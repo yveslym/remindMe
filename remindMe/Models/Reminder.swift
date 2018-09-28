@@ -11,7 +11,7 @@ import Foundation
 struct Reminder: Codable{
     
     //var id: String
-    var name: String
+    var name: String?
     var type: String
     var time: String
     
