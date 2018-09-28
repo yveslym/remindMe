@@ -1,0 +1,6 @@
+framework module JLocationKit {
+  umbrella header "JLocationKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
