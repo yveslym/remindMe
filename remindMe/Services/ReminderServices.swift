@@ -10,35 +10,37 @@ import Foundation
 import Firebase
 
 // THIS STRUCT CONTAINS FUNCTIONS TO CREATE, SHOW A REMINDER AND TALK TO THE BACKEND
-
 struct ReminderServices{
     
+    
+    // THIS FUNCTION GETS AN ARRAY OF REMINDERS CREATED BY THE USER FROM THE DATABASE TO DISPLAY TO THE USER
     static func show(completion: @escaping ([Reminder]?) -> ()){
         
         let reference = Constant.reminderRef()
         reference.observeSingleEvent(of: .value) { (snapshot) in
-            var reminders = [Reminder]()
+            var listOfReminders = [Reminder]()
             let dispatchGroup = DispatchGroup()
             if snapshot.exists() == false  {return completion(nil)}
-           // snapshot.exists(){
+           
                 snapshot.children.forEach({ (snap) in
                     dispatchGroup.enter()
                     guard let snap = snap as? DataSnapshot else { return completion(nil) }
                     let value = snap.value
                     let data = try! JSONSerialization.data(withJSONObject: value!, options: [])
                     let reminder = try! JSONDecoder().decode(Reminder.self, from: data)
-                    reminders.append(reminder)
+                    listOfReminders.append(reminder)
                     dispatchGroup.leave()
                 })
                 
                 dispatchGroup.notify(queue: .global(), execute: {
-                    completion(reminders)
+                    completion(listOfReminders)
                 })
             }
         }
-    //}
     
-    /// method tocreate reminder
+    
+    
+    // THIS FUNCTION CREATES A SINGLE REMINDER AND SENDS IT TO THE DATABASE AS JSON
     static func create(_ reminder: Reminder, completion: @escaping()->()){
         
         let ref = Constant.reminderRef().childByAutoId()

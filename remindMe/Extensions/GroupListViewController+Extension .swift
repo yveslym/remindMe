@@ -6,7 +6,6 @@
 //  Copyright © 2018 Yves Songolo. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{

@@ -29,10 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
          location.requestAccess = .requestAlwaysAuthorization //default is .requestAlwaysAuthorization
          FirebaseApp.configure()
+        
         let user = User.init("yves", "", "yv@maisl.com")
         UserServices.signUp("yves@gyve.com", "12345678") { (user) in
             guard let user = user as? User else { return}
-            let reminder = Reminder.init(name: "Home", type: "onEntry", time: "anytime")
+            let reminder = Reminder.init(name: "Gym", type: .onEntry  , time: "12:40".stringToDate())
             ReminderServices.create(reminder, completion: {
                 print("works")
                 ReminderServices.show(completion: { (reminders) in
@@ -40,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 })
             })
         }
+            
         return true
     }
 

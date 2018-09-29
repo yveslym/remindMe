@@ -14,9 +14,9 @@ import FBSDKLoginKit
 
 // THIS STRUCT CONTAINS FUNCTIONS TO CREATE, SHOW, SIGNIN, SIGNUP A USER AND TALK TO THE BACKEND
 
-
 struct UserServices{
-    // method to create new user
+    
+    // THIS METHOD CREATES A SINGLE USER OBJECT AND STORES IT IN THE DATABASE
    private static func create(user: User, completion: @escaping(Any)->()){
         
         let authUser = Auth.auth().currentUser
@@ -29,7 +29,7 @@ struct UserServices{
             return completion(user)
         }
 }
-    // method to retrieve user from firebase
+    // THIS METHOD RETRIEVE USER FROM THE DATABASE
     static func show(completion: @escaping(User?)-> ()){
         let uid = Auth.auth().currentUser?.uid
         let ref = Constant.user(uid!)

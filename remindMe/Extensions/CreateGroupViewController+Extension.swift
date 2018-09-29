@@ -6,15 +6,9 @@
 //  Copyright © 2018 Yves Songolo. All rights reserved.
 //
 
-import Foundation
 import UIKit
-import MapKit
-import JLocationKit
-
-// i dont know why im extending this one to be honest :)
 
 extension CreateGroupViewController: UITextFieldDelegate{
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -35,25 +29,19 @@ extension CreateGroupViewController: UITextFieldDelegate{
                     
                     let latitude = location.latitude
                     let longitude = location.longitude
-                    var createdGroup = Group(name: name, latitude: latitude, longitude: longitude)
-                    
-                    destinationViewController.userGroups.append(createdGroup)
+                    var createdGroup = Group(id: "",name: name, latitude: latitude, longitude: longitude)
+                    GroupServices.create(createdGroup, completion: {
+                        DispatchQueue.main.async {
+                           destinationViewController.userGroups.append(createdGroup)
+                        }
+                    })
                 }
             }
-            
-            
         
         default:
             print("Unexpected Segue Identifier")
         }
     }
-    
-    
-    
-    
-    
-    
-    
     
     
     // FUNCTION TO HANDLE TEXT FIELDS
@@ -69,7 +57,6 @@ extension CreateGroupViewController: UITextFieldDelegate{
             
             groupAddressTextField.resignFirstResponder()
         }
-        
         return true
     }
 }

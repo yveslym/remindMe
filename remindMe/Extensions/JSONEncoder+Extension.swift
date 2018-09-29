@@ -6,11 +6,7 @@
 //  Copyright © 2018 Yves Songolo. All rights reserved.
 //
 
-import UIKit
 import Foundation
-import Firebase
-import GoogleSignIn
-import FBSDKLoginKit
 
 extension JSONEncoder {
     func encodeJSONObject<T: Encodable>(_ value: T, options opt: JSONSerialization.ReadingOptions = []) throws -> Any {
