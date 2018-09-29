@@ -311,6 +311,57 @@
             </objects>
             <point key="canvasLocation" x="2177" y="772"/>
         </scene>
+        <!--Sign In View Controller-->
+        <scene sceneID="tgh-W0-D7h">
+            <objects>
+                <viewController id="xWe-hz-pko" customClass="SignInViewController" customModule="remindMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="70Q-wd-m4S" userLabel="rootView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a9t-tZ-Pqv" userLabel="headerView">
+                                <rect key="frame" x="0.0" y="44" width="375" height="139"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN IN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7Z-xj-Dt5">
+                                        <rect key="frame" x="50" y="0.0" width="275" height="139"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                                        <color key="textColor" name="tcCharcoal"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="M7Z-xj-Dt5" firstAttribute="leading" secondItem="a9t-tZ-Pqv" secondAttribute="leading" constant="50" id="WcH-SX-I4C"/>
+                                    <constraint firstItem="M7Z-xj-Dt5" firstAttribute="top" secondItem="a9t-tZ-Pqv" secondAttribute="top" id="dHt-t7-tPz"/>
+                                    <constraint firstAttribute="bottom" secondItem="M7Z-xj-Dt5" secondAttribute="bottom" id="nIn-ja-CKl"/>
+                                    <constraint firstAttribute="trailing" secondItem="M7Z-xj-Dt5" secondAttribute="trailing" constant="50" id="wvf-UK-GB3"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7i1-0A-frt" userLabel="registerAndForgotPwView">
+                                <rect key="frame" x="67" y="650" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qgo-7I-ehU" userLabel="inputView">
+                                <rect key="frame" x="67" y="247" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" name="tcOffWhite"/>
+                        <constraints>
+                            <constraint firstItem="hE4-2e-jU4" firstAttribute="top" secondItem="a9t-tZ-Pqv" secondAttribute="bottom" constant="-139" id="0n7-PA-xZR"/>
+                            <constraint firstItem="a9t-tZ-Pqv" firstAttribute="leading" secondItem="hE4-2e-jU4" secondAttribute="leading" id="7Ig-xa-yNI"/>
+                            <constraint firstItem="hE4-2e-jU4" firstAttribute="trailing" secondItem="a9t-tZ-Pqv" secondAttribute="trailing" id="FoY-zZ-Dpl"/>
+                            <constraint firstItem="a9t-tZ-Pqv" firstAttribute="top" secondItem="hE4-2e-jU4" secondAttribute="top" id="bvc-XW-PFM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hE4-2e-jU4"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jqE-Kf-S5I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="330" y="-650"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="x5Z-ls-K8c">
             <objects>
