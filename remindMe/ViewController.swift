@@ -13,10 +13,11 @@ import MapKit
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
+    @IBOutlet weak var distance: UILabel!
     var locationManager :  CLLocationManager!
     var locationList: [JLocation] = []
     var map = MKMapView()
-    
+    var home : CLLocation!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -36,20 +37,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 let lat = location.latitude
                 let lon = location.longitude
                 let item = JLocation(latitude: lat, longitude: lon, radius: 50, identifier: "youpppiiii")
+                self.home = CLLocation(latitude: lat, longitude: lon)
                 
                 self.locationList.append(item)
                 
-              let region = CLCircularRegion(center: location, radius: 50, identifier: "yesss")
+              let region = CLCircularRegion(center: location, radius: 200, identifier: "yesss")
+                
                 GeoFence.addNewGeoFencing(locationManager: self.locationManager, region: region, event: .onExit, completion: { (cool) in
                     print(cool)
                 })
-//                self.map = MKMapView(frame: self.view.frame)
-//                let annotation = MKPointAnnotation()
-//                annotation.title = "home"
-//                annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-//                self.map.addAnnotation(annotation)
-//                self.view.addSubview(self.map)
-                
             }
         }
     }
@@ -65,9 +61,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.view.backgroundColor = UIColor.darkGray
         
     }
+    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
+         self.view.backgroundColor = UIColor.red
+    }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last{
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            if self.home != nil{
+            let dis = location.distance(from: home)
+                
+                self.distance.text = String(dis.rounded())
+            }
             //let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             //self.map.setRegion(region, animated: true)
         }

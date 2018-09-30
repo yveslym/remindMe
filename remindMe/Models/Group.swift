@@ -13,7 +13,8 @@ struct Group: Codable{
     var longitude: Double
     var latitude: Double
     
-    func toDictionary() ->[String: Any]{
+     func toDictionary(_ id : String? = nil) ->[String: Any]{
+       
         let data = try! JSONEncoder().encode(self)
         let json = try! JSONSerialization.jsonObject(with: data, options: [])
         return json as! [String : Any]

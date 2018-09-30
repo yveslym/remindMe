@@ -23,12 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
    
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-       
-//        self.locationManager.requestAlwaysAuthorization()
-//        locationManager.requestWhenInUseAuthorization()
-        
+             
          location.requestAccess = .requestAlwaysAuthorization //default is .requestAlwaysAuthorization
          FirebaseApp.configure()
+        
+//        UserServices.signUp("yves@gmail.com", "1234456") { (user) in
+//            print(user)
+//        }
         return true
     }
 

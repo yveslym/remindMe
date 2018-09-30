@@ -40,9 +40,17 @@ struct GroupServices{
     static func create(_ group: Group, completion: @escaping()->()){
         
         let ref = Constant.groupRef().childByAutoId()
-        
-        ref.setValue(group.toDictionary())
+        var g = group
+        g.id = ref.key!
+        ref.setValue(g.toDictionary())
         
         completion()
     }
+    static func update(_ group: Group, completion: @escaping()->()){
+        let ref = Constant.groupRef().child(group.id)
+       ref.updateChildValues(group.toDictionary())
+        
+        completion()
+    }
+    
 }

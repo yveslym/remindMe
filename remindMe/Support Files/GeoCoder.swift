@@ -15,6 +15,7 @@ struct GeoFence{
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) {
             placemarks, error in
+             if error != nil {return completion(nil)}
             let placemark = placemarks?.first
             let lat = placemark?.location?.coordinate.latitude
             let lon = placemark?.location?.coordinate.longitude
@@ -36,28 +37,12 @@ struct GeoFence{
             region.notifyOnExit = true
         }
         locationManager.startMonitoring(for: region)
-       // AppDelegate.shared.locationManager.startMonitoring(for: region)
-        //startMonitoring(region: region)
         print("start monitoring")
         completion(true)
     }
-    private static func startMonitoring(region: CLCircularRegion) {
-        // 1
-        if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
-            //showAlert(withTitle:"Error", message: "Geofencing is not supported on this device!")
-            
-            return
-        }
-        // 2
-        if CLLocationManager.authorizationStatus() != .authorizedAlways {
-            //showAlert(withTitle:"Warning", message: "Your geotification is saved but will only be activated once you grant Geotify permission to access the device location.")
-        }
-        // 3
-        //let locationManager =  AppDelegate.shared.locationManager
-        // 4
-        //locationManager.startMonitoring(for: region)
+    static func startMonitor(_ groups: [Group]){
+        
     }
-    
 }
 
 enum EventType: String{

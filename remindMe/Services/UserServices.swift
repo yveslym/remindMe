@@ -50,14 +50,12 @@ static func signUp(_ email: String, _ password: String, completion: @escaping (A
         let user = User.init("", (authUser?.user.uid)!, (authUser?.user.email!)!)
         create(user: user, completion: { (newUser) in
             if (newUser as? User) != nil{
-                return completion(newUser as! User)
+                show(completion: { (user) in
+                    return completion(user)
+                })
             }
         })
-    
         
-        show(completion: { (user) in
-            return completion(user)
-        })
     }
 }
 }
