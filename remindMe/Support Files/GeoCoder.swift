@@ -15,13 +15,17 @@ struct GeoFence{
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) {
             placemarks, error in
+            
              if error != nil {return completion(nil)}
+            
             let placemark = placemarks?.first
             let lat = placemark?.location?.coordinate.latitude
             let lon = placemark?.location?.coordinate.longitude
             guard let longitude = lon, let latitutde = lat else {return completion(nil)}
             print("location: lat: \(latitutde) lon: \(longitude)")
+            
             return completion(CLLocationCoordinate2D(latitude: latitutde, longitude: longitude))
+            
         }
     }
     
