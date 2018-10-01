@@ -64,7 +64,7 @@ struct GeoFence{
     
     private func monitorReminder(center: CLLocationCoordinate2D, reminders: [Reminder]){
         reminders.forEach({
-            let region = CLCircularRegion.init(center: center, radius: 200, identifier: $0.name!)
+            let region = CLCircularRegion.init(center: center, radius: 200, identifier: $0.id!)
             let manager = CLLocationManager()
             addNewGeoFencing(locationManager: manager, region: region, event: $0.type!)
         })

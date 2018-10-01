@@ -48,11 +48,23 @@ struct GroupServices{
         
         completion()
     }
-    
+    /// method to update group
     static func update(_ group: Group, completion: @escaping()->()){
         let ref = Constant.groupRef().child(group.id)
        ref.updateChildValues(group.toDictionary())
         
         completion()
     }
+    
+    /// method to delete group
+    static func delete(group: Group, completion: @escaping(Bool)->()){
+        let ref = Constant.showGroupRef(group.id)
+        ref.removeValue { (error, ref) in
+            
+           return (error == nil) ? ( completion(true)) : (completion(false))
+        }
+    }
 }
+
+
+

@@ -13,7 +13,7 @@ import CoreLocation
 class remindMeTests: XCTestCase, CLLocationManagerDelegate {
 
     //MARK: - Location Manager Delegate
-    
+    var userTest: User!
     var groupTest: Group!
      let manager = CLLocationManager()
     override func setUp() {
@@ -21,7 +21,7 @@ class remindMeTests: XCTestCase, CLLocationManagerDelegate {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
         groupTest = Group(id: "1234", name: "home", latitude: 37.773972, longitude: -122.431297)
-       
+        
         manager.delegate = self
     }
     
@@ -44,7 +44,7 @@ class remindMeTests: XCTestCase, CLLocationManagerDelegate {
         
         
         // when
-        GeoFence.startMonitor(groupArray) { (added) in
+        GeoFence.shared.startMonitor(groupArray) { (added) in
             // then
             XCTAssertTrue(added == true, "all added")
             XCTAssertTrue(self.manager.monitoredRegions.count == 3, "all works")

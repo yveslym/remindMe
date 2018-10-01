@@ -10,10 +10,11 @@ import Foundation
 
 struct Reminder: Codable{
     
-    //var id: String
+    var id: String?
     var name: String?
     var type: EventType?
     var time: Date
+    
     
     init(name: String, type: EventType, time: Date) {
         

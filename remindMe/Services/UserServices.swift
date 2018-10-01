@@ -62,4 +62,14 @@ static func signUp(_ email: String, _ password: String, completion: @escaping (A
         
     }
  }
+    /// method to update user
+    static func update(_ newUser: User,completion: @escaping (User)->()){
+        let ref = Constant.user((Auth.auth().currentUser?.uid)!)
+        
+        ref.updateChildValues(newUser.toDictionary()) { (error, ref) in
+            show { (user) in
+                return completion(user!)
+            }
+        }
+    }
 }
