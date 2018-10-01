@@ -19,14 +19,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
    // lazy var locationManager : CLLocationManager = CLLocationManager()
-    let location: LocationManager = LocationManager()
+    var locationManager: CLLocationManager = CLLocationManager()
    
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-             
-         location.requestAccess = .requestAlwaysAuthorization //default is .requestAlwaysAuthorization
+        
+        // configure firebase
+         //location.requestAccess = .requestAlwaysAuthorization //default is .requestAlwaysAuthorization
          FirebaseApp.configure()
         
+        //locationManager = CLLocationManager()
+        if (CLLocationManager.locationServicesEnabled())
+        {
+            self.locationManager = CLLocationManager()
+            //self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager.requestAlwaysAuthorization()
+            self.locationManager.startUpdatingLocation()
         let user = User.init("yves", "", "yv@maisl.com")
         UserServices.signUp("yves@gyve.com", "12345678") { (user) in
             guard let user = user as? User else { return}
@@ -38,7 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 })
             })
         }
-            
+        
+       
         return true
     }
 

@@ -10,6 +10,7 @@ import Foundation
 
 struct Reminder: Codable{
     
+    var id: String?
     var groupId: String
     var name: String?
     var type: EventType?
