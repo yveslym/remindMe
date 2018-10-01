@@ -45,7 +45,7 @@ struct UserServices{
         }
     }
 
-
+/// method to signup user
 static func signUp(_ email: String, _ password: String, completion: @escaping (Any)->()){
     Auth.auth().createUser(withEmail: email, password: password) { (authUser, error) in
         guard authUser != nil else {return completion(error!)}
@@ -59,9 +59,17 @@ static func signUp(_ email: String, _ password: String, completion: @escaping (A
                 })
             }
         })
-        
     }
  }
+    /// method signIn user
+    static func signIn(_ email: String, _ password: String, completion: @escaping (Any) ->()){
+        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            if error != nil {return completion(error.debugDescription)}
+            show(completion: { (user) in
+               return completion(user!)
+            })
+        }
+    }
     /// method to update user
     static func update(_ newUser: User,completion: @escaping (User)->()){
         let ref = Constant.user((Auth.auth().currentUser?.uid)!)

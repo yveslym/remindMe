@@ -23,6 +23,20 @@ class remindMeTests: XCTestCase, CLLocationManagerDelegate {
         groupTest = Group(id: "1234", name: "home", latitude: 37.773972, longitude: -122.431297)
         
         manager.delegate = self
+        
+
+    }
+    
+    func testLoginUser(){
+        // given
+        UserServices.signIn("test@test.com", "123456") { (user) in
+            //when
+            let user = user as! User
+            
+            //then
+            XCTAssertTrue(user.email == "test@test.com")
+            self.userTest = user
+        }
     }
     
     override func tearDown() {
@@ -33,9 +47,9 @@ class remindMeTests: XCTestCase, CLLocationManagerDelegate {
     func testAddGroupGeofenceStartMonitor(){
         // given
         
-        let reminder = Reminder(name: "feed fish", type: .onEntry, time: "12:00".stringToDate())
-        let reminder2 = Reminder(name: "feed bird", type: .onEntry, time: "12:00".stringToDate())
-        let reminder3 = Reminder(name: "feed cat", type: .onEntry, time: "12:00".stringToDate())
+        let reminder = Reminder(name: "feed fish", type: .onEntry, time: "12:00")
+        let reminder2 = Reminder(name: "feed bird", type: .onEntry, time: "12:00")
+        let reminder3 = Reminder(name: "feed cat", type: .onEntry, time: "12:00")
         groupTest.reminders.append(reminder)
         groupTest.reminders.append(reminder2)
         groupTest.reminders.append(reminder3)
@@ -61,9 +75,20 @@ class remindMeTests: XCTestCase, CLLocationManagerDelegate {
         XCTAssertTrue(bird.count == 1, "there's bird")
         
     }
+    
+    func testPostGroup(){
+        // given
+        var group = Group(id: "", name: "home", latitude: 37.773972, longitude: -122.431297)
+        let reminder = Reminder(name: "feed fish", type: .onEntry, time: "12:00")
+        group.reminders.append(reminder)
+        GroupServices.create(group) { (group) in
+            XCTAssertTrue(group.reminders.count == 1)
+        }
+    }
+    
     func testAddReminder(){
         // 1. given
-        let reminder = Reminder(name: "feed cat", type: .onEntry, time: "12:00".stringToDate())
+        let reminder = Reminder(name: "feed cat", type: .onEntry, time: "12:00")
         
         // 2. when
         groupTest.reminders.append(reminder)

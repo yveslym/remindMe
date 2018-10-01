@@ -13,10 +13,10 @@ struct Reminder: Codable{
     var id: String?
     var name: String?
     var type: EventType?
-    var time: Date
+    var time: String
     
     
-    init(name: String, type: EventType, time: Date) {
+    init(name: String, type: EventType, time: String) {
         
         self.name = name
         self.type = type

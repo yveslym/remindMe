@@ -18,7 +18,7 @@ extension CreateReminderViewController: UITextFieldDelegate {
             
         case Constant.saveReminderSegueIdenfier where reminder == nil:
             
-            guard let name = reminderNameTextField.text, let type = reminderTypeTextFiled.text, let time = reminderTimeTextField.text?.stringToDate() else {return}
+            guard let name = reminderNameTextField.text, let type = reminderTypeTextFiled.text, let time = reminderTimeTextField.text else {return}
             
             let createdReminder = Reminder(name: name, type: EventType(rawValue: type) ?? .onEntry, time: time)
             Group.numberOfReminders += 1

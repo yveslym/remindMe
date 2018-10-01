@@ -37,7 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.locationManager.requestAlwaysAuthorization()
             self.locationManager.startUpdatingLocation()
         }
-            
+        
+       
         return true
     }
 
