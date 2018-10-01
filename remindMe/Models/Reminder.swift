@@ -14,13 +14,17 @@ struct Reminder: Codable{
     var name: String?
     var type: EventType?
     var time: String
+    var longitude: Double
+    var latitude: Double
     
     
-    init(name: String, type: EventType, time: String) {
+    init(name: String, type: EventType, time: String, latitude: Double, longitude: Double) {
         
         self.name = name
         self.type = type
         self.time = time
+        self.latitude = latitude
+        self.longitude = longitude
     }
 
     // Function convert data  to be sent to the server into a json encoded format

@@ -49,25 +49,19 @@ struct GeoFence{
         
     }
     /// method to start monitoring
-    func startMonitor(_ groups: [Group], completion: @escaping(Bool)->()){
+    func startMonitor(_ reminders: [Reminder], completion: @escaping(Bool)->()){
         let dg = DispatchGroup()
-        groups.forEach({
+        reminders.forEach({
             dg.enter()
             let center = CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude)
-            monitorReminder(center: center, reminders: $0.reminders)
-            dg.leave()
-        })
-        dg.notify(queue: .global()) {
-            return completion(true)
-        }
-    }
-    
-    private func monitorReminder(center: CLLocationCoordinate2D, reminders: [Reminder]){
-        reminders.forEach({
             let region = CLCircularRegion.init(center: center, radius: 200, identifier: $0.id!)
             let manager = CLLocationManager()
             addNewGeoFencing(locationManager: manager, region: region, event: $0.type!)
+            dg.leave()
         })
+        dg.notify(queue: .global()) {
+            completion(true)
+        }
     }
 }
 
