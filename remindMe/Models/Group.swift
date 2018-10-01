@@ -17,6 +17,7 @@ struct Group: Codable{
     var longitude: Double
     var latitude: Double
     static var numberOfReminders = 0
+    var reminders = [Reminder]()
     
     init(id: String, name: String, latitude: Double, longitude: Double) {
         

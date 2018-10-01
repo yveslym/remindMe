@@ -16,7 +16,7 @@ struct GeoFence{
         geocoder.geocodeAddressString(address) {
             placemarks, error in
             
-             if error != nil {return completion(nil)}
+            if error != nil {return completion(nil)}
             
             let placemark = placemarks?.first
             let lat = placemark?.location?.coordinate.latitude
@@ -30,7 +30,7 @@ struct GeoFence{
     }
     
     /// method to add a single geo fancing within a given region
-    static func addNewGeoFencing(locationManager: CLLocationManager, region: CLCircularRegion,event: EventType, completion: @escaping(Bool)->()){
+    static func addNewGeoFencing(locationManager: CLLocationManager, region: CLCircularRegion,event: EventType){
         
         switch event{
         case .onEntry:
@@ -42,12 +42,29 @@ struct GeoFence{
         }
         locationManager.startMonitoring(for: region)
         print("start monitoring")
-        completion(true)
-    }
-    static func startMonitor(_ groups: [Group]){
         
     }
+    /// method to start monitoring
+    static func startMonitor(_ groups: [Group], completion: @escaping(Bool)->()){
+        let dg = DispatchGroup()
+        groups.forEach({
+            dg.enter()
+            let center = CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude)
+            monitorReminder(center: center, reminders: $0.reminders)
+            dg.leave()
+        })
+        dg.notify(queue: .global()) {
+            return completion(true)
+        }
+    }
+    
+    private static func monitorReminder(center: CLLocationCoordinate2D, reminders: [Reminder]){
+        reminders.forEach({
+            let region = CLCircularRegion.init(center: center, radius: 200, identifier: $0.name!)
+            let manager = CLLocationManager()
+            addNewGeoFencing(locationManager: manager, region: region, event: $0.type!)
+        })
+    }
 }
-
 
 

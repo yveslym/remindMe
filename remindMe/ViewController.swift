@@ -43,9 +43,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 
               let region = CLCircularRegion(center: location, radius: 200, identifier: "yesss")
                 
-                GeoFence.addNewGeoFencing(locationManager: self.locationManager, region: region, event: .onExit, completion: { (cool) in
-                    print(cool)
-                })
+                GeoFence.addNewGeoFencing(locationManager: self.locationManager, region: region, event: .onExit)
             }
         }
     }
@@ -72,8 +70,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 
                 self.distance.text = String(dis.rounded())
             }
-            //let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-            //self.map.setRegion(region, animated: true)
         }
     }
 }

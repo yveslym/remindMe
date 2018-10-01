@@ -19,6 +19,7 @@ struct GroupServices{
         
         
         let ref = Constant.groupRef()
+        
         ref.observeSingleEvent(of: .value) { (snapshot) in
             var groups = [Group]()
             let dg = DispatchGroup()
@@ -37,8 +38,6 @@ struct GroupServices{
                 completion(groups)
             })
         }
-        
-        
     }
     static func create(_ group: Group, completion: @escaping()->()){
         
