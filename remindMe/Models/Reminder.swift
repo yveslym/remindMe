@@ -15,6 +15,7 @@ struct Reminder: Codable{
     var type: EventType?
     var time: String
     
+    
     init(groupId: String, name: String, type: EventType, time: String) {
         
         self.groupId = groupId
