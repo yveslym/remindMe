@@ -1,41 +1,362 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kdu-3E-loZ">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Group List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="remindMe" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController id="BYZ-38-t0r" customClass="GroupListViewController" customModule="remindMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="rootView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y7e-ha-06k">
-                                <rect key="frame" x="16" y="606" width="178" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <color key="textColor" red="0.92156862750000001" green="0.28627450980000002" blue="0.38431372549999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E9n-ND-CZq" userLabel="headerView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="173"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Groups" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1XU-ja-ufs">
+                                        <rect key="frame" x="60" y="88" width="255" height="85"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                                        <color key="textColor" name="tcCharcoal"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="1XU-ja-ufs" firstAttribute="leading" secondItem="E9n-ND-CZq" secondAttribute="leading" constant="60" id="ktn-90-JHe"/>
+                                    <constraint firstAttribute="trailing" secondItem="1XU-ja-ufs" secondAttribute="trailing" constant="60" id="lMb-Ya-cV1"/>
+                                    <constraint firstAttribute="bottom" secondItem="1XU-ja-ufs" secondAttribute="bottom" id="wUR-ZC-cEx"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="owN-x7-fMQ">
+                                <rect key="frame" x="0.0" y="197" width="375" height="581"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupCell" textLabel="sVb-AL-zjX" detailTextLabel="6I3-3s-ULh" style="IBUITableViewCellStyleSubtitle" id="4Ed-Wv-2Ky" customClass="GroupListTableViewCell" customModule="remindMe" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Ed-Wv-2Ky" id="L8K-L4-SX6">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sVb-AL-zjX" userLabel="groupTitle">
+                                                    <rect key="frame" x="15" y="5" width="96.666666666666671" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="2 Reminders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6I3-3s-ULh" userLabel="numOfReminders">
+                                                    <rect key="frame" x="15" y="25.333333333333332" width="70.666666666666671" height="14.333333333333334"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="groupNameLabel" destination="sVb-AL-zjX" id="EMN-bn-MsQ"/>
+                                            <outlet property="numberOfRemindersLabel" destination="6I3-3s-ULh" id="mGq-1E-DP3"/>
+                                            <segue destination="14l-cs-lto" kind="show" identifier="showListOfReminder" id="4Hn-Gg-15p"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="tcOffWhite"/>
+                        <constraints>
+                            <constraint firstItem="E9n-ND-CZq" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="1Sm-tY-s1Z"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="owN-x7-fMQ" secondAttribute="bottom" id="5aG-5n-5Xx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="owN-x7-fMQ" secondAttribute="trailing" id="EuM-Mb-jGO"/>
+                            <constraint firstItem="owN-x7-fMQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="OuM-go-E0f"/>
+                            <constraint firstItem="E9n-ND-CZq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="R1x-dY-GZr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="1XU-ja-ufs" secondAttribute="top" id="btZ-Tt-onh"/>
+                            <constraint firstItem="E9n-ND-CZq" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="j4C-GI-bEE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="E9n-ND-CZq" secondAttribute="bottom" constant="-85" id="l9Q-4F-Fho"/>
+                            <constraint firstItem="owN-x7-fMQ" firstAttribute="top" secondItem="E9n-ND-CZq" secondAttribute="bottom" constant="24" id="vKz-Ig-9gY"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="dGX-gm-GAv">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hzW-Ag-6Fo">
+                            <connections>
+                                <segue destination="L3y-PL-GgJ" kind="show" identifier="createSingleGroup" id="pgS-if-rNR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="distance" destination="Y7e-ha-06k" id="0YM-zF-NX9"/>
+                        <outlet property="groupTableView" destination="owN-x7-fMQ" id="9z8-Tz-cIZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="CJF-fl-m3F" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
+            <point key="canvasLocation" x="1180" y="66.502463054187189"/>
+        </scene>
+        <!--Reminder List View Controller-->
+        <scene sceneID="nFY-tu-a1I">
+            <objects>
+                <viewController id="14l-cs-lto" customClass="ReminderListViewController" customModule="remindMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IRS-Lh-d5y" userLabel="rootView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ke2-As-L10" userLabel="headerView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="204"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbJ-Sh-CwA">
+                                        <rect key="frame" x="60" y="88" width="255" height="116"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                                        <color key="textColor" name="tcCharcoal"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="PbJ-Sh-CwA" secondAttribute="trailing" constant="60" id="HW3-yV-neU"/>
+                                    <constraint firstAttribute="bottom" secondItem="PbJ-Sh-CwA" secondAttribute="bottom" id="gL4-5t-qJ1"/>
+                                    <constraint firstItem="PbJ-Sh-CwA" firstAttribute="leading" secondItem="ke2-As-L10" secondAttribute="leading" constant="60" id="v8H-h5-Q0y"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4r6-W0-0BY">
+                                <rect key="frame" x="0.0" y="228" width="375" height="550"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reminderCell" textLabel="xNw-wT-xwv" detailTextLabel="ot1-bZ-wra" style="IBUITableViewCellStyleSubtitle" id="E5X-oo-uHv" userLabel="reminderCell" customClass="ReminderListTableViewCell" customModule="remindMe" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E5X-oo-uHv" id="vDD-tK-Dvn">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Get Keys" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xNw-wT-xwv" userLabel="reminderTitle">
+                                                    <rect key="frame" x="15" y="5" width="68.333333333333329" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Exit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ot1-bZ-wra" userLabel="reminderType">
+                                                    <rect key="frame" x="15" y="25.333333333333332" width="21" height="14.333333333333334"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="reminderTitleLabel" destination="xNw-wT-xwv" id="EdI-Wv-YWg"/>
+                                            <outlet property="reminderTypeLabel" destination="ot1-bZ-wra" id="9FA-jL-dUy"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" name="tcOffWhite"/>
+                        <constraints>
+                            <constraint firstItem="4r6-W0-0BY" firstAttribute="leading" secondItem="Zw6-4G-Ck0" secondAttribute="leading" id="6eu-0B-KPx"/>
+                            <constraint firstItem="Zw6-4G-Ck0" firstAttribute="trailing" secondItem="4r6-W0-0BY" secondAttribute="trailing" id="Nyj-9z-tWF"/>
+                            <constraint firstItem="Zw6-4G-Ck0" firstAttribute="top" secondItem="ke2-As-L10" secondAttribute="bottom" constant="-116" id="RXq-uG-t1N"/>
+                            <constraint firstItem="ke2-As-L10" firstAttribute="top" secondItem="IRS-Lh-d5y" secondAttribute="top" id="ULe-Ag-2JU"/>
+                            <constraint firstItem="4r6-W0-0BY" firstAttribute="top" secondItem="ke2-As-L10" secondAttribute="bottom" constant="24" id="VYy-ht-e4C"/>
+                            <constraint firstItem="Zw6-4G-Ck0" firstAttribute="top" secondItem="PbJ-Sh-CwA" secondAttribute="top" id="lzC-7Z-bkw"/>
+                            <constraint firstItem="Zw6-4G-Ck0" firstAttribute="trailing" secondItem="ke2-As-L10" secondAttribute="trailing" id="m5O-gV-fT6"/>
+                            <constraint firstItem="Zw6-4G-Ck0" firstAttribute="bottom" secondItem="4r6-W0-0BY" secondAttribute="bottom" id="uxh-Br-JeC"/>
+                            <constraint firstItem="ke2-As-L10" firstAttribute="leading" secondItem="Zw6-4G-Ck0" secondAttribute="leading" id="vds-Lr-HEc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Zw6-4G-Ck0"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3FW-Zc-Esh">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jTU-Qv-nXP">
+                            <connections>
+                                <segue destination="MyR-jE-nO9" kind="show" identifier="createSingleReminder" id="6bd-7v-ifz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="reminderTableView" destination="4r6-W0-0BY" id="5cK-yN-5ly"/>
+                        <segue destination="CJF-fl-m3F" kind="unwind" unwindAction="unwindtoGroupListViewController:" id="0ny-l8-ebB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QHs-aD-vOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="qoT-yv-Eny" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2177" y="67"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="2bq-iP-PC1">
+            <objects>
+                <viewController id="L3y-PL-GgJ" customClass="CreateGroupViewController" customModule="remindMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qTc-Ml-qda" userLabel="rootView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02b-cE-Aem" userLabel="inputView">
+                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dkk-yn-38y">
+                                        <rect key="frame" x="93" y="125" width="189" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c32-Bt-a6p">
+                                        <rect key="frame" x="93" y="234" width="189" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="02b-cE-Aem" firstAttribute="leading" secondItem="haM-pY-xZF" secondAttribute="leading" id="KEV-G4-meA"/>
+                            <constraint firstItem="02b-cE-Aem" firstAttribute="top" secondItem="haM-pY-xZF" secondAttribute="top" id="bfW-Rt-nfI"/>
+                            <constraint firstItem="haM-pY-xZF" firstAttribute="bottom" secondItem="02b-cE-Aem" secondAttribute="bottom" id="eAh-gy-g3S"/>
+                            <constraint firstItem="haM-pY-xZF" firstAttribute="trailing" secondItem="02b-cE-Aem" secondAttribute="trailing" id="lSg-fq-VEa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="haM-pY-xZF"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="D2L-AL-Np9">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="0eU-he-a9R">
+                            <connections>
+                                <segue destination="CJF-fl-m3F" kind="unwind" identifier="saveGroup" unwindAction="unwindtoGroupListViewController:" id="FJ3-DL-gY4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="groupAddressTextField" destination="c32-Bt-a6p" id="os3-W9-vCy"/>
+                        <outlet property="groupNameTextField" destination="dkk-yn-38y" id="RG5-fx-tt9"/>
+                        <segue destination="CJF-fl-m3F" kind="unwind" identifier="backToGroups" unwindAction="unwindtoGroupListViewController:" id="cg0-Mf-ZZ7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MOk-63-i5l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1180" y="771"/>
+        </scene>
+        <!--Reminder Title-->
+        <scene sceneID="gPk-Jx-HFo">
+            <objects>
+                <viewController id="MyR-jE-nO9" customClass="CreateReminderViewController" customModule="remindMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lss-kw-VET" userLabel="rootView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1nl-du-WxC" userLabel="inputView">
+                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kLt-eA-Sem" userLabel="name">
+                                        <rect key="frame" x="78" y="57" width="190" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Time" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IyR-6f-voz" userLabel="time">
+                                        <rect key="frame" x="78" y="307" width="190" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1e0-ei-UGF" userLabel="type">
+                                        <rect key="frame" x="78" y="179" width="190" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" name="tcOffWhite"/>
+                        <constraints>
+                            <constraint firstItem="1nl-du-WxC" firstAttribute="leading" secondItem="HdN-ND-Z1o" secondAttribute="leading" id="095-Aa-tj8"/>
+                            <constraint firstItem="1nl-du-WxC" firstAttribute="top" secondItem="HdN-ND-Z1o" secondAttribute="top" id="E4Q-bc-Izr"/>
+                            <constraint firstItem="1nl-du-WxC" firstAttribute="bottom" secondItem="HdN-ND-Z1o" secondAttribute="bottom" id="XbA-H4-w0d"/>
+                            <constraint firstItem="HdN-ND-Z1o" firstAttribute="trailing" secondItem="1nl-du-WxC" secondAttribute="trailing" id="gyQ-e9-KZc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HdN-ND-Z1o"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Reminder Title" id="Bg3-63-8My">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="wPY-st-bex">
+                            <connections>
+                                <segue destination="qoT-yv-Eny" kind="unwind" identifier="saveReminder" unwindAction="unwindToReminderListViewController:" id="etT-BO-VcO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="reminderNameTextField" destination="kLt-eA-Sem" id="k9F-vh-Kln"/>
+                        <outlet property="reminderTimeTextField" destination="IyR-6f-voz" id="NYg-GV-2eH"/>
+                        <outlet property="reminderTypeTextFiled" destination="1e0-ei-UGF" id="Irl-TF-ULj"/>
+                        <segue destination="qoT-yv-Eny" kind="unwind" identifier="backToReminders" unwindAction="unwindToReminderListViewController:" id="Fcp-eZ-88R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Z5-jK-NPK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2177" y="772"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="x5Z-ls-K8c">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kdu-3E-loZ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xsp-HH-BcU">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="DFT-v7-gU6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YcU-0d-rDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="362" y="67"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="N0D-IN-Lzv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="80t-VS-Mdg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vkn-TJ-ixZ">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="14l-cs-lto" kind="relationship" relationship="rootViewController" id="G9T-2K-5PG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rkz-al-RMl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2177" y="-622"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="tcCharcoal">
+            <color red="0.28999999165534973" green="0.28999999165534973" blue="0.28999999165534973" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tcOffWhite">
+            <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="4Hn-Gg-15p"/>
+    </inferredMetricsTieBreakers>
 </document>

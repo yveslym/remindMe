@@ -10,7 +10,7 @@
 import Foundation
 import FirebaseAuth
 
-
+// THIS STRUCT REPERESENTS THE BLUE PRINTS OF THE USER DATA MODEL
 
 struct User: Codable{
     var name: String

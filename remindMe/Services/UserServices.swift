@@ -12,10 +12,12 @@ import Firebase
 import GoogleSignIn
 import FBSDKLoginKit
 
+// THIS STRUCT CONTAINS FUNCTIONS TO CREATE, SHOW, SIGNIN, SIGNUP A USER AND TALK TO THE BACKEND
 
 struct UserServices{
-    // method to create new user
-    static func create(user: User, completion: @escaping(Any)->()){
+    
+    // THIS METHOD CREATES A SINGLE USER OBJECT AND STORES IT IN THE DATABASE
+   private static func create(user: User, completion: @escaping(Any)->()){
         
         let authUser = Auth.auth().currentUser
        
@@ -27,7 +29,7 @@ struct UserServices{
             return completion(user)
         }
 }
-    // method to retrieve user from firebase
+    // THIS METHOD RETRIEVE USER FROM THE DATABASE
     static func show(completion: @escaping(User?)-> ()){
         let uid = Auth.auth().currentUser?.uid
         let ref = Constant.user(uid!)
@@ -57,20 +59,5 @@ static func signUp(_ email: String, _ password: String, completion: @escaping (A
         })
         
     }
+ }
 }
-}
-extension JSONEncoder {
-    func encodeJSONObject<T: Encodable>(_ value: T, options opt: JSONSerialization.ReadingOptions = []) throws -> Any {
-        let data = try encode(value)
-        return try JSONSerialization.jsonObject(with: data, options: opt)
-    }
-}
-
-extension JSONDecoder {
-    func decode<T: Decodable>(_ type: T.Type, withJSONObject object: Any, options opt: JSONSerialization.WritingOptions = []) throws -> T {
-        let data = try JSONSerialization.data(withJSONObject: object, options: opt)
-        return try decode(T.self, from: data)
-    }
-}
-
-
