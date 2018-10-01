@@ -16,10 +16,6 @@ extension CreateGroupViewController: UITextFieldDelegate{
         
         switch segueIdentifier {
             
-//        // code for when the user taps "save" after making changes to the group attributes
-//        case Constant.saveGroupSegueIdentifier where group != nil:
-//            return
-//
         // code for when the user taps "save" without making any changes to the group attributes
         case Constant.saveGroupSegueIdentifier where group == nil:
             
@@ -37,12 +33,11 @@ extension CreateGroupViewController: UITextFieldDelegate{
                     })
                 }
             }
-        
+            
         default:
             print("Unexpected Segue Identifier")
         }
     }
-    
     
     // FUNCTION TO HANDLE TEXT FIELDS
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -50,11 +45,8 @@ extension CreateGroupViewController: UITextFieldDelegate{
         switch textField {
             
         case groupNameTextField:
-            
             groupAddressTextField.becomeFirstResponder()
-            
         default:
-            
             groupAddressTextField.resignFirstResponder()
         }
         return true

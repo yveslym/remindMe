@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let user = User.init("yves", "", "yv@maisl.com")
         UserServices.signUp("yves@gyve.com", "12345678") { (user) in
             guard let user = user as? User else { return}
-            let reminder = Reminder.init(name: "Gym", type: .onEntry  , time: "12:40".stringToDate())
+            let reminder = Reminder.init(groupId: "12lh89rf",name: "Gym", type: .onEntry  , time: "12:40")
             ReminderServices.create(reminder, completion: {
                 print("works")
                 ReminderServices.show(completion: { (reminders) in

@@ -16,6 +16,7 @@ class GroupListViewController: UIViewController{
     // - MARK : IBOULETS AND VARIABLES
     @IBOutlet weak var groupTableView: UITableView!
     
+    var clickedGroup: Group?
     var userGroups = [Group](){
         didSet {
             groupTableView.reloadData()

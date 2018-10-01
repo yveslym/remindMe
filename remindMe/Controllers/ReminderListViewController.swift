@@ -15,13 +15,13 @@ class ReminderListViewController: UIViewController{
     
     // - MARK: @IBOULETS AND PROPERTIES
     @IBOutlet weak var reminderTableView: UITableView!
+    var groupId: String = ""
     
     var userReminders = [Reminder](){
         didSet{
             reminderTableView.reloadData()
         }
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +30,8 @@ class ReminderListViewController: UIViewController{
         reminderTableView.dataSource = self as UITableViewDataSource
     }
     
-    
-    
     // Function to unwind back to this view controller
-    
     @IBAction func unwindToReminderListViewController(_ segue: UIStoryboardSegue){
-        
+        // leave it blank right now
     }
-    
-
 }

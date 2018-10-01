@@ -66,7 +66,7 @@
                                         <connections>
                                             <outlet property="groupNameLabel" destination="sVb-AL-zjX" id="EMN-bn-MsQ"/>
                                             <outlet property="numberOfRemindersLabel" destination="6I3-3s-ULh" id="mGq-1E-DP3"/>
-                                            <segue destination="14l-cs-lto" kind="show" identifier="showListOfReminder" id="4Hn-Gg-15p"/>
+                                            <segue destination="14l-cs-lto" kind="show" identifier="showListOfReminders" id="4Hn-Gg-15p"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
