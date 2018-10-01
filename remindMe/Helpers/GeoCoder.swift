@@ -8,9 +8,13 @@
 
 import Foundation
 import CoreLocation
+
 struct GeoFence{
+    
+    static let shared = GeoFence()
+    
     /// method to convert address to coordinate
-    static func addressToCoordinate(_ address: String, completion: @escaping(CLLocationCoordinate2D?)->()){
+    func addressToCoordinate(_ address: String, completion: @escaping(CLLocationCoordinate2D?)->()){
         print("getting location coordinate")
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) {
@@ -30,7 +34,7 @@ struct GeoFence{
     }
     
     /// method to add a single geo fancing within a given region
-    static func addNewGeoFencing(locationManager: CLLocationManager, region: CLCircularRegion,event: EventType){
+    private func addNewGeoFencing(locationManager: CLLocationManager, region: CLCircularRegion,event: EventType){
         
         switch event{
         case .onEntry:
@@ -45,7 +49,7 @@ struct GeoFence{
         
     }
     /// method to start monitoring
-    static func startMonitor(_ groups: [Group], completion: @escaping(Bool)->()){
+    func startMonitor(_ groups: [Group], completion: @escaping(Bool)->()){
         let dg = DispatchGroup()
         groups.forEach({
             dg.enter()
@@ -58,7 +62,7 @@ struct GeoFence{
         }
     }
     
-    private static func monitorReminder(center: CLLocationCoordinate2D, reminders: [Reminder]){
+    private func monitorReminder(center: CLLocationCoordinate2D, reminders: [Reminder]){
         reminders.forEach({
             let region = CLCircularRegion.init(center: center, radius: 200, identifier: $0.name!)
             let manager = CLLocationManager()

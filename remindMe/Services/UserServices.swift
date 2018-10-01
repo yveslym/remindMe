@@ -34,6 +34,7 @@ struct UserServices{
         let uid = Auth.auth().currentUser?.uid
         let ref = Constant.user(uid!)
         ref.observeSingleEvent(of: .value) { (snapshot) in
+        
             if snapshot.exists(){
                 let user = try! JSONDecoder().decode(User.self, withJSONObject: snapshot.value!)
                 return completion(user)
@@ -53,7 +54,8 @@ static func signUp(_ email: String, _ password: String, completion: @escaping (A
         create(user: user, completion: { (newUser) in
             if (newUser as? User) != nil{
                 show(completion: { (user) in
-                    return completion(user)
+                    //if let user = user else {return completion(nil)}
+                    return completion(user!)
                 })
             }
         })

@@ -19,24 +19,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
    // lazy var locationManager : CLLocationManager = CLLocationManager()
-    let location: LocationManager = LocationManager()
+    var locationManager: CLLocationManager = CLLocationManager()
    
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-             
-         location.requestAccess = .requestAlwaysAuthorization //default is .requestAlwaysAuthorization
+        
+        // configure firebase
+         //location.requestAccess = .requestAlwaysAuthorization //default is .requestAlwaysAuthorization
          FirebaseApp.configure()
         
-        let user = User.init("yves", "", "yv@maisl.com")
-        UserServices.signUp("yves@gyve.com", "12345678") { (user) in
-            guard let user = user as? User else { return}
-            let reminder = Reminder.init(name: "Gym", type: .onEntry  , time: "12:40".stringToDate())
-            ReminderServices.create(reminder, completion: {
-                print("works")
-                ReminderServices.show(completion: { (reminders) in
-                    print(reminders)
-                })
-            })
+        //locationManager = CLLocationManager()
+        if (CLLocationManager.locationServicesEnabled())
+        {
+            self.locationManager = CLLocationManager()
+            //self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager.requestAlwaysAuthorization()
+            self.locationManager.startUpdatingLocation()
         }
             
         return true

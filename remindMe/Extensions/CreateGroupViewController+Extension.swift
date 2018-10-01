@@ -24,7 +24,7 @@ extension CreateGroupViewController: UITextFieldDelegate{
         case Constant.saveGroupSegueIdentifier where group == nil:
             
             guard let address = groupAddressTextField.text, let name = groupNameTextField.text else { return }
-            GeoFence.addressToCoordinate(address) { (location) in
+            GeoFence.shared.addressToCoordinate(address) { (location) in
                 if let location = location{
                     
                     let latitude = location.latitude

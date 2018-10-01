@@ -21,32 +21,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.locationManager = CLLocationManager()
-        if (CLLocationManager.locationServicesEnabled())
-        {
-            self.locationManager = CLLocationManager()
-            self.locationManager.delegate = self
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            self.locationManager.requestAlwaysAuthorization()
-            self.locationManager.startUpdatingLocation()
-        }
-        
-        let address = "1368 natoma st, San Francisco, CA"
-        GeoFence.addressToCoordinate(address) { (location) in
-            if let location = location{
-                let lat = location.latitude
-                let lon = location.longitude
-                let item = JLocation(latitude: lat, longitude: lon, radius: 50, identifier: "youpppiiii")
-                self.home = CLLocation(latitude: lat, longitude: lon)
-                
-                self.locationList.append(item)
-                
-              let region = CLCircularRegion(center: location, radius: 200, identifier: "yesss")
-                
-                GeoFence.addNewGeoFencing(locationManager: self.locationManager, region: region, event: .onExit)
-                self.locationManager.stopMonitoring(for: region)
-            }
-        }
+       
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {

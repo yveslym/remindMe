@@ -35,7 +35,7 @@ struct GroupServices{
             })
             
             dg.notify(queue: .global(), execute: {
-                completion(groups)
+                return completion(groups)
             })
         }
     }
@@ -48,11 +48,11 @@ struct GroupServices{
         
         completion()
     }
+    
     static func update(_ group: Group, completion: @escaping()->()){
         let ref = Constant.groupRef().child(group.id)
        ref.updateChildValues(group.toDictionary())
         
         completion()
     }
-    
 }
