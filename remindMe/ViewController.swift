@@ -44,6 +44,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
               let region = CLCircularRegion(center: location, radius: 200, identifier: "yesss")
                 
                 GeoFence.addNewGeoFencing(locationManager: self.locationManager, region: region, event: .onExit)
+                self.locationManager.stopMonitoring(for: region)
             }
         }
     }
