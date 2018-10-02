@@ -32,8 +32,10 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableview : UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete{
-            // code to delete a group from the tableview and database(FireBase)
-            //let groupToBeDeleted = userGroups[indexPath.row]
+            let groupToBeDeleted = userGroups[indexPath.row]
+            GroupServices.delete(group: groupToBeDeleted) { (true) in
+                self.fetchAllGroups()
+            }
         }
         
     }

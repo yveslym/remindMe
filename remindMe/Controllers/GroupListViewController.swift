@@ -10,7 +10,7 @@
 import Foundation
 import UIKit
 
-// This VC is to show the list of all the groups
+// This View Controllers is for showing the list of all the groups
 class GroupListViewController: UIViewController{
     
     // - MARK : IBOULETS AND VARIABLES
@@ -33,17 +33,13 @@ class GroupListViewController: UIViewController{
         groupTableView.delegate = self as UITableViewDelegate
         groupTableView.dataSource = self as UITableViewDataSource
         fetchAllGroups()
-        
-        
     }
     
     
     // THIS FUNCTION MAKES AN API CALL TO GET ALL GROUPS
-    fileprivate func fetchAllGroups(){
+    internal func fetchAllGroups(){
         GroupServices.index(completion: { (groups) in
-            groups?.forEach({ (group) in
-                self.userGroups.append(group)
-            })
+            self.userGroups = groups!
         })
     }
     
