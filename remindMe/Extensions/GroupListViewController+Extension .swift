@@ -21,8 +21,6 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         
         let groupCell = tableView.dequeueReusableCell(withIdentifier: Constant.groupTableViewCellIdentifier, for: indexPath) as! GroupListTableViewCell
         let group = userGroups[indexPath.row]
-        clickedGroup = group
-        
         groupCell.groupNameLabel.text = group.name
         groupCell.numberOfRemindersLabel.text = Group.numberOfReminders.convertIntToString()
         
@@ -40,22 +38,29 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         
     }
     
-    //function to send a reference of the cliked group
+    //FUNCTION TO SEND A REFERENCE OBJECT OF THE GROUP CLICKED
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        guard let segueIdentifier = segue.identifier, let destinationViewController = segue.destination as? ReminderListViewController else {return}
+        guard let segueIdentifier = segue.identifier else {return}
         
         switch segueIdentifier {
-            //if the user clicks on a group
+
         case Constant.showAllRemindersSegueIdentifier:
             
-            //send the group id that will be used when creating a reminder
-            guard let groupId = clickedGroup?.id else {return}
-            destinationViewController.groupId = groupId
+            let destinationViewController = segue.destination as? ReminderListViewController
+            let group = sender as? Group
+            destinationViewController?.parentGroup = group
             
         default:
             print("ERROR : INVALID SEGUE IDENTIFIER")
         }
+
+    }
+    
+    // FUNCTION TO KEEP TRACK OF GROUPS CLICKED ON THE TABLE VIEW AND ALERTS THE PREPARE FUNCTION
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let group = userGroups[indexPath.row]
+        self.performSegue(withIdentifier: Constant.showAllRemindersSegueIdentifier, sender: group)
     }
 
 }

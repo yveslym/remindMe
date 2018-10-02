@@ -18,17 +18,17 @@ extension CreateReminderViewController: UITextFieldDelegate {
             
         case Constant.saveReminderSegueIdenfier where reminder == nil:
             
-            guard let name = reminderNameTextField.text, let type = reminderTypeTextFiled.text, let time = reminderTimeTextField.text else {return}
+            guard let name = reminderNameTextField.text, let type = reminderTypeTextFiled.text,
+                  let time = reminderTimeTextField.text, let groupId = destinationViewController.parentGroup?.id,
+                  let latitude = destinationViewController.parentGroup?.latitude,
+                  let longitude = destinationViewController.parentGroup?.longitude else {return}
             
-            // get reference to the group the reminder belongs to
-            // get the groupId
-            let createdReminder = Reminder(groupId: "", name: name, type: EventType(rawValue: type) ?? .onEntry, time: time)
+            let createdReminder = Reminder(groupId: groupId, id: "", name: name, type: EventType(rawValue: type) ?? .onEntry, time: time, longitude: longitude, latitude: latitude)
     
             Group.numberOfReminders += 1
             ReminderServices.create(createdReminder) {
-                DispatchQueue.main.async {
-                    destinationViewController.userReminders.append(createdReminder)
-                }
+                // leave it empty for now
+                print(createdReminder)
             }
             
         default:

@@ -15,7 +15,7 @@ class ReminderListViewController: UIViewController{
     
     // - MARK: @IBOULETS AND PROPERTIES
     @IBOutlet weak var reminderTableView: UITableView!
-    var groupId: String = ""
+    var parentGroup: Group?
     
     var userReminders = [Reminder](){
         didSet{

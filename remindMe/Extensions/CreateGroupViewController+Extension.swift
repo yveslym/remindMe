@@ -26,10 +26,8 @@ extension CreateGroupViewController: UITextFieldDelegate{
                     let latitude = location.latitude
                     let longitude = location.longitude
                     var createdGroup = Group(id: "",name: name, latitude: latitude, longitude: longitude)
-                    GroupServices.create(createdGroup, completion: {_ in 
-                        DispatchQueue.main.async {
-                           destinationViewController.userGroups.append(createdGroup)
-                        }
+                    GroupServices.create(createdGroup, completion: { (newGroup) in
+                        print(newGroup.id)
                     })
                 }
             }

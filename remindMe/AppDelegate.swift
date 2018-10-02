@@ -36,18 +36,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
             self.locationManager.requestAlwaysAuthorization()
             self.locationManager.startUpdatingLocation()
-        let user = User.init("yves", "", "yv@maisl.com")
-        UserServices.signUp("yves@gyve.com", "12345678") { (user) in
-            guard let user = user as? User else { return}
-            let reminder = Reminder.init(groupId: "12lh89rf",name: "Gym", type: .onEntry  , time: "12:40")
-            ReminderServices.create(reminder, completion: {
-                print("works")
-                ReminderServices.show(completion: { (reminders) in
-                    print(reminders)
-                })
-            })
         }
-        
+        UserServices.signIn("test@test.com", "123456") { (user) in
+            if let user = user as? User{
+                let group = Group(id: "", name: "home", latitude: 1.22, longitude: 43.555)
+                GroupServices.create(group, completion: { (newGroup) in
+                    let reminder = Reminder(groupId: newGroup.id, id: "", name: "feed fish", type: .onEntry, time: "12:00", longitude: newGroup.longitude, latitude: newGroup.latitude)
+                    ReminderServices.create(reminder, completion: {
+                        ReminderServices.show(completion: { (reminders) in
+                            //print(reminders!)
+                        })
+                    })
+                })
+            }
+        }
        
         return true
     }

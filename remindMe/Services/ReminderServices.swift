@@ -40,7 +40,9 @@ struct ReminderServices{
     
    
     
-    // THIS FUNCTION CREATES A SINGLE REMINDER AND SENDS IT TO THE DATABASE AS JSON
+    /* THIS FUNCTION CREATES A SINGLE REMINDER AND SENDS IT TO THE DATABASE AS JSON
+     @param reminder : the reminder to be created on the data base
+    */
     static func create(_ reminder: Reminder, completion: @escaping()->()){
         
         let ref = Constant.reminderRef().childByAutoId()
