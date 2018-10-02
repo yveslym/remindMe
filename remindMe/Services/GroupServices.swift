@@ -15,7 +15,7 @@ struct GroupServices{
     // THIS STRUCT CONTAINS FUNCTIONS TO CREATE, SHOW A GROUP AND TALK TO THE BACKEND
     
     
-    static func show(completion: @escaping ([Group]?) ->()){
+    static func index(completion: @escaping ([Group]?) ->()){
         
         
         let ref = Constant.groupRef()
@@ -35,19 +35,37 @@ struct GroupServices{
             })
             
             dg.notify(queue: .global(), execute: {
-                completion(groups)
+                return completion(groups)
             })
         }
     }
-    static func create(_ group: Group, completion: @escaping()->()){
+    static func show (_ groupId: String, completion: @escaping(Group?)->()){
+        let ref = Constant.showGroupRef(groupId)
+        ref.observeSingleEvent(of: .value) { (snapshot) in
+            if snapshot.exists(){
+                let group = try! JSONDecoder().decode(Group.self, withJSONObject: snapshot.value!, options: [])
+                return completion(group)
+            }
+            else{
+                return completion(nil)
+            }
+        }
+    }
+    /// method to create group
+    static func create(_ group: Group, completion: @escaping(Group)->()){
         
         let ref = Constant.groupRef().childByAutoId()
         var g = group
         g.id = ref.key!
-        ref.setValue(g.toDictionary())
-        
-        completion()
+        ref.setValue(g.toDictionary()) { (error, ref) in
+            
+            show(g.id, completion: { (group) in
+                
+                completion(group!)
+            })
+        }
     }
+    /// method to update group
     static func update(_ group: Group, completion: @escaping()->()){
         let ref = Constant.groupRef().child(group.id)
        ref.updateChildValues(group.toDictionary())
@@ -55,4 +73,15 @@ struct GroupServices{
         completion()
     }
     
+    /// method to delete group
+    static func delete(group: Group, completion: @escaping(Bool)->()){
+        let ref = Constant.showGroupRef(group.id)
+        ref.removeValue { (error, ref) in
+            
+           return (error == nil) ? ( completion(true)) : (completion(false))
+        }
+    }
 }
+
+
+

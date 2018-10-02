@@ -38,13 +38,18 @@ struct ReminderServices{
             }
         }
     
-    
+   
     
     // THIS FUNCTION CREATES A SINGLE REMINDER AND SENDS IT TO THE DATABASE AS JSON
     static func create(_ reminder: Reminder, completion: @escaping()->()){
         
         let ref = Constant.reminderRef().childByAutoId()
-        ref.setValue(reminder.toDictionary())
+        
+        var mutatingReminder = reminder
+        
+        mutatingReminder.id = ref.key
+        
+        ref.setValue(mutatingReminder.toDictionary())
         completion()
     }
 }

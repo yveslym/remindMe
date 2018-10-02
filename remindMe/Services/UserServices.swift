@@ -34,6 +34,7 @@ struct UserServices{
         let uid = Auth.auth().currentUser?.uid
         let ref = Constant.user(uid!)
         ref.observeSingleEvent(of: .value) { (snapshot) in
+        
             if snapshot.exists(){
                 let user = try! JSONDecoder().decode(User.self, withJSONObject: snapshot.value!)
                 return completion(user)
@@ -44,7 +45,7 @@ struct UserServices{
         }
     }
 
-
+/// method to signup user
 static func signUp(_ email: String, _ password: String, completion: @escaping (Any)->()){
     Auth.auth().createUser(withEmail: email, password: password) { (authUser, error) in
         guard authUser != nil else {return completion(error!)}
@@ -53,11 +54,30 @@ static func signUp(_ email: String, _ password: String, completion: @escaping (A
         create(user: user, completion: { (newUser) in
             if (newUser as? User) != nil{
                 show(completion: { (user) in
-                    return completion(user)
+                    //if let user = user else {return completion(nil)}
+                    return completion(user!)
                 })
             }
         })
-        
     }
  }
+    /// method signIn user
+    static func signIn(_ email: String, _ password: String, completion: @escaping (Any) ->()){
+        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+            if error != nil {return completion(error.debugDescription)}
+            show(completion: { (user) in
+               return completion(user!)
+            })
+        }
+    }
+    /// method to update user
+    static func update(_ newUser: User,completion: @escaping (User)->()){
+        let ref = Constant.user((Auth.auth().currentUser?.uid)!)
+        
+        ref.updateChildValues(newUser.toDictionary()) { (error, ref) in
+            show { (user) in
+                return completion(user!)
+            }
+        }
+    }
 }
