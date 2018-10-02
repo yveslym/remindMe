@@ -12,11 +12,9 @@ extension CreateGroupViewController: UITextFieldDelegate{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        guard let segueIdentifier = segue.identifier, let destinationViewController = segue.destination as? GroupListViewController else {return}
+        guard let segueIdentifier = segue.identifier else {return}
         
         switch segueIdentifier {
-            
-        // code for when the user taps "save" without making any changes to the group attributes
         case Constant.saveGroupSegueIdentifier where group == nil:
             
             guard let address = groupAddressTextField.text, let name = groupNameTextField.text else { return }
@@ -25,7 +23,7 @@ extension CreateGroupViewController: UITextFieldDelegate{
                     
                     let latitude = location.latitude
                     let longitude = location.longitude
-                    var createdGroup = Group(id: "",name: name, latitude: latitude, longitude: longitude)
+                    let createdGroup = Group(id: "",name: name, latitude: latitude, longitude: longitude)
                     GroupServices.create(createdGroup, completion: { (newGroup) in
                         print(newGroup.id)
                     })

@@ -12,9 +12,7 @@ import Firebase
 
 struct GroupServices{
     
-    // THIS STRUCT CONTAINS FUNCTIONS TO CREATE, SHOW A GROUP AND TALK TO THE BACKEND
-    
-    
+    //METHOD TO GET ALL THE CREATED GROUPS FROM THE DATABASE TO THE CLIENT
     static func index(completion: @escaping ([Group]?) ->()){
         
         
@@ -39,6 +37,10 @@ struct GroupServices{
             })
         }
     }
+    
+    /* METHOD TO SHOW THE DATA OF A SINGLE GROUP FROM THE DATABASE TO THE CLIENT
+     @param : groupId : the group's id of needed to look it up on the database
+    */
     static func show (_ groupId: String, completion: @escaping(Group?)->()){
         let ref = Constant.showGroupRef(groupId)
         ref.observeSingleEvent(of: .value) { (snapshot) in
@@ -51,7 +53,11 @@ struct GroupServices{
             }
         }
     }
-    /// method to create group
+    
+    
+    /* METHOD TO CREATE A SINGLE GROUP OBJECT AND SAVE IT INTO THE DATABASE
+     @param group : the group to be created in the database
+    */
     static func create(_ group: Group, completion: @escaping(Group)->()){
         
         let ref = Constant.groupRef().childByAutoId()
@@ -65,7 +71,9 @@ struct GroupServices{
             })
         }
     }
-    /// method to update group
+    /* METHOD TO UPDATE A GROUP FROM THE CLIENT TO THE DATABASE
+     @param group : the group to be updated
+    */
     static func update(_ group: Group, completion: @escaping()->()){
         let ref = Constant.groupRef().child(group.id)
        ref.updateChildValues(group.toDictionary())
@@ -73,7 +81,9 @@ struct GroupServices{
         completion()
     }
     
-    /// method to delete group
+    /* METHOD TO DELETE A GROUP FROM THE DATABASE
+     @param group: the group to be removed
+     */
     static func delete(group: Group, completion: @escaping(Bool)->()){
         let ref = Constant.showGroupRef(group.id)
         ref.removeValue { (error, ref) in

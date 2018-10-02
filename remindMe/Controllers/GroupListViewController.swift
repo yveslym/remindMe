@@ -19,20 +19,35 @@ class GroupListViewController: UIViewController{
     var clickedGroup: Group?
     var userGroups = [Group](){
         didSet {
-            groupTableView.reloadData()
+            DispatchQueue.main.async {
+                self.groupTableView.reloadData()
+            }
         }
     }
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // SETTING UP THE GROUPS TABLE VIEW
         groupTableView.delegate = self as UITableViewDelegate
         groupTableView.dataSource = self as UITableViewDataSource
+        fetchAllGroups()
+        
         
     }
     
-    // Function to unwind segues for navigation
+    
+    // THIS FUNCTION MAKES AN API CALL TO GET ALL GROUPS
+    fileprivate func fetchAllGroups(){
+        GroupServices.index(completion: { (groups) in
+            groups?.forEach({ (group) in
+                self.userGroups.append(group)
+            })
+        })
+    }
+    
+    // THIS METHOD IS USED FOR UNWINDING SEGUE
     @IBAction func unwindtoGroupListViewController(_ segue: UIStoryboardSegue){
         // empty for now
     }
