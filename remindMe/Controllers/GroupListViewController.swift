@@ -31,7 +31,10 @@ class GroupListViewController: UIViewController{
         // SETTING UP THE GROUPS TABLE VIEW
         groupTableView.delegate = self as UITableViewDelegate
         groupTableView.dataSource = self as UITableViewDataSource
-        fetchAllGroups()
+        UserServices.signIn("test@test.com", "123456") { (user) in
+            self.fetchAllGroups()
+        }
+        
     }
     
     

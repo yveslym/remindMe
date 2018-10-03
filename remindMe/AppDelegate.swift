@@ -37,20 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.locationManager.requestAlwaysAuthorization()
             self.locationManager.startUpdatingLocation()
         }
-        UserServices.signIn("test@test.com", "123456") { (user) in
-            if let user = user as? User{
-//                let group = Group(id: "", name: "home", latitude: 1.22, longitude: 43.555)
-//                GroupServices.create(group, completion: { (newGroup) in
-//                    let reminder = Reminder(groupId: newGroup.id, id: "", name: "feed fish", type: .onEntry, time: "12:00", longitude: newGroup.longitude, latitude: newGroup.latitude)
-//                    ReminderServices.create(reminder, completion: {
-//                        ReminderServices.show(completion: { (reminders) in
-//                            //print(reminders!)
-//                        })
-//                    })
-//                })
-            }
-        }
-       
         return true
     }
 
