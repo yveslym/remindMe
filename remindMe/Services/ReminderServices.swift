@@ -11,8 +11,7 @@ import Firebase
 
 // THIS STRUCT CONTAINS FUNCTIONS TO CREATE, SHOW A REMINDER AND TALK TO THE BACKEND
 struct ReminderServices{
-    
-    
+
     // METHOD THAT GETS AN ARRAY OF REMINDERS CREATED BY THE USER FROM THE DATABASE TO DISPLAY TO CLIENT
     static func index(completion: @escaping ([Reminder]?) -> ()){
         
@@ -47,11 +46,8 @@ struct ReminderServices{
     static func create(_ reminder: Reminder, completion: @escaping()->()){
         
         let ref = Constant.reminderRef().childByAutoId()
-        
         var mutatingReminder = reminder
-        
         mutatingReminder.id = ref.key!
-        
         ref.setValue(mutatingReminder.toDictionary())
         completion()
     }

@@ -19,19 +19,31 @@ class ReminderListViewController: UIViewController{
     
     var userReminders = [Reminder](){
         didSet{
-            reminderTableView.reloadData()
+            DispatchQueue.main.async {
+                self.reminderTableView.reloadData()
+            }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // SETTING UP THE TABLE VIEW
         reminderTableView.delegate = self as UITableViewDelegate
         reminderTableView.dataSource = self as UITableViewDataSource
+        fetchAllReminders()
+    }
+    
+    // THIS FUNCTION MAKES AN API CALL TO GET ALL REMINDERS
+    internal func fetchAllReminders(){
+        ReminderServices.index { (reminders) in
+            guard let reminders = reminders  else {return}
+            self.userReminders = reminders
+        }
     }
     
     // Function to unwind back to this view controller
     @IBAction func unwindToReminderListViewController(_ segue: UIStoryboardSegue){
-        // leave it blank right now
+        fetchAllReminders()
     }
 }
