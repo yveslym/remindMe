@@ -16,7 +16,7 @@ class GroupListViewController: UIViewController{
     // - MARK : IBOULETS AND VARIABLES
     @IBOutlet weak var groupTableView: UITableView!
     
-    var clickedGroup: Group?
+    static var numberOfReminders = 0
     var userGroups = [Group](){
         didSet {
             DispatchQueue.main.async {

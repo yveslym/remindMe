@@ -25,7 +25,7 @@ extension CreateReminderViewController: UITextFieldDelegate {
             
             let createdReminder = Reminder(groupId: groupId, id: "", name: name, type: EventType(rawValue: type) ?? .onEntry, time: time, longitude: longitude, latitude: latitude)
     
-            Group.numberOfReminders += 1
+            GroupListViewController.numberOfReminders += 1
             ReminderServices.create(createdReminder) {
                 // leave it empty for now
                 print(createdReminder)
