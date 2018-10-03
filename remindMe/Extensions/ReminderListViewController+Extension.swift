@@ -29,14 +29,13 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
 
-    /*
     // Function to delete a cell from the table view
     func tableView(_ tableview : UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
         if editingStyle == .delete{
-            // code to delete a reminder from table view and database(FireBase)
             let reminderToBeDeleted = userReminders[indexPath.row]
+            ReminderServices.delete(reminderToBeDeleted) { (true) in
+                self.fetchAllReminders()
+            }
         }
     }
- */
 }

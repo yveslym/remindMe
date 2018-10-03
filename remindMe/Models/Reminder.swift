@@ -10,21 +10,23 @@ import Foundation
 
 struct Reminder: Codable{
     
-    var id: String?
+    var id: String
+    var groupId: String
     var name: String?
     var type: EventType?
     var time: String
     var longitude: Double
-    var latitude: Double
+    var latitude : Double
     
-    
-    init(name: String, type: EventType, time: String, latitude: Double, longitude: Double) {
+    init(groupId: String, id: String, name: String, type: EventType, time: String, longitude: Double, latitude: Double) {
         
+        self.groupId = groupId
+        self.id = id
         self.name = name
         self.type = type
         self.time = time
-        self.latitude = latitude
         self.longitude = longitude
+        self.latitude = latitude
     }
 
     // Function convert data  to be sent to the server into a json encoded format

@@ -12,15 +12,9 @@ extension CreateGroupViewController: UITextFieldDelegate{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        guard let segueIdentifier = segue.identifier, let destinationViewController = segue.destination as? GroupListViewController else {return}
+        guard let segueIdentifier = segue.identifier else {return}
         
         switch segueIdentifier {
-            
-//        // code for when the user taps "save" after making changes to the group attributes
-//        case Constant.saveGroupSegueIdentifier where group != nil:
-//            return
-//
-        // code for when the user taps "save" without making any changes to the group attributes
         case Constant.saveGroupSegueIdentifier where group == nil:
             
             guard let address = groupAddressTextField.text, let name = groupNameTextField.text else { return }
@@ -29,20 +23,17 @@ extension CreateGroupViewController: UITextFieldDelegate{
                     
                     let latitude = location.latitude
                     let longitude = location.longitude
-                    var createdGroup = Group(id: "",name: name, latitude: latitude, longitude: longitude)
-                    GroupServices.create(createdGroup, completion: {_ in 
-                        DispatchQueue.main.async {
-                           destinationViewController.userGroups.append(createdGroup)
-                        }
+                    let createdGroup = Group(id: "",name: name, latitude: latitude, longitude: longitude)
+                    GroupServices.create(createdGroup, completion: { (newGroup) in
+                       //leave empty for now
                     })
                 }
             }
-        
+            
         default:
             print("Unexpected Segue Identifier")
         }
     }
-    
     
     // FUNCTION TO HANDLE TEXT FIELDS
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -50,11 +41,8 @@ extension CreateGroupViewController: UITextFieldDelegate{
         switch textField {
             
         case groupNameTextField:
-            
             groupAddressTextField.becomeFirstResponder()
-            
         default:
-            
             groupAddressTextField.resignFirstResponder()
         }
         return true
