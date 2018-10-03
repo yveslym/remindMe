@@ -17,7 +17,7 @@ struct Constant{
     static let reminderTableViewCellIdentifier: String = "reminderCell"
     static let createReminderSegueIdentifier: String  = "createSingleReminder"
     static let createGroupSegueIdentifier: String = "createSingleGroup"
-    static let showAllRemindersSegueIdentifier: String = "showListOfReminder"
+    static let showAllRemindersSegueIdentifier: String = "showListOfReminders"
     static let saveReminderSegueIdenfier: String = "saveReminder"
     static let saveGroupSegueIdentifier: String = "saveGroup"
     static let backToReminderListSegueIdentifier: String = "backToReminders"

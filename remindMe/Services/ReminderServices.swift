@@ -11,10 +11,9 @@ import Firebase
 
 // THIS STRUCT CONTAINS FUNCTIONS TO CREATE, SHOW A REMINDER AND TALK TO THE BACKEND
 struct ReminderServices{
-    
-    
-    // THIS FUNCTION GETS AN ARRAY OF REMINDERS CREATED BY THE USER FROM THE DATABASE TO DISPLAY TO THE USER
-    static func show(completion: @escaping ([Reminder]?) -> ()){
+
+    // METHOD THAT GETS AN ARRAY OF REMINDERS CREATED BY THE USER FROM THE DATABASE TO DISPLAY TO CLIENT
+    static func index(completion: @escaping ([Reminder]?) -> ()){
         
         let reference = Constant.reminderRef()
         reference.observeSingleEvent(of: .value) { (snapshot) in
@@ -40,16 +39,37 @@ struct ReminderServices{
     
    
     
-    // THIS FUNCTION CREATES A SINGLE REMINDER AND SENDS IT TO THE DATABASE AS JSON
+    /*
+     METHOD THAT CREATES A SINGLE REMINDER AND SENDS IT TO THE DATABASE
+     @param reminder : the reminder to be created on the data base
+    */
     static func create(_ reminder: Reminder, completion: @escaping()->()){
         
         let ref = Constant.reminderRef().childByAutoId()
-        
         var mutatingReminder = reminder
-        
-        mutatingReminder.id = ref.key
-        
+        mutatingReminder.id = ref.key!
         ref.setValue(mutatingReminder.toDictionary())
         completion()
+    }
+    
+    /*
+     METHOD THAT UPDATES A REMINDER FROM THE CLIENT TO THE DATABASE
+     @param group : the reminder to be updated
+     */
+    static func update(_ reminder: Reminder, completion: @escaping() -> ()){
+        let reference = Constant.reminderRef().child(reminder.id)
+        reference.updateChildValues(reminder.toDictionary())
+        completion()
+    }
+    
+    /*
+     METHOD THAT DELETES A REMINDER FROM THE DATABASE
+     @param group: the reminder to be removed
+     */
+    static func delete(_ reminder: Reminder, completion: @escaping(Bool) -> ()){
+        let reference = Constant.showReminderRef(reminder.id)
+        reference.removeValue { (error, reference) in
+            return (error == nil) ? ( completion(true)) : (completion(false))
+        }
     }
 }

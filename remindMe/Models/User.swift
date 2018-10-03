@@ -16,13 +16,24 @@ struct User: Codable{
     var name: String
     var id: String
     var email: String
-    
+    static let current = {
+        //fetch data from user default
+        // check if user exist
+            // if it does
+                // decode into user
+                    //return user
+    }
     init(_ name: String, _ id: String, _ email: String){
         self.name = name
         self.id = id
         self.email = email
     }
     
+    func persistUser(user: User){
+        // turn user object into data type using jsonencoder()
+        // save the data to userDefaults
+        
+    }
     func toDictionary() ->[String: Any]{
         let data = try! JSONEncoder().encode(self)
         let json = try! JSONSerialization.jsonObject(with: data, options: [])
