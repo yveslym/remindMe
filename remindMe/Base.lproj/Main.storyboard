@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kdu-3E-loZ">
-    <device id="retina5_9" orientation="portrait">
+    <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -16,14 +16,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="GroupListViewController" customModule="remindMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="rootView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E9n-ND-CZq" userLabel="headerView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="173"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="173"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Groups" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1XU-ja-ufs">
-                                        <rect key="frame" x="60" y="88" width="255" height="85"/>
+                                        <rect key="frame" x="60" y="88" width="294" height="85"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                         <color key="textColor" name="tcCharcoal"/>
                                         <nil key="highlightedColor"/>
@@ -37,25 +37,25 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="owN-x7-fMQ">
-                                <rect key="frame" x="0.0" y="197" width="375" height="581"/>
+                                <rect key="frame" x="0.0" y="197" width="414" height="665"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupCell" textLabel="sVb-AL-zjX" detailTextLabel="6I3-3s-ULh" style="IBUITableViewCellStyleSubtitle" id="4Ed-Wv-2Ky" customClass="GroupListTableViewCell" customModule="remindMe" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Ed-Wv-2Ky" id="L8K-L4-SX6">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sVb-AL-zjX" userLabel="groupTitle">
-                                                    <rect key="frame" x="15" y="5" width="96.666666666666671" height="20.333333333333332"/>
+                                                    <rect key="frame" x="20.000000000000007" y="5" width="96.666666666666671" height="20.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="2 Reminders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6I3-3s-ULh" userLabel="numOfReminders">
-                                                    <rect key="frame" x="15" y="25.333333333333332" width="70.666666666666671" height="14.333333333333334"/>
+                                                    <rect key="frame" x="20" y="25.333333333333332" width="70.666666666666671" height="14.333333333333334"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -107,14 +107,14 @@
             <objects>
                 <viewController id="14l-cs-lto" customClass="ReminderListViewController" customModule="remindMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IRS-Lh-d5y" userLabel="rootView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ke2-As-L10" userLabel="headerView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="204"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="204"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbJ-Sh-CwA">
-                                        <rect key="frame" x="60" y="88" width="255" height="116"/>
+                                        <rect key="frame" x="60" y="88" width="294" height="116"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
                                         <color key="textColor" name="tcCharcoal"/>
                                         <nil key="highlightedColor"/>
@@ -128,25 +128,25 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4r6-W0-0BY">
-                                <rect key="frame" x="0.0" y="228" width="375" height="550"/>
+                                <rect key="frame" x="0.0" y="228" width="414" height="634"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reminderCell" textLabel="xNw-wT-xwv" detailTextLabel="ot1-bZ-wra" style="IBUITableViewCellStyleSubtitle" id="E5X-oo-uHv" userLabel="reminderCell" customClass="ReminderListTableViewCell" customModule="remindMe" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E5X-oo-uHv" id="vDD-tK-Dvn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Get Keys" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xNw-wT-xwv" userLabel="reminderTitle">
-                                                    <rect key="frame" x="15" y="5" width="68.333333333333329" height="20.333333333333332"/>
+                                                    <rect key="frame" x="20" y="5" width="68.333333333333329" height="20.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Exit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ot1-bZ-wra" userLabel="reminderType">
-                                                    <rect key="frame" x="15" y="25.333333333333332" width="21" height="14.333333333333334"/>
+                                                    <rect key="frame" x="20" y="25.333333333333332" width="21" height="14.333333333333334"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -198,11 +198,11 @@
             <objects>
                 <viewController id="L3y-PL-GgJ" customClass="CreateGroupViewController" customModule="remindMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qTc-Ml-qda" userLabel="rootView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02b-cE-Aem" userLabel="inputView">
-                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dkk-yn-38y">
                                         <rect key="frame" x="93" y="125" width="189" height="30"/>
@@ -253,11 +253,11 @@
             <objects>
                 <viewController id="MyR-jE-nO9" customClass="CreateReminderViewController" customModule="remindMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lss-kw-VET" userLabel="rootView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1nl-du-WxC" userLabel="inputView">
-                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kLt-eA-Sem" userLabel="name">
                                         <rect key="frame" x="78" y="57" width="190" height="30"/>
@@ -317,7 +317,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kdu-3E-loZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xsp-HH-BcU">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -335,7 +335,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="80t-VS-Mdg" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vkn-TJ-ixZ">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
