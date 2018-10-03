@@ -45,7 +45,7 @@ class GroupListViewController: UIViewController{
     
     // THIS METHOD IS USED FOR UNWINDING SEGUE
     @IBAction func unwindtoGroupListViewController(_ segue: UIStoryboardSegue){
-        // empty for now
+        fetchAllGroups()
     }
     
 

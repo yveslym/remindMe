@@ -24,8 +24,6 @@ struct Group: Codable{
         self.name = name
         self.latitude = latitude
         self.longitude = longitude
-        Group.numberOfReminders += 1
-        
     }
    
     func toDictionary() ->[String: Any]{

@@ -25,7 +25,7 @@ extension CreateGroupViewController: UITextFieldDelegate{
                     let longitude = location.longitude
                     let createdGroup = Group(id: "",name: name, latitude: latitude, longitude: longitude)
                     GroupServices.create(createdGroup, completion: { (newGroup) in
-                        print(newGroup.id)
+                       //leave empty for now
                     })
                 }
             }
