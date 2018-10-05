@@ -23,7 +23,9 @@ extension CreateReminderViewController: UITextFieldDelegate {
                   let latitude = destinationViewController.parentGroup?.latitude,
                   let longitude = destinationViewController.parentGroup?.longitude else {return}
             
+            
             let createdReminder = Reminder(groupId: groupId, id: "", name: name, type: EventType(rawValue: type) ?? .onEntry, time: time, longitude: longitude, latitude: latitude)
+            //Group.reminders.append(createdReminder)
     
             GroupListViewController.numberOfReminders += 1
             ReminderServices.create(createdReminder) {

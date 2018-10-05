@@ -8,14 +8,13 @@
 
 import Foundation
 
-// THIS STRUCT REPRESENT THE BLUE PRINT OF THE GROUP DATA MODEL
-
 struct Group: Codable{
     
     var id: String
     var name: String
     var longitude: Double
     var latitude: Double
+    static var reminders: [Reminder] = []
     static var numberOfReminders = 0
     
     init(id: String, name: String, latitude: Double, longitude: Double) {

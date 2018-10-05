@@ -38,7 +38,11 @@ class ReminderListViewController: UIViewController{
     internal func fetchAllReminders(){
         ReminderServices.index { (reminders) in
             guard let reminders = reminders  else {return}
-            self.userReminders = reminders
+            reminders.forEach({ (reminder) in
+                if reminder.groupId == self.parentGroup?.id{
+                    self.userReminders.append(reminder)
+                }
+            })
         }
     }
     

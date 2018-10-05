@@ -12,7 +12,7 @@ import Firebase
 
 struct GroupServices{
     
-    //METHOD TO GET ALL THE CREATED GROUPS FROM THE DATABASE TO THE CLIENT
+    ///METHOD TO GET ALL THE CREATED GROUPS FROM THE DATABASE TO THE CLIENT
     static func index(completion: @escaping ([Group]?) ->()){
         
         
@@ -38,7 +38,7 @@ struct GroupServices{
         }
     }
     
-    /* METHOD TO SHOW THE DATA OF A SINGLE GROUP FROM THE DATABASE TO THE CLIENT
+    /** METHOD TO SHOW THE DATA OF A SINGLE GROUP FROM THE DATABASE TO THE CLIENT
      @param : groupId : the group's id of needed to look it up on the database
     */
     static func show (_ groupId: String, completion: @escaping(Group?)->()){
@@ -55,7 +55,7 @@ struct GroupServices{
     }
     
     
-    /* METHOD TO CREATE A SINGLE GROUP OBJECT AND SAVE IT INTO THE DATABASE
+    /** METHOD TO CREATE A SINGLE GROUP OBJECT AND SAVE IT INTO THE DATABASE
      @param group : the group to be created in the database
     */
     static func create(_ group: Group, completion: @escaping(Group)->()){
@@ -80,7 +80,7 @@ struct GroupServices{
         completion()
     }
     
-    /* METHOD TO DELETE A GROUP FROM THE DATABASE
+    /** METHOD TO DELETE A GROUP FROM THE DATABASE
      @param group: the group to be removed
      */
     static func delete(group: Group, completion: @escaping(Bool)->()){
