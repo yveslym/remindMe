@@ -39,9 +39,10 @@ struct ReminderServices{
     
     
     /** METHOD TO SHOW THE DATA OF A SINGLE REMINDER FROM THE DATABASE TO THE CLIENT
-     @param : groupId : the group's id of needed to look it up on the database
+     @param : reminderId : the reminder's id of needed to look it up on the database
      */
-    func show(_ reminderId: String, completion: @escaping(Reminder?) -> ()){
+    static func show(_ reminderId: String, completion: @escaping(Reminder?) -> ()){
+        
         let reference = Constant.showReminderRef(reminderId)
         reference.observeSingleEvent(of: .value) { (snapchot) in
             if snapchot.exists(){
@@ -82,6 +83,7 @@ struct ReminderServices{
      @param group: the reminder to be removed
      */
     static func delete(_ reminder: Reminder, completion: @escaping(Bool) -> ()){
+        
         let reference = Constant.showReminderRef(reminder.id)
         reference.removeValue { (error, reference) in
             return (error == nil) ? ( completion(true)) : (completion(false))

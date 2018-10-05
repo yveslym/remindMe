@@ -28,6 +28,8 @@ class GroupListViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         // SETTING UP THE GROUPS TABLE VIEW
         groupTableView.delegate = self as UITableViewDelegate
         groupTableView.dataSource = self as UITableViewDataSource

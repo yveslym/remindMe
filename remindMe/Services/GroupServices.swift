@@ -15,9 +15,7 @@ struct GroupServices{
     ///METHOD TO GET ALL THE CREATED GROUPS FROM THE DATABASE TO THE CLIENT
     static func index(completion: @escaping ([Group]?) ->()){
         
-        
         let ref = Constant.groupRef()
-        
         ref.observeSingleEvent(of: .value) { (snapshot) in
             var groups = [Group]()
             let dg = DispatchGroup()
@@ -42,6 +40,7 @@ struct GroupServices{
      @param : groupId : the group's id of needed to look it up on the database
     */
     static func show (_ groupId: String, completion: @escaping(Group?)->()){
+        
         let ref = Constant.showGroupRef(groupId)
         ref.observeSingleEvent(of: .value) { (snapshot) in
             if snapshot.exists(){
@@ -64,9 +63,7 @@ struct GroupServices{
         var g = group
         g.id = ref.key!
         ref.setValue(g.toDictionary()) { (error, ref) in
-            
             show(g.id, completion: { (group) in
-                
                 completion(group!)
             })
         }
@@ -74,9 +71,9 @@ struct GroupServices{
     
     /// METHOD TO UPDATE A GROUP FROM THE CLIENT TO THE DATABASE
     static func update(_ group: Group, completion: @escaping()->()){
+        
         let ref = Constant.groupRef().child(group.id)
        ref.updateChildValues(group.toDictionary())
-        
         completion()
     }
     
@@ -84,6 +81,7 @@ struct GroupServices{
      @param group: the group to be removed
      */
     static func delete(group: Group, completion: @escaping(Bool)->()){
+        
         let ref = Constant.showGroupRef(group.id)
         ref.removeValue { (error, ref) in
            return (error == nil) ? ( completion(true)) : (completion(false))
