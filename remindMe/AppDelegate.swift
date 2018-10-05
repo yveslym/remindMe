@@ -32,11 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (CLLocationManager.locationServicesEnabled())
         {
             self.locationManager = CLLocationManager()
-            //self.locationManager.delegate = self
+            self.locationManager.delegate = self
             self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
             self.locationManager.requestAlwaysAuthorization()
             self.locationManager.startUpdatingLocation()
         }
+        
         return true
     }
 
@@ -48,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        self.locationManager.delegate = self
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -62,6 +64,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
 
+extension AppDelegate: CLLocationManagerDelegate{
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        let reminderId = region.identifier
+        //ReminderServices.show(id:
+            
+    }
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        <#code#>
+    }
+}
