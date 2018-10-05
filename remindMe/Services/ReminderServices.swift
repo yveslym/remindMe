@@ -9,10 +9,10 @@
 import Foundation
 import Firebase
 
-// THIS STRUCT CONTAINS FUNCTIONS TO CREATE, SHOW A REMINDER AND TALK TO THE BACKEND
+/// THIS STRUCT CONTAINS FUNCTIONS TO CREATE, SHOW A REMINDER AND TALK TO THE BACKEND
 struct ReminderServices{
 
-    // METHOD THAT GETS AN ARRAY OF REMINDERS CREATED BY THE USER FROM THE DATABASE TO DISPLAY TO CLIENT
+    /// METHOD THAT GETS AN ARRAY OF REMINDERS CREATED BY THE USER FROM THE DATABASE TO DISPLAY TO CLIENT
     static func index(completion: @escaping ([Reminder]?) -> ()){
         
         let reference = Constant.reminderRef()
@@ -37,9 +37,16 @@ struct ReminderServices{
             }
         }
     
+    
+    /** METHOD TO SHOW THE DATA OF A SINGLE REMINDER FROM THE DATABASE TO THE CLIENT
+     @param : groupId : the group's id of needed to look it up on the database
+     */
+    func show(_ groupId: String, completion: @escaping([Reminder]) -> ()){
+        
+    }
    
     
-    /*
+    /**
      METHOD THAT CREATES A SINGLE REMINDER AND SENDS IT TO THE DATABASE
      @param reminder : the reminder to be created on the data base
     */
@@ -52,7 +59,7 @@ struct ReminderServices{
         completion()
     }
     
-    /*
+    /**
      METHOD THAT UPDATES A REMINDER FROM THE CLIENT TO THE DATABASE
      @param group : the reminder to be updated
      */
@@ -62,7 +69,7 @@ struct ReminderServices{
         completion()
     }
     
-    /*
+    /**
      METHOD THAT DELETES A REMINDER FROM THE DATABASE
      @param group: the reminder to be removed
      */

@@ -21,8 +21,9 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         
         let groupCell = tableView.dequeueReusableCell(withIdentifier: Constant.groupTableViewCellIdentifier, for: indexPath) as! GroupListTableViewCell
         let group = userGroups[indexPath.row]
+        
         groupCell.groupNameLabel.text = group.name
-        groupCell.numberOfRemindersLabel.text = "Numbers of Reminders : \(GroupListViewController.numberOfReminders.convertIntToString())"
+        groupCell.numberOfRemindersLabel.text = "# Reminders"
         
         return groupCell
     }
@@ -40,29 +41,41 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         
     }
     
+    // FUNCTION TO KEEP TRACK OF GROUPS CLICKED ON THE TABLE VIEW AND ALERTS THE PREPARE FUNCTION
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let group = userGroups[indexPath.row]
+        self.performSegue(withIdentifier: Constant.showAllRemindersSegueIdentifier, sender: group)
+    }
+    
     //FUNCTION TO SEND A REFERENCE OBJECT OF THE GROUP CLICKED
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        /*
+        if segue.identifier == Constant.showAllRemindersSegueIdentifier {
+            let destinationViewController = segue.destination as?  ReminderListViewController
+            //var selectedIndex = self.groupTableView.indexPath(for: sender as! UITableViewCell)
+            let group = sender as? Group
+            destinationViewController?.parentGroup = group
+            
+        }
+ */
+
         guard let segueIdentifier = segue.identifier else {return}
-        
+
+
         switch segueIdentifier {
 
         case Constant.showAllRemindersSegueIdentifier:
-            
+
             let destinationViewController = segue.destination as? ReminderListViewController
             let group = sender as? Group
             destinationViewController?.parentGroup = group
             
+
         default:
             print("ERROR : INVALID SEGUE IDENTIFIER")
         }
 
     }
     
-    // FUNCTION TO KEEP TRACK OF GROUPS CLICKED ON THE TABLE VIEW AND ALERTS THE PREPARE FUNCTION
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let group = userGroups[indexPath.row]
-        self.performSegue(withIdentifier: Constant.showAllRemindersSegueIdentifier, sender: group)
-    }
-
 }
