@@ -13,7 +13,7 @@ struct GeoFence{
     
     static let shared = GeoFence()
     
-    /// method to convert address to coordinate
+    /// Method to convert address to coordinate
     func addressToCoordinate(_ address: String, completion: @escaping(CLLocationCoordinate2D?)->()){
         print("getting location coordinate")
         let geocoder = CLGeocoder()
@@ -33,7 +33,7 @@ struct GeoFence{
         }
     }
     
-    /// method to add a single geo fancing within a given region
+    /// Method to add a single geo fancing within a given region
     private func addNewGeoFencing(locationManager: CLLocationManager, region: CLCircularRegion,event: EventType){
         
         switch event{
@@ -48,7 +48,7 @@ struct GeoFence{
         print("start monitoring")
         
     }
-    /// method to start monitoring
+    /// Method to start monitoring
     func startMonitor(_ reminders: [Reminder], completion: @escaping(Bool)->()){
         let dg = DispatchGroup()
         reminders.forEach({

@@ -42,7 +42,7 @@ struct ReminderServices{
      @param : groupId : the group's id of needed to look it up on the database
      */
     func show(_ groupId: String, completion: @escaping([Reminder]) -> ()){
-        //let reference = Constant.showReminderRef(<#T##id: String##String#>)
+        
     }
    
     
