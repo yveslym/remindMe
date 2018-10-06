@@ -44,8 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return
             }
         }
-        
-        
+
         
 
         // Configuring Firebase
@@ -90,15 +89,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: CLLocationManagerDelegate{
     
     
+    
+    fileprivate func setUpNotificationContent(_ title: String){
+        content.title = title
+        content.sound = UNNotificationSound.default()
+    }
+    
     /// Function to trigger local notification when the user enters radius of the provided location
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         
+        let trigerOnEntering = UNLocationNotificationTrigger(region: region, repeats: false)
         let reminderId = region.identifier
+        let notificationIdentifier = "notificationOnEntry"
+        let notificationRequest = UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigerOnEntering)
+        
         ReminderServices.show(reminderId) { (reminder) in
             guard let reminder = reminder else {return}
-            self.content.title = reminder.name ?? ""
-            self.content.sound = UNNotificationSound.default()
+            guard let reminderName = reminder.name else {return}
+            
+            self.setUpNotificationContent(reminderName)
         }
+        
+        center.add(notificationRequest) { (error) in
+            if let error = error {
+                // something went wrong
+            }
+        }
+        
+        
+    
        
     }
     
@@ -106,11 +125,7 @@ extension AppDelegate: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         
         let reminderId = region.identifier
-        ReminderServices.show(reminderId) { (reminder) in
-            guard let reminder = reminder else {return}
-            self.content.title = reminder.name ?? ""
-            self.content.sound = UNNotificationSound.default()
-        }
+     
     }
     
     

@@ -48,6 +48,7 @@ struct GeoFence{
         print("start monitoring")
         
     }
+    
     /// Method to start monitoring
     func startMonitor(_ reminders: [Reminder], completion: @escaping(Bool)->()){
         let dg = DispatchGroup()
