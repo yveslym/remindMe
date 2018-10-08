@@ -21,7 +21,6 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         
         let groupCell = tableView.dequeueReusableCell(withIdentifier: Constant.groupTableViewCellIdentifier, for: indexPath) as! GroupListTableViewCell
         let group = userGroups[indexPath.row]
-        
         groupCell.groupNameLabel.text = group.name
         groupCell.numberOfRemindersLabel.text = "# Reminders"
         

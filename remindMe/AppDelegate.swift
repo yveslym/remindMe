@@ -13,42 +13,29 @@ import JLocationKit
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate{
     
-    let center = UNUserNotificationCenter.current()
-    let content = UNMutableNotificationContent()
     var window: UIWindow?
+    var locationManager: CLLocationManager!
+    var notificationCenter: UNUserNotificationCenter!
+    //let geofanceRegionCenter = CLLocationCoordinate2DMake(37.7808893, -122.4161106)
     
     
     class var shared: AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
    // lazy var locationManager : CLLocationManager = CLLocationManager()
-    var locationManager: CLLocationManager = CLLocationManager()
+    
    
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        // Configuring Local Notifications
-        center.requestAuthorization(options: [.alert, .sound, .badge]) { (didAllow, error) in
-            if !didAllow{
-                print("They saidd NO boiiiii")
-            }else {
-                return
-            }
-        }
-        center.getNotificationSettings { (settings) in
-            if settings.authorizationStatus != .authorized{
-                print("They saii noo boiiiiii :(")
-            }else{
-                return
-            }
-        }
-
+        self.locationManager = CLLocationManager()
+        self.locationManager.delegate = self
         
-
-        // Configuring Firebase
-         FirebaseApp.configure()
+        //getting the singleton object and setting iy as its delegate
+        self.notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter?.delegate = self
         
         // Configuring User Location
         if (CLLocationManager.locationServicesEnabled())
@@ -60,16 +47,67 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.locationManager.startUpdatingLocation()
         }
         
+        // defining what we need for out notification
+        let notificationOptions: UNAuthorizationOptions = [.alert, .sound, .badge]
+        
+        //requesting perminsion
+        notificationCenter?.requestAuthorization(options: notificationOptions, completionHandler: { (granted, error) in
+            if !granted{
+                print("Error Found : Permision Not Granted")
+            }
+        })
+        
+        if launchOptions?[UIApplicationLaunchOptionsKey.location] != nil {
+            print("I woke up thanks to geofencing")
+        }
+        
+
+//        let geofenceRegion = CLCircularRegion(center: geofanceRegionCenter, radius: 5, identifier: "unique1")
+//        geofenceRegion.notifyOnEntry = true
+//        geofenceRegion.notifyOnExit = true
+//        locationManager.startMonitoring(for: geofenceRegion)
+        
+        
+        // Configuring Firebase
+         FirebaseApp.configure()
+        
+
+        
         return true
     }
+    
+    /// method to handle and set up the local notification
+    func handleEvent(forRegion region: CLRegion!){
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Hey Medi"
+        content.body = "If you're seeing this, you're unblocked!!!"
+        content.sound = UNNotificationSound.default()
+        content.badge = 1
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
+        let identifier = region.identifier
+        
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        
+        notificationCenter.add(request, withCompletionHandler: { (error) in
+            if error != nil {
+                print("Error adding notification with identifier: \(identifier)")
+            }
+        })
+    }
 
+    
+    
+    // - MARK: App cycle methods
+    
     func applicationWillResignActive(_ application: UIApplication) {
        
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         
-        self.locationManager.delegate = self
+    
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -88,44 +126,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: CLLocationManagerDelegate{
     
+    // - MARK: CORE LOCATION METHODS
     
-    
-    fileprivate func setUpNotificationContent(_ title: String){
-        content.title = title
-        content.sound = UNNotificationSound.default()
-    }
     
     /// Function to trigger local notification when the user enters radius of the provided location
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         
-        let trigerOnEntering = UNLocationNotificationTrigger(region: region, repeats: false)
-        let reminderId = region.identifier
-        let notificationIdentifier = "notificationOnEntry"
-        let notificationRequest = UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigerOnEntering)
-        
-        ReminderServices.show(reminderId) { (reminder) in
-            guard let reminder = reminder else {return}
-            guard let reminderName = reminder.name else {return}
-            
-            self.setUpNotificationContent(reminderName)
+        if region is CLCircularRegion {
+            self.handleEvent(forRegion: region)
         }
         
-        center.add(notificationRequest) { (error) in
-            if let error = error {
-                // something went wrong
-            }
-        }
-        
-        
-    
-       
     }
     
     /// Function to trigger local notification when the user exits radius of the provided location
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        
-        let reminderId = region.identifier
-     
+        if region is CLCircularRegion{
+            self.handleEvent(forRegion: region)
+        }
     }
     
     
@@ -143,6 +160,24 @@ extension AppDelegate: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
         
     }
- 
     
+    
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        // when app is onpen and in foregroud
+        completionHandler(.alert)
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        // get the notification identifier to respond accordingly
+        let identifier = response.notification.request.identifier
+        
+        // do what you need to do
+        print(identifier)
+        // ...
+    }
 }
