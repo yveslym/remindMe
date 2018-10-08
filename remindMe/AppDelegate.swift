@@ -61,23 +61,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             print("I woke up thanks to geofencing")
         }
         
+                // dummy coordinates of vantagio
+                let geofenceRegionCenter = CLLocationCoordinate2D(
+                    latitude: 37.7808893,
+                    longitude: -122.4161106
+                )
+        
 
-//        let geofenceRegion = CLCircularRegion(center: geofanceRegionCenter, radius: 5, identifier: "unique1")
-//        geofenceRegion.notifyOnEntry = true
-//        geofenceRegion.notifyOnExit = true
-//        locationManager.startMonitoring(for: geofenceRegion)
+        let geofenceRegion = CLCircularRegion(center: geofenceRegionCenter, radius: 5, identifier: "unique1")
+        geofenceRegion.notifyOnEntry = true
+        geofenceRegion.notifyOnExit = true
+        
+        locationManager.startMonitoring(for: geofenceRegion)
         
         
         // Configuring Firebase
          FirebaseApp.configure()
         
+        geofenceRegion.notifyOnEntry = true
+        geofenceRegion.notifyOnExit = true
 
-        
+        self.locationManager.startMonitoring(for: geofenceRegion)
         return true
     }
     
     /// method to handle and set up the local notification
-    func handleEvent(forRegion region: CLRegion!){
+    func handleEvent(){
         
         let content = UNMutableNotificationContent()
         content.title = "Hey Medi"
@@ -86,7 +95,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         content.badge = 1
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
-        let identifier = region.identifier
+        //let identifier = region.identifier
+        let identifier = "medi"
         
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         
@@ -131,36 +141,39 @@ extension AppDelegate: CLLocationManagerDelegate{
     
     /// Function to trigger local notification when the user enters radius of the provided location
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        
-        if region is CLCircularRegion {
-            self.handleEvent(forRegion: region)
-        }
-        
+//        print("Entered Location")
+//        if region is CLCircularRegion {
+//            self.handleEvent(forRegion: region)
+//        }
+
     }
-    
+
     /// Function to trigger local notification when the user exits radius of the provided location
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        if region is CLCircularRegion{
-            self.handleEvent(forRegion: region)
-        }
+//        print("Exited Region")
+//        if region is CLCircularRegion{
+//            self.handleEvent(forRegion: region)
+//        }
     }
     
     
     /// Function for when the app starts monitoring
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
+        print("Started Monitoring")
         
     }
-    
+
     /// Function to handle notification when the user has changed the group location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+        print("Location updated")
+        self.handleEvent()
     }
-    
+
     /// Function for when there has been an error monitoring the user's location
     func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
-        
+        print("Error : Failed To monitor User Location")
     }
-    
+
     
 }
 

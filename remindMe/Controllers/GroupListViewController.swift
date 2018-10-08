@@ -18,7 +18,7 @@ class GroupListViewController: UIViewController{
     @IBOutlet weak var groupTableView: UITableView!
     
     static var numberOfReminders = 0
-    let locationManager = CLLocationManager()
+    //let locationManager = CLLocationManager()
     var userGroups = [Group](){
         didSet {
             DispatchQueue.main.async {
@@ -30,23 +30,21 @@ class GroupListViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // dummy coordinates of vantagio
-        let geofenceRegionCenter = CLLocationCoordinate2D(
-            latitude: 37.7808893,
-            longitude: -122.4161106
-        )
+//        // dummy coordinates of vantagio
+//        let geofenceRegionCenter = CLLocationCoordinate2D(
+//            latitude: 37.7808893,
+//            longitude: -122.4161106
+//        )
+//
+//
+//        let geofenceRegion = CLCircularRegion(
+//            center: geofenceRegionCenter,
+//            radius: 5,
+//            identifier: "home")
+//
         
-        
-        let geofenceRegion = CLCircularRegion(
-            center: geofenceRegionCenter,
-            radius: 5,
-            identifier: "unique1")
-        
-        
-        geofenceRegion.notifyOnEntry = true
-        geofenceRegion.notifyOnExit = true
-        
-        self.locationManager.startMonitoring(for: geofenceRegion)
+//        geofenceRegion.notifyOnEntry = true
+//        geofenceRegion.notifyOnExit = true
         
         
         // SETTING UP THE GROUPS TABLE VIEW
