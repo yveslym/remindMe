@@ -61,43 +61,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             print("I woke up thanks to geofencing")
         }
         
-                // dummy coordinates of vantagio
-                let geofenceRegionCenter = CLLocationCoordinate2D(
-                    latitude: 37.7808893,
-                    longitude: -122.4161106
-                )
-        
-
-        let geofenceRegion = CLCircularRegion(center: geofenceRegionCenter, radius: 5, identifier: "unique1")
-        geofenceRegion.notifyOnEntry = true
-        geofenceRegion.notifyOnExit = true
-        
-        locationManager.startMonitoring(for: geofenceRegion)
-        
-        
+    
         // Configuring Firebase
          FirebaseApp.configure()
         
-        geofenceRegion.notifyOnEntry = true
-        geofenceRegion.notifyOnExit = true
-
-        self.locationManager.startMonitoring(for: geofenceRegion)
+        // self.locationManager.startMonitoring(for: geofenceRegion)
         return true
     }
     
-    /// method to handle and set up the local notification
-    func handleEvent(){
+    /// Method to handle and set up the local notification
+    func handleEvent(forRegion region: CLRegion!, body: String, title: String){
         
         let content = UNMutableNotificationContent()
-        content.title = "Hey Medi"
-        content.body = "If you're seeing this, you're unblocked!!!"
+        content.title = "This is a \(title) reminder"
+        content.body = body
         content.sound = UNNotificationSound.default()
         content.badge = 1
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
-        //let identifier = region.identifier
-        let identifier = "medi"
-        
+        let identifier = region.identifier
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         
         notificationCenter.add(request, withCompletionHandler: { (error) in
@@ -106,6 +88,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             }
         })
     }
+    func prepareForNotification(forRegion region: CLRegion){
+        let identifier = region.identifier
+        ReminderServices.show(identifier) { (reminder) in
+            // unwrap reminder
+            GroupServices.show(reminder?.groupId ?? "", completion: { (group) in
+                //unwrap group
+                
+                self.handleEvent(forRegion: region, body: reminder?.time ?? "", title:group?.name ?? "")
+            })
+           
+        }
+    }
+    
 
     
     
@@ -141,19 +136,19 @@ extension AppDelegate: CLLocationManagerDelegate{
     
     /// Function to trigger local notification when the user enters radius of the provided location
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-//        print("Entered Location")
-//        if region is CLCircularRegion {
-//            self.handleEvent(forRegion: region)
-//        }
+        print("Entered Location")
+        if region is CLCircularRegion {
+           self.prepareForNotification(forRegion: region)
+        }
 
     }
 
     /// Function to trigger local notification when the user exits radius of the provided location
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-//        print("Exited Region")
-//        if region is CLCircularRegion{
-//            self.handleEvent(forRegion: region)
-//        }
+        print("Exited Region")
+        if region is CLCircularRegion{
+            self.prepareForNotification(forRegion: region)
+        }
     }
     
     
@@ -166,7 +161,7 @@ extension AppDelegate: CLLocationManagerDelegate{
     /// Function to handle notification when the user has changed the group location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("Location updated")
-        self.handleEvent()
+        
     }
 
     /// Function for when there has been an error monitoring the user's location
