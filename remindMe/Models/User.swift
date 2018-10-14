@@ -23,18 +23,21 @@ struct User: Codable{
                 // decode into user
                     //return user
     }
+    
     init(_ name: String, _ id: String, _ email: String){
         self.name = name
         self.id = id
         self.email = email
     }
    
-    
+    /// Function to persist the the user's data
     func persistUser(user: User){
         // turn user object into data type using jsonencoder()
         // save the data to userDefaults
         
     }
+    
+    /// Function to turn native data into JSON
     func toDictionary() ->[String: Any]{
         let data = try! JSONEncoder().encode(self)
         let json = try! JSONSerialization.jsonObject(with: data, options: [])
