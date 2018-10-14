@@ -21,18 +21,28 @@ class SignUpViewController: UIViewController{
         super.viewDidLoad()
     }
     
-    private func signUpUser(){
-        guard let name = nameTextField.text, let email = emailTextField.text, let password = passwordTextField.text, let reEnterPassword = reEnterPasswordTextField.text else {return}
-        
-        UserServices.signUp(email, password) { (user) in
-            // some code goes here
-            print("User succesfully signed up")
-        }
-    }
-    
-    
     
     /// Method to be called when the use taps the register button
     @IBAction func registerButtonTaped(_ sender: UIButton) {
+        guard let name = nameTextField.text, let email = emailTextField.text, let password = passwordTextField.text, let reEnterPassword = reEnterPasswordTextField.text else {
+            
+            let alert = UIAlertController(title: "Field Missing",
+                                          message: "Please fill out all form",
+                                          preferredStyle: .alert)
+            let action = UIAlertAction(title: "Return",
+                                       style: .cancel,
+                                       handler: nil)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        // check if
+            // email size is less than three or password size is less than three or name size is less than 3
+                // if it is
+                    // send an alert
+                // if not
+                    // sign up the user
+                    // set the current user to the signed up user
+        
     }
 }
