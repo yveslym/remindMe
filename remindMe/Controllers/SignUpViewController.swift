@@ -24,6 +24,7 @@ class SignUpViewController: UIViewController{
     
     /// Method to be called when the use taps the register button
     @IBAction func registerButtonTaped(_ sender: UIButton) {
+        
         guard let name = nameTextField.text, let email = emailTextField.text, let password = passwordTextField.text, let reEnterPassword = reEnterPasswordTextField.text else {
             
             let emptyFieldAlert = UIAlertController(title: "Field Missing",
@@ -32,6 +33,7 @@ class SignUpViewController: UIViewController{
             let action = UIAlertAction(title: "Return",
                                        style: .cancel,
                                        handler: nil)
+            emptyFieldAlert.addAction(action)
             self.present(emptyFieldAlert, animated: true, completion: nil)
             return
         }
@@ -44,11 +46,13 @@ class SignUpViewController: UIViewController{
             let action = UIAlertAction(title: "Return",
                                        style: .cancel,
                                        handler: nil)
+            shortInputsAlert.addAction(action)
             self.present(shortInputsAlert, animated: true, completion: nil)
             return
         }
+        
         UserServices.signUp(email, password) { (newUser) in
-            print("Successfully created the user")
+           User.setCurrentUser(user: newUser as! User, writeToUserDefaults: true)
         }
         
     }

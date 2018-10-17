@@ -365,13 +365,12 @@
                                     <action selector="registerButtonTaped:" destination="ceJ-wQ-LUt" eventType="touchUpInside" id="3PX-9l-6BA"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Have an ccount?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zu-PZ-5qZ">
-                                <rect key="frame" x="128" y="794" width="159" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qka-hm-4Sn">
+                                <rect key="frame" x="113" y="778" width="188" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="Have an account?"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" name="tcOffWhite"/>
                         <viewLayoutGuide key="safeArea" id="eTZ-Nt-iAM"/>
@@ -387,10 +386,10 @@
             </objects>
             <point key="canvasLocation" x="918.84057971014499" y="-622.09821428571422"/>
         </scene>
-        <!--View Controller-->
+        <!--Sign In View Controller-->
         <scene sceneID="Y7M-mr-Klq">
             <objects>
-                <viewController id="9IM-l3-Qe9" sceneMemberID="viewController">
+                <viewController id="9IM-l3-Qe9" customClass="SignInViewController" customModule="remindMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MrO-Yv-Nqe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -424,16 +423,16 @@
                                     <color key="titleColor" name="tcOffWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="loginButtonIsTapped:" destination="9IM-l3-Qe9" eventType="touchUpInside" id="FvO-uu-HOp"/>
                                     <action selector="registerButtonTaped:" destination="ceJ-wQ-LUt" eventType="touchUpInside" id="Y8k-Pw-PIH"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Need an account?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1HX-7i-ftZ">
-                                <rect key="frame" x="119" y="800" width="177" height="27"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZU-Vc-8Cv">
+                                <rect key="frame" x="120" y="798" width="188" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="Need an account?"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" name="tcOffWhite"/>
                         <viewLayoutGuide key="safeArea" id="WI8-Te-tXe"/>

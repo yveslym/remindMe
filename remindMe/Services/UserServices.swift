@@ -56,6 +56,7 @@ static func signUp(_ email: String, _ password: String, completion: @escaping (A
                 show(completion: { (user) in
                     //if let user = user else {return completion(nil)}
                     return completion(user!)
+                    print("User succesfully signed up")
                 })
             }
         })

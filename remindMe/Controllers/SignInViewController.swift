@@ -11,4 +11,15 @@ import UIKit
 
 class SignInViewController: UIViewController{
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    
+    /// functio triggered when the user taps the login button
+    @IBAction func loginButtonIsTapped(_ sender: Any) {
+        
+        
+    }
+    
 }
