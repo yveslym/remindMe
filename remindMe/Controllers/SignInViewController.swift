@@ -30,8 +30,7 @@ class SignInViewController: UIViewController{
                 if let user = user as? User{
                     // setting the logged in user as the current app user
                     User.setCurrentUser(user: user, writeToUserDefaults: true)
-                    let homePageVC = GroupListViewController()
-                    self.present(homePageVC, animated: true, completion: nil)
+                    self.performSegue(withIdentifier: Constant.backToGroupListSegueIdentifier, sender: nil)
                 }else {
                     
                     Constant.setUpAlert(alertTitle: "Authentification Error",

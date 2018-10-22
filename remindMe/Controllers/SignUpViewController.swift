@@ -59,7 +59,7 @@ class SignUpViewController: UIViewController{
         // if everything is well...proceed creating the user account
         UserServices.signUp(email, password) { (newUser) in
            User.setCurrentUser(user: newUser as! User, writeToUserDefaults: true)
-            print("Alert : User created!!")
+           self.performSegue(withIdentifier: Constant.backToGroupListSegueIdentifier, sender: nil)
         }
         
     }
