@@ -31,10 +31,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         
-        // Checking if the user has logged in before
-//        if UserDefaults.standard.value(forKey: "current") != nil{
-//
-//        }
+         //Checking if the user has logged in before
+        if UserDefaults.standard.value(forKey: "current") != nil{
+            
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            guard let mainVC = storyBoard.instantiateViewController(withIdentifier: "GroupListViewController") as? GroupListViewController else {return false}
+            let navigation = UINavigationController(rootViewController: mainVC)
+            window?.rootViewController = navigation
+            window?.makeKeyAndVisible()
+        }
         
         self.locationManager = CLLocationManager()
         self.locationManager.delegate = self

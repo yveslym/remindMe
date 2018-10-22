@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import Firebase
 import GoogleSignIn
-//import FBSDKLoginKit
+import FBSDKLoginKit
 
 // THIS STRUCT CONTAINS FUNCTIONS TO CREATE, SHOW, SIGNIN, SIGNUP A USER AND TALK TO THE BACKEND
 

@@ -33,7 +33,7 @@ class GroupListViewController: UIViewController{
         groupTableView.delegate = self as UITableViewDelegate
         groupTableView.dataSource = self as UITableViewDataSource
         fetchAllGroups()
-        
+
     }
     
     

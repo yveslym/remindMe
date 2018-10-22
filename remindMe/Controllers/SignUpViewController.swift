@@ -61,6 +61,5 @@ class SignUpViewController: UIViewController{
            User.setCurrentUser(user: newUser as! User, writeToUserDefaults: true)
            self.performSegue(withIdentifier: Constant.backToGroupListSegueIdentifier, sender: nil)
         }
-        
     }
 }
