@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         })
         
         if launchOptions?[UIApplicationLaunchOptionsKey.location] != nil {
-            print("I woke up thanks to geofencing")
+            print("Geofancing booted up the app")
         }
         
     
@@ -70,10 +70,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     }
     
     /// Method to handle and set up the local notification
-    func handleEvent(forRegion region: CLRegion!, body: String, title: String){
+    fileprivate func handleEvent(forRegion region: CLRegion!, body: String, title: String){
         
         let content = UNMutableNotificationContent()
-        content.title = "This is a \(title) reminder"
+        content.title = "Reminder Alert : \(title)"
         content.body = body
         content.sound = UNNotificationSound.default()
         content.badge = 1
@@ -88,16 +88,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             }
         })
     }
-    func prepareForNotification(forRegion region: CLRegion){
+    
+    /// Method to make the api call to Firebase and retrieve the reminder and group to show on the notification
+    fileprivate func prepareForNotification(forRegion region: CLRegion){
+        
         let identifier = region.identifier
         ReminderServices.show(identifier) { (reminder) in
-            // unwrap reminder
-            GroupServices.show(reminder?.groupId ?? "", completion: { (group) in
-                //unwrap group
-                
-                self.handleEvent(forRegion: region, body: reminder?.time ?? "", title:group?.name ?? "")
+            guard let reminder = reminder else {return}
+            GroupServices.show(reminder.groupId, completion: { (group) in
+                guard let group = group else {return}
+                self.handleEvent(forRegion: region, body: reminder.time, title:group.name)
             })
-           
         }
     }
     
@@ -136,7 +137,7 @@ extension AppDelegate: CLLocationManagerDelegate{
     
     /// Function to trigger local notification when the user enters radius of the provided location
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        print("Entered Location")
+    
         if region is CLCircularRegion {
            self.prepareForNotification(forRegion: region)
         }
@@ -150,26 +151,6 @@ extension AppDelegate: CLLocationManagerDelegate{
             self.prepareForNotification(forRegion: region)
         }
     }
-    
-    
-    /// Function for when the app starts monitoring
-    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
-        print("Started Monitoring")
-        
-    }
-
-    /// Function to handle notification when the user has changed the group location
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("Location updated")
-        
-    }
-
-    /// Function for when there has been an error monitoring the user's location
-    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
-        print("Error : Failed To monitor User Location")
-    }
-
-    
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {

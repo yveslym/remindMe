@@ -413,7 +413,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFn-dF-aae">
                                 <rect key="frame" x="92" y="715" width="230" height="64"/>
@@ -437,6 +437,10 @@
                         <color key="backgroundColor" name="tcOffWhite"/>
                         <viewLayoutGuide key="safeArea" id="WI8-Te-tXe"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="ybX-5w-2Dn" id="nSp-Iw-Ikk"/>
+                        <outlet property="passwordTextFiedl" destination="dFC-QV-QFp" id="1Kq-iE-QGc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Afn-pf-rzf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
