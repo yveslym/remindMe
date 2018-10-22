@@ -14,16 +14,41 @@ class SignInViewController: UIViewController{
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextFiedl: UITextField!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     
-    /// functio triggered when the user taps the login button
+    /// function triggered when the user taps the login button
     @IBAction func loginButtonIsTapped(_ sender: Any) {
         
+        guard let email = emailTextField.text, let password = passwordTextFiedl.text else {return}
+        if (email.count) > 4 && (password.count) > 4 {
+            
+            UserServices.signIn(email, password) { (user) in
+                
+                if let user = user as? User{
+                    // setting the logged in user as the current app user
+                    User.setCurrentUser(user: user, writeToUserDefaults: true)
+                    let homePageVC = GroupListViewController()
+                    self.present(homePageVC, animated: true, completion: nil)
+                }else {
+                    
+                    Constant.setUpAlert(alertTitle: "Authentification Error",
+                                        alertMessage: "Check your username or password",
+                                        alertStyle: .alert,
+                                        actionTitle: "Return",
+                                        actionStyle: .cancel)
+                }
+            }
+        }
         
+    }
+    
+    
+    // THIS METHOD IS USED FOR UNWINDING SEGUE
+    @IBAction func unwindtoLoginPage(_ segue: UIStoryboardSegue){
+        // leave empty for now
     }
     
 }

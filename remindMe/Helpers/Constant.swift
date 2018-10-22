@@ -11,7 +11,7 @@ import Firebase
 
 struct Constant{
     
-    // NEEDED STATIC VARIABLES
+    // NEEDED STATIC VARIABLES FOR THE STORY BOARD
     
     static let groupTableViewCellIdentifier: String = "groupCell"
     static let reminderTableViewCellIdentifier: String = "reminderCell"
@@ -24,7 +24,20 @@ struct Constant{
     static let backToGroupListSegueIdentifier: String = "backToGroups"
     
     
-    // NEEDED STATIC FUNCTIONS
+    /// This function is used to set up an alert to show to the user in case we need to warn the user
+    static func setUpAlert(alertTitle: String,
+                         alertMessage: String,
+                         alertStyle: UIAlertControllerStyle,
+                         actionTitle: String,
+                         actionStyle: UIAlertActionStyle){
+        
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: alertStyle)
+        let action = UIAlertAction(title: actionTitle, style: actionStyle, handler: nil)
+        
+        alert.addAction(action)
+    }
+    
+    // NEEDED STATIC FUNCTIONS FOR THE DATABASE
     
     static func user(_ id: String)-> DatabaseReference{
         let ref = Database.database().reference().child("Users").child(id)

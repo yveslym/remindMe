@@ -27,32 +27,39 @@ class SignUpViewController: UIViewController{
         
         guard let name = nameTextField.text, let email = emailTextField.text, let password = passwordTextField.text, let reEnterPassword = reEnterPasswordTextField.text else {
             
-            let emptyFieldAlert = UIAlertController(title: "Field Missing",
-                                          message: "Please fill out all form",
-                                          preferredStyle: .alert)
-            let action = UIAlertAction(title: "Return",
-                                       style: .cancel,
-                                       handler: nil)
-            emptyFieldAlert.addAction(action)
-            self.present(emptyFieldAlert, animated: true, completion: nil)
+            Constant.setUpAlert(alertTitle: "Field Missing",
+                                alertMessage: "Please fill out all fields",
+                                alertStyle: .alert,
+                                actionTitle: "Return",
+                                actionStyle: .cancel)
             return
         }
         
-        // check if
+        // Checking if the user enters short inputs that does not meet the requirements
         if email.count < 3 || password.count < 3 || name.count < 3 {
-            let shortInputsAlert = UIAlertController(title: "Imcoplete fields",
-                                                     message: "some field are either too short or empty",
-                                                     preferredStyle: .alert)
-            let action = UIAlertAction(title: "Return",
-                                       style: .cancel,
-                                       handler: nil)
-            shortInputsAlert.addAction(action)
-            self.present(shortInputsAlert, animated: true, completion: nil)
+            
+            Constant.setUpAlert(alertTitle: "Imcoplete fields",
+                                alertMessage: "Fields are either too short or empty",
+                                alertStyle: .alert,
+                                actionTitle: "Return",
+                                actionStyle: .cancel)
             return
         }
         
+        // checking the the user's original and re-entered passwords don't match
+        if (password != reEnterPassword){
+            
+            Constant.setUpAlert(alertTitle: "Unmatched Passwords",
+                                alertMessage: "Your passwords don't match, try again.",
+                                alertStyle: .alert,
+                                actionTitle: "Return",
+                                actionStyle: .cancel)
+        }
+        
+        // if everything is well...proceed creating the user account
         UserServices.signUp(email, password) { (newUser) in
            User.setCurrentUser(user: newUser as! User, writeToUserDefaults: true)
+            print("Alert : User created!!")
         }
         
     }

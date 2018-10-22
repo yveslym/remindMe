@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import Firebase
 import GoogleSignIn
-import FBSDKLoginKit
+//import FBSDKLoginKit
 
 // THIS STRUCT CONTAINS FUNCTIONS TO CREATE, SHOW, SIGNIN, SIGNUP A USER AND TALK TO THE BACKEND
 
@@ -54,15 +54,14 @@ static func signUp(_ email: String, _ password: String, completion: @escaping (A
         create(user: user, completion: { (newUser) in
             if (newUser as? User) != nil{
                 show(completion: { (user) in
-                    //if let user = user else {return completion(nil)}
-                    return completion(user!)
                     print("User succesfully signed up")
+                    return completion(user!)
                 })
             }
         })
     }
  }
-    /// method signIn user
+    /// This Method method signs in user
     static func signIn(_ email: String, _ password: String, completion: @escaping (Any) ->()){
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if error != nil {return completion(error.debugDescription)}
