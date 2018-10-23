@@ -16,6 +16,9 @@ class SignInViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        emailTextField.delegate = self as UITextFieldDelegate
+        passwordTextFiedl.delegate = self as UITextFieldDelegate
     }
     
     
@@ -50,4 +53,28 @@ class SignInViewController: UIViewController{
         // leave empty for now
     }
     
+}
+
+extension SignInViewController: UITextFieldDelegate{
+    
+    // FUNCTION TO SELECT THE NEXT TEXTFIELD TO PROMPT FOR INPUT
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        switch textField {
+            
+        case emailTextField:
+            
+            passwordTextFiedl.becomeFirstResponder()
+            
+        case passwordTextFiedl:
+            
+           passwordTextFiedl.resignFirstResponder()
+            
+        default:
+            
+            passwordTextFiedl.resignFirstResponder()
+        }
+        
+        return true
+    }
 }
