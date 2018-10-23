@@ -10,13 +10,13 @@ import UIKit
 
 extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource{
     
-    // function to return the num of rows on a table view
+    // This method returns the number of rows on a table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return userReminders.count
     }
     
-    // Function to handle action when a cell is selected
+    // This Method handles action when a cell is selected
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let reminderCell = tableView.dequeueReusableCell(withIdentifier: Constant.reminderTableViewCellIdentifier, for: indexPath) as! ReminderListTableViewCell
@@ -29,7 +29,7 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
 
-    // Function to delete a cell from the table view
+    // This Method deletes a cell from the table view when dragged from right to left
     func tableView(_ tableview : UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             let reminderToBeDeleted = userReminders[indexPath.row]

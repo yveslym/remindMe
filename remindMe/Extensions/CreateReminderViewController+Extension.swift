@@ -35,7 +35,6 @@ extension CreateReminderViewController: UITextFieldDelegate {
         }
         
     }
-    
 
     // FUNCTION TO SELECT THE NEXT TEXTFIELD TO PROMPT FOR INPUT
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
