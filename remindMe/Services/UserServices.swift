@@ -16,7 +16,7 @@ import FBSDKLoginKit
 
 struct UserServices{
     
-    // THIS METHOD CREATES A SINGLE USER OBJECT AND STORES IT IN THE DATABASE
+    /// THIS METHOD CREATES A SINGLE USER OBJECT AND STORES IT IN THE DATABASE
    private static func create(user: User, completion: @escaping(Any)->()){
         
         let authUser = Auth.auth().currentUser
@@ -29,7 +29,7 @@ struct UserServices{
             return completion(user)
         }
 }
-    // THIS METHOD RETRIEVE USER FROM THE DATABASE
+    /// THIS METHOD RETRIEVE USER FROM THE DATABASE
     static func show(completion: @escaping(User?)-> ()){
         let uid = Auth.auth().currentUser?.uid
         let ref = Constant.user(uid!)
@@ -45,7 +45,7 @@ struct UserServices{
         }
     }
 
-/// method to signup user
+/// THIS METHOD SIGNS UP A NEW USER
 static func signUp(_ email: String, _ password: String, completion: @escaping (Any)->()){
     Auth.auth().createUser(withEmail: email, password: password) { (authUser, error) in
         guard authUser != nil else {return completion(error!)}
@@ -54,14 +54,14 @@ static func signUp(_ email: String, _ password: String, completion: @escaping (A
         create(user: user, completion: { (newUser) in
             if (newUser as? User) != nil{
                 show(completion: { (user) in
-                    //if let user = user else {return completion(nil)}
+                    print("User succesfully signed up")
                     return completion(user!)
                 })
             }
         })
     }
  }
-    /// method signIn user
+    /// This Method method signs in user
     static func signIn(_ email: String, _ password: String, completion: @escaping (Any) ->()){
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if error != nil {return completion(error.debugDescription)}

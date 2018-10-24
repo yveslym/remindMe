@@ -10,13 +10,13 @@ import UIKit
 
 extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
     
-    // function to return the num of rows on a table view
+    // This Function returns the number of rows on a table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return userGroups.count
     }
     
-    // Function to handle action when a cell is selected
+    // This Function handles action when a cell is selected
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let groupCell = tableView.dequeueReusableCell(withIdentifier: Constant.groupTableViewCellIdentifier, for: indexPath) as! GroupListTableViewCell
@@ -28,7 +28,7 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     
-    // Function to delete a cell from the table view
+    // This Function deletes a cell from the table view when dragged from right to left
     func tableView(_ tableview : UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete{
@@ -37,44 +37,27 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
                 self.fetchAllGroups()
             }
         }
-        
     }
     
-    // FUNCTION TO KEEP TRACK OF GROUPS CLICKED ON THE TABLE VIEW AND ALERTS THE PREPARE FUNCTION
+    // This function performs a segue to the list of reminders of the selected group
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let group = userGroups[indexPath.row]
         self.performSegue(withIdentifier: Constant.showAllRemindersSegueIdentifier, sender: group)
     }
     
-    //FUNCTION TO SEND A REFERENCE OBJECT OF THE GROUP CLICKED
+    // This function sends a reference of the group object selected to be used in the next view controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        /*
-        if segue.identifier == Constant.showAllRemindersSegueIdentifier {
-            let destinationViewController = segue.destination as?  ReminderListViewController
-            //var selectedIndex = self.groupTableView.indexPath(for: sender as! UITableViewCell)
-            let group = sender as? Group
-            destinationViewController?.parentGroup = group
-            
-        }
- */
 
         guard let segueIdentifier = segue.identifier else {return}
-
-
         switch segueIdentifier {
-
         case Constant.showAllRemindersSegueIdentifier:
 
             let destinationViewController = segue.destination as? ReminderListViewController
             let group = sender as? Group
             destinationViewController?.parentGroup = group
-            
-
         default:
             print("ERROR : INVALID SEGUE IDENTIFIER")
         }
-
     }
-    
 }

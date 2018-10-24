@@ -18,62 +18,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     var window: UIWindow?
     var locationManager: CLLocationManager!
     var notificationCenter: UNUserNotificationCenter!
-    //let geofanceRegionCenter = CLLocationCoordinate2DMake(37.7808893, -122.4161106)
-    
     
     class var shared: AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
-   // lazy var locationManager : CLLocationManager = CLLocationManager()
-    
-   
+
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        self.locationManager = CLLocationManager()
-        self.locationManager.delegate = self
+        isUserLoggedIn()
+        configureUserLocation()
+        configureLocalNotification()
+        FirebaseApp.configure()
         
-        //getting the singleton object and setting iy as its delegate
+        return true
+    }
+    
+    
+    /// Method to get authorization from the user for sending push notifications
+    fileprivate func configureLocalNotification(){
+        
         self.notificationCenter = UNUserNotificationCenter.current()
         notificationCenter?.delegate = self
-        
-        // Configuring User Location
-        if (CLLocationManager.locationServicesEnabled())
-        {
-            self.locationManager = CLLocationManager()
-            self.locationManager.delegate = self
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            self.locationManager.requestAlwaysAuthorization()
-            self.locationManager.startUpdatingLocation()
-        }
-        
-        // defining what we need for out notification
         let notificationOptions: UNAuthorizationOptions = [.alert, .sound, .badge]
         
-        //requesting perminsion
         notificationCenter?.requestAuthorization(options: notificationOptions, completionHandler: { (granted, error) in
             if !granted{
                 print("Error Found : Permision Not Granted")
             }
         })
-        
-        if launchOptions?[UIApplicationLaunchOptionsKey.location] != nil {
-            print("I woke up thanks to geofencing")
-        }
-        
-    
-        // Configuring Firebase
-         FirebaseApp.configure()
-        
-        // self.locationManager.startMonitoring(for: geofenceRegion)
-        return true
     }
     
     /// Method to handle and set up the local notification
-    func handleEvent(forRegion region: CLRegion!, body: String, title: String){
+    fileprivate func handleEvent(forRegion region: CLRegion!, body: String, title: String){
         
         let content = UNMutableNotificationContent()
-        content.title = "This is a \(title) reminder"
+        content.title = "Reminder Alert : \(title)"
         content.body = body
         content.sound = UNNotificationSound.default()
         content.badge = 1
@@ -88,16 +68,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             }
         })
     }
-    func prepareForNotification(forRegion region: CLRegion){
+    
+    
+    /// This functions requests the needed access from the user in order to use the user'slocation
+    fileprivate func configureUserLocation(){
+        
+        self.locationManager = CLLocationManager()
+        self.locationManager.delegate = self
+        
+        // Configuring User Location
+        if (CLLocationManager.locationServicesEnabled())
+        {
+            self.locationManager = CLLocationManager()
+            self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager.requestAlwaysAuthorization()
+            self.locationManager.startUpdatingLocation()
+        }
+    }
+    
+    // This function checks if the user has logged in before on the app to avoid re-showing the login screen
+    fileprivate func isUserLoggedIn(){
+        
+        if UserDefaults.standard.value(forKey: "current") != nil{
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            guard let mainVC = storyBoard.instantiateViewController(withIdentifier: "GroupListViewController") as? GroupListViewController else {return}
+            let navigation = UINavigationController(rootViewController: mainVC)
+            window?.rootViewController = navigation
+            window?.makeKeyAndVisible()
+        }
+    }
+    
+    /// Method to make the api call to Firebase and retrieve the reminder and group to show on the notification
+    fileprivate func prepareForNotification(forRegion region: CLRegion){
+        
         let identifier = region.identifier
         ReminderServices.show(identifier) { (reminder) in
-            // unwrap reminder
-            GroupServices.show(reminder?.groupId ?? "", completion: { (group) in
-                //unwrap group
-                
-                self.handleEvent(forRegion: region, body: reminder?.time ?? "", title:group?.name ?? "")
+            guard let reminder = reminder else {return}
+            GroupServices.show(reminder.groupId, completion: { (group) in
+                guard let group = group else {return}
+                self.handleEvent(forRegion: region, body: reminder.time, title:group.name)
             })
-           
         }
     }
     
@@ -136,7 +147,7 @@ extension AppDelegate: CLLocationManagerDelegate{
     
     /// Function to trigger local notification when the user enters radius of the provided location
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        print("Entered Location")
+    
         if region is CLCircularRegion {
            self.prepareForNotification(forRegion: region)
         }
@@ -150,26 +161,6 @@ extension AppDelegate: CLLocationManagerDelegate{
             self.prepareForNotification(forRegion: region)
         }
     }
-    
-    
-    /// Function for when the app starts monitoring
-    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
-        print("Started Monitoring")
-        
-    }
-
-    /// Function to handle notification when the user has changed the group location
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("Location updated")
-        
-    }
-
-    /// Function for when there has been an error monitoring the user's location
-    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
-        print("Error : Failed To monitor User Location")
-    }
-
-    
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {

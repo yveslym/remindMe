@@ -39,12 +39,6 @@ extension CreateReminderViewController: UITextFieldDelegate {
         }
         
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        
-        self.dismiss(animated: animated, completion: nil)
-        
-    }
-    
 
     // FUNCTION TO SELECT THE NEXT TEXTFIELD TO PROMPT FOR INPUT
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

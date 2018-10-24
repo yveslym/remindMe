@@ -16,13 +16,22 @@ struct User: Codable{
     var name: String
     var id: String
     var email: String
-    static let current = {
-        //fetch data from user default
+    private static var _current: User?
+    static var current: User{
+        
         // check if user exist
-            // if it does
-                // decode into user
-                    //return user
+        if let currentUser = _current{
+            return currentUser
+        }else{
+            // decode into user
+            let data = UserDefaults.standard.value(forKey: "current") as? Data
+            let user = try! JSONDecoder().decode(User.self, from: data!)
+            
+            //return user
+            return user
+        }
     }
+    
     init(_ name: String, _ id: String, _ email: String){
         self.name = name
         self.id = id
@@ -30,11 +39,18 @@ struct User: Codable{
     }
    
     
-    func persistUser(user: User){
-        // turn user object into data type using jsonencoder()
-        // save the data to userDefaults
+    /// Function to set and save the current user of the app to UserDefaults
+    static func setCurrentUser(user: User, writeToUserDefaults: Bool = false){
         
+        if writeToUserDefaults{
+            if let data = try? JSONEncoder().encode(user){
+                UserDefaults.standard.set(data, forKey: "current")
+            }
+        }
+        _current = user
     }
+  
+    /// Function to turn native data into JSON to be sent to Firebase
     func toDictionary() ->[String: Any]{
         let data = try! JSONEncoder().encode(self)
         let json = try! JSONSerialization.jsonObject(with: data, options: [])
