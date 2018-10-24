@@ -9,10 +9,21 @@
 import Foundation
 import Firebase
 
-/// THIS STRUCT CONTAINS FUNCTIONS TO CREATE, SHOW A REMINDER AND TALK TO THE BACKEND
 struct ReminderServices{
+    /* Implements The CRUD Services of a Reminder model
+    
+    Methods :
+    - index : fetches all user's reminders
+    - show : shows a single reminder
+    - create : creates a single reminder
+    - update : updates a single reminder
+    - delete : deletes a single reminder
+    */
+    
 
-    /// METHOD THAT GETS AN ARRAY OF REMINDERS CREATED BY THE USER FROM THE DATABASE TO DISPLAY TO CLIENT
+    /* METHOD THAT GETS AN ARRAY OF REMINDERS CREATED BY THE USER FROM THE DATABASE TO DISPLAY TO CLIENT
+     @param completion ->[Reminder]: The list of reminder objects to be returned after the method call
+    */
     static func index(completion: @escaping ([Reminder]?) -> ()){
         
         let reference = Constant.reminderRef()
@@ -24,9 +35,9 @@ struct ReminderServices{
                 snapshot.children.forEach({ (snap) in
                     dispatchGroup.enter()
                     guard let snap = snap as? DataSnapshot else { return completion(nil) }
-                    let value = snap.value
-                    let data = try! JSONSerialization.data(withJSONObject: value!, options: [])
-                    let reminder = try! JSONDecoder().decode(Reminder.self, from: data)
+                    guard let SnapchotValue = snap.value else {return}
+                    let encodedData = try! JSONSerialization.data(withJSONObject: SnapchotValue, options: [])
+                    let reminder = try! JSONDecoder().decode(Reminder.self, from: encodedData)
                     listOfReminders.append(reminder)
                     dispatchGroup.leave()
                 })
@@ -40,6 +51,7 @@ struct ReminderServices{
     
     /** METHOD TO SHOW THE DATA OF A SINGLE REMINDER FROM THE DATABASE TO THE CLIENT
      @param : reminderId : the reminder's id of needed to look it up on the database
+     @param completion -> Reminder: The single reminder object to be returned after the method call
      */
     static func show(_ reminderId: String, completion: @escaping(Reminder?) -> ()){
         
@@ -81,6 +93,7 @@ struct ReminderServices{
     /**
      METHOD THAT DELETES A REMINDER FROM THE DATABASE
      @param group: the reminder to be removed
+     @param completion ->Bool: The true or false value that determine wheter the reminder has been deleted
      */
     static func delete(_ reminder: Reminder, completion: @escaping(Bool) -> ()){
         

@@ -11,6 +11,18 @@ import Firebase
 
 
 struct GroupServices{
+    /*
+     Implements The CRUD Services of a group Model
+     
+     Methods :
+     - index : fetches all user's groups
+     - show : shows a single group
+     - create : creates a single group
+     - update : updates a single group
+     - delete : deletes a single group and its reminders
+ 
+    */
+    
     
     /*METHOD TO GET ALL THE CREATED GROUPS FROM THE DATABASE TO THE CLIENT
      @param completion ->[Group]: The list of group objects to be returned after the method call
