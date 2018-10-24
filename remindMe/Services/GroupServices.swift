@@ -81,7 +81,8 @@ struct GroupServices{
      @param group: the group to be removed
      */
     static func delete(group: Group, completion: @escaping(Bool)->()){
-        
+        // fetch all reminders
+        // delete all reminders
         let ref = Constant.showGroupRef(group.id)
         ref.removeValue { (error, ref) in
            return (error == nil) ? ( completion(true)) : (completion(false))
