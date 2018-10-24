@@ -14,12 +14,14 @@
 		204B9BED214C82D0000A1619 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 204B9BEB214C82D0000A1619 /* LaunchScreen.storyboard */; };
 		204B9BF8214C82D0000A1619 /* remindMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204B9BF7214C82D0000A1619 /* remindMeTests.swift */; };
 		2080538A2151B83C002CAAE4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 208053892151B83C002CAAE4 /* GoogleService-Info.plist */; };
+		208F264F216F429800A83A93 /* Date+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208F264E216F429800A83A93 /* Date+String.swift */; };
 		20A0E5CE2151C05100F0F049 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A0E5CC2151C05100F0F049 /* User.swift */; };
 		20A0E5CF2151C05100F0F049 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A0E5CD2151C05100F0F049 /* Group.swift */; };
 		20A0E5D12151C97400F0F049 /* GeoCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A0E5D02151C97400F0F049 /* GeoCoder.swift */; };
 		20B38345215435790056F1DA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B38344215435790056F1DA /* Constant.swift */; };
 		20B3834921543B860056F1DA /* GroupServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B3834821543B860056F1DA /* GroupServices.swift */; };
 		20B3834B21543BA30056F1DA /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B3834A21543BA30056F1DA /* UserServices.swift */; };
+		20EDF7002181011C0087272B /* remindMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204B9BF7214C82D0000A1619 /* remindMeTests.swift */; };
 		6AE1DD0A676DDF88ED38594A /* Pods_remindMeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14B77698EB78D8C7B28C5F9 /* Pods_remindMeTests.framework */; };
 		B802513B2159E47A00311405 /* CreateReminderViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B802513A2159E47A00311405 /* CreateReminderViewController+Extension.swift */; };
 		B802513D2159F8AD00311405 /* CreateGroupViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B802513C2159F8AD00311405 /* CreateGroupViewController+Extension.swift */; };
@@ -64,6 +66,7 @@
 		204B9BF7214C82D0000A1619 /* remindMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = remindMeTests.swift; sourceTree = "<group>"; };
 		204B9BF9214C82D0000A1619 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		208053892151B83C002CAAE4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		208F264E216F429800A83A93 /* Date+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+String.swift"; sourceTree = "<group>"; };
 		20A0E5CC2151C05100F0F049 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		20A0E5CD2151C05100F0F049 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		20A0E5D02151C97400F0F049 /* GeoCoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoCoder.swift; sourceTree = "<group>"; };
@@ -225,6 +228,7 @@
 		B8E63EAC2151E9F100DC3C5C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				208F264E216F429800A83A93 /* Date+String.swift */,
 				B8E63EAD2151EB7D00DC3C5C /* GroupListViewController+Extension .swift */,
 				B8AB97D52157164B00A6A3C7 /* ReminderListViewController+Extension.swift */,
 				B802513A2159E47A00311405 /* CreateReminderViewController+Extension.swift */,
@@ -451,6 +455,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				208F264F216F429800A83A93 /* Date+String.swift in Sources */,
 				20B3834B21543BA30056F1DA /* UserServices.swift in Sources */,
 				B802513B2159E47A00311405 /* CreateReminderViewController+Extension.swift in Sources */,
 				B83C11F82151B9E800A6BAE3 /* GroupListViewController.swift in Sources */,
@@ -464,6 +469,7 @@
 				B85CD7B82154648D002027A5 /* ReminderListViewController.swift in Sources */,
 				B85B9B77215C876C00A52C10 /* Int+Extension.swift in Sources */,
 				B8E63EAB2151E9D200DC3C5C /* GroupListTableViewCell.swift in Sources */,
+				20EDF7002181011C0087272B /* remindMeTests.swift in Sources */,
 				B8E63EAE2151EB7D00DC3C5C /* GroupListViewController+Extension .swift in Sources */,
 				B8AB97D42157159500A6A3C7 /* ReminderListTableViewCell.swift in Sources */,
 				20A0E5CE2151C05100F0F049 /* User.swift in Sources */,
@@ -637,7 +643,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 966X5T4Q98;
+				DEVELOPMENT_TEAM = K7R433H2CL;
 				INFOPLIST_FILE = remindMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -656,7 +662,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 966X5T4Q98;
+				DEVELOPMENT_TEAM = K7R433H2CL;
 				INFOPLIST_FILE = remindMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

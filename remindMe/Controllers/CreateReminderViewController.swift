@@ -17,10 +17,12 @@ class CreateReminderViewController: UIViewController{
     // - MARK: @IBOULETS AND PROPERTIES
  
     @IBOutlet weak var reminderNameTextField: UITextField!
-    @IBOutlet weak var reminderTypeTextFiled: UITextField!
-    @IBOutlet weak var reminderTimeTextField: UITextField!
+    //@IBOutlet weak var reminderTypeTextFiled: UITextField!
+   // @IBOutlet weak var reminderTimeTextField: UITextField!
     var reminder: Reminder?
+    @IBOutlet weak var reminderTypeSegmentControl: UISegmentedControl!
     
+    @IBOutlet weak var reminderDatePiker: UIDatePicker!
     
 
     override func viewDidLoad() {
@@ -28,7 +30,7 @@ class CreateReminderViewController: UIViewController{
         
         // SETTING UP DELEGATES FOR ALL TEXTFIELDS
         reminderNameTextField.delegate = self as UITextFieldDelegate
-        reminderTypeTextFiled.delegate = self as UITextFieldDelegate
-        reminderTimeTextField.delegate = self as UITextFieldDelegate
+       
+       
     }
 }

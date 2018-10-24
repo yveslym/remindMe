@@ -18,13 +18,17 @@ extension CreateReminderViewController: UITextFieldDelegate {
             
         case Constant.saveReminderSegueIdenfier where reminder == nil:
             
-            guard let name = reminderNameTextField.text, let type = reminderTypeTextFiled.text,
-                  let time = reminderTimeTextField.text, let groupId = destinationViewController.parentGroup?.id,
+            
+                  guard let groupId = destinationViewController.parentGroup?.id,
                   let latitude = destinationViewController.parentGroup?.latitude,
+                     let name = reminderNameTextField.text,
                   let longitude = destinationViewController.parentGroup?.longitude else {return}
-            
-            
-            let createdReminder = Reminder(groupId: groupId, id: "", name: name, type: EventType(rawValue: type) ?? .onEntry, time: time, longitude: longitude, latitude: latitude)
+                let time = reminderDatePiker.date.toString()
+                  
+                  let index = reminderTypeSegmentControl.selectedSegmentIndex
+                  let type = (index == 0) ? ( EventType.onEntry) : ( EventType.onExit)
+                  
+            let createdReminder = Reminder(groupId: groupId, id: "", name: name, type: type, time: time, longitude: longitude, latitude: latitude)
             destinationViewController.parentGroup?.numberOfReminders += 1
             ReminderServices.create(createdReminder) {
                 print(createdReminder)
@@ -35,25 +39,30 @@ extension CreateReminderViewController: UITextFieldDelegate {
         }
         
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        self.dismiss(animated: animated, completion: nil)
+        
+    }
     
 
     // FUNCTION TO SELECT THE NEXT TEXTFIELD TO PROMPT FOR INPUT
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        switch textField {
-            
-        case reminderNameTextField:
-            
-            reminderTypeTextFiled.becomeFirstResponder()
-            
-        case reminderTypeTextFiled:
-            
-            reminderTimeTextField.becomeFirstResponder()
-            
-        default:
-            
-            reminderTimeTextField.resignFirstResponder()
-        }
+//        switch textField {
+//
+//        case reminderNameTextField:
+//
+//            reminderNameTextField.becomeFirstResponder()
+//
+//        case reminderTypeTextFiled:
+//
+//            reminderTimeTextField.becomeFirstResponder()
+//
+//        default:
+//
+//            reminderTimeTextField.resignFirstResponder()
+//        }
         
         return true
     }

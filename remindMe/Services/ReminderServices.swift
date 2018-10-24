@@ -52,8 +52,7 @@ struct ReminderServices{
                 return completion(nil)
             }
         }
-    }
-   
+    }   
     
     /**
      METHOD THAT CREATES A SINGLE REMINDER AND SENDS IT TO THE DATABASE

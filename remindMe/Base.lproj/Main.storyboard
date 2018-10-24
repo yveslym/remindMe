@@ -66,7 +66,6 @@
                                         <connections>
                                             <outlet property="groupNameLabel" destination="sVb-AL-zjX" id="EMN-bn-MsQ"/>
                                             <outlet property="numberOfRemindersLabel" destination="6I3-3s-ULh" id="mGq-1E-DP3"/>
-                                            <segue destination="14l-cs-lto" kind="show" identifier="showListOfReminders" id="4Hn-Gg-15p"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -89,12 +88,13 @@
                     <navigationItem key="navigationItem" id="dGX-gm-GAv">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hzW-Ag-6Fo">
                             <connections>
-                                <segue destination="L3y-PL-GgJ" kind="show" identifier="createSingleGroup" id="pgS-if-rNR"/>
+                                <segue destination="L3y-PL-GgJ" kind="presentation" identifier="createSingleGroup" modalPresentationStyle="currentContext" modalTransitionStyle="partialCurl" id="5TO-uM-sgc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="groupTableView" destination="owN-x7-fMQ" id="9z8-Tz-cIZ"/>
+                        <segue destination="14l-cs-lto" kind="show" identifier="showListOfReminders" id="EbV-EZ-vJB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -202,7 +202,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="02b-cE-Aem" userLabel="inputView">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dkk-yn-38y">
                                         <rect key="frame" x="93" y="125" width="189" height="30"/>
@@ -259,27 +259,49 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1nl-du-WxC" userLabel="inputView">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhS-YD-fr4">
+                                        <rect key="frame" x="28" y="91" width="92" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Event Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hh9-Yv-7sQ">
+                                        <rect key="frame" x="28" y="184" width="85" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kLt-eA-Sem" userLabel="name">
-                                        <rect key="frame" x="78" y="57" width="190" height="30"/>
+                                        <rect key="frame" x="146" y="82" width="190" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Time" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IyR-6f-voz" userLabel="time">
-                                        <rect key="frame" x="78" y="307" width="190" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6e-yd-pxr">
+                                        <rect key="frame" x="28" y="268" width="38" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1e0-ei-UGF" userLabel="type">
-                                        <rect key="frame" x="78" y="179" width="190" height="30"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cLY-Ta-Qod">
+                                        <rect key="frame" x="146" y="181" width="190" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <segments>
+                                            <segment title="On Entry"/>
+                                            <segment title="On Exit"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="x2q-6l-QBX">
+                                        <rect key="frame" x="26" y="327" width="363" height="162"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="560938734.93733299">
+                                            <!--2018-10-11 08:18:54 +0000-->
+                                        </date>
+                                    </datePicker>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -301,15 +323,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="reminderDatePiker" destination="x2q-6l-QBX" id="V5Y-aN-Uf8"/>
                         <outlet property="reminderNameTextField" destination="kLt-eA-Sem" id="k9F-vh-Kln"/>
-                        <outlet property="reminderTimeTextField" destination="IyR-6f-voz" id="NYg-GV-2eH"/>
-                        <outlet property="reminderTypeTextFiled" destination="1e0-ei-UGF" id="Irl-TF-ULj"/>
+                        <outlet property="reminderTypeSegmentControl" destination="cLY-Ta-Qod" id="bwk-gQ-ldw"/>
                         <segue destination="qoT-yv-Eny" kind="unwind" identifier="backToReminders" unwindAction="unwindToReminderListViewController:" id="Fcp-eZ-88R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Z5-jK-NPK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2177" y="772"/>
+            <point key="canvasLocation" x="2175.36231884058" y="771.42857142857144"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="x5Z-ls-K8c">
@@ -357,6 +379,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4Hn-Gg-15p"/>
+        <segue reference="EbV-EZ-vJB"/>
     </inferredMetricsTieBreakers>
 </document>
