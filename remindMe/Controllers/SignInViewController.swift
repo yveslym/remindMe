@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class SignInViewController: UIViewController{
+// This View Controller class handles functionality sign in a user from the client side
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextFiedl: UITextField!

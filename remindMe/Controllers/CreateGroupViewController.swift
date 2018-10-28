@@ -9,12 +9,9 @@
 import Foundation
 import UIKit
 
-
-// This VC is for when a user needs to create a group
 class CreateGroupViewController: UIViewController{
+// This View Controller class handles functionality to create a new group
     
-    
-    // - MARK: @IBOULETS AND CLASS PROPERTIES
     
     @IBOutlet weak var groupNameTextField: UITextField!
     @IBOutlet weak var groupAddressTextField: UITextField!

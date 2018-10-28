@@ -38,6 +38,8 @@
 		B8AB97D42157159500A6A3C7 /* ReminderListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB97D32157159500A6A3C7 /* ReminderListTableViewCell.swift */; };
 		B8AB97D62157164B00A6A3C7 /* ReminderListViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB97D52157164B00A6A3C7 /* ReminderListViewController+Extension.swift */; };
 		B8B990552173BECE00850027 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B990542173BECE00850027 /* SignUpViewController.swift */; };
+		B8CA1FB32186712100D036DE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA1FB22186712100D036DE /* NetworkManager.swift */; };
+		B8CA1FB521867E3900D036DE /* OfflineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA1FB421867E3900D036DE /* OfflineViewController.swift */; };
 		B8E63EAB2151E9D200DC3C5C /* GroupListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E63EAA2151E9D200DC3C5C /* GroupListTableViewCell.swift */; };
 		B8E63EAE2151EB7D00DC3C5C /* GroupListViewController+Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E63EAD2151EB7D00DC3C5C /* GroupListViewController+Extension .swift */; };
 		B8F8C1C52173CB7F006BDBD3 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F8C1C42173CB7F006BDBD3 /* SignInViewController.swift */; };
@@ -93,6 +95,8 @@
 		B8AB97D32157159500A6A3C7 /* ReminderListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListTableViewCell.swift; sourceTree = "<group>"; };
 		B8AB97D52157164B00A6A3C7 /* ReminderListViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReminderListViewController+Extension.swift"; sourceTree = "<group>"; };
 		B8B990542173BECE00850027 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		B8CA1FB22186712100D036DE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		B8CA1FB421867E3900D036DE /* OfflineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineViewController.swift; sourceTree = "<group>"; };
 		B8E63EAA2151E9D200DC3C5C /* GroupListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListTableViewCell.swift; sourceTree = "<group>"; };
 		B8E63EAD2151EB7D00DC3C5C /* GroupListViewController+Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupListViewController+Extension .swift"; sourceTree = "<group>"; };
 		B8F8C1C42173CB7F006BDBD3 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 				20B3834A21543BA30056F1DA /* UserServices.swift */,
 				20B3834821543B860056F1DA /* GroupServices.swift */,
 				B85B9B74215C71FA00A52C10 /* ReminderServices.swift */,
+				B8CA1FB22186712100D036DE /* NetworkManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 				B85CD7BC21546514002027A5 /* CreateReminderViewController.swift */,
 				B8B990542173BECE00850027 /* SignUpViewController.swift */,
 				B8F8C1C42173CB7F006BDBD3 /* SignInViewController.swift */,
+				B8CA1FB421867E3900D036DE /* OfflineViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -410,6 +416,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/JLocationKit/JLocationKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -424,6 +431,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JLocationKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -473,6 +481,7 @@
 				B8E63EAE2151EB7D00DC3C5C /* GroupListViewController+Extension .swift in Sources */,
 				B8AB97D42157159500A6A3C7 /* ReminderListTableViewCell.swift in Sources */,
 				20A0E5CE2151C05100F0F049 /* User.swift in Sources */,
+				B8CA1FB521867E3900D036DE /* OfflineViewController.swift in Sources */,
 				B8F8C1C52173CB7F006BDBD3 /* SignInViewController.swift in Sources */,
 				B85CD7BD21546514002027A5 /* CreateReminderViewController.swift in Sources */,
 				B85CD7BB215464FB002027A5 /* CreateGroupViewController.swift in Sources */,
@@ -481,6 +490,7 @@
 				B85B9B75215C71FA00A52C10 /* ReminderServices.swift in Sources */,
 				B802513D2159F8AD00311405 /* CreateGroupViewController+Extension.swift in Sources */,
 				20A0E5CF2151C05100F0F049 /* Group.swift in Sources */,
+				B8CA1FB32186712100D036DE /* NetworkManager.swift in Sources */,
 				20B38345215435790056F1DA /* Constant.swift in Sources */,
 				B8B990552173BECE00850027 /* SignUpViewController.swift in Sources */,
 				20B3834921543B860056F1DA /* GroupServices.swift in Sources */,

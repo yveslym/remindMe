@@ -9,11 +9,10 @@
 import Foundation
 import UIKit
 
-// This VC is to show the list of all the reminders
 class ReminderListViewController: UIViewController{
+    // This View Controller class handles functionality to show the list of all the reminders
     
     
-    // - MARK: @IBOULETS AND PROPERTIES
     @IBOutlet weak var reminderTableView: UITableView!
     var parentGroup: Group?
     
@@ -34,7 +33,7 @@ class ReminderListViewController: UIViewController{
         fetchAllReminders()
     }
     
-    // THIS FUNCTION MAKES AN API CALL TO GET ALL REMINDERS
+    // THIS FUNCTION MAKES AN API CALL TO GET ALL REMINDERS FROM THE CLIENT SIDE
     internal func fetchAllReminders(){
         ReminderServices.index { (reminders) in
             guard let reminders = reminders  else {return}

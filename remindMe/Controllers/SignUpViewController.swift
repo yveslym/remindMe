@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 
+
 class SignUpViewController: UIViewController{
-    
+// This View Controller class handles functionality sign up a user from the client side
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!

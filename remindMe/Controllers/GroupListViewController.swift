@@ -9,16 +9,13 @@
 
 import Foundation
 import UIKit
-import CoreLocation
 
-// This View Controllers is for showing the list of all the groups
 class GroupListViewController: UIViewController{
-    
-    // - MARK : IBOULETS AND VARIABLES
+// This View Controller class handles functionality to show the list of all the groups
+
+
     @IBOutlet weak var groupTableView: UITableView!
-    
     static var numberOfReminders = 0
-    //let locationManager = CLLocationManager()
     var userGroups = [Group](){
         didSet {
             DispatchQueue.main.async {
@@ -36,8 +33,7 @@ class GroupListViewController: UIViewController{
 
     }
     
-    
-    // THIS FUNCTION MAKES AN API CALL TO GET ALL GROUPS
+    // THIS FUNCTION MAKES AN API CALL TO GET ALL GROUPS FROM THE CLIENT SIDE
     internal func fetchAllGroups(){
         GroupServices.index(completion: { (groups) in
             self.userGroups = groups!

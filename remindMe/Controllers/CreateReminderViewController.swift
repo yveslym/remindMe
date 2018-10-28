@@ -9,12 +9,8 @@
 import Foundation
 import UIKit
 
-
-// This VC is for when a user needs to create a reminder
 class CreateReminderViewController: UIViewController{
-    
-    
-    // - MARK: @IBOULETS AND PROPERTIES
+// This View Controller class handles functionality to create a new reminder
  
     @IBOutlet weak var reminderNameTextField: UITextField!
     @IBOutlet weak var reminderTypeTextFiled: UITextField!
