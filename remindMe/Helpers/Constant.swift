@@ -22,6 +22,7 @@ struct Constant{
     static let saveGroupSegueIdentifier: String = "saveGroup"
     static let backToReminderListSegueIdentifier: String = "backToReminders"
     static let backToGroupListSegueIdentifier: String = "backToGroups"
+    static let offlinePageSegueIdentifier: String = "offlinePage"
     
     
     /// This function is used to set up an alert to show to the user in case we need to warn the user

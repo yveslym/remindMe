@@ -26,6 +26,10 @@ class GroupListViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NetworkManager.isUnReachable { _ in
+            self.showOfflinePage()
+        }
     
         groupTableView.delegate = self as UITableViewDelegate
         groupTableView.dataSource = self as UITableViewDataSource
@@ -33,14 +37,21 @@ class GroupListViewController: UIViewController{
 
     }
     
-    // THIS FUNCTION MAKES AN API CALL TO GET ALL GROUPS FROM THE CLIENT SIDE
+    // This Method makes a client side request to the server to get all groups
     internal func fetchAllGroups(){
         GroupServices.index(completion: { (groups) in
             self.userGroups = groups!
         })
     }
     
-    // THIS METHOD IS USED FOR UNWINDING SEGUE
+    // This renders the user to an offline page when there is no internet connectivity
+    internal func showOfflinePage(){
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: Constant.offlinePageSegueIdentifier, sender: self)
+        }
+    }
+    
+    // This method is used to go back to the group of list view controller
     @IBAction func unwindtoGroupListViewController(_ segue: UIStoryboardSegue){
         fetchAllGroups()
     }
