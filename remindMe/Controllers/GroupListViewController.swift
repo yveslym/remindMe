@@ -16,6 +16,7 @@ class GroupListViewController: UIViewController{
 
     @IBOutlet weak var groupTableView: UITableView!
     static var numberOfReminders = 0
+    let networkManager = NetworkManager.shared
     var userGroups = [Group](){
         didSet {
             DispatchQueue.main.async {
@@ -26,29 +27,28 @@ class GroupListViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NetworkManager.isUnReachable { _ in
-            self.showOfflinePage()
-        }
     
         groupTableView.delegate = self as UITableViewDelegate
         groupTableView.dataSource = self as UITableViewDataSource
         fetchAllGroups()
+        
+        networkManager.reachability.whenUnreachable = { reachability in
+            self.showOfflinePage()
+        }
 
     }
     
+    
+    fileprivate func showOfflinePage(){
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: Constant.offlinePageSegueIdentifier, sender: self)
+        }
+    }
     // This Method makes a client side request to the server to get all groups
     internal func fetchAllGroups(){
         GroupServices.index(completion: { (groups) in
             self.userGroups = groups!
         })
-    }
-    
-    // This renders the user to an offline page when there is no internet connectivity
-    internal func showOfflinePage(){
-        DispatchQueue.main.async {
-            self.performSegue(withIdentifier: Constant.offlinePageSegueIdentifier, sender: self)
-        }
     }
     
     // This method is used to go back to the group of list view controller

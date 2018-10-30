@@ -87,17 +87,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         }
     }
     
-    // This function checks if the user has logged in before on the app to avoid re-showing the login screen
-    fileprivate func isUserLoggedIn(){
-        
-        if UserDefaults.standard.value(forKey: "current") != nil{
-            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            guard let mainVC = storyBoard.instantiateViewController(withIdentifier: "GroupListViewController") as? GroupListViewController else {return}
-            let navigation = UINavigationController(rootViewController: mainVC)
-            window?.rootViewController = navigation
-            window?.makeKeyAndVisible()
-        }
-    }
     
     /// Method to make the api call to Firebase and retrieve the reminder and group to show on the notification
     fileprivate func prepareForNotification(forRegion region: CLRegion){
@@ -112,6 +101,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         }
     }
     
+    
+    // This function checks if the user has logged in before on the app to avoid re-showing the login screen
+    fileprivate func isUserLoggedIn(){
+        
+        if UserDefaults.standard.value(forKey: "current") != nil{
+            
+            // Checking the internet status... will be ignored if there is connection
+            NetworkManager.isUnReachable { (network, isUnreachable) in
+                if isUnreachable{
+                    self.showOfflinePage()
+                }else{
+                    self.showMainPage()
+                }
+            }
+        }
+    }
+    
+
+    /// Method to show the user that there is no internet connection
+    fileprivate func showOfflinePage(){
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        guard let offlinePageVC = storyBoard.instantiateViewController(withIdentifier: "OfflineViewController") as? OfflineViewController else { return }
+
+        let navigation = UINavigationController(rootViewController: offlinePageVC)
+        window?.rootViewController = navigation
+        window?.makeKeyAndVisible()
+    }
+
+    /// Method to show the user the main page if there is internet connection
+    fileprivate func showMainPage(){
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        guard let mainPageVC = storyBoard.instantiateViewController(withIdentifier: "GroupListViewController") as? GroupListViewController else { return }
+        
+        let navigation = UINavigationController(rootViewController: mainPageVC)
+        window?.rootViewController = navigation
+        window?.makeKeyAndVisible()
+    }
 
     
     
@@ -147,18 +173,39 @@ extension AppDelegate: CLLocationManagerDelegate{
     
     /// Function to trigger local notification when the user enters radius of the provided location
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-    
-        if region is CLCircularRegion {
-           self.prepareForNotification(forRegion: region)
+        
+        // checks if the user is connected via wifi when entering the region
+        NetworkManager.isReachableViaWifi { (networkManager, isReachable) in
+            if isReachable{
+                self.prepareForNotification(forRegion: region)
+            }
+        }
+        
+        
+        // Checks if the user is connected via cellular data when entering the region
+        NetworkManager.isReachableViaCellular { (networkManager, isReachable) in
+            if isReachable{
+                self.prepareForNotification(forRegion: region)
+            }
         }
 
     }
 
     /// Function to trigger local notification when the user exits radius of the provided location
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        print("Exited Region")
-        if region is CLCircularRegion{
-            self.prepareForNotification(forRegion: region)
+        
+        // checks if the user is connected via wifi when entering the region
+        NetworkManager.isReachableViaWifi { (networkManager, isReachable) in
+            if isReachable{
+                self.prepareForNotification(forRegion: region)
+            }
+        }
+        
+       // Checks if the user is connected via cellular data when entering the region
+        NetworkManager.isReachableViaCellular { (networkManager, isReachable) in
+            if isReachable{
+                self.prepareForNotification(forRegion: region)
+            }
         }
     }
 }

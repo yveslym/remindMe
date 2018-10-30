@@ -59,29 +59,39 @@ class NetworkManager: NSObject{
         }
     }
     
-    // Handles connetion status when it is reachable altogether
-    static func isReachable(completion: @escaping (NetworkManager) -> ()) {
+    // Handles connetion status when it is unreachable altogether
+    static func isUnReachable(completion: @escaping (NetworkManager, Bool) -> ()) {
         
+        if NetworkManager.shared.reachability.connection == .none{
+            completion(NetworkManager.shared, true)
+        }else{
+            completion(NetworkManager.shared, false)
+        }
     }
     
-    // Handles connetion status when it is unreachable altogether
-    static func isUnReachable(completion: @escaping (NetworkManager) -> ()) {
-        if NetworkManager.shared.reachability.connection == .none{
-            completion(NetworkManager.shared)
+    static func isReachable(completion: @escaping(NetworkManager, Bool) -> ()){
+        if NetworkManager.shared.reachability.connection != .none{
+            completion(NetworkManager.shared, true)
+        } else {
+            completion(NetworkManager.shared, false)
         }
     }
     
     // Handles connetion status when it is reachable via wwan or cellular(phone data)
-    static func isReachableViaCellular(completion: @escaping (NetworkManager) -> ()) {
+    static func isReachableViaCellular(completion: @escaping (NetworkManager, Bool) -> ()) {
         if NetworkManager.shared.reachability.connection == .cellular{
-            completion(NetworkManager.shared)
+            completion(NetworkManager.shared, true)
+        }else{
+            completion(NetworkManager.shared, false)
         }
     }
     
     // Handles connetion status when it is reachable via wifi
-    static func isReachableViaWifi(completion: @escaping (NetworkManager) -> ()){
+    static func isReachableViaWifi(completion: @escaping (NetworkManager, Bool) -> ()){
         if NetworkManager.shared.reachability.connection == .wifi{
-            completion(NetworkManager.shared)
+            completion(NetworkManager.shared, true)
+        }else{
+            completion(NetworkManager.shared, false)
         }
     }
 }

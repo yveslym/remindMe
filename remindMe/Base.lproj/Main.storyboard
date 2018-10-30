@@ -95,13 +95,13 @@
                     <connections>
                         <outlet property="groupTableView" destination="owN-x7-fMQ" id="9z8-Tz-cIZ"/>
                         <segue destination="14l-cs-lto" kind="show" identifier="showListOfReminders" id="lwf-VY-Z8I"/>
-                        <segue destination="yjR-l0-616" kind="show" identifier="offlinePage" id="Urx-Nf-OmN"/>
+                        <segue destination="yjR-l0-616" kind="show" identifier="offlinePage" id="xwr-uw-Kbd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="CJF-fl-m3F" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1212" y="145"/>
+            <point key="canvasLocation" x="1113" y="143"/>
         </scene>
         <!--Reminder List View Controller-->
         <scene sceneID="nFY-tu-a1I">
@@ -247,7 +247,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MOk-63-i5l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1180" y="871"/>
+            <point key="canvasLocation" x="1212" y="899"/>
         </scene>
         <!--Reminder Title-->
         <scene sceneID="gPk-Jx-HFo">
@@ -395,30 +395,34 @@
         <!--Offline View Controller-->
         <scene sceneID="kCk-5d-QXl">
             <objects>
-                <viewController id="yjR-l0-616" customClass="OfflineViewController" customModule="remindMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OfflineViewController" id="yjR-l0-616" customClass="OfflineViewController" customModule="remindMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rQd-eV-RK0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="offlineLogo" translatesAutoresizingMaskIntoConstraints="NO" id="d5j-P9-q9g">
-                                <rect key="frame" x="87" y="179" width="181" height="152"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="You are Offline. Please connect to the internet and restart the app." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aFV-Id-c72">
-                                <rect key="frame" x="49" y="365" width="293" height="61"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="You are offline, connect to the internet" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aFV-Id-c72">
+                                <rect key="frame" x="26" y="365" width="333" height="61"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" name="tcDarkBlue"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="offlineLogo" translatesAutoresizingMaskIntoConstraints="NO" id="d5j-P9-q9g">
+                                <rect key="frame" x="120" y="202" width="157" height="155"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="kHl-SS-wUO"/>
                     </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="backToGroups" id="hSg-U4-8hs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Cb-4c-WHB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="252" y="870.31484257871068"/>
+            <point key="canvasLocation" x="-633" y="143"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="Y7M-mr-Klq">
@@ -478,6 +482,7 @@
                         <outlet property="emailTextField" destination="ybX-5w-2Dn" id="nSp-Iw-Ikk"/>
                         <outlet property="passwordTextFiedl" destination="dFC-QV-QFp" id="1Kq-iE-QGc"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="backToGroups" id="dp5-L4-wDa"/>
+                        <segue destination="yjR-l0-616" kind="show" identifier="offlinePage" id="0on-Or-MOM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Afn-pf-rzf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -500,7 +505,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YcU-0d-rDX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="252" y="145"/>
+            <point key="canvasLocation" x="354" y="694"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="N0D-IN-Lzv">
@@ -534,7 +539,8 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="xwr-uw-Kbd"/>
         <segue reference="lwf-VY-Z8I"/>
-        <segue reference="8Bx-bb-onn"/>
+        <segue reference="dp5-L4-wDa"/>
     </inferredMetricsTieBreakers>
 </document>

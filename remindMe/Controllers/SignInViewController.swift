@@ -22,6 +22,17 @@ class SignInViewController: UIViewController{
         passwordTextFiedl.delegate = self as UITextFieldDelegate
     }
     
+//    fileprivate func showOfflinePage() -> Void {
+//        DispatchQueue.main.async {
+//            self.performSegue(withIdentifier: Constant.offlinePageSegueIdentifier, sender: self)
+//        }
+//    }
+    
+//    fileprivate func showMainPage() -> Void {
+//        DispatchQueue.main.async {
+//            self.performSegue(withIdentifier: "MainController", sender: self)
+//        }
+//    }
     
     /// function triggered when the user taps the login button
     @IBAction func loginButtonIsTapped(_ sender: Any) {
