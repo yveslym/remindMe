@@ -39,4 +39,14 @@ struct Reminder: Codable{
         return json as! [String: Any]
     }
     
+    // Function to get all reminders on entry
+    static func remindersOnEntry(){
+        
+    }
+    
+    // Function to get all reminders on exit
+    static func remindersOnExit(){
+        
+    }
+    
 }

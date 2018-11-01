@@ -20,7 +20,6 @@ class OfflineViewController: UIViewController{
         network.reachability.whenReachable = { reachability in
             self.showMainViewController()
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -27,7 +27,7 @@ class GroupListViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         groupTableView.delegate = self as UITableViewDelegate
         groupTableView.dataSource = self as UITableViewDataSource
         fetchAllGroups()
@@ -35,7 +35,14 @@ class GroupListViewController: UIViewController{
         networkManager.reachability.whenUnreachable = { reachability in
             self.showOfflinePage()
         }
-
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.async {
+            self.groupTableView.reloadData()
+        }
     }
     
     

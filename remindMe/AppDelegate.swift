@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     var window: UIWindow?
     var locationManager: CLLocationManager!
     var notificationCenter: UNUserNotificationCenter!
-    
+    let network = NetworkManager.shared
     class var shared: AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
@@ -119,7 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     }
     
 
-    /// Method to show the user that there is no internet connection
+    /// Method to render the offline page if there is no internet connection
     fileprivate func showOfflinePage(){
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         guard let offlinePageVC = storyBoard.instantiateViewController(withIdentifier: "OfflineViewController") as? OfflineViewController else { return }
@@ -129,7 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         window?.makeKeyAndVisible()
     }
 
-    /// Method to show the user the main page if there is internet connection
+    /// Method to render the main page if there is internet connection
     fileprivate func showMainPage(){
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         guard let mainPageVC = storyBoard.instantiateViewController(withIdentifier: "GroupListViewController") as? GroupListViewController else { return }
@@ -138,32 +138,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         window?.rootViewController = navigation
         window?.makeKeyAndVisible()
     }
-
-    
-    
-    // - MARK: App cycle methods
-    
-    func applicationWillResignActive(_ application: UIApplication) {
-       
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        
-    
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        
-    }
-
 }
 
 extension AppDelegate: CLLocationManagerDelegate{
@@ -174,38 +148,18 @@ extension AppDelegate: CLLocationManagerDelegate{
     /// Function to trigger local notification when the user enters radius of the provided location
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         
-        // checks if the user is connected via wifi when entering the region
-        NetworkManager.isReachableViaWifi { (networkManager, isReachable) in
-            if isReachable{
-                self.prepareForNotification(forRegion: region)
-            }
+        // checks if the user is re-connected after entering the region
+        network.reachability.whenReachable = { reachability in
+            self.prepareForNotification(forRegion: region)
         }
-        
-        
-        // Checks if the user is connected via cellular data when entering the region
-        NetworkManager.isReachableViaCellular { (networkManager, isReachable) in
-            if isReachable{
-                self.prepareForNotification(forRegion: region)
-            }
-        }
-
     }
 
     /// Function to trigger local notification when the user exits radius of the provided location
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         
-        // checks if the user is connected via wifi when entering the region
-        NetworkManager.isReachableViaWifi { (networkManager, isReachable) in
-            if isReachable{
-                self.prepareForNotification(forRegion: region)
-            }
-        }
-        
-       // Checks if the user is connected via cellular data when entering the region
-        NetworkManager.isReachableViaCellular { (networkManager, isReachable) in
-            if isReachable{
-                self.prepareForNotification(forRegion: region)
-            }
+        // checks if the user is re-connected after entering the region
+        network.reachability.whenReachable = { reachability in
+            self.prepareForNotification(forRegion: region)
         }
     }
 }
