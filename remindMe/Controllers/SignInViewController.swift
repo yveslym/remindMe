@@ -16,6 +16,7 @@ class SignInViewController: UIViewController{
     var mainStackView = UIStackView()
     var textInputStackView = UIStackView()
     var selectableButtonsStackView = UIStackView()
+    var signInButtonsStackView = UIStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +26,8 @@ class SignInViewController: UIViewController{
         self.view.backgroundColor = .gloomyBlue
         setUpMainStackView()
         setUpTextInputStackView()
-        setUpSelectableButtons()
-        setUpSignInButton()
+        setUpSelectableButtonsStackView()
+        setUpSignInButtonsStackView()
         
     }
     
@@ -95,7 +96,7 @@ class SignInViewController: UIViewController{
         textField.isSecureTextEntry = true
         textField.textAlignment = .center
         textField.borderStyle = .roundedRect
-        textField.layer.cornerRadius = 10
+        textField.layer.cornerRadius = 30
         textField.clipsToBounds = true
         textField.layer.masksToBounds = true
         textField.layer.shadowRadius = 1
@@ -117,7 +118,7 @@ class SignInViewController: UIViewController{
         textField.isSecureTextEntry = true
         textField.textAlignment = .center
         textField.borderStyle = .roundedRect
-        textField.layer.cornerRadius = 10
+        textField.layer.cornerRadius = 30
         textField.clipsToBounds = true
         textField.layer.masksToBounds = true
         textField.layer.shadowRadius = 1
@@ -170,26 +171,18 @@ class SignInViewController: UIViewController{
         return button
     }()
     
+//    fileprivate let dummyView: UIView = {
+//
+//        let view = UIView()
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
+    
     
     
     
     // - MARK: FUNTIONS
     
-    
-    /// Funtion to layout and constraint the app's tittle
-    fileprivate func setUpAppTittle(){
-        
-        
-    }
-    
-    /// Funtion to layout and constraint the signin button
-    fileprivate func setUpSignInButton(){
-        
-        NSLayoutConstraint.activate([signInButton.topAnchor.constraint(equalTo: textInputStackView.bottomAnchor, constant: 20),
-                                     signInButton.bottomAnchor.constraint(equalTo: mainStackView.bottomAnchor, constant: -50),
-                                     signInButton.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor, constant: 50),
-                                     signInButton.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor, constant: -50)])
-    }
     
     // Funtion to layout and constraint the outer most stack view that'll contain all the views and elements in the VC
     fileprivate func setUpMainStackView(){
@@ -197,7 +190,7 @@ class SignInViewController: UIViewController{
         mainStackView = UIStackView(arrangedSubviews: [appTittleLabel,
                                                        selectableButtonsStackView,
                                                        textInputStackView,
-                                                       signInButton])
+                                                       signInButtonsStackView])
         mainStackView.alignment = .center
         mainStackView.axis = .vertical
         mainStackView.distribution = .fillEqually
@@ -210,6 +203,12 @@ class SignInViewController: UIViewController{
                                      mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)])
     }
     
+    
+    //    fileprivate func setUpTextInputs(){
+    //        NSLayoutConstraint.activate([])
+    //    }
+    
+    
     // Funtion to layout and constraint the two textfields
     fileprivate func setUpTextInputStackView(){
         
@@ -220,15 +219,23 @@ class SignInViewController: UIViewController{
         textInputStackView.translatesAutoresizingMaskIntoConstraints = false
         mainStackView.addSubview(textInputStackView)
         
-        NSLayoutConstraint.activate([textInputStackView.topAnchor.constraint(equalTo: selectableButtonsStackView.topAnchor, constant: 10),
+        NSLayoutConstraint.activate([textInputStackView.topAnchor.constraint(equalTo: selectableButtonsStackView.bottomAnchor),
                                      textInputStackView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor, constant: 20),
-                                     textInputStackView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor, constant: 20),
-                                     textInputStackView.bottomAnchor.constraint(equalTo: signInButton.topAnchor, constant: 20)])
+                                     textInputStackView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor, constant: -20),
+                                     textInputStackView.bottomAnchor.constraint(equalTo: signInButton.topAnchor, constant: 20),
+                                     emailAddressTextField.topAnchor.constraint(equalTo: textInputStackView.topAnchor, constant: 10),
+                                     emailAddressTextField.leadingAnchor.constraint(equalTo: textInputStackView.leadingAnchor),
+                                     emailAddressTextField.trailingAnchor.constraint(equalTo: textInputStackView.trailingAnchor),
+                                     emailAddressTextField.bottomAnchor.constraint(equalTo: passwordTextField.topAnchor, constant: -20),
+                                     passwordTextField.topAnchor.constraint(equalTo: emailAddressTextField.bottomAnchor),
+                                     passwordTextField.leadingAnchor.constraint(equalTo: textInputStackView.leadingAnchor),
+                                     passwordTextField.trailingAnchor.constraint(equalTo: textInputStackView.trailingAnchor),
+                                     passwordTextField.bottomAnchor.constraint(equalTo: signInButton.topAnchor, constant: -30)])
         
     }
     
     /// Funtion set up and constraint the two seletable signin and signup buttons
-    fileprivate func setUpSelectableButtons(){
+    fileprivate func setUpSelectableButtonsStackView(){
         
         selectableButtonsStackView = UIStackView(arrangedSubviews: [selectableSignInButton, selectableSignUpButton])
         selectableButtonsStackView.alignment = .center
@@ -243,6 +250,27 @@ class SignInViewController: UIViewController{
                                      selectableButtonsStackView.bottomAnchor.constraint(equalTo: textInputStackView.topAnchor, constant: 20)])
     }
     
+    /// Funtion to layout and constraint the signin button
+    fileprivate func setUpSignInButtonsStackView(){
+        
+        signInButtonsStackView = UIStackView(arrangedSubviews: [signInButton])
+        
+        signInButtonsStackView.alignment = .center
+        signInButtonsStackView.distribution = .fillEqually
+        signInButtonsStackView.axis = .vertical
+        signInButtonsStackView.translatesAutoresizingMaskIntoConstraints = false
+        mainStackView.addSubview(signInButtonsStackView)
+        
+        
+        NSLayoutConstraint.activate([signInButtonsStackView.topAnchor.constraint(equalTo: textInputStackView.bottomAnchor, constant: -20),
+                                     signInButtonsStackView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor, constant: 20),
+                                     signInButtonsStackView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor, constant: -20),
+                                     signInButtonsStackView.bottomAnchor.constraint(equalTo: mainStackView.bottomAnchor, constant: 20),
+                                     signInButton.topAnchor.constraint(equalTo: signInButtonsStackView.topAnchor, constant: 20),
+                                     signInButton.leadingAnchor.constraint(equalTo: signInButtonsStackView.leadingAnchor, constant: 50),
+                                     signInButton.trailingAnchor.constraint(equalTo: signInButtonsStackView.trailingAnchor, constant: -50),
+                                     signInButton.bottomAnchor.constraint(equalTo: signInButtonsStackView.bottomAnchor, constant: -20)])
+    }
 }
 
 
