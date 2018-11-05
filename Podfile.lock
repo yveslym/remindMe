@@ -107,6 +107,7 @@ PODS:
   - GTMSessionFetcher/Full (1.2.0):
     - GTMSessionFetcher/Core (= 1.2.0)
   - JLocationKit (1.0.3)
+  - Kingfisher (4.10.0)
   - leveldb-library (1.20)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -125,6 +126,7 @@ DEPENDENCIES:
   - FirebaseUI/Auth
   - GoogleSignIn
   - JLocationKit (~> 1.0.3)
+  - Kingfisher (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -148,6 +150,7 @@ SPEC REPOS:
     - GTMOAuth2
     - GTMSessionFetcher
     - JLocationKit
+    - Kingfisher
     - leveldb-library
     - nanopb
     - Protobuf
@@ -173,10 +176,11 @@ SPEC CHECKSUMS:
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
   JLocationKit: 07839bdc4c4a170e970d66c77df151c2eb0abef4
+  Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
 
-PODFILE CHECKSUM: c588428e75bbdbc6d5193259b6e33f39b4f9b6bd
+PODFILE CHECKSUM: be96ce72c5d4b4b33301fbe7fd1ad628cee7fe8b
 
 COCOAPODS: 1.5.3

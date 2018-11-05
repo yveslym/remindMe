@@ -7,8 +7,12 @@
 //
 
 
+import UIKit
 import Foundation
-import FirebaseAuth
+import Firebase
+import GoogleSignIn
+import FBSDKLoginKit
+
 
 // THIS STRUCT REPERESENTS THE BLUE PRINTS OF THE USER DATA MODEL
 
@@ -16,6 +20,7 @@ struct User: Codable{
     var name: String
     var id: String
     var email: String
+    var profileImage: String?
     private static var _current: User?
     static var current: User{
         
@@ -57,3 +62,4 @@ struct User: Codable{
         return json as! [String : Any]
     }
 }
+

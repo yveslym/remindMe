@@ -16,6 +16,7 @@ target 'remindMe' do
     pod 'Firebase/Messaging'
     pod 'FBSDKLoginKit'
     pod 'JLocationKit', '~> 1.0.3'
+    pod 'Kingfisher', '~> 4.0'
 
   target 'remindMeTests' do
     inherit! :search_paths
