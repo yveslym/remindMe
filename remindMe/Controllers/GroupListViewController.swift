@@ -31,6 +31,7 @@ class GroupListViewController: UIViewController{
         groupTableView.delegate = self as UITableViewDelegate
         groupTableView.dataSource = self as UITableViewDataSource
         fetchAllGroups()
+        monitorReminders()
         
         networkManager.reachability.whenUnreachable = { reachability in
             self.showOfflinePage()
