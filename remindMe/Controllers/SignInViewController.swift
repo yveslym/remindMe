@@ -32,43 +32,58 @@ class SignInViewController: UIViewController{
     }
     
 
-    
-    /// function triggered when the user taps the login button
-//    @IBAction func loginButtonIsTapped(_ sender: Any) {
-//
-//        guard let email = emailTextField.text, let password = passwordTextFiedl.text else {return}
-//        if (email.count) > 4 && (password.count) > 4 {
-//
-//            UserServices.signIn(email, password) { (user) in
-//
-//                if let user = user as? User{
-//                    // setting the logged in user as the current app user
-//                    User.setCurrentUser(user: user, writeToUserDefaults: true)
-//                    self.performSegue(withIdentifier: Constant.backToGroupListSegueIdentifier, sender: nil)
-//                }else {
-//
-//                    Constant.setUpAlert(alertTitle: "Authentification Error",
-//                                        alertMessage: "Check your username or password",
-//                                        alertStyle: .alert,
-//                                        actionTitle: "Return",
-//                                        actionStyle: .cancel)
-//                }
-//            }
-//        }
-//
-//    }
-//
-//
     // THIS METHOD IS USED FOR UNWINDING SEGUE
     @IBAction func unwindtoLoginPage(_ segue: UIStoryboardSegue){
         // leave empty for now
     }
     
     
+    /// Signs in the user with their credentials
+    @objc fileprivate func signInButtonTapped(_ sender: UIButton){
+        
+        guard let email = emailAddressTextField.text, let password = passwordTextField.text else {return}
+        if (email.count) > 4 && (password.count) > 4 {
+            
+            UserServices.signIn(email, password) { (user) in
+                
+                if let user = user as? User{
+                    // setting the logged in user as the current app user
+                    User.setCurrentUser(user: user, writeToUserDefaults: true)
+                    self.performSegue(withIdentifier: Constant.backToGroupListSegueIdentifier, sender: nil)
+                }else {
+                    
+                    Constant.setUpAlert(alertTitle: "Authentification Error",
+                                        alertMessage: "Check your username or password",
+                                        alertStyle: .alert,
+                                        actionTitle: "Return",
+                                        actionStyle: .cancel)
+                }
+            }
+        }
+    }
     
-            // THIS PART OF THE FILE CONTAINS THE USER INTERFACE FUNCTIONALITIES
+    /// Yves -- Put your Facebook SDK Logic here!!!
+    @objc fileprivate func facebookSignInButtonTapped(_ sender: UIButton){
+        print("Facebook sign in butotn tapped")
+    }
     
-     // - MARK: PROPERTIES AND UI ELEMENTS
+    // Yves -- Put your Google SDK Logic here!!!
+    @objc fileprivate func GooglesigniButtonTapped(_ sender: UIButton){
+        print("Google sign in butotn tapped")
+    }
+    
+    // Toggles the signin view controller
+    @objc fileprivate func selectableSignInButtonTapped(_ sender: UIButton){
+        print("selectable Sign in button clicked")
+    }
+    
+    // Toggles the signup view controller
+    @objc fileprivate func selectableSignUpButtonTapped(_ sender: UIButton){
+        
+        print("selectable sign up button clicked")
+    }
+    
+     // - MARK: UI ELEMENTS AND METHODS
     
     
     // Creates and sets up a label to display the app's name
@@ -83,7 +98,6 @@ class SignInViewController: UIViewController{
         return label
     }()
 
-    
     // Creates and sets up a textfield for the email
     fileprivate let emailAddressTextField: UITextField = {
         // DRY CODE MEDI!!!!
@@ -93,7 +107,6 @@ class SignInViewController: UIViewController{
         textField.layer.borderWidth = 2.0
         textField.layer.borderColor = UIColor.white.cgColor
         textField.textColor = .white
-        textField.isSecureTextEntry = true
         textField.textAlignment = .center
         textField.borderStyle = .roundedRect
         textField.layer.cornerRadius = 20
@@ -135,6 +148,7 @@ class SignInViewController: UIViewController{
         button.setTitle("SIGN IN", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(selectableSignInButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -146,7 +160,8 @@ class SignInViewController: UIViewController{
         
         let button = UIButton()
         button.setTitle("SIGN UP", for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize:18)
+        button.addTarget(self, action: #selector(selectableSignUpButtonTapped(_:)), for: .touchUpInside)
         button.setTitleColor(.lightGray, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -166,6 +181,7 @@ class SignInViewController: UIViewController{
         button.layer.masksToBounds = true
         button.layer.shadowRadius = 1
         button.setTitleColor(.gloomyBlue, for: .normal)
+        button.addTarget(self, action: #selector(signInButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -183,6 +199,7 @@ class SignInViewController: UIViewController{
         button.layer.masksToBounds = true
         button.layer.shadowRadius = 1
         button.setTitleColor(.gloomyBlue, for: .normal)
+        button.addTarget(self, action: #selector(facebookSignInButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -200,19 +217,11 @@ class SignInViewController: UIViewController{
         button.layer.masksToBounds = true
         button.layer.shadowRadius = 1
         button.setTitleColor(.gloomyBlue,  for: .normal)
+        button.addTarget(self, action: #selector(GooglesigniButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
     }()
-    
-//    fileprivate let dummyView: UIView = {
-//
-//        let view = UIView()
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
-    
-    
     
     
     // - MARK: FUNTIONS
@@ -312,12 +321,8 @@ class SignInViewController: UIViewController{
                                      googleSignInButton.trailingAnchor.constraint(equalTo: signInButtonsStackView.trailingAnchor, constant: -50),
                                      googleSignInButton.bottomAnchor.constraint(equalTo: signInButtonsStackView.bottomAnchor, constant: -20)])
     }
+    
 }
-
-
-
-
-
 
 
 extension SignInViewController: UITextFieldDelegate{
