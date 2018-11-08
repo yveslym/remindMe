@@ -25,9 +25,9 @@ class SignInViewController: UIViewController{
         passwordTextField.delegate = self as UITextFieldDelegate
         self.view.backgroundColor = .gloomyBlue
         setUpMainStackView()
-        setUpTextInputStackView()
         setUpSelectableButtonsStackView()
         setUpSignInButtonsStackView()
+        setUpTextInputStackView()
         
     }
     
@@ -90,13 +90,13 @@ class SignInViewController: UIViewController{
         let textField = UITextField()
         textField.backgroundColor = .clear
         textField.attributedPlaceholder = NSAttributedString(string: "Email Address",attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        textField.layer.borderWidth = 1.0
+        textField.layer.borderWidth = 2.0
         textField.layer.borderColor = UIColor.white.cgColor
         textField.textColor = .white
         textField.isSecureTextEntry = true
         textField.textAlignment = .center
         textField.borderStyle = .roundedRect
-        textField.layer.cornerRadius = 30
+        textField.layer.cornerRadius = 20
         textField.clipsToBounds = true
         textField.layer.masksToBounds = true
         textField.layer.shadowRadius = 1
@@ -112,13 +112,13 @@ class SignInViewController: UIViewController{
         let textField = UITextField()
         textField.backgroundColor = .clear
         textField.attributedPlaceholder = NSAttributedString(string: "Password",attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        textField.layer.borderWidth = 1.0
-        textField.layer.borderColor = UIColor.white.cgColor
         textField.textColor = .white
         textField.isSecureTextEntry = true
         textField.textAlignment = .center
         textField.borderStyle = .roundedRect
-        textField.layer.cornerRadius = 30
+        textField.layer.cornerRadius = 20
+        textField.layer.borderWidth = 2.0
+        textField.layer.borderColor = UIColor.white.cgColor
         textField.clipsToBounds = true
         textField.layer.masksToBounds = true
         textField.layer.shadowRadius = 1
@@ -147,7 +147,7 @@ class SignInViewController: UIViewController{
         let button = UIButton()
         button.setTitle("SIGN UP", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.setTitleColor(.gray, for: .normal)
+        button.setTitleColor(.lightGray, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -159,13 +159,47 @@ class SignInViewController: UIViewController{
         
         let button = UIButton()
         button.backgroundColor = .white
-        button.setTitle("SIGN IN", for: .normal)
+        button.setTitle("Sign In", for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
         button.layer.masksToBounds = true
         button.layer.shadowRadius = 1
         button.setTitleColor(.gloomyBlue, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    // creates and sets a button for the facebook sdk sign in
+    fileprivate let facebookSignInButton: UIButton = {
+      
+        let button = UIButton()
+        button.backgroundColor = .white
+        button.setTitle("Sign in with Facebook", for: .normal)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
+        button.layer.masksToBounds = true
+        button.layer.shadowRadius = 1
+        button.setTitleColor(.gloomyBlue, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    // creates and sets a button for the facebook sdk sign in
+    fileprivate let googleSignInButton: UIButton = {
+        
+        let button = UIButton()
+        button.backgroundColor = .white
+        button.setTitle("Sign in with Google", for: .normal)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
+        button.layer.masksToBounds = true
+        button.layer.shadowRadius = 1
+        button.setTitleColor(.gloomyBlue,  for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         
         return button
@@ -222,16 +256,15 @@ class SignInViewController: UIViewController{
         NSLayoutConstraint.activate([textInputStackView.topAnchor.constraint(equalTo: selectableButtonsStackView.bottomAnchor),
                                      textInputStackView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor, constant: 20),
                                      textInputStackView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor, constant: -20),
-                                     textInputStackView.bottomAnchor.constraint(equalTo: signInButton.topAnchor, constant: 20),
+                                     textInputStackView.bottomAnchor.constraint(equalTo: signInButton.topAnchor, constant: -20),
                                      emailAddressTextField.topAnchor.constraint(equalTo: textInputStackView.topAnchor, constant: 10),
                                      emailAddressTextField.leadingAnchor.constraint(equalTo: textInputStackView.leadingAnchor),
                                      emailAddressTextField.trailingAnchor.constraint(equalTo: textInputStackView.trailingAnchor),
-                                     emailAddressTextField.bottomAnchor.constraint(equalTo: passwordTextField.topAnchor, constant: -20),
-                                     passwordTextField.topAnchor.constraint(equalTo: emailAddressTextField.bottomAnchor),
+                                     emailAddressTextField.bottomAnchor.constraint(equalTo: passwordTextField.topAnchor, constant: -30),
+                                     passwordTextField.topAnchor.constraint(equalTo: emailAddressTextField.bottomAnchor, constant: 10),
                                      passwordTextField.leadingAnchor.constraint(equalTo: textInputStackView.leadingAnchor),
                                      passwordTextField.trailingAnchor.constraint(equalTo: textInputStackView.trailingAnchor),
-                                     passwordTextField.bottomAnchor.constraint(equalTo: signInButton.topAnchor, constant: -30)])
-        
+                                     passwordTextField.bottomAnchor.constraint(equalTo: textInputStackView.bottomAnchor)])
     }
     
     /// Funtion set up and constraint the two seletable signin and signup buttons
@@ -253,7 +286,7 @@ class SignInViewController: UIViewController{
     /// Funtion to layout and constraint the signin button
     fileprivate func setUpSignInButtonsStackView(){
         
-        signInButtonsStackView = UIStackView(arrangedSubviews: [signInButton])
+        signInButtonsStackView = UIStackView(arrangedSubviews: [signInButton, facebookSignInButton, googleSignInButton])
         
         signInButtonsStackView.alignment = .center
         signInButtonsStackView.distribution = .fillEqually
@@ -266,10 +299,18 @@ class SignInViewController: UIViewController{
                                      signInButtonsStackView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor, constant: 20),
                                      signInButtonsStackView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor, constant: -20),
                                      signInButtonsStackView.bottomAnchor.constraint(equalTo: mainStackView.bottomAnchor, constant: 20),
-                                     signInButton.topAnchor.constraint(equalTo: signInButtonsStackView.topAnchor, constant: 20),
+                                     signInButton.topAnchor.constraint(equalTo: signInButtonsStackView.topAnchor),
                                      signInButton.leadingAnchor.constraint(equalTo: signInButtonsStackView.leadingAnchor, constant: 50),
                                      signInButton.trailingAnchor.constraint(equalTo: signInButtonsStackView.trailingAnchor, constant: -50),
-                                     signInButton.bottomAnchor.constraint(equalTo: signInButtonsStackView.bottomAnchor, constant: -20)])
+                                     signInButton.bottomAnchor.constraint(equalTo: facebookSignInButton.topAnchor, constant: -20),
+                                     facebookSignInButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 10),
+                                     facebookSignInButton.leadingAnchor.constraint(equalTo: signInButtonsStackView.leadingAnchor, constant: 50),
+                                     facebookSignInButton.trailingAnchor.constraint(equalTo: signInButtonsStackView.trailingAnchor, constant: -50),
+                                     facebookSignInButton.bottomAnchor.constraint(equalTo: googleSignInButton.topAnchor, constant: -20),
+                                     googleSignInButton.topAnchor.constraint(equalTo: facebookSignInButton.bottomAnchor, constant: 10),
+                                     googleSignInButton.leadingAnchor.constraint(equalTo: signInButtonsStackView.leadingAnchor, constant: 50),
+                                     googleSignInButton.trailingAnchor.constraint(equalTo: signInButtonsStackView.trailingAnchor, constant: -50),
+                                     googleSignInButton.bottomAnchor.constraint(equalTo: signInButtonsStackView.bottomAnchor, constant: -20)])
     }
 }
 

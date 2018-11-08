@@ -58,6 +58,15 @@ class GroupListViewController: UIViewController{
         })
     }
     
+    fileprivate func monitorReminders(){
+        ReminderServices.index { (reminders) in
+            guard let reminders = reminders else {return}
+            GeoFence.shared.startMonitor(reminders, completion: { (true) in
+                print("Start Monitoring")
+            })
+        }
+    }
+    
     // This method is used to go back to the group of list view controller
     @IBAction func unwindtoGroupListViewController(_ segue: UIStoryboardSegue){
         fetchAllGroups()

@@ -9,7 +9,8 @@
 import UIKit
 
 extension UIColor{
+    // This class contains custom UIColors
     
-    // Creating the gloomy blue color that matches Make School new logo
-    static var gloomyBlue = UIColor(red: 20/255, green: 100/255, blue: 170/255, alpha: 1)
+    static var gloomyBlue = UIColor(red: 20/255, green: 100/255, blue: 175/255, alpha: 1)
+    static var lightGray = UIColor(white: 180/255, alpha: 1)
 }
