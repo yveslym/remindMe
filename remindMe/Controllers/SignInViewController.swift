@@ -6,13 +6,20 @@
 //  Copyright © 2018 Yves Songolo. All rights reserved.
 //
 
-import Foundation
 import UIKit
+import Firebase
+import GoogleSignIn
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class SignInViewController: UIViewController{
 // This View Controller class handles functionality sign in a user from the client side
     
-
+    // google and facebbok button provided by the sdk
+     var googleButton: GIDSignInButton!
+     var facebookButton: FBSDKLoginButton!
+    
+    
     var mainStackView = UIStackView()
     var textInputStackView = UIStackView()
     var selectableButtonsStackView = UIStackView()
@@ -21,6 +28,8 @@ class SignInViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpGoogleButton()
+       
         emailAddressTextField.delegate = self as UITextFieldDelegate
         passwordTextField.delegate = self as UITextFieldDelegate
         self.view.backgroundColor = .gloomyBlue
@@ -70,6 +79,7 @@ class SignInViewController: UIViewController{
     // Yves -- Put your Google SDK Logic here!!!
     @objc fileprivate func GooglesigniButtonTapped(_ sender: UIButton){
         print("Google sign in butotn tapped")
+        
     }
     
     // Toggles the signin view controller
@@ -286,6 +296,9 @@ class SignInViewController: UIViewController{
         selectableButtonsStackView.translatesAutoresizingMaskIntoConstraints = false
         mainStackView.addSubview(selectableButtonsStackView)
         
+//        selectableButtonsStackView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.15).isActive = true
+//         selectableButtonsStackView.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 1).isActive = true
+        
         NSLayoutConstraint.activate([selectableButtonsStackView.topAnchor.constraint(equalTo: appTittleLabel.bottomAnchor, constant: 10),
                                      selectableButtonsStackView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor, constant: 20),
                                      selectableButtonsStackView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor, constant: 20),
@@ -295,7 +308,7 @@ class SignInViewController: UIViewController{
     /// Funtion to layout and constraint the signin button
     fileprivate func setUpSignInButtonsStackView(){
         
-        signInButtonsStackView = UIStackView(arrangedSubviews: [signInButton, facebookSignInButton, googleSignInButton])
+        signInButtonsStackView = UIStackView(arrangedSubviews: [signInButton, facebookSignInButton, googleButton])
         
         signInButtonsStackView.alignment = .center
         signInButtonsStackView.distribution = .fillEqually
@@ -315,11 +328,11 @@ class SignInViewController: UIViewController{
                                      facebookSignInButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 10),
                                      facebookSignInButton.leadingAnchor.constraint(equalTo: signInButtonsStackView.leadingAnchor, constant: 50),
                                      facebookSignInButton.trailingAnchor.constraint(equalTo: signInButtonsStackView.trailingAnchor, constant: -50),
-                                     facebookSignInButton.bottomAnchor.constraint(equalTo: googleSignInButton.topAnchor, constant: -20),
-                                     googleSignInButton.topAnchor.constraint(equalTo: facebookSignInButton.bottomAnchor, constant: 10),
-                                     googleSignInButton.leadingAnchor.constraint(equalTo: signInButtonsStackView.leadingAnchor, constant: 50),
-                                     googleSignInButton.trailingAnchor.constraint(equalTo: signInButtonsStackView.trailingAnchor, constant: -50),
-                                     googleSignInButton.bottomAnchor.constraint(equalTo: signInButtonsStackView.bottomAnchor, constant: -20)])
+                                     facebookSignInButton.bottomAnchor.constraint(equalTo: googleButton.topAnchor, constant: -20),
+                                     googleButton.topAnchor.constraint(equalTo: facebookSignInButton.bottomAnchor, constant: 10),
+                                     googleButton.leadingAnchor.constraint(equalTo: signInButtonsStackView.leadingAnchor, constant: 50),
+                                     googleButton.trailingAnchor.constraint(equalTo: signInButtonsStackView.trailingAnchor, constant: -50),
+                                     googleButton.bottomAnchor.constraint(equalTo: signInButtonsStackView.bottomAnchor, constant: -20)])
     }
     
 }
@@ -346,5 +359,64 @@ extension SignInViewController: UITextFieldDelegate{
         }
 
         return true
+    }
+}
+
+/// authenticate with google
+extension SignInViewController:  GIDSignInDelegate, GIDSignInUIDelegate{
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        // ...
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        
+        
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        // ...
+        
+        Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
+            if error != nil {
+                self.presentAlert(title: "Login Error", message: "coun't register please try again!!!")
+                return
+            }
+            // User is signed in
+            // register user
+            UserServices.loginWithGoogle(googleUser: user, completion: { (user) in
+                if user != nil{
+                    self.performSegue(withIdentifier: Constant.backToGroupListSegueIdentifier, sender: nil)
+                }
+                else{
+                    self.presentAlert(title: "Login Error", message: "coun't register please try again!!!")
+                }
+            })
+        }
+    }
+    
+    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
+        print("present google UI")
+    }
+    func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
+         print("dismiss google UI")
+    }
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        
+    }
+
+    
+    func setUpGoogleButton(){
+        
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+       
+        
+         self.googleButton = GIDSignInButton()
+        self.googleButton.colorScheme = .dark
+        self.googleButton.style = .standard
+        self.googleButton.layer.masksToBounds = true
+         self.googleButton.layer.cornerRadius = 15
+        
+     GIDSignIn.sharedInstance().delegate = self
+     GIDSignIn.sharedInstance().uiDelegate = self
     }
 }

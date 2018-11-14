@@ -111,4 +111,32 @@ struct UserServices{
             }
         }
     }
+    /// method to add google user to firrebase
+    static func loginWithGoogle(googleUser: GIDGoogleUser, completion: @escaping(User?) -> ()){
+        let profile = googleUser.profile
+        
+        var user = User.init((Auth.auth().currentUser?.displayName)!, "", (profile?.email)!)
+        
+        //let user = User(fn: (profile?.givenName)!, ln: (profile?.familyName)!, un: (profile?.name)!, deviceToken: "", accountType: "client", email: (profile?.email)!)
+        if (profile?.hasImage)!{
+            user.profileUrl = profile?.imageURL(withDimension: 300).absoluteString
+        }
+        
+        show { (existingUser) in
+            if existingUser == nil{
+                create( user: user) { (created) in
+                    if (created as? User != nil){
+                        return completion(created as? User)
+                    }
+                    else{
+                        print("couldn't create user")
+                        completion(nil)
+                    }
+                }
+            }
+            else{
+                return completion(existingUser)
+            }
+        }
+    }
 }
