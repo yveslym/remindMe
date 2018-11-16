@@ -16,6 +16,7 @@ struct User: Codable{
     var name: String
     var id: String
     var email: String
+    var profileUrl: String?
     private static var _current: User?
     static var current: User{
         
