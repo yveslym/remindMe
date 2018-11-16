@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     class var shared: AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
-
+    
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -134,11 +134,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
 
     /// Method to render the main page if there is internet connection
     fileprivate func showMainPage(){
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        guard let mainPageVC = storyBoard.instantiateViewController(withIdentifier: "GroupListViewController") as? GroupListViewController else { return }
+//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+//        guard let mainPageVC = storyBoard.instantiateViewController(withIdentifier: "GroupListViewController") as? GroupListViewController else { return }
         
-        let navigation = UINavigationController(rootViewController: mainPageVC)
-        window?.rootViewController = navigation
+//        let navigation = UINavigationController(rootViewController: mainPageVC)
+        //let mainVC = GroupListViewController()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = GroupListViewController()
         window?.makeKeyAndVisible()
     }
 }

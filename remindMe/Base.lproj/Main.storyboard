@@ -18,82 +18,11 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="rootView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E9n-ND-CZq" userLabel="headerView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Groups" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1XU-ja-ufs">
-                                        <rect key="frame" x="60" y="20" width="255" height="85"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
-                                        <color key="textColor" name="tcCharcoal"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="1XU-ja-ufs" firstAttribute="leading" secondItem="E9n-ND-CZq" secondAttribute="leading" constant="60" id="ktn-90-JHe"/>
-                                    <constraint firstAttribute="trailing" secondItem="1XU-ja-ufs" secondAttribute="trailing" constant="60" id="lMb-Ya-cV1"/>
-                                    <constraint firstAttribute="bottom" secondItem="1XU-ja-ufs" secondAttribute="bottom" id="wUR-ZC-cEx"/>
-                                </constraints>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="owN-x7-fMQ">
-                                <rect key="frame" x="0.0" y="129" width="375" height="538"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="groupCell" textLabel="sVb-AL-zjX" detailTextLabel="6I3-3s-ULh" style="IBUITableViewCellStyleSubtitle" id="4Ed-Wv-2Ky" customClass="GroupListTableViewCell" customModule="remindMe" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Ed-Wv-2Ky" id="L8K-L4-SX6">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sVb-AL-zjX" userLabel="groupTitle">
-                                                    <rect key="frame" x="15" y="5" width="97" height="20.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="2 Reminders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6I3-3s-ULh" userLabel="numOfReminders">
-                                                    <rect key="frame" x="15" y="25.5" width="71" height="14.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="groupNameLabel" destination="sVb-AL-zjX" id="EMN-bn-MsQ"/>
-                                            <outlet property="numberOfRemindersLabel" destination="6I3-3s-ULh" id="mGq-1E-DP3"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" name="tcOffWhite"/>
-                        <constraints>
-                            <constraint firstItem="E9n-ND-CZq" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="1Sm-tY-s1Z"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="owN-x7-fMQ" secondAttribute="bottom" id="5aG-5n-5Xx"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="owN-x7-fMQ" secondAttribute="trailing" id="EuM-Mb-jGO"/>
-                            <constraint firstItem="owN-x7-fMQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="OuM-go-E0f"/>
-                            <constraint firstItem="E9n-ND-CZq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="R1x-dY-GZr"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="1XU-ja-ufs" secondAttribute="top" id="btZ-Tt-onh"/>
-                            <constraint firstItem="E9n-ND-CZq" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="j4C-GI-bEE"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="E9n-ND-CZq" secondAttribute="bottom" constant="-85" id="l9Q-4F-Fho"/>
-                            <constraint firstItem="owN-x7-fMQ" firstAttribute="top" secondItem="E9n-ND-CZq" secondAttribute="bottom" constant="24" id="vKz-Ig-9gY"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="dGX-gm-GAv">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hzW-Ag-6Fo">
-                            <connections>
-                                <segue destination="L3y-PL-GgJ" kind="show" identifier="createSingleGroup" id="pgS-if-rNR"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="h2T-LK-KbY"/>
                     <connections>
-                        <outlet property="groupTableView" destination="owN-x7-fMQ" id="9z8-Tz-cIZ"/>
                         <segue destination="14l-cs-lto" kind="show" identifier="showListOfReminders" id="lwf-VY-Z8I"/>
                         <segue destination="yjR-l0-616" kind="show" identifier="offlinePage" id="xwr-uw-Kbd"/>
                     </connections>
@@ -493,7 +422,7 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0on-Or-MOM"/>
+        <segue reference="xwr-uw-Kbd"/>
         <segue reference="lwf-VY-Z8I"/>
         <segue reference="dp5-L4-wDa"/>
     </inferredMetricsTieBreakers>
