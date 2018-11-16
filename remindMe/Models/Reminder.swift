@@ -18,8 +18,10 @@ struct Reminder: Codable{
     var longitude: Double
     var latitude : Double
     static var totalAmountOfReminders: Int = 0
+    var timeFrom: String?
+    var timeTo: String?
     
-    init(groupId: String, id: String, name: String, type: EventType, time: String, longitude: Double, latitude: Double) {
+    init(groupId: String, id: String, name: String, type: EventType, time: String, longitude: Double, latitude: Double, timeFrom: String, timeTo: String) {
         
         self.groupId = groupId
         self.id = id
@@ -29,6 +31,8 @@ struct Reminder: Codable{
         self.longitude = longitude
         self.latitude = latitude
         Reminder.totalAmountOfReminders += 1
+        self.timeFrom = timeFrom
+        self.timeTo = timeTo
     }
 
     // Function convert data  to be sent to the server into a json encoded format

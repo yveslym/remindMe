@@ -384,8 +384,15 @@ extension SignInViewController:  GIDSignInDelegate, GIDSignInUIDelegate{
             // User is signed in
             // register user
             UserServices.loginWithGoogle(googleUser: user, completion: { (user) in
-                if user != nil{
-                    self.performSegue(withIdentifier: Constant.backToGroupListSegueIdentifier, sender: nil)
+                if let user = user{
+                   // self.performSegue(withIdentifier: Constant.backToGroupListSegueIdentifier, sender: nil)
+                    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                    guard let mainPageVC = storyBoard.instantiateViewController(withIdentifier: "GroupListViewController") as? GroupListViewController else { return }
+                    
+                    let navigation = UINavigationController(rootViewController: mainPageVC)
+                    
+                    User.setCurrentUser(user: user, writeToUserDefaults: true)
+                    self.present(navigation, animated: true)
                 }
                 else{
                     self.presentAlert(title: "Login Error", message: "coun't register please try again!!!")
@@ -412,9 +419,10 @@ extension SignInViewController:  GIDSignInDelegate, GIDSignInUIDelegate{
         
          self.googleButton = GIDSignInButton()
         self.googleButton.colorScheme = .dark
-        self.googleButton.style = .standard
+        self.googleButton.style = .wide
         self.googleButton.layer.masksToBounds = true
          self.googleButton.layer.cornerRadius = 15
+        //self.googleButton.style =
         
      GIDSignIn.sharedInstance().delegate = self
      GIDSignIn.sharedInstance().uiDelegate = self
