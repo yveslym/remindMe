@@ -27,6 +27,7 @@
 		B80251412159FA7E00311405 /* JSONDecoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80251402159FA7E00311405 /* JSONDecoder+Extension.swift */; };
 		B80AA767215EE33F001BA1ED /* Date+String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80AA766215EE33F001BA1ED /* Date+String+Extension.swift */; };
 		B80B5FBE2154AF0D0008675D /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80B5FBD2154AF0D0008675D /* EventType.swift */; };
+		B8193DD82196491C007CE160 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8193DD72196491C007CE160 /* UIView+Extension.swift */; };
 		B83C11F82151B9E800A6BAE3 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83C11F72151B9E800A6BAE3 /* GroupListViewController.swift */; };
 		B85B9B75215C71FA00A52C10 /* ReminderServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85B9B74215C71FA00A52C10 /* ReminderServices.swift */; };
 		B85B9B77215C876C00A52C10 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85B9B76215C876C00A52C10 /* Int+Extension.swift */; };
@@ -86,6 +87,7 @@
 		B80251402159FA7E00311405 /* JSONDecoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Extension.swift"; sourceTree = "<group>"; };
 		B80AA766215EE33F001BA1ED /* Date+String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+String+Extension.swift"; sourceTree = "<group>"; };
 		B80B5FBD2154AF0D0008675D /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
+		B8193DD72196491C007CE160 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		B83C11F72151B9E800A6BAE3 /* GroupListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
 		B85B9B74215C71FA00A52C10 /* ReminderServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderServices.swift; sourceTree = "<group>"; };
 		B85B9B76215C876C00A52C10 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				B80251402159FA7E00311405 /* JSONDecoder+Extension.swift */,
 				B85B9B76215C876C00A52C10 /* Int+Extension.swift */,
 				B80AA766215EE33F001BA1ED /* Date+String+Extension.swift */,
+				B8193DD72196491C007CE160 /* UIView+Extension.swift */,
 				B87AA690218FE20800BDB606 /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
@@ -494,6 +497,7 @@
 				B85B9B75215C71FA00A52C10 /* ReminderServices.swift in Sources */,
 				B802513D2159F8AD00311405 /* CreateGroupViewController+Extension.swift in Sources */,
 				20A0E5CF2151C05100F0F049 /* Group.swift in Sources */,
+				B8193DD82196491C007CE160 /* UIView+Extension.swift in Sources */,
 				B8CA1FB32186712100D036DE /* NetworkManager.swift in Sources */,
 				20B38345215435790056F1DA /* Constant.swift in Sources */,
 				B8B990552173BECE00850027 /* SignUpViewController.swift in Sources */,

@@ -246,12 +246,7 @@ class SignInViewController: UIViewController{
                                      mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)])
     }
     
-    
-    //    fileprivate func setUpTextInputs(){
-    //        NSLayoutConstraint.activate([])
-    //    }
-    
-    
+
     // Funtion to layout and constraint the two textfields
     fileprivate func setUpTextInputStackView(){
         
@@ -259,6 +254,7 @@ class SignInViewController: UIViewController{
         textInputStackView.alignment = .center
         textInputStackView.axis = .vertical
         textInputStackView.distribution = .fillEqually
+        textInputStackView.backgroundColor = .black
         textInputStackView.translatesAutoresizingMaskIntoConstraints = false
         mainStackView.addSubview(textInputStackView)
         
