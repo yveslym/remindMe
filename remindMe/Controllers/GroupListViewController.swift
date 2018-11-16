@@ -13,6 +13,14 @@ import UIKit
 class GroupListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 // This View Controller class handles functionality to show the list of all the groups
 
+    var userGroups = [Group](){
+        didSet {
+            DispatchQueue.main.async {
+                self.groupListTableView.reloadData()
+            }
+        }
+    }
+    
     // Stack views variables
     var remindersDataStackView = UIStackView()
     var totalRemindersStackView = UIStackView()
@@ -46,9 +54,15 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         // UI Set up
         self.view.backgroundColor = .white
+        groupListTableView.delegate = self as UITableViewDelegate
+        groupListTableView.dataSource = self as UITableViewDataSource
         groupListTableView.register(GroupListTableViewCell.self, forCellReuseIdentifier: Constant.groupTableViewCellIdentifier)
+        createDummyData()
+        
+        
         addViews()
         createRectangularViews()
         createCustomRemindersLabels()
@@ -63,9 +77,9 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // Newtork set up
         
-//        fetchAllGroups()
-//        monitorReminders()
-//
+        //fetchAllGroups()
+        //monitorReminders()
+
 //        networkManager.reachability.whenUnreachable = { reachability in
 //            self.showOfflinePage()
 //        }
@@ -85,12 +99,12 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
 //            self.performSegue(withIdentifier: Constant.offlinePageSegueIdentifier, sender: self)
 //        }
 //    }
-//    // This Method makes a client side request to the server to get all groups
-//    internal func fetchAllGroups(){
-//        GroupServices.index(completion: { (groups) in
-//            self.userGroups = groups!
-//        })
-//    }
+    // This Method makes a client side request to the server to get all groups
+    internal func fetchAllGroups(){
+        GroupServices.index(completion: { (groups) in
+            self.userGroups = groups!
+        })
+    }
     
 //    fileprivate func monitorReminders(){
 //        ReminderServices.index { (reminders) in
@@ -100,16 +114,19 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
 //            })
 //        }
 //    }
-//
-    // This method is used to go back to the group of list view controller
-//    @IBAction func unwindtoGroupListViewController(_ segue: UIStoryboardSegue){
-//        fetchAllGroups()
-//    }
-    
-    
+
     
         // - MARK: UI ELEMENTS AND METHODS
     
+    
+    func createDummyData(){
+        
+        userGroups.append(Group(id: "123", name: "Home", latitude: 40.7128, longitude: 74.0060))
+        userGroups.append(Group(id: "123", name: "Office", latitude: 40.7128, longitude: 74.0060))
+        userGroups.append(Group(id: "123", name: "Personal", latitude: 40.7128, longitude: 74.0060))
+        userGroups.append(Group(id: "123", name: "Random", latitude: 40.7128, longitude: 74.0060))
+
+    }
     
     // The light cyan colored rectangular container that holds the reminders boxes
     private let remindersContainer: UIView = {
@@ -349,15 +366,25 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return userGroups.count
     }
     
     // This Function handles action when a cell is selected
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
         let groupCell = tableView.dequeueReusableCell(withIdentifier: Constant.groupTableViewCellIdentifier, for: indexPath) as! GroupListTableViewCell
-           
+        
+        groupCell.groupNameLabel.text = "Home"
+        groupCell.groupDescriptionLabel.text = "my Home shit"
+        groupCell.remindersAmountLabel.text = 3.convertIntToString()
+        
+        
+
         return groupCell
     }
+    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 30.0
+//    }
 
 }

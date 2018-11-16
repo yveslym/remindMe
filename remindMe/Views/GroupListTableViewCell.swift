@@ -28,29 +28,31 @@ class GroupListTableViewCell: UITableViewCell {
         fatalError("Init(coder:) has not been implemented")
     }
     
-    private let groupNameLabel: UILabel = {
+    open var groupNameLabel: UILabel = {
         
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        //label.font = UIFont.boldSystemFont(ofSize: 20)aa
+        label.font = UIFont(name: "Helvetica", size: 20)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let groupDescriptionLabel: UILabel = {
+    open var groupDescriptionLabel: UILabel = {
         
         let label = UILabel()
-        label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = .lightGray
+        //label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.font = UIFont(name:"Rockwell", size: 15.0)
         label.textAlignment = .center
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let remindersAmountLabel: UILabel = {
+    open var remindersAmountLabel: UILabel = {
         
         let label = UILabel()
         label.textColor = .black
@@ -71,10 +73,10 @@ class GroupListTableViewCell: UITableViewCell {
         addSubview(remindersAmountLabel)
         
         // sets up the anchoring constraint for the thumbnail
-        groupNameLabel.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 5, paddingLeft: 5, paddingBottom: 5, paddingRight: 0, width: 90, height: 0, enableInsets: false)
+        groupNameLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 5, paddingLeft: 15, paddingBottom: 5, paddingRight: 0, width: 90, height: 0, enableInsets: false)
         
         // sets up the anchoring constraint for the name of the space
-        groupDescriptionLabel.anchor(top: groupNameLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 20, paddingLeft: 10, paddingBottom: 10, paddingRight: 0, width: frame.size.width / 2, height: 0, enableInsets: false)
+        groupDescriptionLabel.anchor(top: groupNameLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: remindersAmountLabel.leftAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 10, paddingRight: 0, width: 0, height: 0, enableInsets: false)
         
         // sets up the anchoring constraint for the price of the place
         remindersAmountLabel.anchor(top: topAnchor, left: groupNameLabel.rightAnchor, bottom: nil, right: rightAnchor, paddingTop: 10, paddingLeft: 20, paddingBottom: 10, paddingRight: 10, width: frame.size.width / 2, height: 0, enableInsets: false)
