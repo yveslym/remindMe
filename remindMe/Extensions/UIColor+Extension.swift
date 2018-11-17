@@ -15,6 +15,6 @@ extension UIColor{
     static var gloomyGreen = UIColor(red: 0.0784, green: 0.6275, blue: 0.2157, alpha: 1.0)
     static var gloomyYellow = UIColor(red: 0.8863, green: 0.8118, blue: 0.1137, alpha: 1.0)
     static var lightGray = UIColor(white: 180/255, alpha: 1)
-    static var lightCyan = UIColor(red: 242/255, green: 249/255, blue: 255/255, alpha: 1.0)
+    static var lightCyan = UIColor(red: 0.8706, green: 0.9686, blue: 0.9765, alpha: 1.0) /* #def7f9 */
     static var lightBlue = UIColor(red: 109/255, green: 188/255, blue: 237/255, alpha: 1.0)
 }

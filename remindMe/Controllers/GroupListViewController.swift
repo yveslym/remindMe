@@ -120,19 +120,27 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     /// Sets up home page title and nav bar items
     fileprivate func setUpNavigationBarItems(){
 
-        let titleLabel = UILabel()
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
 
+        // Styling the home page title
         titleLabel.text = "My Groups"
         titleLabel.textColor = .gray
         titleLabel.font = UIFont(name: "Rockwell", size: 20)
-
+        titleLabel.textAlignment = .center
+        titleLabel.backgroundColor = .clear
+        titleLabel.adjustsFontSizeToFitWidth = true
+        
+        // Styling the home page navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addGroupButtonTapped))
         navigationItem.titleView = titleLabel
         navigationController?.navigationBar.backgroundColor = .white
         navigationController?.navigationBar.isTranslucent = true
-
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.alpha = 0.0
     }
     
+    ///
     @objc fileprivate func addGroupButtonTapped(){
         
         
@@ -182,6 +190,7 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     private let groupListTableView: UITableView = {
         
         let tableview = UITableView()
+        tableview.backgroundColor = .clear
         tableview.translatesAutoresizingMaskIntoConstraints = false
         return tableview
     }()
@@ -271,7 +280,7 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     /// Anchors the light cyan colored rectangular container that holds the 3 reminders boxes
     fileprivate func anchorRemindersDataContainer(){
         
-        remindersContainer.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 20, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 300, height: 150, enableInsets: false)
+        remindersContainer.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 300, height: 150, enableInsets: false)
     }
     
     /// Anchors the outer conatainer view that holds the table view
@@ -379,18 +388,15 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
         let groupCell = tableView.dequeueReusableCell(withIdentifier: Constant.groupTableViewCellIdentifier, for: indexPath) as! GroupListTableViewCell
-        
+
         groupCell.groupNameLabel.text = "Home"
-        groupCell.groupDescriptionLabel.text = "my Home shit"
+        groupCell.groupDescriptionLabel.text = "Reminders Related to Home"
         groupCell.remindersAmountLabel.text = 3.convertIntToString()
         
         
 
         return groupCell
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 30.0
-//    }
 
+    
 }
