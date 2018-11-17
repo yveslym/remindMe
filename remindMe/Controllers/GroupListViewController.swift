@@ -13,10 +13,22 @@ import UIKit
 class GroupListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 // This View Controller class handles functionality to show the list of all the groups
 
+    var userGroups = [Group](){
+        didSet {
+            DispatchQueue.main.async {
+                self.groupListTableView.reloadData()
+            }
+        }
+    }
+    
+    // Stack views variables
     var remindersDataStackView = UIStackView()
     var totalRemindersStackView = UIStackView()
     var totalRemindersOnEntryStackView = UIStackView()
     var totalRemindersOnExitStackView = UIStackView()
+    var tableViewStackView = UIStackView()
+    
+    // UI Elements variables
     var totalRemindersBox = UIView()
     var totalRemindersOnEntryBox =  UIView()
     var totalRemindersOnExitBox = UIView()
@@ -26,10 +38,6 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     var totalRemindersOnEntryTextView = UITextView()
     var totalRemindersOnExitAmountLable = UILabel()
     var totalRemindersOnExitTextView = UITextView()
-    //var totalRemindersOnExitBox = UIView()
-    //var mainStackView = UIStackView()
-    //var reminderDataStackView = UIStackView()
-//    var tableViewStackView = UIStackView()
     
     
 
@@ -46,24 +54,32 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        groupListTableView.register(GroupListTableViewCell.self, forCellReuseIdentifier: Constant.groupTableViewCellIdentifier)
-
+        // UI Set up
         self.view.backgroundColor = .white
+        setUpNavigationBarItems()
+        groupListTableView.delegate = self as UITableViewDelegate
+        groupListTableView.dataSource = self as UITableViewDataSource
+        groupListTableView.register(GroupListTableViewCell.self, forCellReuseIdentifier: Constant.groupTableViewCellIdentifier)
+        createDummyData()
+
+
+        addViews()
         createRectangularViews()
         createCustomRemindersLabels()
-        view.addSubview(remindersContainer)
-        setUpRemindersDataContainer()
-        setUpRemindersDataStackView()
-        setUpTotalRemindersStackView()
-        setUpEntriesReminderStackView()
-        setUpExitReminderStackView()
+        anchorTableView()
+        anchorRemindersDataContainer()
+        anchorTableViewContainer()
+        anchorRemindersDataStackView()
+        anchorTotalRemindersStackView()
+        anchorEntriesReminderStackView()
+        anchorExitReminderStackView()
+        
+        
+        // Newtork set up
+        
+        //fetchAllGroups()
+        //monitorReminders()
 
-        
-        
-        
-//        fetchAllGroups()
-//        monitorReminders()
-//
 //        networkManager.reachability.whenUnreachable = { reachability in
 //            self.showOfflinePage()
 //        }
@@ -83,12 +99,12 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
 //            self.performSegue(withIdentifier: Constant.offlinePageSegueIdentifier, sender: self)
 //        }
 //    }
-//    // This Method makes a client side request to the server to get all groups
-//    internal func fetchAllGroups(){
-//        GroupServices.index(completion: { (groups) in
-//            self.userGroups = groups!
-//        })
-//    }
+    // This Method makes a client side request to the server to get all groups
+    internal func fetchAllGroups(){
+        GroupServices.index(completion: { (groups) in
+            self.userGroups = groups!
+        })
+    }
     
 //    fileprivate func monitorReminders(){
 //        ReminderServices.index { (reminders) in
@@ -98,18 +114,52 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
 //            })
 //        }
 //    }
-//
-    // This method is used to go back to the group of list view controller
-//    @IBAction func unwindtoGroupListViewController(_ segue: UIStoryboardSegue){
-//        fetchAllGroups()
-//    }
+
+    // - MARK: MANUAL NAVIGATION
+    
+    /// Sets up home page title and nav bar items
+    fileprivate func setUpNavigationBarItems(){
+
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+
+        // Styling the home page title
+        titleLabel.text = "My Groups"
+        titleLabel.textColor = .gray
+        titleLabel.font = UIFont(name: "Rockwell", size: 20)
+        titleLabel.textAlignment = .center
+        titleLabel.backgroundColor = .clear
+        titleLabel.adjustsFontSizeToFitWidth = true
+        
+        // Styling the home page navigation bar
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addGroupButtonTapped))
+        navigationItem.titleView = titleLabel
+        navigationController?.navigationBar.backgroundColor = .white
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.alpha = 0.0
+    }
+    
+    ///
+    @objc fileprivate func addGroupButtonTapped(){
+        
+        
+    }
     
     
+    // - MARK: UI ELEMENTS AND METHODS
     
-        // - MARK: UI ELEMENTS AND METHODS
     
+    func createDummyData(){
+        
+        userGroups.append(Group(id: "123", name: "Home", latitude: 40.7128, longitude: 74.0060))
+        userGroups.append(Group(id: "123", name: "Office", latitude: 40.7128, longitude: 74.0060))
+        userGroups.append(Group(id: "123", name: "Personal", latitude: 40.7128, longitude: 74.0060))
+        userGroups.append(Group(id: "123", name: "Random", latitude: 40.7128, longitude: 74.0060))
+        
+    }
     
-    /// The light cyan colored rectangular container that holds the reminders boxes
+    // The light cyan colored rectangular container that holds the reminders boxes
     private let remindersContainer: UIView = {
         
         let view = UIView()
@@ -122,42 +172,49 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         return view
     }()
     
-    /// The table view that will contains the list og groups
+    // The lyan cyan colored rectangular container that holds the table view
+    private let tableViewContainer: UIView = {
+        
+        let view = UIView()
+        view.backgroundColor = .lightCyan
+        view.layer.cornerRadius = 15
+        view.clipsToBounds = true
+        view.layer.masksToBounds = true
+        view.layer.shadowRadius = 1
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    
+    // The table view that will contains the list og groups
     private let groupListTableView: UITableView = {
-
+        
         let tableview = UITableView()
+        tableview.backgroundColor = .clear
         tableview.translatesAutoresizingMaskIntoConstraints = false
         return tableview
     }()
     
     
-    // sets up home page title and nav bar items
-    fileprivate func setUpNavigationBarItems(){
-        
-        let titleLabel = UILabel()
-        let addIconButton = UIButton(type: .system)
-        
-        titleLabel.text = "My Groups"
-        addIconButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
-        addIconButton.setImage(UIImage(named: "bar_item_5"), for: .normal)
-        addIconButton.contentMode = .scaleToFill
-
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addIconButton)
-        navigationItem.titleView = titleLabel
-        navigationController?.navigationBar.backgroundColor = .white
-        navigationController?.navigationBar.isTranslucent = false
     
+    
+    /// Adds the view on top of the root view of the view controller
+    fileprivate func addViews(){
+        view.addSubview(remindersContainer)
+        view.addSubview(tableViewContainer)
     }
     
+    /// Instanciates three UIViews variables of box shape that are placed on top of the home page
     fileprivate func createRectangularViews(){
         
         totalRemindersBox = makeCustomReminderBox(bColor: .white, borderWidth: 1.0, borderColor: UIColor.lightBlue.cgColor, cornerRadius: 15, clipsToBound: true, maskToBounds: true, shadowRadius: 1)
         
-        totalRemindersOnEntryBox = makeCustomReminderBox(bColor: .white, borderWidth: 1.0, borderColor: UIColor.lightBlue.cgColor, cornerRadius: 15, clipsToBound: true, maskToBounds: true, shadowRadius: 1)
+        totalRemindersOnEntryBox = makeCustomReminderBox(bColor: .white, borderWidth: 1.0, borderColor: UIColor.gloomyGreen.cgColor, cornerRadius: 15, clipsToBound: true, maskToBounds: true, shadowRadius: 1)
         
-        totalRemindersOnExitBox = makeCustomReminderBox(bColor: .white, borderWidth: 1.0, borderColor: UIColor.lightBlue.cgColor, cornerRadius: 15, clipsToBound: true, maskToBounds: true, shadowRadius: 1)
+        totalRemindersOnExitBox = makeCustomReminderBox(bColor: .white, borderWidth: 1.0, borderColor: UIColor.gloomyYellow.cgColor, cornerRadius: 15, clipsToBound: true, maskToBounds: true, shadowRadius: 1)
     }
     
+    /// Instanciate the labels that go inside the reminder data boxes on top of the home page
     fileprivate func createCustomRemindersLabels(){
         
         let customTotaReminderslLabelsTuple = makeCustomReminderLabels(labelText: "40", labelColor: UIColor.black, textViewBody: "Total Reminders", textViewSize: 12, textViewBodyColor: UIColor.gray)
@@ -165,7 +222,6 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         let customEntryRemindersLabelsTuple = makeCustomReminderLabels(labelText: "10", labelColor: UIColor.black, textViewBody: "Total on entry", textViewSize: 12, textViewBodyColor: UIColor.gray)
         
         let customExitReminderlLabelsTuple = makeCustomReminderLabels(labelText: "30", labelColor: UIColor.black, textViewBody: "Total on exit", textViewSize: 12, textViewBodyColor: UIColor.gray)
-        
         
         
         totalReminderAmountLabel = customTotaReminderslLabelsTuple.0
@@ -178,14 +234,12 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         totalRemindersOnExitTextView = customExitReminderlLabelsTuple.1
     }
     
-    /// Anchors the light cyan colored rectangular container that holds the reminders boxes
-    fileprivate func setUpRemindersDataContainer(){
-        
-        remindersContainer.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 50, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 300, height: 150, enableInsets: false)
-    }
     
     
-    /// This functions takes in in properties of a uiview a creates a custom view in form of a box
+    /* Creates a custom view through peroperties passed as parameters
+     @param :
+     @return
+     */
     fileprivate func makeCustomReminderBox(bColor: UIColor, borderWidth: CGFloat, borderColor: CGColor, cornerRadius: CGFloat, clipsToBound: Bool, maskToBounds: Bool, shadowRadius: CGFloat ) -> UIView{
         
         let customView = UIView()
@@ -197,6 +251,10 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         return customView
     }
     
+    /* Creates a custom label and textview through peroperties passed as parameters
+     @param :
+     @return
+     */
     fileprivate func makeCustomReminderLabels(labelText: String, labelColor: UIColor, textViewBody: String, textViewSize: Int, textViewBodyColor: UIColor) -> (UILabel, UITextView){
         
         let label = UILabel()
@@ -218,8 +276,22 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         return (label,textview)
     }
     
+    
+    /// Anchors the light cyan colored rectangular container that holds the 3 reminders boxes
+    fileprivate func anchorRemindersDataContainer(){
+        
+        remindersContainer.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 300, height: 150, enableInsets: false)
+    }
+    
+    /// Anchors the outer conatainer view that holds the table view
+    fileprivate func anchorTableViewContainer(){
+        
+        tableViewContainer.anchor(top: remindersContainer.bottomAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 50, paddingLeft: 20, paddingBottom: 20, paddingRight: 20, width: 0, height: 0, enableInsets: false)
+    }
+    
+    
     /// Anchors the stackview that will hold the three reminders squared boxes
-    fileprivate func setUpRemindersDataStackView(){
+    fileprivate func anchorRemindersDataStackView(){
         
         remindersDataStackView = UIStackView(arrangedSubviews: [totalRemindersBox,
                                                                 totalRemindersOnEntryBox,
@@ -241,8 +313,8 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         totalRemindersOnExitBox.anchor(top: remindersDataStackView.topAnchor, left: totalRemindersOnEntryBox.rightAnchor, bottom: remindersDataStackView.bottomAnchor, right: remindersContainer.rightAnchor, paddingTop: 20, paddingLeft: 10, paddingBottom: 20, paddingRight: 10, width: 0, height: 0, enableInsets: false)
     }
     
-    /// Anchors
-    fileprivate func setUpTotalRemindersStackView(){
+    /// Anchors the view that holds the total reminders
+    fileprivate func anchorTotalRemindersStackView(){
         
         totalRemindersStackView = UIStackView(arrangedSubviews: [totalReminderAmountLabel,
                                                                  totalReminderTextView])
@@ -259,7 +331,8 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         totalReminderTextView.centerXAnchor.constraint(equalTo: totalRemindersBox.centerXAnchor).isActive = true
     }
     
-    fileprivate func setUpEntriesReminderStackView(){
+    /// Anchors the view that holds the reminders on entry
+    fileprivate func anchorEntriesReminderStackView(){
         
         totalRemindersOnEntryStackView = UIStackView(arrangedSubviews: [totalRemindersOnEntryAmountLable,
                                                                         totalRemindersOnEntryTextView])
@@ -278,7 +351,8 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
 
     }
     
-    fileprivate func setUpExitReminderStackView(){
+    /// Anchors the view that holds the reminders on exit
+    fileprivate func anchorExitReminderStackView(){
         
         totalRemindersOnExitStackView = UIStackView(arrangedSubviews: [totalRemindersOnExitAmountLable,
                                                                         totalRemindersOnExitTextView])
@@ -297,17 +371,32 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
+    /// Anchors the table view in the table view container view
+    fileprivate func anchorTableView(){
+        
+        tableViewContainer.addSubview(groupListTableView)
+        groupListTableView.anchor(top: tableViewContainer.topAnchor, left: tableViewContainer.leftAnchor, bottom: tableViewContainer.bottomAnchor, right: tableViewContainer.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 20, paddingRight: 20, width: 0, height: 0, enableInsets: false)
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return userGroups.count
     }
     
     // This Function handles action when a cell is selected
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
         let groupCell = tableView.dequeueReusableCell(withIdentifier: Constant.groupTableViewCellIdentifier, for: indexPath) as! GroupListTableViewCell
-           
+
+        groupCell.groupNameLabel.text = "Home"
+        groupCell.groupDescriptionLabel.text = "Reminders Related to Home"
+        groupCell.remindersAmountLabel.text = 3.convertIntToString()
+        
+        
+
         return groupCell
     }
 
+    
 }

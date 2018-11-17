@@ -16,6 +16,7 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate{
     
     var window: UIWindow?
+    var navigationController: UINavigationController?
     var locationManager: CLLocationManager!
     var notificationCenter: UNUserNotificationCenter!
     let network = NetworkManager.shared
@@ -139,9 +140,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         
 //        let navigation = UINavigationController(rootViewController: mainPageVC)
         //let mainVC = GroupListViewController()
+        
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = GroupListViewController()
-        window?.makeKeyAndVisible()
+        if let window = window {
+            let groupListVC = GroupListViewController()
+            navigationController = UINavigationController(rootViewController: groupListVC)
+            window.rootViewController = navigationController
+            window.makeKeyAndVisible()
+        }
     }
 }
 
