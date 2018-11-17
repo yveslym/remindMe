@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		173EDB9D55E1FB26C391C621 /* Pods_remindMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED300F59EFE880ED9DD0B12 /* Pods_remindMe.framework */; };
-		20288779219B927F009C517C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20288778219B927F009C517C /* GoogleService-Info.plist */; };
-		2028877A219B927F009C517C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20288778219B927F009C517C /* GoogleService-Info.plist */; };
 		2028877C219B95AB009C517C /* UIViewControllers+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2028877B219B95AB009C517C /* UIViewControllers+Extension.swift */; };
 		2028877D219B95AB009C517C /* UIViewControllers+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2028877B219B95AB009C517C /* UIViewControllers+Extension.swift */; };
 		204B9BE3214C82CE000A1619 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204B9BE2214C82CE000A1619 /* AppDelegate.swift */; };
@@ -62,7 +60,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		20288778219B927F009C517C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2028877B219B95AB009C517C /* UIViewControllers+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewControllers+Extension.swift"; sourceTree = "<group>"; };
 		204B9BDF214C82CE000A1619 /* remindMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = remindMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		204B9BE2214C82CE000A1619 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -166,7 +163,6 @@
 				204B9BE6214C82CE000A1619 /* Main.storyboard */,
 				204B9BE9214C82D0000A1619 /* Assets.xcassets */,
 				204B9BEB214C82D0000A1619 /* LaunchScreen.storyboard */,
-				20288778219B927F009C517C /* GoogleService-Info.plist */,
 				204B9BEE214C82D0000A1619 /* Info.plist */,
 			);
 			path = remindMe;
@@ -361,7 +357,6 @@
 			files = (
 				204B9BED214C82D0000A1619 /* LaunchScreen.storyboard in Resources */,
 				204B9BEA214C82D0000A1619 /* Assets.xcassets in Resources */,
-				20288779219B927F009C517C /* GoogleService-Info.plist in Resources */,
 				204B9BE8214C82CE000A1619 /* Main.storyboard in Resources */,
 				2080538A2151B83C002CAAE4 /* GoogleService-Info.plist in Resources */,
 			);
@@ -371,7 +366,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2028877A219B927F009C517C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

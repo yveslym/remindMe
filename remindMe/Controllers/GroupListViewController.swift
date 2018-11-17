@@ -54,15 +54,15 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         // UI Set up
         self.view.backgroundColor = .white
+        setUpNavigationBarItems()
         groupListTableView.delegate = self as UITableViewDelegate
         groupListTableView.dataSource = self as UITableViewDataSource
         groupListTableView.register(GroupListTableViewCell.self, forCellReuseIdentifier: Constant.groupTableViewCellIdentifier)
         createDummyData()
-        
-        
+
+
         addViews()
         createRectangularViews()
         createCustomRemindersLabels()
@@ -115,8 +115,31 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
 //        }
 //    }
 
+    // - MARK: MANUAL NAVIGATION
     
-        // - MARK: UI ELEMENTS AND METHODS
+    /// Sets up home page title and nav bar items
+    fileprivate func setUpNavigationBarItems(){
+
+        let titleLabel = UILabel()
+
+        titleLabel.text = "My Groups"
+        titleLabel.textColor = .gray
+        titleLabel.font = UIFont(name: "Rockwell", size: 20)
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addGroupButtonTapped))
+        navigationItem.titleView = titleLabel
+        navigationController?.navigationBar.backgroundColor = .white
+        navigationController?.navigationBar.isTranslucent = true
+
+    }
+    
+    @objc fileprivate func addGroupButtonTapped(){
+        
+        
+    }
+    
+    
+    // - MARK: UI ELEMENTS AND METHODS
     
     
     func createDummyData(){
@@ -125,7 +148,7 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         userGroups.append(Group(id: "123", name: "Office", latitude: 40.7128, longitude: 74.0060))
         userGroups.append(Group(id: "123", name: "Personal", latitude: 40.7128, longitude: 74.0060))
         userGroups.append(Group(id: "123", name: "Random", latitude: 40.7128, longitude: 74.0060))
-
+        
     }
     
     // The light cyan colored rectangular container that holds the reminders boxes
@@ -157,30 +180,13 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     // The table view that will contains the list og groups
     private let groupListTableView: UITableView = {
-
+        
         let tableview = UITableView()
         tableview.translatesAutoresizingMaskIntoConstraints = false
         return tableview
     }()
     
     
-    // sets up home page title and nav bar items
-//    fileprivate func setUpNavigationBarItems(){
-//
-//        let titleLabel = UILabel()
-//        let addIconButton = UIButton(type: .system)
-//
-//        titleLabel.text = "My Groups"
-//        addIconButton.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
-//        addIconButton.setImage(UIImage(named: "bar_item_5"), for: .normal)
-//        addIconButton.contentMode = .scaleToFill
-//
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addIconButton)
-//        navigationItem.titleView = titleLabel
-//        navigationController?.navigationBar.backgroundColor = .white
-//        navigationController?.navigationBar.isTranslucent = false
-//
-//    }
     
     
     /// Adds the view on top of the root view of the view controller
@@ -265,7 +271,7 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     /// Anchors the light cyan colored rectangular container that holds the 3 reminders boxes
     fileprivate func anchorRemindersDataContainer(){
         
-        remindersContainer.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 50, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 300, height: 150, enableInsets: false)
+        remindersContainer.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 20, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 300, height: 150, enableInsets: false)
     }
     
     /// Anchors the outer conatainer view that holds the table view
