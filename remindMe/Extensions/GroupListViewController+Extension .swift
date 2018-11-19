@@ -22,11 +22,16 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let groupCell = tableView.dequeueReusableCell(withIdentifier: Constant.groupTableViewCellIdentifier, for: indexPath) as! GroupListTableViewCell
-
+        
         let currentGroup = userGroups[indexPath.row]
+        var counter = 0
+        ReminderServices.indexByGroupId(groupId: currentGroup.id) { (reminders) in
+            guard let reminders = reminders else {return}
+            counter = reminders.count
+        }
         groupCell.groupNameLabel.text = currentGroup.name
         groupCell.groupDescriptionLabel.text = currentGroup.description
-        groupCell.remindersAmountLabel.text = 3.convertIntToString()
+        groupCell.remindersAmountLabel.text = counter.convertIntToString()
 
         return groupCell
     }

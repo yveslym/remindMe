@@ -30,5 +30,6 @@ struct Group: Codable{
         let json = try! JSONSerialization.jsonObject(with: data, options: [])
         return json as! [String : Any]
     }
+    
  
 }
