@@ -13,13 +13,6 @@ import UIKit
 class GroupListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 // This View Controller class handles functionality to show the list of all the groups
 
-    var userGroups = [Group](){
-        didSet {
-            DispatchQueue.main.async {
-                self.groupListTableView.reloadData()
-            }
-        }
-    }
     
     // Stack views variables
     var remindersDataStackView = UIStackView()
@@ -41,16 +34,15 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     
     
 
-//    static var numberOfReminders = 0
-//    let networkManager = NetworkManager.shared
-//    var userGroups = [Group](){
-//        didSet {
-//            DispatchQueue.main.async {
-//                self.groupTableView.reloadData()
-//            }
-//        }
-//    }
-//
+    let networkManager = NetworkManager.shared
+    var userGroups = [Group](){
+        didSet {
+            DispatchQueue.main.async {
+                self.groupListTableView.reloadData()
+            }
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,7 +52,7 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         groupListTableView.delegate = self as UITableViewDelegate
         groupListTableView.dataSource = self as UITableViewDataSource
         groupListTableView.register(GroupListTableViewCell.self, forCellReuseIdentifier: Constant.groupTableViewCellIdentifier)
-        createDummyData()
+        //createDummyData()
 
 
         addViews()
@@ -73,6 +65,8 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         anchorTotalRemindersStackView()
         anchorEntriesReminderStackView()
         anchorExitReminderStackView()
+        
+        updateReminderLabels()
         
         
         // Newtork set up
@@ -99,12 +93,42 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
 //            self.performSegue(withIdentifier: Constant.offlinePageSegueIdentifier, sender: self)
 //        }
 //    }
-    // This Method makes a client side request to the server to get all groups
+    
+    /// Makes api call and get all teh groups created by the user
     internal func fetchAllGroups(){
         GroupServices.index(completion: { (groups) in
             self.userGroups = groups!
         })
     }
+    
+    
+    /// Updates all the reminders labels with proper numbers
+    internal func updateReminderLabels(){
+        var entryCounter = 0
+        var exitCounter = 0
+        var totalRemindersCountter = 0
+        ReminderServices.index { (reminders) in
+            guard let reminders = reminders else {return}
+            
+            reminders.forEach({ (reminder) in
+                if reminder.type?.rawValue == "Entry" || reminder.type?.rawValue == "entry"{
+                    entryCounter += 1
+                    totalRemindersCountter += 1
+                }else if  reminder.type?.rawValue == "Exit" || reminder.type?.rawValue == "exit"{
+                    exitCounter += 1
+                    totalRemindersCountter += 1
+                }
+            })
+            
+            DispatchQueue.main.async {
+                self.totalRemindersOnEntryAmountLable.text = entryCounter.convertIntToString()
+                self.totalRemindersOnExitAmountLable.text = exitCounter.convertIntToString()
+                self.totalReminderAmountLabel.text = reminders.count.convertIntToString()
+            }
+        }
+    }
+    
+    
     
 //    fileprivate func monitorReminders(){
 //        ReminderServices.index { (reminders) in
@@ -150,15 +174,15 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     // - MARK: UI ELEMENTS AND METHODS
     
     
-    func createDummyData(){
-        
-        userGroups.append(Group(id: "123", name: "Home", latitude: 40.7128, longitude: 74.0060))
-        userGroups.append(Group(id: "123", name: "Office", latitude: 40.7128, longitude: 74.0060))
-        userGroups.append(Group(id: "123", name: "Personal", latitude: 40.7128, longitude: 74.0060))
-        userGroups.append(Group(id: "123", name: "Random", latitude: 40.7128, longitude: 74.0060))
-        
-    }
-    
+//    func createDummyData(){
+//
+//        userGroups.append(Group(id: "123", name: "Home", latitude: 40.7128, longitude: 74.0060))
+//        userGroups.append(Group(id: "123", name: "Office", latitude: 40.7128, longitude: 74.0060))
+//        userGroups.append(Group(id: "123", name: "Personal", latitude: 40.7128, longitude: 74.0060))
+//        userGroups.append(Group(id: "123", name: "Random", latitude: 40.7128, longitude: 74.0060))
+//
+//    }
+//
     // The light cyan colored rectangular container that holds the reminders boxes
     private let remindersContainer: UIView = {
         
@@ -217,11 +241,11 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     /// Instanciate the labels that go inside the reminder data boxes on top of the home page
     fileprivate func createCustomRemindersLabels(){
         
-        let customTotaReminderslLabelsTuple = makeCustomReminderLabels(labelText: "40", labelColor: UIColor.black, textViewBody: "Total Reminders", textViewSize: 12, textViewBodyColor: UIColor.gray)
+        let customTotaReminderslLabelsTuple = makeCustomReminderLabels(labelText: "0", labelColor: UIColor.black, textViewBody: "Total Reminders", textViewSize: 12, textViewBodyColor: UIColor.gray)
         
-        let customEntryRemindersLabelsTuple = makeCustomReminderLabels(labelText: "10", labelColor: UIColor.black, textViewBody: "Total on entry", textViewSize: 12, textViewBodyColor: UIColor.gray)
+        let customEntryRemindersLabelsTuple = makeCustomReminderLabels(labelText: "0", labelColor: UIColor.black, textViewBody: "Total on entry", textViewSize: 12, textViewBodyColor: UIColor.gray)
         
-        let customExitReminderlLabelsTuple = makeCustomReminderLabels(labelText: "30", labelColor: UIColor.black, textViewBody: "Total on exit", textViewSize: 12, textViewBodyColor: UIColor.gray)
+        let customExitReminderlLabelsTuple = makeCustomReminderLabels(labelText: "0", labelColor: UIColor.black, textViewBody: "Total on exit", textViewSize: 12, textViewBodyColor: UIColor.gray)
         
         
         totalReminderAmountLabel = customTotaReminderslLabelsTuple.0
