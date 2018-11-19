@@ -12,27 +12,27 @@ extension CreateGroupViewController: UITextFieldDelegate{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        guard let segueIdentifier = segue.identifier else {return}
-        
-        switch segueIdentifier {
-        case Constant.saveGroupSegueIdentifier where group == nil:
-            
-            guard let address = groupAddressTextField.text, let name = groupNameTextField.text else { return }
-            GeoFence.shared.addressToCoordinate(address) { (location) in
-                if let location = location{
-                    
-                    let latitude = location.latitude
-                    let longitude = location.longitude
-                    let createdGroup = Group(id: "",name: name, latitude: latitude, longitude: longitude)
-                    GroupServices.create(createdGroup, completion: { (newGroup) in
-                       //leave empty for now
-                    })
-                }
-            }
-            
-        default:
-            print("Unexpected Segue Identifier")
-        }
+//        guard let segueIdentifier = segue.identifier else {return}
+//
+//        switch segueIdentifier {
+//        case Constant.saveGroupSegueIdentifier where group == nil:
+//
+//            guard let address = groupAddressTextField.text, let name = groupNameTextField.text else { return }
+//            GeoFence.shared.addressToCoordinate(address) { (location) in
+//                if let location = location{
+//
+//                    let latitude = location.latitude
+//                    let longitude = location.longitude
+//                    let createdGroup = Group(id: "",name: name, latitude: latitude, longitude: longitude)
+//                    GroupServices.create(createdGroup, completion: { (newGroup) in
+//                       //leave empty for now
+//                    })
+//                }
+//            }
+//
+//        default:
+//            print("Unexpected Segue Identifier")
+//        }
     }
     
     // FUNCTION TO HANDLE TEXT FIELDS

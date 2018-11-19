@@ -25,7 +25,7 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
 
         let currentGroup = userGroups[indexPath.row]
         groupCell.groupNameLabel.text = currentGroup.name
-        groupCell.groupDescriptionLabel.text = ""
+        groupCell.groupDescriptionLabel.text = currentGroup.description
         groupCell.remindersAmountLabel.text = 3.convertIntToString()
 
         return groupCell
@@ -167,7 +167,6 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         
         tableViewContainer.anchor(top: tableViewTitle.bottomAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 50, paddingLeft: 20, paddingBottom: 20, paddingRight: 20, width: 0, height: 0, enableInsets: false)
     }
-    
     
     
     /// Anchors the stackview that will hold the three reminders squared boxes

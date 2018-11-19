@@ -50,7 +50,7 @@ class GroupListViewController: UIViewController{
         self.groupListTableView.delegate = self as UITableViewDelegate
         self.groupListTableView.dataSource = self as UITableViewDataSource
         groupListTableView.register(GroupListTableViewCell.self, forCellReuseIdentifier: Constant.groupTableViewCellIdentifier)
-
+        dummyData()
         // UI SET UP
         setUpNavigationBarItems()
         addViews()
@@ -67,7 +67,7 @@ class GroupListViewController: UIViewController{
         
         // Network Set Up
         updateReminderLabels()
-        fetchAllGroups()
+        //fetchAllGroups()
         monitorReminders()
         
         networkManager.reachability.whenUnreachable = { reachability in
@@ -81,6 +81,12 @@ class GroupListViewController: UIViewController{
         DispatchQueue.main.async {
             self.groupListTableView.reloadData()
         }
+    }
+    
+    func dummyData(){
+        
+        userGroups.append(Group(id: "123", name: "Home", description: "Reminders related to my home", latitude: 34, longitude: 65))
+        userGroups.append(Group(id: "456", name: "Office", description: "Reminders related to my office", latitude: 45.0, longitude: 90.0))
     }
     
     /// Pushes a view controller that tells the user that he/she is offline

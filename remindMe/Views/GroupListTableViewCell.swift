@@ -57,7 +57,7 @@ class GroupListTableViewCell: UITableViewCell {
         
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont(name: "Rockwell", size: 20)
         label.textAlignment = .center
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -85,7 +85,7 @@ class GroupListTableViewCell: UITableViewCell {
         
         
         // sets up the anchoring constraint for the thumbnail
-        groupNameLabel.anchor(top: topAnchor, left: leftAnchor, bottom: groupDescriptionLabel.topAnchor, right: nil, paddingTop: 5, paddingLeft: 15, paddingBottom: 10, paddingRight: 0, width: 90, height: 0, enableInsets: false)
+        groupNameLabel.anchor(top: topAnchor, left: leftAnchor, bottom: groupDescriptionLabel.topAnchor, right: nil, paddingTop: 10, paddingLeft: 15, paddingBottom: 10, paddingRight: 0, width: 90, height: 0, enableInsets: false)
         
         // sets up the anchoring constraint for the name of the space
         groupDescriptionLabel.anchor(top: groupNameLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 15, paddingBottom: 10, paddingRight: 0, width: 0, height: 0, enableInsets: false)
