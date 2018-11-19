@@ -67,6 +67,18 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
 //    }
     
     
+    // - MARK: UI Elements and AutoLayout methods
+    
+    
+    
+    /// Adds the view on top of the root view of the view controller
+    func addViews(){
+        view.addSubview(remindersContainer)
+        view.addSubview(tableViewContainer)
+        view.addSubview(tableViewTitle)
+    }
+    
+    
     /// Instanciates three UIViews variables of box shape that are placed on top of the home page
     func createRectangularViews(){
         
@@ -146,11 +158,16 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         remindersContainer.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 0, paddingRight: 10, width: 300, height: 150, enableInsets: false)
     }
     
+    func anchorTableViewTitle(){
+        tableViewTitle.anchor(top: remindersContainer.bottomAnchor, left: view.leftAnchor, bottom: tableViewContainer.topAnchor, right: nil, paddingTop: 20, paddingLeft: 20, paddingBottom: 10, paddingRight: 0, width: 0, height: 0, enableInsets: false)
+    }
+    
     /// Anchors the outer conatainer view that holds the table view
     func anchorTableViewContainer(){
         
-        tableViewContainer.anchor(top: remindersContainer.bottomAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 50, paddingLeft: 20, paddingBottom: 20, paddingRight: 20, width: 0, height: 0, enableInsets: false)
+        tableViewContainer.anchor(top: tableViewTitle.bottomAnchor, left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.rightAnchor, paddingTop: 50, paddingLeft: 20, paddingBottom: 20, paddingRight: 20, width: 0, height: 0, enableInsets: false)
     }
+    
     
     
     /// Anchors the stackview that will hold the three reminders squared boxes

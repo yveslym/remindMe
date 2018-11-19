@@ -47,8 +47,8 @@ class GroupListViewController: UIViewController{
         
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.groupListTableView.delegate = self as? UITableViewDelegate
-        self.groupListTableView.dataSource = self as? UITableViewDataSource
+        self.groupListTableView.delegate = self as UITableViewDelegate
+        self.groupListTableView.dataSource = self as UITableViewDataSource
         groupListTableView.register(GroupListTableViewCell.self, forCellReuseIdentifier: Constant.groupTableViewCellIdentifier)
 
         // UI SET UP
@@ -57,6 +57,7 @@ class GroupListViewController: UIViewController{
         createRectangularViews()
         createCustomRemindersLabels()
         anchorTableView()
+        anchorTableViewTitle()
         anchorRemindersDataContainer()
         anchorTableViewContainer()
         anchorRemindersDataStackView()
@@ -123,11 +124,7 @@ class GroupListViewController: UIViewController{
         }
     }
     
-    /// Adds the view on top of the root view of the view controller
-    fileprivate func addViews(){
-        view.addSubview(remindersContainer)
-        view.addSubview(tableViewContainer)
-    }
+    
     
     fileprivate func monitorReminders(){
         ReminderServices.index { (reminders) in
@@ -144,7 +141,7 @@ class GroupListViewController: UIViewController{
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
 
         // Styling the home page title
-        titleLabel.text = "My Groups"
+        titleLabel.text = "Dashboard"
         titleLabel.textColor = .gray
         titleLabel.font = UIFont(name: "Rockwell", size: 20)
         titleLabel.textAlignment = .center
@@ -204,6 +201,15 @@ class GroupListViewController: UIViewController{
         view.layer.shadowRadius = 1
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+    
+    let tableViewTitle: UILabel = {
+    
+        let label = UILabel()
+        label.text = "My Groups"
+        label.textColor = .gray
+        label.font = UIFont(name: "Rockwell", size: 18)
+        return label
     }()
     
     
