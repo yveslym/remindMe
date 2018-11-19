@@ -32,7 +32,7 @@ class GroupListTableViewCell: UITableViewCell {
     open var groupNameLabel: UILabel = {
         
         let label = UILabel()
-        label.textColor = .black
+        label.textColor = .lightDark
         //label.font = UIFont.boldSystemFont(ofSize: 20)aa
         label.font = UIFont(name: "Helvetica-Bold", size: 20)
         label.textAlignment = .left
@@ -91,7 +91,7 @@ class GroupListTableViewCell: UITableViewCell {
         groupDescriptionLabel.anchor(top: groupNameLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 15, paddingBottom: 10, paddingRight: 0, width: 0, height: 0, enableInsets: false)
         
         // sets up the anchoring constraint for the price of the place
-        remindersAmountLabel.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 20, paddingLeft: 0, paddingBottom: 10, paddingRight: 10, width: 0, height: 0, enableInsets: false)
+        remindersAmountLabel.anchor(top: topAnchor, left: nil, bottom: bottomAnchor, right: rightAnchor, paddingTop: 20, paddingLeft: 0, paddingBottom: 20, paddingRight: 10, width: 0, height: 0, enableInsets: false)
     }
     
 }

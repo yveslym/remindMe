@@ -10,7 +10,7 @@
 import Foundation
 import UIKit
 
-class GroupListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class GroupListViewController: UIViewController{
 // This View Controller class handles functionality to show the list of all the groups
 
     
@@ -49,8 +49,8 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         // UI Set up
         self.view.backgroundColor = .white
         setUpNavigationBarItems()
-        groupListTableView.delegate = self as UITableViewDelegate
-        groupListTableView.dataSource = self as UITableViewDataSource
+        self.groupListTableView.delegate = self as? UITableViewDelegate
+        self.groupListTableView.dataSource = self as? UITableViewDataSource
         groupListTableView.register(GroupListTableViewCell.self, forCellReuseIdentifier: Constant.groupTableViewCellIdentifier)
         //createDummyData()
 
@@ -67,6 +67,7 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         anchorExitReminderStackView()
         
         updateReminderLabels()
+        fetchAllGroups()
         
         
         // Newtork set up
@@ -401,26 +402,4 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         tableViewContainer.addSubview(groupListTableView)
         groupListTableView.anchor(top: tableViewContainer.topAnchor, left: tableViewContainer.leftAnchor, bottom: tableViewContainer.bottomAnchor, right: tableViewContainer.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 20, paddingRight: 20, width: 0, height: 0, enableInsets: false)
     }
-    
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userGroups.count
-    }
-    
-    // This Function handles action when a cell is selected
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
-        let groupCell = tableView.dequeueReusableCell(withIdentifier: Constant.groupTableViewCellIdentifier, for: indexPath) as! GroupListTableViewCell
-
-        groupCell.groupNameLabel.text = "Home"
-        groupCell.groupDescriptionLabel.text = "Reminders Related to Home"
-        groupCell.remindersAmountLabel.text = 3.convertIntToString()
-        
-        
-
-        return groupCell
-    }
-
-    
 }

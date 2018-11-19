@@ -37,15 +37,5 @@ struct Reminder: Codable{
         return json as! [String: Any]
     }
     
-     
-    /// Return all reminders on entry
-    static func remindersOnEntry() -> Int{
-        return 0
-    }
-    
-    /// Return all reminders on exit
-    static func remindersOnExit(){
-        
-    }
     
 }
