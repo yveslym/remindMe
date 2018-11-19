@@ -66,8 +66,7 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         anchorEntriesReminderStackView()
         anchorExitReminderStackView()
         
-        updateTotalRemindersLabel()
-        updateTotalRemindersOnEntryLabel()
+        updateReminderLabels()
         
         
         // Newtork set up
@@ -103,32 +102,42 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     /// Updates the total amount of reminder label
-    internal func updateTotalRemindersLabel(){
-            ReminderServices.index { (reminders) in
-                guard let reminders = reminders else {return}
-                DispatchQueue.main.async {
-                    self.totalReminderAmountLabel.text = reminders.count.convertIntToString()
-                }
-            }
-    }
+//    internal func updateTotalRemindersLabel(){
+//            ReminderServices.index { (reminders) in
+//                guard let reminders = reminders else {return}
+//                DispatchQueue.main.async {
+//                    self.totalReminderAmountLabel.text = reminders.count.convertIntToString()
+//                }
+//            }
+//    }
     
-    /// Updates the total amount of reminder on entry label
-    internal func updateTotalRemindersOnEntryLabel(){
-        var counter = 0
+    /// Updates all the reminders labels with proper numbers 
+    internal func updateReminderLabels(){
+        var entryCounter = 0
+        var exitCounter = 0
+        var totalRemindersCountter = 0
         ReminderServices.index { (reminders) in
             guard let reminders = reminders else {return}
             
             reminders.forEach({ (reminder) in
-                if reminder.type?.rawValue == "Entry"{
-                    counter += 1
+                if reminder.type?.rawValue == "Entry" || reminder.type?.rawValue == "entry"{
+                    entryCounter += 1
+                    totalRemindersCountter += 1
+                }else if  reminder.type?.rawValue == "Exit" || reminder.type?.rawValue == "exit"{
+                    exitCounter += 1
+                    totalRemindersCountter += 1
                 }
             })
             
             DispatchQueue.main.async {
-                self.totalRemindersOnEntryAmountLable.text = counter.convertIntToString()
+                self.totalRemindersOnEntryAmountLable.text = entryCounter.convertIntToString()
+                self.totalRemindersOnExitAmountLable.text = exitCounter.convertIntToString()
+                self.totalReminderAmountLabel.text = reminders.count.convertIntToString()
             }
         }
     }
+    
+    
     
 //    fileprivate func monitorReminders(){
 //        ReminderServices.index { (reminders) in
