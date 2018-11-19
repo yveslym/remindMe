@@ -101,17 +101,8 @@ class GroupListViewController: UIViewController, UITableViewDelegate, UITableVie
         })
     }
     
-    /// Updates the total amount of reminder label
-//    internal func updateTotalRemindersLabel(){
-//            ReminderServices.index { (reminders) in
-//                guard let reminders = reminders else {return}
-//                DispatchQueue.main.async {
-//                    self.totalReminderAmountLabel.text = reminders.count.convertIntToString()
-//                }
-//            }
-//    }
     
-    /// Updates all the reminders labels with proper numbers 
+    /// Updates all the reminders labels with proper numbers
     internal func updateReminderLabels(){
         var entryCounter = 0
         var exitCounter = 0
