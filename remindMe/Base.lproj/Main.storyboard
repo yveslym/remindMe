@@ -22,9 +22,6 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="h2T-LK-KbY"/>
-                    <connections>
-                        <segue destination="yjR-l0-616" kind="show" identifier="offlinePage" id="xwr-uw-Kbd"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="CJF-fl-m3F" userLabel="Exit" sceneMemberID="exit"/>
@@ -238,7 +235,6 @@
                         <outlet property="nameTextField" destination="hLr-e6-6TD" id="EEt-hs-8WQ"/>
                         <outlet property="passwordTextField" destination="rG5-3e-JFZ" id="YBk-2Z-gFW"/>
                         <outlet property="reEnterPasswordTextField" destination="6Iw-aR-CPG" id="cPo-LF-cZz"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="backToGroups" id="8Bx-bb-onn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8cX-qO-xeA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -253,30 +249,13 @@
                     <view key="view" contentMode="scaleToFill" id="rQd-eV-RK0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="You are offline, connect to the internet" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aFV-Id-c72">
-                                <rect key="frame" x="26" y="365" width="333" height="61"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="textColor" name="tcDarkBlue"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="offlineLogo" translatesAutoresizingMaskIntoConstraints="NO" id="d5j-P9-q9g">
-                                <rect key="frame" x="120" y="202" width="157" height="155"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="kHl-SS-wUO"/>
                     </view>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="backToGroups" id="hSg-U4-8hs"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Cb-4c-WHB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-633" y="143"/>
+            <point key="canvasLocation" x="-518" y="143"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="Y7M-mr-Klq">
@@ -288,10 +267,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="WI8-Te-tXe"/>
                     </view>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="backToGroups" id="dp5-L4-wDa"/>
-                        <segue destination="yjR-l0-616" kind="show" identifier="offlinePage" id="0on-Or-MOM"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Afn-pf-rzf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -317,7 +292,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="offlineLogo" width="128" height="128"/>
         <namedColor name="tcDarkBlue">
             <color red="0.16899999976158142" green="0.17599999904632568" blue="0.36100000143051147" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -325,8 +299,4 @@
             <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="xwr-uw-Kbd"/>
-        <segue reference="dp5-L4-wDa"/>
-    </inferredMetricsTieBreakers>
 </document>

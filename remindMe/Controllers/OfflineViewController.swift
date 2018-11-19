@@ -14,8 +14,18 @@ class OfflineViewController: UIViewController{
     
     let network = NetworkManager.shared
     
+    let wifiImageView: UIImageView = {
+        
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "offline")
+        return imageView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .white
+        self.view.addSubview(wifiImageView)
+        anchorElements()
         
         network.reachability.whenReachable = { reachability in
             self.showMainViewController()
@@ -36,5 +46,11 @@ class OfflineViewController: UIViewController{
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: Constant.backToGroupListSegueIdentifier, sender: self)
         }
+    }
+    
+    fileprivate func anchorElements(){
+        
+        wifiImageView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 120, paddingLeft: 110, paddingBottom: 0, paddingRight: 110, width: 0, height: 0, enableInsets: false)
+        
     }
 }
