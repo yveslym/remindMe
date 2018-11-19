@@ -44,13 +44,13 @@ class OfflineViewController: UIViewController{
     
     fileprivate func showMainViewController(){
         DispatchQueue.main.async {
-            self.performSegue(withIdentifier: Constant.backToGroupListSegueIdentifier, sender: self)
+            let destinationVC = GroupListViewController()
+            self.navigationController?.pushViewController(destinationVC, animated: true)
         }
     }
     
     fileprivate func anchorElements(){
         
         wifiImageView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 120, paddingLeft: 110, paddingBottom: 0, paddingRight: 110, width: 0, height: 0, enableInsets: false)
-        
     }
 }

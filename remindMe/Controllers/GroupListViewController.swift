@@ -69,7 +69,6 @@ class GroupListViewController: UIViewController{
         fetchAllGroups()
         monitorReminders()
         
-
         networkManager.reachability.whenUnreachable = { reachability in
             self.showOfflinePage()
         }
@@ -85,8 +84,10 @@ class GroupListViewController: UIViewController{
     
     /// Pushes a view controller that tells the user that he/she is offline
     fileprivate func showOfflinePage(){
-        let destinationVc = OfflineViewController()
-        self.navigationController?.pushViewController(destinationVc, animated: true)
+        DispatchQueue.main.async {
+            let destinationVc = OfflineViewController()
+            self.navigationController?.pushViewController(destinationVc, animated: true)
+        }
     }
     
     /// Makes api call and get all teh groups created by the user
