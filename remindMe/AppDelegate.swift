@@ -125,21 +125,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     /// Method to render the offline page if there is no internet connection
     fileprivate func showOfflinePage(){
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        guard let offlinePageVC = storyBoard.instantiateViewController(withIdentifier: "OfflineViewController") as? OfflineViewController else { return }
-
-        let navigation = UINavigationController(rootViewController: offlinePageVC)
-        window?.rootViewController = navigation
-        window?.makeKeyAndVisible()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        if let window = window{
+            let destinationVC = OfflineViewController()
+            navigationController = UINavigationController(rootViewController: destinationVC)
+            window.rootViewController = navigationController
+            window.makeKeyAndVisible()
+        }
     }
 
     /// Method to render the main page if there is internet connection
     fileprivate func showMainPage(){
-//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-//        guard let mainPageVC = storyBoard.instantiateViewController(withIdentifier: "GroupListViewController") as? GroupListViewController else { return }
-        
-//        let navigation = UINavigationController(rootViewController: mainPageVC)
-        //let mainVC = GroupListViewController()
         
         window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window {

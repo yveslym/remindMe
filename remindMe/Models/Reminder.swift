@@ -39,4 +39,5 @@ struct Reminder: Codable{
         return json as! [String: Any]
     }
     
+    
 }
