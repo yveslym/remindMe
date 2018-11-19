@@ -17,7 +17,6 @@ struct Reminder: Codable{
     var time: String
     var longitude: Double
     var latitude : Double
-    static var totalAmountOfReminders: Int = 0
     var timeFrom: String?
     var timeTo: String?
     
@@ -30,7 +29,6 @@ struct Reminder: Codable{
         self.time = time
         self.longitude = longitude
         self.latitude = latitude
-        Reminder.totalAmountOfReminders += 1
     }
 
     // Function convert data  to be sent to the server into a json encoded format
@@ -39,17 +37,6 @@ struct Reminder: Codable{
         let json = try! JSONSerialization.jsonObject(with: data, options: [])
         
         return json as! [String: Any]
-    }
-    
-     
-    /// Return all reminders on entry
-    static func remindersOnEntry() -> Int{
-        return 0
-    }
-    
-    /// Return all reminders on exit
-    static func remindersOnExit(){
-        
     }
     
 }
