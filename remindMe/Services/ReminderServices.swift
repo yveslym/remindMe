@@ -134,4 +134,14 @@ struct ReminderServices{
             return (error == nil) ? ( completion(true)) : (completion(false))
         }
     }
+    
+    /// method to check if the reminder is onnthe time constrain to set by the user to recieve notificartion
+  static func isReminderOnTimeFrame(reminder: Reminder) -> Bool{
+        guard let date = Date().toString().toDateTime() else{return false}
+         guard let timeFrom = reminder.timeFrom?.toDateTime() else{return false}
+         guard let timeTo = reminder.timeTo?.toDateTime() else{return false}
+        
+      return (timeFrom <= date) && (timeTo >= date ) ?  true :  false
+        
+    }
 }

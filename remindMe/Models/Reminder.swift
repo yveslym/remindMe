@@ -17,8 +17,10 @@ struct Reminder: Codable{
     var time: String
     var longitude: Double
     var latitude : Double
+    var timeFrom: String?
+    var timeTo: String?
     
-    init(groupId: String, id: String, name: String, type: EventType, time: String, longitude: Double, latitude: Double) {
+    init(groupId: String, id: String, name: String, type: EventType, time: String, longitude: Double, latitude: Double, timeFrom: String, timeTo: String) {
         
         self.groupId = groupId
         self.id = id

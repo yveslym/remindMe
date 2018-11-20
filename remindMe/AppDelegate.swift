@@ -95,6 +95,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         let identifier = region.identifier
         ReminderServices.show(identifier) { (reminder) in
             guard let reminder = reminder else {return}
+            
+            if !ReminderServices.isReminderOnTimeFrame(reminder: reminder) {return}
+            
             GroupServices.show(reminder.groupId, completion: { (group) in
                 guard let group = group else {return}
                 self.handleEvent(forRegion: region, body: reminder.time, title:group.name)
@@ -119,7 +122,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         }
     }
     
-
+    
     /// Method to render the offline page if there is no internet connection
     fileprivate func showOfflinePage(){
         window = UIWindow(frame: UIScreen.main.bounds)
