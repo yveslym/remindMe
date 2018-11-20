@@ -67,9 +67,8 @@ class GroupListViewController: UIViewController{
         
         // Network Set Up
         updateReminderLabels()
-        //fetchAllGroups()
+        fetchAllGroups()
         monitorReminders()
-        
         networkManager.reachability.whenUnreachable = { reachability in
             self.showOfflinePage()
         }
@@ -125,7 +124,7 @@ class GroupListViewController: UIViewController{
     }
     
     
-    
+    /// Triggers the Geofence API to start monitoring the groups' addresses
     fileprivate func monitorReminders(){
         ReminderServices.index { (reminders) in
             guard let reminders = reminders else {return}
@@ -164,19 +163,8 @@ class GroupListViewController: UIViewController{
         
     }
     
-    
     // - MARK: UI ELEMENTS AND METHODS
     
-    
-//    func createDummyData(){
-//
-//        userGroups.append(Group(id: "123", name: "Home", latitude: 40.7128, longitude: 74.0060))
-//        userGroups.append(Group(id: "123", name: "Office", latitude: 40.7128, longitude: 74.0060))
-//        userGroups.append(Group(id: "123", name: "Personal", latitude: 40.7128, longitude: 74.0060))
-//        userGroups.append(Group(id: "123", name: "Random", latitude: 40.7128, longitude: 74.0060))
-//
-//    }
-//
     // The light cyan colored rectangular container that holds the reminders boxes
     let remindersContainer: UIView = {
         
@@ -203,6 +191,7 @@ class GroupListViewController: UIViewController{
         return view
     }()
     
+    // The table view title
     let tableViewTitle: UILabel = {
     
         let label = UILabel()
@@ -221,7 +210,4 @@ class GroupListViewController: UIViewController{
         tableview.translatesAutoresizingMaskIntoConstraints = false
         return tableview
     }()
-    
-
-
 }
