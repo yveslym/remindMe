@@ -16,7 +16,7 @@ class SignInViewController: UIViewController{
 // This View Controller class handles functionality sign in a user from the client side
     
     // google and facebbok button provided by the sdk
-     var googleButton: GIDSignInButton!
+     //var googleButton: GIDSignInButton!
      var facebookButton: FBSDKLoginButton!
     
     
@@ -79,7 +79,7 @@ class SignInViewController: UIViewController{
     // Yves -- Put your Google SDK Logic here!!!
     @objc fileprivate func GooglesigniButtonTapped(_ sender: UIButton){
         print("Google sign in butotn tapped")
-        
+        GIDSignIn.sharedInstance()?.signIn()
     }
     
     // Toggles the signin view controller
@@ -304,7 +304,7 @@ class SignInViewController: UIViewController{
     /// Funtion to layout and constraint the signin button
     fileprivate func setUpSignInButtonsStackView(){
         
-        signInButtonsStackView = UIStackView(arrangedSubviews: [signInButton, facebookSignInButton, googleButton])
+        signInButtonsStackView = UIStackView(arrangedSubviews: [signInButton, facebookSignInButton, googleSignInButton])
         
         signInButtonsStackView.alignment = .center
         signInButtonsStackView.distribution = .fillEqually
@@ -324,11 +324,11 @@ class SignInViewController: UIViewController{
                                      facebookSignInButton.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 10),
                                      facebookSignInButton.leadingAnchor.constraint(equalTo: signInButtonsStackView.leadingAnchor, constant: 50),
                                      facebookSignInButton.trailingAnchor.constraint(equalTo: signInButtonsStackView.trailingAnchor, constant: -50),
-                                     facebookSignInButton.bottomAnchor.constraint(equalTo: googleButton.topAnchor, constant: -20),
-                                     googleButton.topAnchor.constraint(equalTo: facebookSignInButton.bottomAnchor, constant: 10),
-                                     googleButton.leadingAnchor.constraint(equalTo: signInButtonsStackView.leadingAnchor, constant: 50),
-                                     googleButton.trailingAnchor.constraint(equalTo: signInButtonsStackView.trailingAnchor, constant: -50),
-                                     googleButton.bottomAnchor.constraint(equalTo: signInButtonsStackView.bottomAnchor, constant: -20)])
+                                     facebookSignInButton.bottomAnchor.constraint(equalTo: googleSignInButton.topAnchor, constant: -20),
+                                     googleSignInButton.topAnchor.constraint(equalTo: facebookSignInButton.bottomAnchor, constant: 10),
+                                     googleSignInButton.leadingAnchor.constraint(equalTo: signInButtonsStackView.leadingAnchor, constant: 50),
+                                     googleSignInButton.trailingAnchor.constraint(equalTo: signInButtonsStackView.trailingAnchor, constant: -50),
+                                     googleSignInButton.bottomAnchor.constraint(equalTo: signInButtonsStackView.bottomAnchor, constant: -20)])
     }
     
 }
@@ -413,12 +413,12 @@ extension SignInViewController:  GIDSignInDelegate, GIDSignInUIDelegate{
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
        
         
-         self.googleButton = GIDSignInButton()
-        self.googleButton.colorScheme = .dark
-        self.googleButton.style = .wide
-        self.googleButton.layer.masksToBounds = true
-         self.googleButton.layer.cornerRadius = 15
-        //self.googleButton.style =
+//         self.googleButton = GIDSignInButton()
+//        self.googleButton.colorScheme = .dark
+//        self.googleButton.style = .wide
+//        self.googleButton.layer.masksToBounds = true
+//         self.googleButton.layer.cornerRadius = 15
+//        //self.googleButton.style =
         
      GIDSignIn.sharedInstance().delegate = self
      GIDSignIn.sharedInstance().uiDelegate = self
