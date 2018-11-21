@@ -16,13 +16,14 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate{
     
     var window: UIWindow?
+    var navigationController: UINavigationController?
     var locationManager: CLLocationManager!
     var notificationCenter: UNUserNotificationCenter!
     let network = NetworkManager.shared
     class var shared: AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
-
+    
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -124,22 +125,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     /// Method to render the offline page if there is no internet connection
     fileprivate func showOfflinePage(){
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        guard let offlinePageVC = storyBoard.instantiateViewController(withIdentifier: "OfflineViewController") as? OfflineViewController else { return }
-
-        let navigation = UINavigationController(rootViewController: offlinePageVC)
-        window?.rootViewController = navigation
-        window?.makeKeyAndVisible()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        if let window = window{
+            let destinationVC = OfflineViewController()
+            navigationController = UINavigationController(rootViewController: destinationVC)
+            window.rootViewController = navigationController
+            window.makeKeyAndVisible()
+        }
     }
 
     /// Method to render the main page if there is internet connection
     fileprivate func showMainPage(){
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        guard let mainPageVC = storyBoard.instantiateViewController(withIdentifier: "GroupListViewController") as? GroupListViewController else { return }
         
-        let navigation = UINavigationController(rootViewController: mainPageVC)
-        window?.rootViewController = navigation
-        window?.makeKeyAndVisible()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        if let window = window {
+            let groupListVC = GroupListViewController()
+            navigationController = UINavigationController(rootViewController: groupListVC)
+            window.rootViewController = navigationController
+            window.makeKeyAndVisible()
+        }
     }
 }
 

@@ -30,9 +30,6 @@ struct Reminder: Codable{
         self.time = time
         self.longitude = longitude
         self.latitude = latitude
-        Reminder.totalAmountOfReminders += 1
-        self.timeFrom = timeFrom
-        self.timeTo = timeTo
     }
 
     // Function convert data  to be sent to the server into a json encoded format
@@ -43,14 +40,5 @@ struct Reminder: Codable{
         return json as! [String: Any]
     }
     
-    // Function to get all reminders on entry
-    static func remindersOnEntry(){
-        
-    }
-    
-    // Function to get all reminders on exit
-    static func remindersOnExit(){
-        
-    }
     
 }

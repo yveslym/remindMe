@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "offlineLogo.png",
+      "filename" : "bar_item_2.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "offlineLogo-1.png",
+      "filename" : "bar_item_2-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "offlineLogo-2.png",
+      "filename" : "bar_item_2-2.png",
       "scale" : "3x"
     }
   ],

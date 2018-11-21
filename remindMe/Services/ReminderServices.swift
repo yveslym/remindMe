@@ -49,6 +49,38 @@ struct ReminderServices{
         }
     
     
+    /** METHOD TO RETURN AN ARRAY OF REMINDERS WITH THE GIVEN GROUP ID FROM THE DATABASE
+     @param : groupId : the reminder's id of needed to look it up on the database
+     @param completion -> [Reminder]: The list of  reminder objects to be returned after the method call
+     */
+    static func indexByGroupId(groupId: String, completion: @escaping([Reminder]?) -> ()){
+        
+        let reference = Constant.reminderRef()
+        reference.observeSingleEvent(of: .value) { (snapshot) in
+            var listOfReminders = [Reminder]()
+            let dispatchGroup = DispatchGroup()
+            if snapshot.exists() == false {return completion(nil)}
+            
+            snapshot.children.forEach({ (snap) in
+                dispatchGroup.enter()
+                guard let snap = snap as? DataSnapshot  else {return completion(nil)}
+                guard let snapshotValue = snap.value else {return}
+                let encodedData = try! JSONSerialization.data(withJSONObject: snapshotValue, options: [])
+                let reminder = try! JSONDecoder().decode(Reminder.self, from: encodedData)
+                
+                if reminder.groupId == groupId{
+                    listOfReminders.append(reminder)
+                }
+                dispatchGroup.leave()
+            })
+            
+            dispatchGroup.notify(queue: .global(), execute: {
+                completion(listOfReminders)
+            })
+        }
+    }
+    
+    
     /** METHOD TO SHOW THE DATA OF A SINGLE REMINDER FROM THE DATABASE TO THE CLIENT
      @param : reminderId : the reminder's id of needed to look it up on the database
      @param completion -> Reminder: The single reminder object to be returned after the method call

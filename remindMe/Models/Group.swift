@@ -12,14 +12,15 @@ struct Group: Codable{
     
     var id: String
     var name: String
+    var description: String
     var longitude: Double
     var latitude: Double
-    var numberOfReminders = 0
     
-    init(id: String, name: String, latitude: Double, longitude: Double) {
+    init(id: String, name: String,description: String, latitude: Double, longitude: Double) {
         
         self.id = id
         self.name = name
+        self.description = description
         self.latitude = latitude
         self.longitude = longitude
     }
@@ -29,5 +30,6 @@ struct Group: Codable{
         let json = try! JSONSerialization.jsonObject(with: data, options: [])
         return json as! [String : Any]
     }
+    
  
 }
