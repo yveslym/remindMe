@@ -27,10 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        isUserLoggedIn()
+        
         configureUserLocation()
         configureLocalNotification()
         FirebaseApp.configure()
+        isUserLoggedIn()
         
         return true
     }
@@ -120,6 +121,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
                 }
             }
         }
+        else{
+            self.showSigninPage()
+        }
     }
     
     
@@ -142,6 +146,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             let groupListVC = GroupListViewController()
             navigationController = UINavigationController(rootViewController: groupListVC)
             window.rootViewController = navigationController
+            window.makeKeyAndVisible()
+        }
+    }
+    
+    /// Method to render the main page if there is internet connection
+    fileprivate func showSigninPage(){
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        if let window = window {
+            let signIn = SignInViewController()
+            
+            window.rootViewController = signIn
             window.makeKeyAndVisible()
         }
     }

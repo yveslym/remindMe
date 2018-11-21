@@ -17,6 +17,7 @@ struct Reminder: Codable{
     var time: String
     var longitude: Double
     var latitude : Double
+    static var totalAmountOfReminders: Int = 0
     var timeFrom: String?
     var timeTo: String?
     
