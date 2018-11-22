@@ -23,6 +23,9 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
 
         let groupCell = tableView.dequeueReusableCell(withIdentifier: Constant.groupTableViewCellIdentifier, for: indexPath) as! GroupListTableViewCell
         
+        let customView = CustomView(frame: groupCell.contentView.frame, leftViewColor: UIColor.blue)
+        groupCell.contentView.addSubview(customView)
+        
         let currentGroup = userGroups[indexPath.row]
         var counter = 0
         ReminderServices.indexByGroupId(groupId: currentGroup.id) { (reminders) in
@@ -32,7 +35,8 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         groupCell.groupNameLabel.text = currentGroup.name
         groupCell.groupDescriptionLabel.text = currentGroup.description
         groupCell.remindersAmountLabel.text = counter.convertIntToString()
-
+        
+       
         return groupCell
     }
 

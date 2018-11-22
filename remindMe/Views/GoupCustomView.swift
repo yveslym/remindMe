@@ -35,7 +35,7 @@ class CustomView: UIView {
         
         /// ceate the left view and redraw the view
         
-        let leftRect = CGRect(x: rect.origin.x, y: rect.origin.y, width: rect.size.width/4, height: rect.size.height)
+        let leftRect = CGRect(x: rect.origin.x, y: rect.origin.y, width: 10/*rect.size.width/10*/, height: rect.size.height)
         
         
         self.sideViewColor.set()
@@ -44,9 +44,9 @@ class CustomView: UIView {
         let rectShape = CAShapeLayer()
         rectShape.bounds = self.frame
         rectShape.position = self.center
-        rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [.bottomLeft, .topLeft], cornerRadii: CGSize(width: 20, height: 20)).cgPath
+        rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [.bottomLeft, .topLeft], cornerRadii: CGSize(width: 7, height: 7)).cgPath
         
-        self.layer.backgroundColor = UIColor.green.cgColor
+        self.layer.backgroundColor = UIColor.clear.cgColor
         self.layer.mask = rectShape
     }
     
