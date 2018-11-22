@@ -54,6 +54,7 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         let group = userGroups[indexPath.row]
         //self.performSegue(withIdentifier: Constant.showAllRemindersSegueIdentifier, sender: group)
         let destinationVC = ReminderListViewController()
+        destinationVC.userReminders = userReminders.filter({$0.groupId == group.id})
         self.navigationController?.pushViewController(destinationVC, animated: true)
     }
 
