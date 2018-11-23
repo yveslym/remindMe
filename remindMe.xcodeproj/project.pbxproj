@@ -29,6 +29,7 @@
 		20C02DA4219F68D1009AD46E /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C02DA2219F68D1009AD46E /* Date+Extensions.swift */; };
 		20D913AD21A63AF5007170A1 /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D913AC21A63AF5007170A1 /* CustomViews.swift */; };
 		20D913AF21A763AC007170A1 /* ReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D913AE21A763AC007170A1 /* ReminderView.swift */; };
+		20D913B121A8904B007170A1 /* NewReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D913B021A8904B007170A1 /* NewReminderViewController.swift */; };
 		2D6F192179A9A9E868DB2B2D /* Pods_remindMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DCC1BA5893E3146460889DC /* Pods_remindMe.framework */; };
 		8CB4640FB3D3AA0F4CA0F692 /* Pods_remindMeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AFD1CA50477EB63ED641A3D /* Pods_remindMeTests.framework */; };
 		B802513B2159E47A00311405 /* CreateReminderViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B802513A2159E47A00311405 /* CreateReminderViewController+Extension.swift */; };
@@ -92,6 +93,7 @@
 		20C02DA2219F68D1009AD46E /* Date+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		20D913AC21A63AF5007170A1 /* CustomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
 		20D913AE21A763AC007170A1 /* ReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderView.swift; sourceTree = "<group>"; };
+		20D913B021A8904B007170A1 /* NewReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewReminderViewController.swift; sourceTree = "<group>"; };
 		6DCC1BA5893E3146460889DC /* Pods_remindMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_remindMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E437F26E5A157126401BDE /* Pods-remindMeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-remindMeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-remindMeTests/Pods-remindMeTests.release.xcconfig"; sourceTree = "<group>"; };
 		8E83550514E78F1F3C068DBC /* Pods-remindMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-remindMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-remindMe/Pods-remindMe.debug.xcconfig"; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				B8B990542173BECE00850027 /* SignUpViewController.swift */,
 				B8F8C1C42173CB7F006BDBD3 /* SignInViewController.swift */,
 				B8CA1FB421867E3900D036DE /* OfflineViewController.swift */,
+				20D913B021A8904B007170A1 /* NewReminderViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				B802513F2159FA3E00311405 /* JSONEncoder+Extension.swift in Sources */,
 				2028877C219B95AB009C517C /* UIViewControllers+Extension.swift in Sources */,
 				B80251412159FA7E00311405 /* JSONDecoder+Extension.swift in Sources */,
+				20D913B121A8904B007170A1 /* NewReminderViewController.swift in Sources */,
 				B87AA691218FE20800BDB606 /* UIColor+Extension.swift in Sources */,
 				208AD47021A5FF3C00F8C331 /* GoupCustomView.swift in Sources */,
 				204B9BE3214C82CE000A1619 /* AppDelegate.swift in Sources */,

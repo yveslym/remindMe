@@ -125,16 +125,16 @@ class ReminderListViewController: UIViewController{
         // Styling the home page navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addGroupButtonTapped))
         navigationItem.titleView = titleLabel
-//        navigationController?.navigationBar.backgroundColor = .white
-//        navigationController?.navigationBar.isTranslucent = true
-//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-//        navigationController?.navigationBar.shadowImage = UIImage()
-//        navigationController?.navigationBar.alpha = 0.0
+
     }
     
     ///
     @objc fileprivate func addGroupButtonTapped(){
         
-        
+        let destination = NewReminderViewController()
+        destination.modalPresentationStyle = .overCurrentContext
+        destination.userGroup = userGroup
+       
+        self.present(destination, animated: true, completion: nil)
     }
 }
