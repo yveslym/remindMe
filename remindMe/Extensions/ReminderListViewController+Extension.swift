@@ -16,22 +16,21 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let reminder = userReminders[indexPath.row]
+        
+         let reminderCell = tableView.dequeueReusableCell(withIdentifier: Constant.reminderTableViewCellIdentifier) as? ReminderListTableViewCell
 
-
-        switch reminder.type {
-        case .onEntry?:
-            
-            let entryCell = tableView.dequeueReusableCell(withIdentifier: Constant.reminderTableViewCellIdentifier) as? ReminderListTableViewCell
-            let customView = CustomView(frame: (entryCell?.contentView.frame)!, leftViewColor: #colorLiteral(red: 0, green: 0.9768045545, blue: 0, alpha: 1))
-            entryCell?.contentView.addSubview(customView)
-            return entryCell!
-        case .onExit?:
-            let entryCell = tableView.dequeueReusableCell(withIdentifier: Constant.reminderTableViewCellIdentifier) as? ReminderListTableViewCell
-            let customView = CustomView(frame: (entryCell?.contentView.frame)!, leftViewColor: #colorLiteral(red: 0.5807225108, green: 0.066734083, blue: 0, alpha: 1))
-            entryCell?.contentView.addSubview(customView)
-            return entryCell!
-        default: return UITableViewCell()
-        }
+        let reminderView = ReminderCustomView(frame: (reminderCell?.frame)!, reminder: reminder)
+        
+        reminderCell?.addSubview(reminderView)
+//        reminderView.heightAnchor.constraint(equalTo: (reminderCell?.heightAnchor)!, multiplier: 1).isActive = true
+//        reminderView.widthAnchor.constraint(equalTo: (reminderCell?.widthAnchor)!, multiplier: 1).isActive = true
+//     
+        reminderView.anchor(top: reminderCell?.topAnchor, left: reminderCell?.leftAnchor, bottom: reminderCell?.bottomAnchor, right: reminderCell?.rightAnchor, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 5, width: (reminderCell?.frame.width)!, height: (reminderCell?.frame.height)!, enableInsets: false)
+        return reminderCell ?? UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
     }
 //
 //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

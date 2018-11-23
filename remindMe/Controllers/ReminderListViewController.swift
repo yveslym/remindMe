@@ -38,6 +38,7 @@ class ReminderListViewController: UIViewController{
     func setUpMainStack(){
         mainStack = customStack(frame: view.frame)
         self.view.addSubview(mainStack)
+       
     }
     func setupTableViewStack(){
         
@@ -46,12 +47,18 @@ class ReminderListViewController: UIViewController{
         reminderTableView?.delegate = self
         reminderTableView?.dataSource = self
         reminderTableView.register(ReminderListTableViewCell.self, forCellReuseIdentifier: Constant.reminderTableViewCellIdentifier)
-        reminderTableView.backgroundView?.backgroundColor = UIColor.gray
+//        let topview = UIView()
+//        mainStack.addArrangedSubview(topview)
+//        topview.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.6).isActive = true
+        //reminderTableView.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 0.2668289812)
         
-        mainStack.addSubview(reminderTableView)
-        reminderTableView.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 1)
-        reminderTableView.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.6)
-       
+        
+        mainStack.addArrangedSubview(reminderTableView)
+        reminderTableView.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
+        reminderTableView.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.8).isActive = true
+       reminderTableView.leftAnchor.constraint(equalTo: mainStack.leftAnchor, constant: 20).isActive = true
+          reminderTableView.rightAnchor.constraint(equalTo: mainStack.rightAnchor, constant: -40).isActive = true
+         reminderTableView.bottomAnchor.constraint(equalTo: mainStack.bottomAnchor, constant: 20).isActive = true
     }
     func setupButtonSwitch(){
         todayButton = customButton(title: "today", fontSize: 15, titleColor: UIColor.black, target: self, action: #selector(actionButtonTapped(sender:)), event: .touchUpInside)
