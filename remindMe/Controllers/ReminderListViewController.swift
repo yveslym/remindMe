@@ -16,6 +16,14 @@ class ReminderListViewController: UIViewController{
     var todayButton: customButton!
     var onEntryButton: customButton!
     var onExitButton:customButton!
+    var userGroup: Group!
+    var sortedReminder = [Reminder](){
+        didSet{
+            DispatchQueue.main.async {
+                 self.reminderTableView.reloadData()
+            }
+        }
+    }
     
     var userReminders = [Reminder](){
         didSet{
@@ -33,6 +41,7 @@ class ReminderListViewController: UIViewController{
         self.setupButtonSwitch()
         self.setupTableViewStack()
         self.reminderTableView.reloadData()
+     setUpNavigationBarItems()
     }
     
     func setUpMainStack(){
@@ -47,12 +56,7 @@ class ReminderListViewController: UIViewController{
         reminderTableView?.delegate = self
         reminderTableView?.dataSource = self
         reminderTableView.register(ReminderListTableViewCell.self, forCellReuseIdentifier: Constant.reminderTableViewCellIdentifier)
-//        let topview = UIView()
-//        mainStack.addArrangedSubview(topview)
-//        topview.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.6).isActive = true
-        //reminderTableView.backgroundColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 0.2668289812)
-        
-        
+
         mainStack.addArrangedSubview(reminderTableView)
         reminderTableView.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
         reminderTableView.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.8).isActive = true
@@ -76,21 +80,61 @@ class ReminderListViewController: UIViewController{
         
         self.mainStack.addSubview(stack)
         
-        stack.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 1).isActive = true
+        stack.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
         stack.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.3).isActive = true
+       stack.leftAnchor.constraint(equalTo: mainStack.leftAnchor, constant: 20).isActive = true
         stack.spacing = 10
     }
     
     @objc func actionButtonTapped(sender: customButton){
         
         switch sender.tag{
-        case 1: print(sender.titleLabel?.text)
-            
-            
-            
-            case 2: print(sender.titleLabel?.text)
-            case 3: print(sender.titleLabel?.text)
+        case 1:
+            todayButton.newLayerColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1)
+             onExitButton.newLayerColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+             onEntryButton.newLayerColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            sortedReminder = userReminders
+            case 2:
+                sortedReminder = []
+                todayButton.newLayerColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                onExitButton.newLayerColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                onEntryButton.newLayerColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1)
+            sortedReminder = userReminders.filter({$0.type == EventType.onEntry})
+            case 3:
+                sortedReminder = []
+                todayButton.newLayerColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                onExitButton.newLayerColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1)
+                onEntryButton.newLayerColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+             sortedReminder = userReminders.filter({$0.type == EventType.onExit})
         default: return
         }
+    }
+    /// Sets up home page title and nav bar items
+    fileprivate func setUpNavigationBarItems(){
+        
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+        
+        // Styling the home page title
+        titleLabel.text = userGroup.name
+        titleLabel.textColor = .gray
+        titleLabel.font = UIFont(name: "Rockwell", size: 20)
+        titleLabel.textAlignment = .center
+        titleLabel.backgroundColor = .clear
+        titleLabel.adjustsFontSizeToFitWidth = true
+        
+        // Styling the home page navigation bar
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addGroupButtonTapped))
+        navigationItem.titleView = titleLabel
+//        navigationController?.navigationBar.backgroundColor = .white
+//        navigationController?.navigationBar.isTranslucent = true
+//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+//        navigationController?.navigationBar.shadowImage = UIImage()
+//        navigationController?.navigationBar.alpha = 0.0
+    }
+    
+    ///
+    @objc fileprivate func addGroupButtonTapped(){
+        
+        
     }
 }

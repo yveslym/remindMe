@@ -25,12 +25,14 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
 //        reminderView.heightAnchor.constraint(equalTo: (reminderCell?.heightAnchor)!, multiplier: 1).isActive = true
 //        reminderView.widthAnchor.constraint(equalTo: (reminderCell?.widthAnchor)!, multiplier: 1).isActive = true
 //     
-        reminderView.anchor(top: reminderCell?.topAnchor, left: reminderCell?.leftAnchor, bottom: reminderCell?.bottomAnchor, right: reminderCell?.rightAnchor, paddingTop: 0, paddingLeft: 10, paddingBottom: 0, paddingRight: 5, width: (reminderCell?.frame.width)!, height: (reminderCell?.frame.height)!, enableInsets: false)
+        reminderView.anchor(top: reminderCell?.topAnchor, left: reminderCell?.leftAnchor, bottom: reminderCell?.bottomAnchor, right: reminderCell?.rightAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 5, paddingRight: 10, width: (reminderCell?.frame.width)!, height: (reminderCell?.frame.height)!, enableInsets: false)
+        //reminderView.backgroundColor = UIColor.clear
+        reminderCell?.contentView.backgroundColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 0.1025524401)
         return reminderCell ?? UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 85
     }
 //
 //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
