@@ -37,6 +37,17 @@ class GroupListViewController: UIViewController{
     let networkManager = NetworkManager.shared
     var userGroups = [Group](){
         didSet {
+            DispatchQueue.global().async {
+                ReminderServices.index(completion: { (reminders) in
+                    if let reminders = reminders{
+                        self.userReminders = reminders
+                    }
+                })
+            }
+        }
+    }
+    var userReminders = [Reminder](){
+        didSet{
             DispatchQueue.main.async {
                 self.groupListTableView.reloadData()
             }

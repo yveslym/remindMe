@@ -23,15 +23,12 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
 
         let groupCell = tableView.dequeueReusableCell(withIdentifier: Constant.groupTableViewCellIdentifier, for: indexPath) as! GroupListTableViewCell
         
-        let customView = CustomView(frame: groupCell.contentView.frame, leftViewColor: UIColor.blue)
+        let customView = CustomView(frame: groupCell.contentView.frame, leftViewColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
         groupCell.contentView.addSubview(customView)
         
         let currentGroup = userGroups[indexPath.row]
-        var counter = 0
-        ReminderServices.indexByGroupId(groupId: currentGroup.id) { (reminders) in
-            guard let reminders = reminders else {return}
-            counter = reminders.count
-        }
+        let counter = userReminders.filter({$0.groupId == currentGroup.id}).count
+        
         groupCell.groupNameLabel.text = currentGroup.name
         groupCell.groupDescriptionLabel.text = currentGroup.description
         groupCell.remindersAmountLabel.text = counter.convertIntToString()
@@ -57,7 +54,10 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         let group = userGroups[indexPath.row]
         //self.performSegue(withIdentifier: Constant.showAllRemindersSegueIdentifier, sender: group)
         let destinationVC = ReminderListViewController()
+        destinationVC.userReminders = userReminders.filter({$0.groupId == group.id})
+        destinationVC.userGroup = userGroups[indexPath.row]
         self.navigationController?.pushViewController(destinationVC, animated: true)
+        
     }
 
 //    // This function sends a reference of the group object selected to be used in the next view controller

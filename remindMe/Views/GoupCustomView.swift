@@ -35,7 +35,7 @@ class CustomView: UIView {
         
         /// ceate the left view and redraw the view
         
-        let leftRect = CGRect(x: rect.origin.x, y: rect.origin.y, width: 10/*rect.size.width/10*/, height: rect.size.height)
+        let leftRect = CGRect(x: rect.origin.x, y: rect.origin.y, width: 10, height: rect.size.height)
         
         
         self.sideViewColor.set()
