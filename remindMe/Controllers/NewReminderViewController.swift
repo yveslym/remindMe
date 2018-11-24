@@ -14,14 +14,15 @@ class NewReminderViewController: UIViewController {
     var titleLabel: CustomLable!
     var reminderNameTextFiled: CustomTextField!
     var reminderDescriptionTextView: UITextView!
-    var typeEntryButton: customButton!
-    var typeExitButton: customButton!
+    var typeEntryButton: CustomButton!
+    var typeExitButton: CustomButton!
+    var saveButton: CustomButton!
     var typeLabel: CustomLable!
     var dateTimeLabel: CustomLable!
     var dayPickerView: UIPickerView!
     var timeFromPickerView: UIDatePicker!
     var timeToPickerView: UIDatePicker!
-    var doneButton: customButton!
+    var doneButton: CustomButton!
     var mainView: UIView!
     var userGroup: Group!
     var newReminder: Reminder!
@@ -36,6 +37,8 @@ class NewReminderViewController: UIViewController {
         setupTypeButton()
         setUpDateTimeLabel()
         setupDateSelectionPicker()
+        setupDescriptionTextView()
+        setupDoneButton()
     }
     
     func setupMainView(){
@@ -46,10 +49,10 @@ class NewReminderViewController: UIViewController {
                         left: view.leftAnchor,
                         bottom: view.bottomAnchor,
                         right: view.rightAnchor,
-                        paddingTop: view.frame.height/7,
-                        paddingLeft: view.frame.width/15,
+                        paddingTop: view.frame.height/10,
+                        paddingLeft: 15,
                         paddingBottom: view.frame.height/10,
-                        paddingRight: view.frame.width/15,
+                        paddingRight: 15,
                         width: 0,
                         height: 0,
                         enableInsets: true)
@@ -66,14 +69,16 @@ class NewReminderViewController: UIViewController {
                           left: mainView.leftAnchor,
                           bottom: nil,
                           right: mainView.rightAnchor,
-                          paddingTop: 5,
+                          paddingTop: 10,
                           paddingLeft: 0,
                           paddingBottom: 0,
                           paddingRight: 0,
                           width: 0,
                           height: 0,
                           enableInsets: true)
+        titleLabel.textAlignment = .center
     }
+    
 
     func setupReminderTextField(){
         reminderNameTextFiled = CustomTextField(placeHolder: "Title", border: 1, cornerRadius: 5, borderColor: #colorLiteral(red: 0.07895455509, green: 0.1626217663, blue: 0.2949268222, alpha: 1), textColor: #colorLiteral(red: 0.07895455509, green: 0.1626217663, blue: 0.2949268222, alpha: 1), alignment: .left, borderStyle: .none)
@@ -83,7 +88,7 @@ class NewReminderViewController: UIViewController {
                                      left: mainView.leftAnchor,
                                      bottom: nil,
                                      right: mainView.rightAnchor,
-                                     paddingTop: 40,
+                                     paddingTop: 30,
                                      paddingLeft: 10,
                                      paddingBottom: 0,
                                      paddingRight: 10,
@@ -93,10 +98,10 @@ class NewReminderViewController: UIViewController {
     
     }
     func setupTypeButton(){
-        typeEntryButton = customButton(title: "Entry", fontSize: 12, titleColor: #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1), target: self, action: #selector(selectTypeButtonTapped(sender:)), event: .touchUpInside)
+        typeEntryButton = CustomButton(title: "Entry", fontSize: 12, titleColor: #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1), target: self, action: #selector(selectTypeButtonTapped(sender:)), event: .touchUpInside)
         typeEntryButton.tag = 1
         
-        typeExitButton =  customButton(title: "Exit", fontSize: 12, titleColor: #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1), target: self, action: #selector(selectTypeButtonTapped(sender:)), event: .touchUpInside)
+        typeExitButton =  CustomButton(title: "Exit", fontSize: 12, titleColor: #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1), target: self, action: #selector(selectTypeButtonTapped(sender:)), event: .touchUpInside)
         typeExitButton.tag = 2
         
         dateTimeLabel = CustomLable(fontSize: 14, text: "Reminder Type: ", textColor: #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1))
@@ -158,31 +163,96 @@ class NewReminderViewController: UIViewController {
         timeToPickerView = UIDatePicker()
         timeToPickerView.datePickerMode = .time
         
-        let every = CustomLable(fontSize: 10, text: "Every", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
-        let from = CustomLable(fontSize: 10, text: "From", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
-        let to = CustomLable(fontSize: 10, text: "To", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
+        let every = CustomLable(fontSize: 12, text: "Every", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
+        every.textAlignment = .center
+        let from = CustomLable(fontSize: 12, text: "From", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
+        from.textAlignment = .center
+    
+        let to = CustomLable(fontSize: 12, text: "To", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
+        to.textAlignment = .center
         
-        let supportStack = customStack(subview: [every,from,to], alignment: .center, axis: .horizontal, distribution: .fillEqually)
-        let pickerStack = customStack(subview: [dayPickerView,timeFromPickerView,timeToPickerView], alignment: .center, axis: .horizontal, distribution: .fillEqually)
-        let stack = customStack(subview: [supportStack,pickerStack], alignment: .center, axis: .vertical, distribution: .fill)
-        mainView.addSubview(stack)
+        let dayPickerStack = customStack.init(subview: [every,dayPickerView], alignment: .center, axis: .vertical, distribution: .fillProportionally)
+         let timeFromStack = customStack.init(subview: [from,timeFromPickerView], alignment: .center, axis: .vertical, distribution: .fillProportionally)
         
-        stack.anchor(top: dateTimeLabel.bottomAnchor,
-                     left: mainView.leftAnchor,
-                     bottom: nil,
-                     right: mainView.rightAnchor,
-                     paddingTop: 10,
-                     paddingLeft: 0,
-                     paddingBottom: 0,
-                     paddingRight: 0,
-                     width: 0,
-                     height: 0,
-                     enableInsets: true)
-        supportStack.heightAnchor.constraint(equalTo: stack.heightAnchor, multiplier: 0.2).isActive = true
-        supportStack.widthAnchor.constraint(equalTo: stack.widthAnchor, multiplier: 1).isActive = true
+         let timeToStack = customStack.init(subview: [to,timeToPickerView], alignment: .center, axis: .vertical, distribution: .fillProportionally)
+        
+        
+                let stack = customStack(subview: [dayPickerStack,timeFromStack,timeToStack], alignment: .center, axis: .horizontal, distribution: .fill)
+                mainView.addSubview(stack)
+        
+                stack.anchor(top: dateTimeLabel.bottomAnchor,
+                             left: mainView.leftAnchor,
+                             bottom: nil,
+                             right: mainView.rightAnchor,
+                             paddingTop: 10,
+                             paddingLeft: 0,
+                             paddingBottom: 0,
+                             paddingRight: 0,
+                             width: 0,
+                             height: 0,
+                             enableInsets: true)
+        
+        dayPickerStack.widthAnchor.constraint(equalTo: stack.widthAnchor, multiplier: 0.2).isActive = true
+        timeToStack.widthAnchor.constraint(equalTo: stack.widthAnchor, multiplier: 0.4).isActive = true
+        
+        timeFromStack.widthAnchor.constraint(equalTo: stack.widthAnchor, multiplier: 0.4).isActive = true
     }
     
-    @objc func selectTypeButtonTapped(sender: customButton){
+    func setupDescriptionTextView(){
+        reminderDescriptionTextView = UITextView()
+        let stack = mainView.subviews.last
+        let descriptionLabel = CustomLable(fontSize: 12, text: "Description", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
+        let descStack = customStack(subview: [descriptionLabel,reminderDescriptionTextView], alignment: .leading, axis: .vertical, distribution: .fill)
+        mainView.addSubview(descStack)
+        descriptionLabel.heightAnchor.constraint(equalTo: descStack.heightAnchor, multiplier: 0.2).isActive = true
+        reminderDescriptionTextView.heightAnchor.constraint(equalTo: descStack.heightAnchor, multiplier: 0.8).isActive = true
+        
+         reminderDescriptionTextView.widthAnchor.constraint(equalTo: descStack.widthAnchor, multiplier: 1).isActive = true
+        reminderDescriptionTextView.layer.masksToBounds = false
+        reminderDescriptionTextView.layer.cornerRadius = 10
+        
+        reminderDescriptionTextView.text = "maman a pris un vol vers casablancca"
+        reminderDescriptionTextView.backgroundColor = UIColor.lightGray
+        descStack.anchor(top: stack?.bottomAnchor,
+                                            left: mainView.leftAnchor,
+                                            bottom: nil,
+                                            right: mainView.rightAnchor,
+                                            paddingTop: 5,
+                                            paddingLeft: 10,
+                                            paddingBottom: 0,
+                                            paddingRight: 10,
+                                            width: 0/*mainView.frame.width - 10*/,
+                                            height: mainView.frame.height / 6,
+                                            enableInsets: true)
+        
+    }
+    
+    func setupDoneButton(){
+        saveButton = CustomButton(title: "Save", fontSize: 12, titleColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), target: self, action: #selector(actionButtonTapped(sender:)), event: .touchUpInside)
+        saveButton.newLayerColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1)
+        let stack = mainView.subviews.last
+        
+        mainView.addSubview(saveButton)
+        
+        saveButton.anchor(top: stack?.bottomAnchor,
+                          left: mainView.leftAnchor,
+                          bottom: nil,
+                          right: mainView.rightAnchor,
+                          paddingTop: 30,
+                          paddingLeft: mainView.frame.width / 4,
+                          paddingBottom: 0,
+                          paddingRight:  mainView.frame.width / 4,
+                          width: 0,
+                        height: 0,
+            enableInsets: true)
+    }
+    
+    @objc func actionButtonTapped(sender: CustomButton){
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @objc func selectTypeButtonTapped(sender: CustomButton){
         
         switch sender.tag{
         case 1:
@@ -198,12 +268,17 @@ class NewReminderViewController: UIViewController {
             
             typeExitButton.newLayerColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1)
             typeExitButton.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .normal)
+            
         default: break
         }
     }
   
 }
 
+
+
+
+/// extension to handle picker view data source
 extension NewReminderViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -213,9 +288,7 @@ extension NewReminderViewController: UIPickerViewDelegate, UIPickerViewDataSourc
        return Constant.days.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return Constant.days[row]
-    }
+
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
        self.pickedDay = Constant.days[row]
     }
@@ -223,7 +296,7 @@ extension NewReminderViewController: UIPickerViewDelegate, UIPickerViewDataSourc
         var pickerLabel: UILabel? = (view as? UILabel)
         if pickerLabel == nil {
             pickerLabel = UILabel()
-            pickerLabel?.font = UIFont(name: "<Your Font Name>", size: 10)
+            pickerLabel?.font = UIFont(name: "Rockwell", size: 14)
             pickerLabel?.textAlignment = .center
         }
         pickerLabel?.text = Constant.days[row]

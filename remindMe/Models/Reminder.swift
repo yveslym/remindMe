@@ -20,6 +20,7 @@ struct Reminder: Codable{
     static var totalAmountOfReminders: Int = 0
     var timeFrom: String?
     var timeTo: String?
+    var description: String?
     
     init(groupId: String, id: String, name: String, type: EventType, time: String, longitude: Double, latitude: Double, timeFrom: String, timeTo: String) {
         

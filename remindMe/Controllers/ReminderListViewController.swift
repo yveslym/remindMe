@@ -13,9 +13,9 @@ class ReminderListViewController: UIViewController{
     // This View Controller class handles functionality to show the list of all the reminders
     var reminderTableView: UITableView!
     var mainStack: UIStackView!
-    var todayButton: customButton!
-    var onEntryButton: customButton!
-    var onExitButton:customButton!
+    var todayButton: CustomButton!
+    var onEntryButton: CustomButton!
+    var onExitButton:CustomButton!
     var userGroup: Group!
     var sortedReminder = [Reminder](){
         didSet{
@@ -65,11 +65,11 @@ class ReminderListViewController: UIViewController{
          reminderTableView.bottomAnchor.constraint(equalTo: mainStack.bottomAnchor, constant: 20).isActive = true
     }
     func setupButtonSwitch(){
-        todayButton = customButton(title: "today", fontSize: 15, titleColor: UIColor.black, target: self, action: #selector(actionButtonTapped(sender:)), event: .touchUpInside)
+        todayButton = CustomButton(title: "today", fontSize: 15, titleColor: UIColor.black, target: self, action: #selector(actionButtonTapped(sender:)), event: .touchUpInside)
         
-        onExitButton = customButton(title: "Exit", fontSize: 15, titleColor: UIColor.black, target: self, action: #selector(actionButtonTapped(sender:)), event: .touchUpInside)
+        onExitButton = CustomButton(title: "Exit", fontSize: 15, titleColor: UIColor.black, target: self, action: #selector(actionButtonTapped(sender:)), event: .touchUpInside)
         
-        onEntryButton = customButton(title: "Entry", fontSize: 15, titleColor: UIColor.black, target: self, action: #selector(actionButtonTapped(sender:)), event: .touchUpInside)
+        onEntryButton = CustomButton(title: "Entry", fontSize: 15, titleColor: UIColor.black, target: self, action: #selector(actionButtonTapped(sender:)), event: .touchUpInside)
         
         todayButton.tag = 1
         todayButton.newLayerColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1)
@@ -86,7 +86,7 @@ class ReminderListViewController: UIViewController{
         stack.spacing = 10
     }
     
-    @objc func actionButtonTapped(sender: customButton){
+    @objc func actionButtonTapped(sender: CustomButton){
         
         switch sender.tag{
         case 1:
@@ -133,6 +133,7 @@ class ReminderListViewController: UIViewController{
         
         let destination = NewReminderViewController()
         destination.modalPresentationStyle = .overCurrentContext
+        destination.modalTransitionStyle = .crossDissolve
         destination.userGroup = userGroup
        
         self.present(destination, animated: true, completion: nil)

@@ -86,7 +86,7 @@ class customStack: UIStackView{
     }
 }
 
-class customButton: UIButton{
+class CustomButton: UIButton{
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
