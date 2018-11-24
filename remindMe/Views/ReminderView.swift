@@ -37,9 +37,9 @@ class ReminderCustomView: CustomView{
        
         
         let name = CustomLable(fontSize: 20, text: reminder.name!, textColor: UIColor.black)
-        let time = CustomLable(fontSize: 10, text: "every " + reminder.time, textColor: UIColor.darkGray)
+        let time = CustomLable(fontSize: 10, text: "every " + reminder.groupId , textColor: UIColor.darkGray)
         
-        let descr = CustomLable(fontSize: 11, text: "do something when something as to be done by yourself or with people it doesn't matter cause all this are just bullshit nobody cares", textColor: UIColor.black)
+        let descr = CustomLable(fontSize: 11, text: reminder.description ?? "", textColor: UIColor.black)
         
         descr.numberOfLines = 0
         

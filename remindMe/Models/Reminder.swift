@@ -14,7 +14,7 @@ struct Reminder: Codable{
     var groupId: String
     var name: String?
     var type: EventType?
-    var time: String
+    var day: String?
     var longitude: Double
     var latitude : Double
     static var totalAmountOfReminders: Int = 0
@@ -22,13 +22,13 @@ struct Reminder: Codable{
     var timeTo: String?
     var description: String?
     
-    init(groupId: String, id: String, name: String, type: EventType, time: String, longitude: Double, latitude: Double, timeFrom: String, timeTo: String) {
+    init(groupId: String, id: String, name: String, type: EventType, day: String, longitude: Double, latitude: Double, timeFrom: String, timeTo: String) {
         
         self.groupId = groupId
         self.id = id
         self.name = name
         self.type = type
-        self.time = time
+        self.day = day
         self.longitude = longitude
         self.latitude = latitude
     }

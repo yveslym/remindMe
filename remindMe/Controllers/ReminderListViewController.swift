@@ -28,9 +28,15 @@ class ReminderListViewController: UIViewController{
     var userReminders = [Reminder](){
         didSet{
             DispatchQueue.main.async {
-               // self.reminderTableView.reloadData()
+                self.reminderTableView.reloadData()
             }
         }
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchAllReminder()
     }
     
     override func viewDidLoad() {
@@ -44,6 +50,13 @@ class ReminderListViewController: UIViewController{
      setUpNavigationBarItems()
     }
     
+    func fetchAllReminder(){
+        ReminderServices.indexByGroupId(groupId: userGroup.id) { (reminders) in
+            if let reminders = reminders{
+                self.userReminders = reminders
+            }
+        }
+    }
     func setUpMainStack(){
         mainStack = customStack(frame: view.frame)
         self.view.addSubview(mainStack)
@@ -138,4 +151,5 @@ class ReminderListViewController: UIViewController{
        
         self.present(destination, animated: true, completion: nil)
     }
+   
 }

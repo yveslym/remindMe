@@ -26,7 +26,10 @@ class NewReminderViewController: UIViewController {
     var mainView: UIView!
     var userGroup: Group!
     var newReminder: Reminder!
+    var eventType = EventType.onEntry
+    
     var pickedDay: String = "Monday"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +42,7 @@ class NewReminderViewController: UIViewController {
         setupDateSelectionPicker()
         setupDescriptionTextView()
         setupDoneButton()
+        addSwipeToDismis()
     }
     
     func setupMainView(){
@@ -248,9 +252,47 @@ class NewReminderViewController: UIViewController {
     }
     
     @objc func actionButtonTapped(sender: CustomButton){
-        dismiss(animated: true, completion: nil)
+       
+        
+        let timeFrom = timeFromPickerView.date.timeToString()
+        let timeTo = timeToPickerView.date.timeToString()
+        guard let title = reminderNameTextFiled.text else {
+            self.presentAlert(title: "No Title", message: "Reminder need a title")
+            return
+        }
+        var reminder = Reminder.init(groupId: userGroup.id, id: "", name: title, type: eventType, day: pickedDay, longitude: userGroup.longitude, latitude: userGroup.latitude, timeFrom: timeFrom, timeTo: timeTo)
+        guard let desc = reminderDescriptionTextView.text else {
+            self.presentAlert(title: "No Description", message: "Reminder need a description")
+            return
+        }
+        
+        reminder.description = desc
+        
+        ReminderServices.create(reminder) {
+            DispatchQueue.main.async {
+                
+                 self.dismiss(animated: true, completion: nil)
+                
+            }
+        }
+    }
+    func addSwipeToDismis() {
+        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleMainViewDragged(_:)))
+        mainView.addGestureRecognizer(gestureRecognizer)
     }
     
+    @objc func handleMainViewDragged(_ gestureRecognizer: UIPanGestureRecognizer) {
+        if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
+            
+            let translation = gestureRecognizer.translation(in: self.view)
+            // note: 'view' is optional and need to be unwrapped
+            gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x, y: gestureRecognizer.view!.center.y + translation.y)
+            gestureRecognizer.setTranslation(CGPoint.zero, in: self.view)
+        }
+        if gestureRecognizer.state == .ended{
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
     
     @objc func selectTypeButtonTapped(sender: CustomButton){
         
@@ -261,13 +303,14 @@ class NewReminderViewController: UIViewController {
             
             typeExitButton.newLayerColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             typeExitButton.setTitleColor(#colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1), for: .normal)
-            
+            eventType = EventType.onEntry
         case 2:
             typeEntryButton.newLayerColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             typeEntryButton.setTitleColor(#colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1), for: .normal)
             
             typeExitButton.newLayerColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1)
             typeExitButton.setTitleColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), for: .normal)
+             eventType = EventType.onExit
             
         default: break
         }

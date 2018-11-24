@@ -101,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             
             GroupServices.show(reminder.groupId, completion: { (group) in
                 guard let group = group else {return}
-                self.handleEvent(forRegion: region, body: reminder.time, title:group.name)
+                self.handleEvent(forRegion: region, body: reminder.day!, title:group.name)
             })
         }
     }
