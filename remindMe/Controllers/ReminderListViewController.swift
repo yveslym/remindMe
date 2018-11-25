@@ -21,15 +21,14 @@ class ReminderListViewController: UIViewController{
         didSet{
             DispatchQueue.main.async {
                  self.reminderTableView.reloadData()
+                
             }
         }
     }
     
     var userReminders = [Reminder](){
         didSet{
-            DispatchQueue.main.async {
-                self.reminderTableView.reloadData()
-            }
+            sortedReminder = userReminders
         }
     }
     
@@ -48,6 +47,7 @@ class ReminderListViewController: UIViewController{
         self.setupTableViewStack()
         self.reminderTableView.reloadData()
      setUpNavigationBarItems()
+        observeEntryReminder()
     }
     
     func fetchAllReminder(){
@@ -58,7 +58,7 @@ class ReminderListViewController: UIViewController{
         }
     }
     func setUpMainStack(){
-        mainStack = customStack(frame: view.frame)
+        mainStack = CustomStack(frame: view.frame)
         self.view.addSubview(mainStack)
        
     }
@@ -89,7 +89,7 @@ class ReminderListViewController: UIViewController{
         onEntryButton.tag = 2
         onExitButton.tag = 3
         
-        let stack = customStack(subview: [todayButton,onEntryButton,onExitButton], alignment: .center, axis: .horizontal, distribution: .fillEqually)
+        let stack = CustomStack(subview: [todayButton,onEntryButton,onExitButton], alignment: .center, axis: .horizontal, distribution: .fillEqually)
         
         self.mainStack.addSubview(stack)
         
@@ -150,6 +150,11 @@ class ReminderListViewController: UIViewController{
         destination.userGroup = userGroup
        
         self.present(destination, animated: true, completion: nil)
+    }
+    func observeEntryReminder(){
+        ReminderServices.observeEntryReminder { (reminder) in
+            self.userReminders.append(reminder)
+            }
     }
    
 }

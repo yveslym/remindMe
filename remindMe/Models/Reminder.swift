@@ -31,6 +31,8 @@ struct Reminder: Codable{
         self.day = day
         self.longitude = longitude
         self.latitude = latitude
+        self.timeFrom = timeFrom
+        self.timeTo = timeTo
     }
 
     // Function convert data  to be sent to the server into a json encoded format

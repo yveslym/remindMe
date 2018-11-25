@@ -34,7 +34,7 @@ extension Date{
     }
     public func timeToString() -> String{
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss"
+        formatter.dateFormat = "HH:mm"
         let stringDate = formatter.string(from: self)
         return stringDate
     }

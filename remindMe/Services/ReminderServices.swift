@@ -90,7 +90,7 @@ struct ReminderServices{
         let reference = Constant.showReminderRef(reminderId)
         reference.observeSingleEvent(of: .value) { (snapchot) in
             if snapchot.exists(){
-                let reminder = try! JSONDecoder().decode(Reminder.self, withJSONObject: snapchot.value, options: [])
+                let reminder = try! JSONDecoder().decode(Reminder.self, withJSONObject: snapchot.value as Any, options: [])
                 return completion(reminder)
             }else {
                 return completion(nil)
@@ -143,5 +143,19 @@ struct ReminderServices{
         
       return (timeFrom <= date) && (timeTo >= date ) ?  true :  false
         
+    }
+    
+    static func observeEntryReminder(completion: @escaping (Reminder)->()){
+        Constant.reminderRef().observe(.childAdded) { (snapshot) in
+            if snapshot.exists(){
+                do{
+                    let reminder = try JSONDecoder().decode(Reminder.self, withJSONObject: snapshot.value as Any)
+                    completion(reminder)
+                }
+                catch{
+                    print("couldn't decode observed entry reminder")
+                    }
+                }
+        }
     }
 }

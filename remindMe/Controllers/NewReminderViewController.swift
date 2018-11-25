@@ -11,14 +11,14 @@ import UIKit
 class NewReminderViewController: UIViewController {
 
     // - Mark: Properties
-    var titleLabel: CustomLable!
+    var titleLabel: CustomLabel!
     var reminderNameTextFiled: CustomTextField!
     var reminderDescriptionTextView: UITextView!
     var typeEntryButton: CustomButton!
     var typeExitButton: CustomButton!
     var saveButton: CustomButton!
-    var typeLabel: CustomLable!
-    var dateTimeLabel: CustomLable!
+    var typeLabel: CustomLabel!
+    var dateTimeLabel: CustomLabel!
     var dayPickerView: UIPickerView!
     var timeFromPickerView: UIDatePicker!
     var timeToPickerView: UIDatePicker!
@@ -67,7 +67,7 @@ class NewReminderViewController: UIViewController {
     }
     
     func setupTitle(){
-        titleLabel = CustomLable(fontSize: 20, text: "New \(userGroup.name) Reminder", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
+        titleLabel = CustomLabel(fontSize: 20, text: "New \(userGroup.name) Reminder", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
         mainView.addSubview(titleLabel)
         titleLabel.anchor(top: mainView.topAnchor,
                           left: mainView.leftAnchor,
@@ -108,13 +108,13 @@ class NewReminderViewController: UIViewController {
         typeExitButton =  CustomButton(title: "Exit", fontSize: 12, titleColor: #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 1), target: self, action: #selector(selectTypeButtonTapped(sender:)), event: .touchUpInside)
         typeExitButton.tag = 2
         
-        dateTimeLabel = CustomLable(fontSize: 14, text: "Reminder Type: ", textColor: #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1))
+        dateTimeLabel = CustomLabel(fontSize: 14, text: "Reminder Type: ", textColor: #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1))
         
        
-        let buttomStack = customStack.init(subview: [typeEntryButton,typeExitButton], alignment: .center, axis: .horizontal, distribution: .fillEqually)
+        let buttomStack = CustomStack.init(subview: [typeEntryButton,typeExitButton], alignment: .center, axis: .horizontal, distribution: .fillEqually)
         buttomStack.spacing = 10
         
-         let stack = customStack(subview: [dateTimeLabel,buttomStack], alignment: .fill, axis: .horizontal, distribution: .fill)
+         let stack = CustomStack(subview: [dateTimeLabel,buttomStack], alignment: .fill, axis: .horizontal, distribution: .fill)
         
         mainView.addSubview(stack)
         
@@ -141,7 +141,7 @@ class NewReminderViewController: UIViewController {
     
     func setUpDateTimeLabel(){
         let stack = mainView.subviews.last
-        dateTimeLabel = CustomLable(fontSize: 18, text: "Date and Time", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
+        dateTimeLabel = CustomLabel(fontSize: 18, text: "Date and Time", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
         mainView.addSubview(dateTimeLabel)
         dateTimeLabel.anchor(top: stack?.bottomAnchor,
                              left: mainView.leftAnchor,
@@ -167,21 +167,21 @@ class NewReminderViewController: UIViewController {
         timeToPickerView = UIDatePicker()
         timeToPickerView.datePickerMode = .time
         
-        let every = CustomLable(fontSize: 12, text: "Every", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
+        let every = CustomLabel(fontSize: 12, text: "Every", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
         every.textAlignment = .center
-        let from = CustomLable(fontSize: 12, text: "From", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
+        let from = CustomLabel(fontSize: 12, text: "From", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
         from.textAlignment = .center
     
-        let to = CustomLable(fontSize: 12, text: "To", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
+        let to = CustomLabel(fontSize: 12, text: "To", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
         to.textAlignment = .center
         
-        let dayPickerStack = customStack.init(subview: [every,dayPickerView], alignment: .center, axis: .vertical, distribution: .fillProportionally)
-         let timeFromStack = customStack.init(subview: [from,timeFromPickerView], alignment: .center, axis: .vertical, distribution: .fillProportionally)
+        let dayPickerStack = CustomStack.init(subview: [every,dayPickerView], alignment: .center, axis: .vertical, distribution: .fillProportionally)
+         let timeFromStack = CustomStack.init(subview: [from,timeFromPickerView], alignment: .center, axis: .vertical, distribution: .fillProportionally)
         
-         let timeToStack = customStack.init(subview: [to,timeToPickerView], alignment: .center, axis: .vertical, distribution: .fillProportionally)
+         let timeToStack = CustomStack.init(subview: [to,timeToPickerView], alignment: .center, axis: .vertical, distribution: .fillProportionally)
         
         
-                let stack = customStack(subview: [dayPickerStack,timeFromStack,timeToStack], alignment: .center, axis: .horizontal, distribution: .fill)
+                let stack = CustomStack(subview: [dayPickerStack,timeFromStack,timeToStack], alignment: .center, axis: .horizontal, distribution: .fill)
                 mainView.addSubview(stack)
         
                 stack.anchor(top: dateTimeLabel.bottomAnchor,
@@ -205,8 +205,8 @@ class NewReminderViewController: UIViewController {
     func setupDescriptionTextView(){
         reminderDescriptionTextView = UITextView()
         let stack = mainView.subviews.last
-        let descriptionLabel = CustomLable(fontSize: 12, text: "Description", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
-        let descStack = customStack(subview: [descriptionLabel,reminderDescriptionTextView], alignment: .leading, axis: .vertical, distribution: .fill)
+        let descriptionLabel = CustomLabel(fontSize: 12, text: "Description", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
+        let descStack = CustomStack(subview: [descriptionLabel,reminderDescriptionTextView], alignment: .leading, axis: .vertical, distribution: .fill)
         mainView.addSubview(descStack)
         descriptionLabel.heightAnchor.constraint(equalTo: descStack.heightAnchor, multiplier: 0.2).isActive = true
         reminderDescriptionTextView.heightAnchor.constraint(equalTo: descStack.heightAnchor, multiplier: 0.8).isActive = true
@@ -215,8 +215,8 @@ class NewReminderViewController: UIViewController {
         reminderDescriptionTextView.layer.masksToBounds = false
         reminderDescriptionTextView.layer.cornerRadius = 10
         
-        reminderDescriptionTextView.text = "maman a pris un vol vers casablancca"
-        reminderDescriptionTextView.backgroundColor = UIColor.lightGray
+        reminderDescriptionTextView.text = ""
+        reminderDescriptionTextView.backgroundColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 0.09685359589)
         descStack.anchor(top: stack?.bottomAnchor,
                                             left: mainView.leftAnchor,
                                             bottom: nil,
@@ -260,8 +260,16 @@ class NewReminderViewController: UIViewController {
             self.presentAlert(title: "No Title", message: "Reminder need a title")
             return
         }
+        if title.count < 2{
+            self.presentAlert(title: "No Title", message: "Reminder need a title")
+            return
+        }
         var reminder = Reminder.init(groupId: userGroup.id, id: "", name: title, type: eventType, day: pickedDay, longitude: userGroup.longitude, latitude: userGroup.latitude, timeFrom: timeFrom, timeTo: timeTo)
         guard let desc = reminderDescriptionTextView.text else {
+            self.presentAlert(title: "No Description", message: "Reminder need a description")
+            return
+        }
+        if desc.count < 2{
             self.presentAlert(title: "No Description", message: "Reminder need a description")
             return
         }

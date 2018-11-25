@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-class CustomLable: UILabel{
+class CustomLabel: UILabel{
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -69,7 +69,7 @@ class CustomTextField: UITextField{
 
 
 
-class customStack: UIStackView{
+class CustomStack: UIStackView{
     override init(frame: CGRect) {
         super.init(frame: frame)
     }

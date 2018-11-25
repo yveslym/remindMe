@@ -11,11 +11,11 @@ import UIKit
 extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userReminders.count
+        return sortedReminder.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let reminder = userReminders[indexPath.row]
+        let reminder = sortedReminder[indexPath.row]
         
          let reminderCell = tableView.dequeueReusableCell(withIdentifier: Constant.reminderTableViewCellIdentifier) as? ReminderListTableViewCell
 
