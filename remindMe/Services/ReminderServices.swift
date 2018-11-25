@@ -127,12 +127,15 @@ struct ReminderServices{
      @param group: the reminder to be removed
      @param completion ->Bool: The true or false value that determine wheter the reminder has been deleted
      */
-    static func delete(_ reminder: Reminder, completion: @escaping(Bool) -> ()){
+    static func delete(_ reminder: Reminder){
         
         let reference = Constant.showReminderRef(reminder.id)
-        reference.removeValue { (error, reference) in
-            return (error == nil) ? ( completion(true)) : (completion(false))
-        }
+        reference.removeValue()
+    }
+    
+    static func update(_ reminder: Reminder){
+        let reference = Constant.showReminderRef(reminder.id)
+        reference.updateChildValues(reminder.toDictionary())
     }
     
     /// method to check if the reminder is onnthe time constrain to set by the user to recieve notificartion
@@ -145,7 +148,8 @@ struct ReminderServices{
         
     }
     
-    static func observeEntryReminder(completion: @escaping (Reminder)->()){
+    /// method to observe new cerated reminders on database
+    static func observeAddedReminder(completion: @escaping (Reminder)->()){
         Constant.reminderRef().observe(.childAdded) { (snapshot) in
             if snapshot.exists(){
                 do{
@@ -156,6 +160,26 @@ struct ReminderServices{
                     print("couldn't decode observed entry reminder")
                     }
                 }
+        }
+    }
+    /// method to observe updated reminders on database
+    static func observeUpdatedReminder(completion: @escaping ([Reminder]?)->()){
+        Constant.reminderRef().observe(.childChanged) { (snapshot) in
+            if snapshot.exists(){
+                index(completion: { (reminders) in
+                    completion(reminders)
+                })
+            }
+        }
+    }
+    /// method to observe removed reminders
+    static func observeRemovedReminder(completion: @escaping ([Reminder]?)->()){
+        Constant.reminderRef().observe(.childRemoved) { (snapshot) in
+            if snapshot.exists(){
+                index(completion: { (reminders) in
+                    completion(reminders)
+                })
+            }
         }
     }
 }

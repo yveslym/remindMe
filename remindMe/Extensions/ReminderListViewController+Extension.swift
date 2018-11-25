@@ -34,27 +34,31 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
     }
-//
+
 //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//       return "Remimders"
+//       return "\(sortedReminder.count) Remimders"
 //    }
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//
-//            let headerContainerView = UIView()
-//            headerContainerView.frame = CGRect(x: 0, y: 0, width: 101, height: 31)
-//            headerContainerView.backgroundColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
-//
-//            let reminderHeaderLabel = UILabel()
-//            reminderHeaderLabel.frame = CGRect(x: 10, y: 0, width: 101, height: 31)
-//            reminderHeaderLabel.text = "Projects"
-//            reminderHeaderLabel.font = UIFont(name: "AvenirNext-Bold", size: 23)
-//            reminderHeaderLabel.textColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
-//            reminderHeaderLabel.textAlignment = .left
-//
-//            headerContainerView.addSubview(reminderHeaderLabel)
-//
-//            return headerContainerView
-//        }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+            let headerContainerView = UIView()
+            headerContainerView.frame = CGRect(x: 0, y: 0, width: 101, height: 31)
+            headerContainerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
+            var reminder = String()
+        
+        sortedReminder.count > 1 ? (reminder = "Reminders") : (reminder = "Reminder")
+        
+            let reminderHeaderLabel = UILabel()
+            reminderHeaderLabel.frame = CGRect(x: 10, y: 0, width: self.view.frame.width, height: 31)
+            reminderHeaderLabel.text = "\(sortedReminder.count) \(reminder)"
+            reminderHeaderLabel.font = UIFont(name: "Rockwell", size: 18)
+            reminderHeaderLabel.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            reminderHeaderLabel.textAlignment = .left
+
+            headerContainerView.addSubview(reminderHeaderLabel)
+
+            return headerContainerView
+        }
 //
 //    // This method returns the number of rows on a table view
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,13 +79,33 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
 //    }
 //    
 //
-//    // This Method deletes a cell from the table view when dragged from right to left
+    // This Method deletes a cell from the table view when dragged from right to left
 //    func tableView(_ tableview : UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 //        if editingStyle == .delete{
-//            let reminderToBeDeleted = userReminders[indexPath.row]
-//            ReminderServices.delete(reminderToBeDeleted) { (true) in
-//                self.fetchAllReminders()
-//            }
+//            let reminderToBeDeleted = sortedReminder[indexPath.row]
+//            ReminderServices.delete(reminderToBeDeleted)
 //        }
+//
 //    }
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+    
+        
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            // delete item at indexPath
+            let reminderToBeDeleted = self.sortedReminder[indexPath.row]
+            ReminderServices.delete(reminderToBeDeleted)
+        }
+        
+        let update = UITableViewRowAction(style: .default, title: "Update") { (action, indexPath) in
+            // share item at indexPath
+           
+        }
+        
+        update.backgroundColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1)
+        
+        return [delete, update]
+        
+    }
+    
 }

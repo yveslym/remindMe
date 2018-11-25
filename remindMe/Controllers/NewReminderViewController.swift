@@ -253,6 +253,10 @@ class NewReminderViewController: UIViewController {
     
     @objc func actionButtonTapped(sender: CustomButton){
        
+        if timeFromPickerView.date > timeToPickerView.date{
+            self.presentAlert(title: "Time miss Match", message: "The start time cannot be greater than the end time")
+            return
+        }
         
         let timeFrom = timeFromPickerView.date.timeToString()
         let timeTo = timeToPickerView.date.timeToString()

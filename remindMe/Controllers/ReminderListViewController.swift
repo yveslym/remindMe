@@ -46,8 +46,10 @@ class ReminderListViewController: UIViewController{
         self.setupButtonSwitch()
         self.setupTableViewStack()
         self.reminderTableView.reloadData()
-     setUpNavigationBarItems()
+        setUpNavigationBarItems()
         observeEntryReminder()
+        obserUpdatedReminder()
+        observeRemovedReminder()
     }
     
     func fetchAllReminder(){
@@ -152,9 +154,19 @@ class ReminderListViewController: UIViewController{
         self.present(destination, animated: true, completion: nil)
     }
     func observeEntryReminder(){
-        ReminderServices.observeEntryReminder { (reminder) in
+        ReminderServices.observeAddedReminder { (reminder) in
             self.userReminders.append(reminder)
-            }
+        }
+    }
+    func observeRemovedReminder(){
+        ReminderServices.observeRemovedReminder { (reminders) in
+            self.userReminders = reminders ?? [Reminder]()
+        }
+    }
+    func obserUpdatedReminder(){
+        ReminderServices.observeUpdatedReminder { (reminders) in
+            self.userReminders = reminders!
+        }
     }
    
 }
