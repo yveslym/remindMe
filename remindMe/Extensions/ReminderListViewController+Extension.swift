@@ -35,9 +35,7 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
         return 85
     }
 
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//       return "\(sortedReminder.count) Remimders"
-//    }
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 
             let headerContainerView = UIView()
@@ -59,47 +57,33 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
 
             return headerContainerView
         }
-//
-//    // This method returns the number of rows on a table view
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        
-//        return userReminders.count
-//    }
-//    
-//    // This Method handles action when a cell is selected
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        
-//        let reminderCell = tableView.dequeueReusableCell(withIdentifier: Constant.reminderTableViewCellIdentifier, for: indexPath) as! ReminderListTableViewCell
-//        let reminder = userReminders[indexPath.row]
-//        
-//        reminderCell.reminderTitleLabel.text = reminder.name
-//        reminderCell.reminderTypeLabel.text = reminder.type?.rawValue
-//        
-//        return  reminderCell
-//    }
-//    
-//
-    // This Method deletes a cell from the table view when dragged from right to left
-//    func tableView(_ tableview : UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete{
-//            let reminderToBeDeleted = sortedReminder[indexPath.row]
-//            ReminderServices.delete(reminderToBeDeleted)
-//        }
-//
-//    }
+
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
     
         
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             // delete item at indexPath
-            let reminderToBeDeleted = self.sortedReminder[indexPath.row]
-            ReminderServices.delete(reminderToBeDeleted)
+            let alert = UIAlertController(title: "Delete", message: " This reminder will be deleted, do you want to continue?", preferredStyle: .alert)
+            let cancelButton = UIAlertAction(title: "Return", style: .cancel, handler: nil)
+            let deleteButton = UIAlertAction(title: "Delete", style: .default, handler: { (remove) in
+                let reminderToBeDeleted = self.sortedReminder[indexPath.row]
+                ReminderServices.delete(reminderToBeDeleted)
+            })
+           alert.addAction(cancelButton)
+            alert.addAction(deleteButton)
+            self.present(alert, animated: true, completion: nil)
         }
         
         let update = UITableViewRowAction(style: .default, title: "Update") { (action, indexPath) in
             // share item at indexPath
-           
+             let reminderToBeUpdated = self.sortedReminder[indexPath.row]
+            let destination = NewReminderViewController()
+            destination.userGroup = self.userGroup
+            destination.userReminder = reminderToBeUpdated
+            destination.modalPresentationStyle = .overCurrentContext
+            destination.modalTransitionStyle = .crossDissolve
+             self.present(destination, animated: true, completion: nil)
         }
         
         update.backgroundColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1)

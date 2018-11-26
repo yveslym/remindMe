@@ -138,13 +138,13 @@ class ReminderListViewController: UIViewController{
         titleLabel.adjustsFontSizeToFitWidth = true
         
         // Styling the home page navigation bar
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addGroupButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addReminderButtonTapped))
         navigationItem.titleView = titleLabel
 
     }
     
     ///
-    @objc fileprivate func addGroupButtonTapped(){
+    @objc fileprivate func addReminderButtonTapped(){
         
         let destination = NewReminderViewController()
         destination.modalPresentationStyle = .overCurrentContext

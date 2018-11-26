@@ -27,12 +27,14 @@ class NewReminderViewController: UIViewController {
     var userGroup: Group!
     var newReminder: Reminder!
     var eventType = EventType.onEntry
+    var userReminder : Reminder!
     
     var pickedDay: String = "Monday"
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.4)
         setupMainView()
         setupTitle()
@@ -43,6 +45,18 @@ class NewReminderViewController: UIViewController {
         setupDescriptionTextView()
         setupDoneButton()
         addSwipeToDismis()
+        
+        if userReminder != nil{
+            setupUpdate()
+        }
+    }
+    
+    func setupUpdate(){
+        titleLabel.text = userGroup.name
+        reminderNameTextFiled.text = userReminder.name
+        reminderDescriptionTextView.text = userReminder.description
+        
+        
     }
     
     func setupMainView(){
@@ -253,6 +267,7 @@ class NewReminderViewController: UIViewController {
     
     @objc func actionButtonTapped(sender: CustomButton){
        
+        
         if timeFromPickerView.date > timeToPickerView.date{
             self.presentAlert(title: "Time miss Match", message: "The start time cannot be greater than the end time")
             return
@@ -279,6 +294,13 @@ class NewReminderViewController: UIViewController {
         }
         
         reminder.description = desc
+        
+        if userReminder != nil{
+            reminder.id = userReminder.id
+            ReminderServices.update(reminder)
+             self.dismiss(animated: true, completion: nil)
+            return
+        }
         
         ReminderServices.create(reminder) {
             DispatchQueue.main.async {

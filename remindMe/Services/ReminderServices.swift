@@ -134,8 +134,8 @@ struct ReminderServices{
     }
     
     static func update(_ reminder: Reminder){
-        let reference = Constant.showReminderRef(reminder.id)
-        reference.updateChildValues(reminder.toDictionary())
+        Constant.showReminderRef(reminder.id).updateChildValues(reminder.toDictionary())
+     
     }
     
     /// method to check if the reminder is onnthe time constrain to set by the user to recieve notificartion
