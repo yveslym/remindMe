@@ -22,11 +22,19 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
         let reminderView = ReminderCustomView(frame: (reminderCell?.frame)!, reminder: reminder)
         
         reminderCell?.addSubview(reminderView)
-//        reminderView.heightAnchor.constraint(equalTo: (reminderCell?.heightAnchor)!, multiplier: 1).isActive = true
-//        reminderView.widthAnchor.constraint(equalTo: (reminderCell?.widthAnchor)!, multiplier: 1).isActive = true
-//     
-        reminderView.anchor(top: reminderCell?.topAnchor, left: reminderCell?.leftAnchor, bottom: reminderCell?.bottomAnchor, right: reminderCell?.rightAnchor, paddingTop: 10, paddingLeft: 10, paddingBottom: 5, paddingRight: 10, width: (reminderCell?.frame.width)!, height: (reminderCell?.frame.height)!, enableInsets: false)
-        //reminderView.backgroundColor = UIColor.clear
+
+        reminderView.anchor(top: reminderCell?.topAnchor,
+                            left: reminderCell?.leftAnchor,
+                            bottom: reminderCell?.bottomAnchor,
+                            right: reminderCell?.rightAnchor,
+                            paddingTop: 10, paddingLeft: 10,
+                            paddingBottom: 5,
+                            paddingRight: 10,
+                            width: (reminderCell?.frame.width)!,
+                            height: (reminderCell?.frame.height)!,
+                            enableInsets: false)
+        
+      
         reminderCell?.contentView.backgroundColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 0.1025524401)
         return reminderCell ?? UITableViewCell()
     }

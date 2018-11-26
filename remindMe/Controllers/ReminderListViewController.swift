@@ -156,11 +156,13 @@ class ReminderListViewController: UIViewController{
     func observeEntryReminder(){
         ReminderServices.observeAddedReminder { (reminder) in
             self.userReminders.append(reminder)
+            
         }
     }
     func observeRemovedReminder(){
         ReminderServices.observeRemovedReminder { (reminders) in
             self.userReminders = reminders ?? [Reminder]()
+           
         }
     }
     func obserUpdatedReminder(){
