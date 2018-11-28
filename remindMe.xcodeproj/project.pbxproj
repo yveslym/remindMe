@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		173EDB9D55E1FB26C391C621 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		173EDB9D55E1FB26C391C621 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		2028877C219B95AB009C517C /* UIViewControllers+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2028877B219B95AB009C517C /* UIViewControllers+Extension.swift */; };
 		2028877D219B95AB009C517C /* UIViewControllers+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2028877B219B95AB009C517C /* UIViewControllers+Extension.swift */; };
 		204B9BE3214C82CE000A1619 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204B9BE2214C82CE000A1619 /* AppDelegate.swift */; };
@@ -126,7 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				173EDB9D55E1FB26C391C621 /* (null) in Frameworks */,
+				173EDB9D55E1FB26C391C621 /* BuildFile in Frameworks */,
 				2D6F192179A9A9E868DB2B2D /* Pods_remindMe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,7 +396,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-remindMe/Pods-remindMe-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-remindMe/Pods-remindMe-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
@@ -427,7 +427,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-remindMe/Pods-remindMe-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-remindMe/Pods-remindMe-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3630EA0A3A8DF48C8B5A3E47 /* [CP] Copy Pods Resources */ = {
@@ -436,7 +436,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-remindMe/Pods-remindMe-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-remindMe/Pods-remindMe-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
@@ -447,7 +447,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-remindMe/Pods-remindMe-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-remindMe/Pods-remindMe-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4AE80D3FE0A7772DC6DC5564 /* [CP] Check Pods Manifest.lock */ = {
