@@ -199,7 +199,7 @@ class SignInViewController: UIViewController{
         button.backgroundColor = .white
         button.setTitle("Sign In", for: .normal)
         button.backgroundColor = .white
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 20
         button.clipsToBounds = true
         button.layer.masksToBounds = true
         button.layer.shadowRadius = 1
