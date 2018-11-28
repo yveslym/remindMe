@@ -214,13 +214,17 @@ class SignInViewController: UIViewController{
     fileprivate let facebookSignInButton: UIButton = {
       
         let button = UIButton()
+
         button.backgroundColor = .white
-        //button.setTitle("Sign in with Facebook", for: .normal)
+        button.setTitle("Facebook", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.setImage(UIImage(named: "facebook"), for: .normal)
+        button.imageView?.anchor(top: button.topAnchor, left: button.leftAnchor, bottom: button.bottomAnchor, right: nil, paddingTop: 10, paddingLeft: 5, paddingBottom: 10, paddingRight: 0, width: 25, height: 0, enableInsets: false)
+        button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 7)
+        button.semanticContentAttribute = .forceLeftToRight
+        button.titleLabel?.textAlignment = .center
         
-        button.backgroundColor = .white
-        button.setBackgroundImage(UIImage(named: "facebook"), for: .normal)
-        button.contentMode = .scaleAspectFill
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 20
         button.clipsToBounds = true
         button.layer.masksToBounds = true
         button.layer.shadowRadius = 1
@@ -235,14 +239,21 @@ class SignInViewController: UIViewController{
     fileprivate let googleSignInButton: UIButton = {
         
         let button = UIButton()
+        
         button.backgroundColor = .white
-        button.setBackgroundImage(UIImage(named: "google"), for: .normal)
-        button.backgroundColor = .white
-        button.layer.cornerRadius = 10
+        button.setTitle("Google", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.setImage(UIImage(named: "google"), for: .normal)
+        button.imageView?.anchor(top: button.topAnchor, left: button.leftAnchor, bottom: button.bottomAnchor, right: nil, paddingTop: 10, paddingLeft: 5, paddingBottom: 10, paddingRight: 0, width: 25, height: 0, enableInsets: false)
+        button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 7)
+        button.semanticContentAttribute = .forceLeftToRight
+        button.titleLabel?.textAlignment = .center
+        
+        button.layer.cornerRadius = 20
         button.clipsToBounds = true
         button.layer.masksToBounds = true
         button.layer.shadowRadius = 1
-        button.setTitleColor(.gloomyBlue,  for: .normal)
+        button.setTitleColor(.gloomyBlue, for: .normal)
         button.addTarget(self, action: #selector(GooglesigniButtonTapped(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -323,11 +334,11 @@ class SignInViewController: UIViewController{
         signInButtonsStackView.translatesAutoresizingMaskIntoConstraints = false
         mainStackView.addSubview(signInButtonsStackView)
         
-        signInButtonsStackView.anchor(top: textInputStackView.bottomAnchor, left: mainStackView.leftAnchor, bottom: mainStackView.bottomAnchor, right: mainStackView.rightAnchor, paddingTop: 0, paddingLeft: 100, paddingBottom: 0, paddingRight: 100, width: 0, height: 0, enableInsets: false)
+        signInButtonsStackView.anchor(top: textInputStackView.bottomAnchor, left: mainStackView.leftAnchor, bottom: mainStackView.bottomAnchor, right: mainStackView.rightAnchor, paddingTop: 0, paddingLeft: 50, paddingBottom: 0, paddingRight: 50, width: 0, height: 0, enableInsets: false)
         
-        facebookSignInButton.anchor(top: signInButtonsStackView.topAnchor, left: signInButtonsStackView.leftAnchor, bottom: signInButtonsStackView.bottomAnchor, right: googleSignInButton.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 120, paddingRight: 10, width: 0, height: 0, enableInsets: false)
+        facebookSignInButton.anchor(top: signInButtonsStackView.topAnchor, left: signInButtonsStackView.leftAnchor, bottom: signInButtonsStackView.bottomAnchor, right: googleSignInButton.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 135, paddingRight: 10, width: 0, height: 0, enableInsets: false)
 
-        googleSignInButton.anchor(top: signInButtonsStackView.topAnchor, left: facebookSignInButton.rightAnchor, bottom: signInButtonsStackView.bottomAnchor, right: signInButtonsStackView.rightAnchor, paddingTop: 0, paddingLeft: 10, paddingBottom: 120, paddingRight: 0, width: 0, height: 0, enableInsets: false)
+        googleSignInButton.anchor(top: signInButtonsStackView.topAnchor, left: facebookSignInButton.rightAnchor, bottom: signInButtonsStackView.bottomAnchor, right: signInButtonsStackView.rightAnchor, paddingTop: 0, paddingLeft: 10, paddingBottom: 135, paddingRight: 0, width: 0, height: 0, enableInsets: false)
         
     }
     
