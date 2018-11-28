@@ -42,9 +42,9 @@ class ReminderListViewController: UIViewController{
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.white
-       self.setUpMainStack()
+       //self.setUpMainStack()
         self.setupButtonSwitch()
-        self.setupTableViewStack()
+        //self.setupTableViewStack()
         self.reminderTableView.reloadData()
         setUpNavigationBarItems()
         observeEntryReminder()
@@ -93,12 +93,36 @@ class ReminderListViewController: UIViewController{
         
         let stack = CustomStack(subview: [todayButton,onEntryButton,onExitButton], alignment: .center, axis: .horizontal, distribution: .fillEqually)
         
-        self.mainStack.addSubview(stack)
+        reminderTableView = UITableView()
+        reminderTableView?.separatorStyle = .none
+        reminderTableView?.delegate = self
+        reminderTableView?.dataSource = self
+        reminderTableView.register(ReminderListTableViewCell.self, forCellReuseIdentifier: Constant.reminderTableViewCellIdentifier)
+
         
-        stack.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
-        stack.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.3).isActive = true
-       stack.leftAnchor.constraint(equalTo: mainStack.leftAnchor, constant: 20).isActive = true
+       mainStack = CustomStack.init(subview: [stack,reminderTableView], alignment: .center, axis: .vertical, distribution: .fill)
+        
+        stack.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 1).isActive = true
+        stack.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.1).isActive = true
+        
+        reminderTableView.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 1).isActive = true
+       // reminderTableView.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.8).isActive = true
+        
+      
         stack.spacing = 10
+        
+        self.view.addSubview(mainStack)
+        mainStack.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                         left: view.safeAreaLayoutGuide.leftAnchor,
+                         bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                         right: view.safeAreaLayoutGuide.rightAnchor,
+                         paddingTop: 10,
+                         paddingLeft: 10,
+                         paddingBottom: 10,
+                         paddingRight: 10,
+                         width: 0,
+                         height: 0,
+                         enableInsets: true)
     }
     
     @objc func actionButtonTapped(sender: CustomButton){
