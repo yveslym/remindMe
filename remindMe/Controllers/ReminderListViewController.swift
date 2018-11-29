@@ -41,7 +41,7 @@ class ReminderListViewController: UIViewController{
         self.setupButtonSwitch()
         self.setupTableViewStack()
         self.reminderTableView.reloadData()
-     setUpNavigationBarItems()
+        setUpNavigationBarItems()
     }
     
     func setUpMainStack(){
@@ -82,7 +82,7 @@ class ReminderListViewController: UIViewController{
         
         stack.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
         stack.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.3).isActive = true
-       stack.leftAnchor.constraint(equalTo: mainStack.leftAnchor, constant: 20).isActive = true
+        stack.leftAnchor.constraint(equalTo: mainStack.leftAnchor, constant: 20).isActive = true
         stack.spacing = 10
     }
     
