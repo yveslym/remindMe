@@ -15,6 +15,7 @@ struct Group: Codable{
     var description: String?
     var longitude: Double
     var latitude: Double
+    var address: String?
     
     init(id: String, name: String,description: String, latitude: Double, longitude: Double) {
         

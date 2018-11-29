@@ -46,7 +46,7 @@ class ReminderCustomView: CustomView{
         reminderNameLabel = CustomLabel(fontSize: 18, text: reminder.name!, textColor: UIColor.black)
         
         reminderDayLabel = CustomLabel(fontSize: 12, text: "every  \(reminder.day ?? "")"  , textColor: UIColor.darkGray)
-        reminderTimeLabel = CustomLabel(fontSize: 10, text: "from: \(reminder.timeFrom ?? "") to: \(reminder.timeTo ?? "")", textColor: UIColor.darkGray)
+        reminderTimeLabel = CustomLabel(fontSize: 10, text: "\(reminder.timeFrom?.toDateTime()?.timeToPrettyString() ?? "") to: \(reminder.timeTo?.toDateTime()?.timeToPrettyString() ?? "")", textColor: UIColor.darkGray)
         
         
         reminderDescriptionLabel = CustomLabel(fontSize: 11, text: reminder.description ?? "", textColor: UIColor.darkGray)
