@@ -42,9 +42,9 @@ class ReminderListViewController: UIViewController{
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.white
-       //self.setUpMainStack()
+       
         self.setupButtonSwitch()
-        //self.setupTableViewStack()
+       
         self.reminderTableView.reloadData()
         setUpNavigationBarItems()
         observeEntryReminder()
@@ -64,21 +64,7 @@ class ReminderListViewController: UIViewController{
         self.view.addSubview(mainStack)
        
     }
-    func setupTableViewStack(){
-        
-        reminderTableView = UITableView()
-        reminderTableView?.separatorStyle = .none
-        reminderTableView?.delegate = self
-        reminderTableView?.dataSource = self
-        reminderTableView.register(ReminderListTableViewCell.self, forCellReuseIdentifier: Constant.reminderTableViewCellIdentifier)
-
-        mainStack.addArrangedSubview(reminderTableView)
-        reminderTableView.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
-        reminderTableView.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.8).isActive = true
-       reminderTableView.leftAnchor.constraint(equalTo: mainStack.leftAnchor, constant: 20).isActive = true
-          reminderTableView.rightAnchor.constraint(equalTo: mainStack.rightAnchor, constant: -40).isActive = true
-         reminderTableView.bottomAnchor.constraint(equalTo: mainStack.bottomAnchor, constant: 20).isActive = true
-    }
+   
     func setupButtonSwitch(){
         todayButton = CustomButton(title: "today", fontSize: 15, titleColor: UIColor.black, target: self, action: #selector(actionButtonTapped(sender:)), event: .touchUpInside)
         
@@ -154,7 +140,7 @@ class ReminderListViewController: UIViewController{
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
         
         // Styling the home page title
-        titleLabel.text = userGroup.name
+        titleLabel.text = userGroup.name + " Reminder"
         titleLabel.textColor = .gray
         titleLabel.font = UIFont(name: "Rockwell", size: 20)
         titleLabel.textAlignment = .center

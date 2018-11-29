@@ -300,9 +300,6 @@ class NewReminderViewController: UIViewController {
             reminderNameTextFiled.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
          dateTimeLabel.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
          descriptionStack.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
-        
-        
-/
        
     }
     
