@@ -11,8 +11,15 @@ import UIKit
 
 class ReminderCustomView: CustomView{
     
-    var title: String!
+    private var title: String!
+    private var reminderTimeLabel: CustomLabel!
+    private var reminderNameLabel: CustomLabel!
+    private var reminderDayLabel: CustomLabel!
+    private var mainStack: CustomStack!
+    private var reminderDescriptionLabel: CustomLabel!
     
+    
+    private var midRect: CGRect!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,65 +43,46 @@ class ReminderCustomView: CustomView{
         
        
         
-        let name = CustomLable(fontSize: 20, text: reminder.name!, textColor: UIColor.black)
-        let time = CustomLable(fontSize: 10, text: "every " + reminder.time, textColor: UIColor.darkGray)
+        reminderNameLabel = CustomLabel(fontSize: 18, text: reminder.name!, textColor: UIColor.black)
         
-        let descr = CustomLable(fontSize: 11, text: "do something when something as to be done by yourself or with people it doesn't matter cause all this are just bullshit nobody cares", textColor: UIColor.black)
+        reminderDayLabel = CustomLabel(fontSize: 12, text: "every  \(reminder.day ?? "")"  , textColor: UIColor.darkGray)
+        reminderTimeLabel = CustomLabel(fontSize: 10, text: "from: \(reminder.timeFrom ?? "") to: \(reminder.timeTo ?? "")", textColor: UIColor.darkGray)
         
-        descr.numberOfLines = 0
         
-        self.addSubview(name)
-//        name.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5).isActive = true
-//        name.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
-//
-//       name.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 15).isActive = true
-        self.addSubview(time)
-
+        reminderDescriptionLabel = CustomLabel(fontSize: 11, text: reminder.description ?? "", textColor: UIColor.darkGray)
+        reminderDescriptionLabel.numberOfLines = 0
+        
        
-        self.addSubview(descr)
+        let stack = CustomStack.init(subview: [reminderNameLabel,reminderDayLabel,reminderTimeLabel], alignment: .fill, axis: .vertical, distribution: .fill)
+        reminderNameLabel.heightAnchor.constraint(equalTo: stack.heightAnchor, multiplier: 0.4).isActive = true
+        reminderDayLabel.heightAnchor.constraint(equalTo: stack.heightAnchor, multiplier: 0.3).isActive = true
+        mainStack = CustomStack.init(subview: [stack,reminderDescriptionLabel], alignment: .top, axis: .horizontal, distribution: .fill)
+        mainStack.spacing = 10
         
-      
-        descAutoLayout(desc: descr)
-      nameAutoLayout(name: name, desc: descr)
-        time.topAnchor.constraint(equalTo: name.bottomAnchor, constant: 5).isActive = true
-        time.leftAnchor.constraint(lessThanOrEqualTo: self.leftAnchor, constant: 15).isActive = true
-    }
-    private func nameAutoLayout(name: CustomLable, desc: CustomLable){
-        let r = frame.width - ((frame.width/2) - 40)
-        name.anchor(top: self.topAnchor,
-                    left: self.leftAnchor,
-                    bottom: self.bottomAnchor,
-                    right: self.rightAnchor,
-                    paddingTop: 0,
-                    paddingLeft: 15,
-                    paddingBottom: 25,
-                    paddingRight: r,
-                    width: frame.width - desc.frame.width - 10,
-                    height: frame.height,
-                    enableInsets: false)
+        stack.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.45).isActive = true
+        mainStack.frame = self.frame
+        self.addSubview(mainStack)
+        mainStack.anchor(top: self.topAnchor,
+                         left: self.leftAnchor,
+                         bottom: self.bottomAnchor,
+                         right: self.rightAnchor,
+                         paddingTop: 10,
+                         paddingLeft: 15,
+                         paddingBottom: 0,
+                         paddingRight: 0,
+                         width: 0,
+                         height: 0,
+                         enableInsets: true)
         
     }
-    private func descAutoLayout(desc: CustomLable){
-        
-        let w = frame.width - ((frame.width / 2) - 10)
-        desc.anchor(top: self.topAnchor,
-                    left: self.leftAnchor,
-                    bottom: self.bottomAnchor,
-                    right: self.rightAnchor,
-                    paddingTop: 0,
-                    paddingLeft: (self.frame.width / 2) - 10,
-                    paddingBottom: 0,
-                    paddingRight: 0,
-                    width: w,
-                    height: frame.height,
-                    enableInsets: false)
-    }
+   
+    
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        print(rect.size.width)
-        let midRect = CGRect(x: (rect.size.width/2) - 40 , y: rect.origin.y + 5, width: 2, height: rect.size.height - 10)
+        
+        midRect = CGRect(x: (rect.size.width/2.1) , y: rect.origin.y + 5, width: 2, height: rect.size.height - 10)
         
         UIColor.gray.set()
         UIRectFill(midRect)

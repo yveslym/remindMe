@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension Date{
-    func dayOfWeak() -> String{
+    func dayOfWeek() -> String{
         let day =  Calendar.current.dateComponents([.weekday], from: self).weekday!
         let dayName = DateFormatter().weekdaySymbols[(day-1) % 7]
         return dayName
@@ -34,7 +34,7 @@ extension Date{
     }
     public func timeToString() -> String{
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss"
+        formatter.dateFormat = "HH:mm"
         let stringDate = formatter.string(from: self)
         return stringDate
     }

@@ -55,7 +55,7 @@ struct GeoFence{
         reminders.forEach({
             dg.enter()
             let center = CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude)
-            let region = CLCircularRegion.init(center: center, radius: 200, identifier: $0.id)
+            let region = CLCircularRegion.init(center: center, radius: 100, identifier: $0.id)
             let manager = CLLocationManager()
             addNewGeoFencing(locationManager: manager, region: region, event: $0.type!)
             dg.leave()

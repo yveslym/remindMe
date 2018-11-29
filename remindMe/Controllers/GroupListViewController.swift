@@ -42,6 +42,11 @@ class GroupListViewController: UIViewController{
                     if let reminders = reminders{
                         self.userReminders = reminders
                     }
+                    else{
+                        DispatchQueue.main.async {
+                            self.groupListTableView.reloadData()
+                        }
+                    }
                 })
             }
         }
