@@ -77,9 +77,9 @@ class GroupListViewController: UIViewController{
         anchorExitReminderStackView()
         
         // Network Set Up
-        updateReminderLabels()
-        fetchAllGroups()
-        monitorReminders()
+        //updateReminderLabels()
+        //fetchAllGroups()
+        //monitorReminders()
         networkManager.reachability.whenUnreachable = { reachability in
             self.showOfflinePage()
         }
@@ -168,10 +168,17 @@ class GroupListViewController: UIViewController{
         navigationController?.navigationBar.alpha = 0.0
     }
     
-    ///
+    /// Shows the user a page to create a group
     @objc fileprivate func addGroupButtonTapped(){
-        
-        
+        if let destinaionVC = CreateGroupViewController() as? CreateGroupViewController{
+            destinaionVC.modalPresentationStyle = .popover
+            let popOver = destinaionVC.popoverPresentationController!
+            popOver.delegate = self as? UIPopoverPresentationControllerDelegate
+            popOver.permittedArrowDirections = .up
+            self.present(destinaionVC, animated: true, completion: nil)
+            
+        }
+
     }
     
     // - MARK: UI ELEMENTS AND METHODS
