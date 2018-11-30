@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-class CustomLable: UILabel{
+class CustomLabel: UILabel{
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -36,25 +36,40 @@ class CustomTextField: UITextField{
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    convenience init(placeHolder: String, border: CGFloat, cornerRadius: CGFloat, borderColor: UIColor, textColor: UIColor, alignment: NSTextAlignment){
+    convenience init(placeHolder: String, border: CGFloat, cornerRadius: CGFloat, borderColor: UIColor, textColor: UIColor, alignment: NSTextAlignment, borderStyle: BorderStyle){
         self.init()
         
         backgroundColor = .clear
-        attributedPlaceholder = NSAttributedString(string: placeHolder ,attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        attributedPlaceholder = NSAttributedString(string: placeHolder ,attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+       
+        self.borderStyle = borderStyle
+        
+        if borderStyle != .none{
         layer.borderWidth = border
         layer.borderColor = borderColor.cgColor
+         layer.cornerRadius = cornerRadius
+        }
         self.textColor = textColor
         textAlignment = alignment
-        borderStyle = .roundedRect
-        layer.cornerRadius = cornerRadius
-        clipsToBounds = true
-        layer.masksToBounds = true
-        layer.shadowRadius = 1
+        
+       
         translatesAutoresizingMaskIntoConstraints = true
+    }
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        if borderStyle == .none{
+       
+        let buttomRect = CGRect(x: rect.origin.x, y: rect.maxY - 2, width: rect.width, height: 1)
+        
+        UIColor.gray.set()
+        UIRectFill(buttomRect)
+        }
     }
 }
 
-class customStack: UIStackView{
+
+
+class CustomStack: UIStackView{
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -71,7 +86,7 @@ class customStack: UIStackView{
     }
 }
 
-class customButton: UIButton{
+class CustomButton: UIButton{
     override init(frame: CGRect) {
         super.init(frame: frame)
     }

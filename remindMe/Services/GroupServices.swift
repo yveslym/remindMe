@@ -106,6 +106,7 @@ struct GroupServices{
     static func delete(group: Group, completion: @escaping(Bool)->()){
         
         // Fetches all reminders of the user
+        
         ReminderServices.index { (reminders) in
             
             if let reminders = reminders{
@@ -116,9 +117,7 @@ struct GroupServices{
                     // if the reminder has the same group id of the group that will be deleted...
                     if reminder.groupId == group.id{
                         // the reminder gets deleted
-                        ReminderServices.delete(reminder, completion: { (true) in
-                            print("Reminder of group \(group.name) successfully deleted")
-                        })
+                        ReminderServices.delete(reminder)
                     }
                 })
             }

@@ -33,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         FirebaseApp.configure()
         isUserLoggedIn()
         
+       
+        
         return true
     }
     
@@ -52,11 +54,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     }
     
     /// Method to handle and set up the local notification
-    fileprivate func handleEvent(forRegion region: CLRegion!, body: String, title: String){
+    fileprivate func handleEvent(forRegion region: CLRegion!, reminder: Reminder, group: Group){
         
         let content = UNMutableNotificationContent()
-        content.title = "Reminder Alert : \(title)"
-        content.body = body
+        content.title = group.name
+        content.subtitle = reminder.name ?? ""
+        content.body = reminder.description ?? ""
         content.sound = UNNotificationSound.default()
         content.badge = 1
         
@@ -101,7 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             
             GroupServices.show(reminder.groupId, completion: { (group) in
                 guard let group = group else {return}
-                self.handleEvent(forRegion: region, body: reminder.time, title:group.name)
+                self.handleEvent(forRegion: region, reminder: reminder, group:group)
             })
         }
     }

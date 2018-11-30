@@ -90,7 +90,7 @@ struct ReminderServices{
         let reference = Constant.showReminderRef(reminderId)
         reference.observeSingleEvent(of: .value) { (snapchot) in
             if snapchot.exists(){
-                let reminder = try! JSONDecoder().decode(Reminder.self, withJSONObject: snapchot.value, options: [])
+                let reminder = try! JSONDecoder().decode(Reminder.self, withJSONObject: snapchot.value as Any, options: [])
                 return completion(reminder)
             }else {
                 return completion(nil)
@@ -127,21 +127,67 @@ struct ReminderServices{
      @param group: the reminder to be removed
      @param completion ->Bool: The true or false value that determine wheter the reminder has been deleted
      */
-    static func delete(_ reminder: Reminder, completion: @escaping(Bool) -> ()){
+    static func delete(_ reminder: Reminder){
         
         let reference = Constant.showReminderRef(reminder.id)
-        reference.removeValue { (error, reference) in
-            return (error == nil) ? ( completion(true)) : (completion(false))
-        }
+        reference.removeValue()
+    }
+    
+    static func update(_ reminder: Reminder){
+        Constant.showReminderRef(reminder.id).updateChildValues(reminder.toDictionary())
+     
     }
     
     /// method to check if the reminder is onnthe time constrain to set by the user to recieve notificartion
   static func isReminderOnTimeFrame(reminder: Reminder) -> Bool{
-        guard let date = Date().toString().toDateTime() else{return false}
+        guard let date = Date().timeToString().toDateTime() else{return false}
+        let day = Date().dayOfWeek()
+    if day == reminder.day{
+        
+    
          guard let timeFrom = reminder.timeFrom?.toDateTime() else{return false}
          guard let timeTo = reminder.timeTo?.toDateTime() else{return false}
         
       return (timeFrom <= date) && (timeTo >= date ) ?  true :  false
-        
+    }
+    else{
+        return false
+    }
+    
+}
+    
+    /// method to observe new cerated reminders on database
+    static func observeAddedReminder(completion: @escaping (Reminder)->()){
+        Constant.reminderRef().observe(.childAdded) { (snapshot) in
+            if snapshot.exists(){
+                do{
+                    let reminder = try JSONDecoder().decode(Reminder.self, withJSONObject: snapshot.value as Any)
+                    completion(reminder)
+                }
+                catch{
+                    print("couldn't decode observed entry reminder")
+                    }
+                }
+        }
+    }
+    /// method to observe updated reminders on database
+    static func observeUpdatedReminder(completion: @escaping ([Reminder]?)->()){
+        Constant.reminderRef().observe(.childChanged) { (snapshot) in
+            if snapshot.exists(){
+                index(completion: { (reminders) in
+                    completion(reminders)
+                })
+            }
+        }
+    }
+    /// method to observe removed reminders
+    static func observeRemovedReminder(completion: @escaping ([Reminder]?)->()){
+        Constant.reminderRef().observe(.childRemoved) { (snapshot) in
+            if snapshot.exists(){
+                index(completion: { (reminders) in
+                    completion(reminders)
+                })
+            }
+        }
     }
 }
