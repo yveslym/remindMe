@@ -82,9 +82,9 @@ class GroupListViewController: UIViewController{
         anchorExitReminderStackView()
         
         // Network Set Up
-        //updateReminderLabels()
-        //fetchAllGroups()
-        //monitorReminders()
+        updateReminderLabels()
+        fetchAllGroups()
+        monitorReminders()
         networkManager.reachability.whenUnreachable = { reachability in
             self.showOfflinePage()
         }
