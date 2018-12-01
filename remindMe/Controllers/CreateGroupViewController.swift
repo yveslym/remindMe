@@ -38,6 +38,7 @@ class CreateGroupViewController: UIViewController{
         anchorGroupDescriptionItems()
         anchorGroupAddressItems()
         anchorSaveButton()
+        addSwipeToDismis()
     }
     
     @objc fileprivate func saveButtonTapped(sender: UIButton){
@@ -57,23 +58,22 @@ class CreateGroupViewController: UIViewController{
         }
     }
     
-//    fileprivate func addSwipeToDismis() {
-//        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleMainViewDragged(_:)))
-//        popUpContainer.addGestureRecognizer(gestureRecognizer)
-//    }
-//
-//    @objc func handleMainViewDragged(_ gestureRecognizer: UIPanGestureRecognizer) {
-//        if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
-//
-//            let translation = gestureRecognizer.translation(in: self.view)
-//            // note: 'view' is optional and need to be unwrapped
-//            gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x, y: gestureRecognizer.view!.center.y + translation.y)
-//            gestureRecognizer.setTranslation(CGPoint.zero, in: self.view)
-//        }
-//        if gestureRecognizer.state == .ended{
-//            self.dismiss(animated: true, completion: nil)
-//        }
-//    }
+    fileprivate func addSwipeToDismis() {
+        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleMainViewDragged(_:)))
+        popUpContainer.addGestureRecognizer(gestureRecognizer)
+    }
+    
+
+    @objc func handleMainViewDragged(_ gestureRecognizer: UIPanGestureRecognizer) {
+        if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
+            let translation = gestureRecognizer.translation(in: self.view)
+            gestureRecognizer.view!.center = CGPoint(x: gestureRecognizer.view!.center.x + translation.x, y: gestureRecognizer.view!.center.y + translation.y)
+            gestureRecognizer.setTranslation(CGPoint.zero, in: self.view)
+        }
+        if gestureRecognizer.state == .ended{
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 
     fileprivate func anchorPopUpContainer(){
         
