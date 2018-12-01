@@ -11,6 +11,7 @@ import Firebase
 import CoreLocation
 import JLocationKit
 import UserNotifications
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate{
@@ -32,9 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         configureLocalNotification()
         FirebaseApp.configure()
         isUserLoggedIn()
-        
-       
-        
+
+         IQKeyboardManager.shared.enable = true
         return true
     }
     

@@ -37,7 +37,7 @@ class NewReminderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.hideKeyboard()
         view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.4)
         setupMainView()
         setupTitle()
@@ -86,18 +86,7 @@ class NewReminderViewController: UIViewController {
     
     func setupTitle(){
         titleLabel = CustomLabel(fontSize: 20, text: "New \(userGroup.name) Reminder", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
-//        mainView.addSubview(titleLabel)
-//        titleLabel.anchor(top: mainView.topAnchor,
-//                          left: mainView.leftAnchor,
-//                          bottom: nil,
-//                          right: mainView.rightAnchor,
-//                          paddingTop: 10,
-//                          paddingLeft: 0,
-//                          paddingBottom: 0,
-//                          paddingRight: 0,
-//                          width: 0,
-//                          height: 0,
-//                          enableInsets: true)
+
         titleLabel.textAlignment = .center
     }
     
@@ -105,18 +94,7 @@ class NewReminderViewController: UIViewController {
     func setupReminderTextField(){
         reminderNameTextFiled = CustomTextField(placeHolder: "Title", border: 1, cornerRadius: 5, borderColor: #colorLiteral(red: 0.07895455509, green: 0.1626217663, blue: 0.2949268222, alpha: 1), textColor: #colorLiteral(red: 0.07895455509, green: 0.1626217663, blue: 0.2949268222, alpha: 1), alignment: .left, borderStyle: .none)
         
-//        mainView.addSubview(reminderNameTextFiled)
-//        reminderNameTextFiled.anchor(top: titleLabel.bottomAnchor,
-//                                     left: mainView.leftAnchor,
-//                                     bottom: nil,
-//                                     right: mainView.rightAnchor,
-//                                     paddingTop: 30,
-//                                     paddingLeft: 10,
-//                                     paddingBottom: 0,
-//                                     paddingRight: 10,
-//                                     width: mainView.frame.width - 10,
-//                                     height: 0,
-//                                     enableInsets: true)
+        reminderNameTextFiled.delegate = self
     
     }
     func setupTypeButton(){
@@ -160,18 +138,7 @@ class NewReminderViewController: UIViewController {
     func setUpDateTimeLabel(){
        // let stack = mainView.subviews.last
         dateTimeLabel = CustomLabel(fontSize: 18, text: "Date and Time", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
-//        mainView.addSubview(dateTimeLabel)
-//        dateTimeLabel.anchor(top: stack?.bottomAnchor,
-//                             left: mainView.leftAnchor,
-//                             bottom: nil,
-//                             right: mainView.rightAnchor,
-//                             paddingTop: 20,
-//                             paddingLeft: 10,
-//                             paddingBottom: 0,
-//                             paddingRight: 10,
-//                             width: 0,
-//                             height: 0,
-//                             enableInsets: true)
+
     }
     func  setupDateSelectionPicker(){
         
@@ -200,19 +167,7 @@ class NewReminderViewController: UIViewController {
         
         
                 pickerStack = CustomStack(subview: [dayPickerStack,timeFromStack,timeToStack], alignment: .center, axis: .horizontal, distribution: .fill)
-//                mainView.addSubview(stack)
-//
-//                stack.anchor(top: dateTimeLabel.bottomAnchor,
-//                             left: mainView.leftAnchor,
-//                             bottom: nil,
-//                             right: mainView.rightAnchor,
-//                             paddingTop: 10,
-//                             paddingLeft: 0,
-//                             paddingBottom: 0,
-//                             paddingRight: 0,
-//                             width: 0,
-//                             height: 0,
-//                             enableInsets: true)
+
         
         dayPickerStack.widthAnchor.constraint(equalTo: pickerStack.widthAnchor, multiplier: 0.2).isActive = true
         timeToStack.widthAnchor.constraint(equalTo: pickerStack.widthAnchor, multiplier: 0.4).isActive = true
@@ -222,6 +177,7 @@ class NewReminderViewController: UIViewController {
     
     func setupDescriptionTextView(){
         reminderDescriptionTextView = UITextView()
+        reminderDescriptionTextView.delegate = self
        // let stack = mainView.subviews.last
         let descriptionLabel = CustomLabel(fontSize: 12, text: "Description", textColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
         descriptionStack = CustomStack(subview: [descriptionLabel,reminderDescriptionTextView], alignment: .leading, axis: .vertical, distribution: .fill)
@@ -235,38 +191,13 @@ class NewReminderViewController: UIViewController {
         
         reminderDescriptionTextView.text = ""
         reminderDescriptionTextView.backgroundColor = #colorLiteral(red: 0.1298420429, green: 0.1298461258, blue: 0.1298439503, alpha: 0.09685359589)
-//        descriptionStack.anchor(top: stack?.bottomAnchor,
-//                                            left: mainView.leftAnchor,
-//                                            bottom: nil,
-//                                            right: mainView.rightAnchor,
-//                                            paddingTop: 5,
-//                                            paddingLeft: 10,
-//                                            paddingBottom: 0,
-//                                            paddingRight: 10,
-//                                            width: 0/*mainView.frame.width - 10*/,
-//                                            height: mainView.frame.height / 6,
-//                                            enableInsets: true)
-        
+
     }
     
     func setupDoneButton(){
         saveButton = CustomButton(title: "Save", fontSize: 12, titleColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1), target: self, action: #selector(actionButtonTapped(sender:)), event: .touchUpInside)
         saveButton.newLayerColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1)
-       // let stack = mainView.subviews.last
-        
-       // mainView.addSubview(saveButton)
-        
-//        saveButton.anchor(top: stack?.bottomAnchor,
-//                          left: mainView.leftAnchor,
-//                          bottom: nil,
-//                          right: mainView.rightAnchor,
-//                          paddingTop: 30,
-//                          paddingLeft: mainView.frame.width / 4,
-//                          paddingBottom: 0,
-//                          paddingRight:  mainView.frame.width / 4,
-//                          width: 0,
-//                        height: 0,
-//            enableInsets: true)
+
     }
     
     func mainStackAutoLayout(){
@@ -293,14 +224,14 @@ class NewReminderViewController: UIViewController {
         
          pickerStack.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.4).isActive = true
          descriptionStack.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.2).isActive = true
-        saveButton.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.05).isActive = true
+        saveButton.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.08).isActive = true
         saveButton.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.5).isActive = true
         
         buttonStack.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
             reminderNameTextFiled.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
          dateTimeLabel.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
          descriptionStack.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
-       
+      
     }
     
     @objc func actionButtonTapped(sender: CustomButton){
@@ -419,4 +350,19 @@ extension NewReminderViewController: UIPickerViewDelegate, UIPickerViewDataSourc
         return pickerLabel!
     }
     
+}
+
+extension NewReminderViewController: UITextFieldDelegate, UITextViewDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+
+            return false
+        }
+        return true
+    }
 }

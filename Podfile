@@ -17,6 +17,7 @@ target 'remindMe' do
     pod 'ReachabilitySwift'
     pod 'FBSDKLoginKit'
     pod 'JLocationKit', '~> 1.0.3'
+    pod 'IQKeyboardManagerSwift'
 
   target 'remindMeTests' do
     inherit! :search_paths

@@ -108,6 +108,7 @@ PODS:
   - GTMSessionFetcher/Core (1.2.0)
   - GTMSessionFetcher/Full (1.2.0):
     - GTMSessionFetcher/Core (= 1.2.0)
+  - IQKeyboardManagerSwift (6.2.0)
   - JLocationKit (1.0.3)
   - leveldb-library (1.20)
   - nanopb (0.3.901):
@@ -127,6 +128,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseUI/Auth
   - GoogleSignIn
+  - IQKeyboardManagerSwift
   - JLocationKit (~> 1.0.3)
   - ReachabilitySwift
 
@@ -152,6 +154,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMOAuth2
     - GTMSessionFetcher
+    - IQKeyboardManagerSwift
     - JLocationKit
     - leveldb-library
     - nanopb
@@ -179,12 +182,13 @@ SPEC CHECKSUMS:
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
   GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
+  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   JLocationKit: 07839bdc4c4a170e970d66c77df151c2eb0abef4
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
 
-PODFILE CHECKSUM: 749803c00aee184a788a1fd8ff9e9bade3ec14e4
+PODFILE CHECKSUM: 59e2a451777977c4ee128fce9f61c2045680dcbf
 
 COCOAPODS: 1.5.3
