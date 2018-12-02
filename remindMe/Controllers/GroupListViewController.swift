@@ -71,8 +71,6 @@ class GroupListViewController: UIViewController{
         
         super.viewDidLoad()
         self.view.backgroundColor = .white
-//        self.groupListTableView.delegate = self as UITableViewDelegate
-//        self.groupListTableView.dataSource = self as UITableViewDataSource
         
         // UI SET UP
         setUpNavigationBarItems()
@@ -92,6 +90,9 @@ class GroupListViewController: UIViewController{
         updateReminderLabels()
         fetchAllGroups()
         monitorReminders()
+        obserUpdatedGroup()
+        observeAddedGroup()
+        observeRemovedGroup()
         networkManager.reachability.whenUnreachable = { reachability in
             self.showOfflinePage()
         }
@@ -188,6 +189,24 @@ class GroupListViewController: UIViewController{
             
         }
 
+    }
+    
+    fileprivate func observeAddedGroup(){
+        GroupServices.observeAddedGroup { (group) in
+            self.userGroups.append(group)
+        }
+    }
+    
+    fileprivate func observeRemovedGroup(){
+        GroupServices.observeDeletedGroup { (groups) in
+            self.userGroups = groups ?? [Group]()
+        }
+    }
+    
+    fileprivate func obserUpdatedGroup(){
+        GroupServices.observeUpdatedGroup { (groups) in
+            self.userGroups = groups ?? [Group]()
+        }
     }
     
     // - MARK: UI ELEMENTS AND METHODS
