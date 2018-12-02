@@ -170,6 +170,7 @@ struct ReminderServices{
                 }
         }
     }
+    
     /// method to observe updated reminders on database
     static func observeUpdatedReminder(completion: @escaping ([Reminder]?)->()){
         Constant.reminderRef().observe(.childChanged) { (snapshot) in
@@ -180,6 +181,7 @@ struct ReminderServices{
             }
         }
     }
+    
     /// method to observe removed reminders
     static func observeRemovedReminder(completion: @escaping ([Reminder]?)->()){
         Constant.reminderRef().observe(.childRemoved) { (snapshot) in

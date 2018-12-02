@@ -105,28 +105,56 @@ struct GroupServices{
      */
     static func delete(group: Group, completion: @escaping(Bool)->()){
         
-        // Fetches all reminders of the user
-        
         ReminderServices.index { (reminders) in
             
             if let reminders = reminders{
-                
-                // loops into the list of reminders
                 reminders.forEach({ (reminder) in
-                    
-                    // if the reminder has the same group id of the group that will be deleted...
                     if reminder.groupId == group.id{
-                        // the reminder gets deleted
                         ReminderServices.delete(reminder)
                     }
                 })
             }
         }
-        
-        // Grabs the reference of the group from FireBase and deletes it
         let ref = Constant.showGroupRef(group.id)
         ref.removeValue { (error, ref) in
            return (error == nil) ? ( completion(true)) : (completion(false))
+        }
+    }
+    
+    /// method to observe added reminders on database
+    static func observeAddedGroup(_ completion: @escaping (Group) -> Void){
+        Constant.groupRef().observe(.childAdded) { (snapchot) in
+            if snapchot.exists(){
+                do{
+                    let group = try JSONDecoder().decode(Group.self, withJSONObject: snapchot.value as Any)
+                    completion(group)
+                }
+                catch{
+                    print("Could not decode observed group object")
+                }
+            }
+        }
+    }
+    
+    /// method to observe updated groups on database
+    static func observeUpdatedGroup(_ completion: @escaping ([Group]?) -> Void){
+        Constant.groupRef().observe(.childChanged) { (snapshot) in
+            if snapshot.exists(){
+                index(completion: { (groups) in
+                    completion(groups)
+                })
+            }
+        }
+    }
+    
+    /// method to observe deleted groups on database
+    static func observeDeletedGroup(_ completion: @escaping ([Group]?) -> Void){
+        Constant.groupRef().observe(.childRemoved) { (snapchot) in
+            if snapchot.exists(){
+                index(completion: { (groups) in
+                    completion(groups)
+                })
+            }
         }
     }
 }

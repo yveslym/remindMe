@@ -25,6 +25,7 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         
         let customView = CustomView(frame: groupCell.contentView.frame, leftViewColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
         groupCell.contentView.addSubview(customView)
+        groupCell.backgroundColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 0.1025524401)
         
         let currentGroup = userGroups[indexPath.row]
         let counter = userReminders.filter({$0.groupId == currentGroup.id}).count
@@ -59,22 +60,13 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         self.navigationController?.pushViewController(destinationVC, animated: true)
         
     }
-
-//    // This function sends a reference of the group object selected to be used in the next view controller
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//
-//        guard let segueIdentifier = segue.identifier else {return}
-//        switch segueIdentifier {
-//        case Constant.showAllRemindersSegueIdentifier:
-//
-//            let destinationViewController = segue.destination as? ReminderListViewController
-//            let group = sender as? Group
-//            destinationViewController?.parentGroup = group
-//        default:
-//            print("ERROR : INVALID SEGUE IDENTIFIER")
-//        }
-//    }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 85
+    }
+    
+
     
     // - MARK: UI Elements and AutoLayout methods
     
@@ -261,6 +253,11 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
     
     /// Anchors the table view in the table view container view
     func anchorTableView(){
+        
+        groupListTableView.register(GroupListTableViewCell.self, forCellReuseIdentifier: Constant.groupTableViewCellIdentifier)
+        groupListTableView.separatorStyle = .none
+        groupListTableView.delegate = self
+        groupListTableView.dataSource = self
         
         tableViewContainer.addSubview(groupListTableView)
         groupListTableView.anchor(top: tableViewContainer.topAnchor, left: tableViewContainer.leftAnchor, bottom: tableViewContainer.bottomAnchor, right: tableViewContainer.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 20, paddingRight: 20, width: 0, height: 0, enableInsets: false)

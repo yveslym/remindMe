@@ -15,6 +15,7 @@ class GroupListViewController: UIViewController{
 
     
     // Stack views variables
+    var groupListTableView =  UITableView()
     var remindersDataStackView = UIStackView()
     var totalRemindersStackView = UIStackView()
     var totalRemindersOnEntryStackView = UIStackView()
@@ -58,14 +59,20 @@ class GroupListViewController: UIViewController{
             }
         }
     }
-
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchAllGroups()
+    }
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.groupListTableView.delegate = self as UITableViewDelegate
-        self.groupListTableView.dataSource = self as UITableViewDataSource
-        groupListTableView.register(GroupListTableViewCell.self, forCellReuseIdentifier: Constant.groupTableViewCellIdentifier)
+//        self.groupListTableView.delegate = self as UITableViewDelegate
+//        self.groupListTableView.dataSource = self as UITableViewDataSource
         
         // UI SET UP
         setUpNavigationBarItems()
@@ -91,12 +98,7 @@ class GroupListViewController: UIViewController{
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        DispatchQueue.main.async {
-            self.groupListTableView.reloadData()
-        }
-    }
+    
     
     /// Pushes a view controller that tells the user that he/she is offline
     fileprivate func showOfflinePage(){
@@ -109,7 +111,9 @@ class GroupListViewController: UIViewController{
     /// Makes api call and get all teh groups created by the user
     internal func fetchAllGroups(){
         GroupServices.index(completion: { (groups) in
-            self.userGroups = groups!
+            if let groups = groups{
+                self.userGroups = groups
+            }
         })
     }
     
@@ -211,6 +215,7 @@ class GroupListViewController: UIViewController{
         view.layer.masksToBounds = true
         view.layer.shadowRadius = 1
         view.translatesAutoresizingMaskIntoConstraints = false
+        
         return view
     }()
     
@@ -222,15 +227,5 @@ class GroupListViewController: UIViewController{
         label.textColor = .gray
         label.font = UIFont(name: "Rockwell", size: 18)
         return label
-    }()
-    
-    
-    // The table view that will contains the list og groups
-    let groupListTableView: UITableView = {
-        
-        let tableview = UITableView()
-        tableview.backgroundColor = .clear
-        tableview.translatesAutoresizingMaskIntoConstraints = false
-        return tableview
     }()
 }
