@@ -278,7 +278,7 @@ class NewReminderViewController: UIViewController {
         
         mainStack.widthAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 0.95).isActive = true
         //mainStack.leftAnchor.constraint(equalTo: mainView.leftAnchor, constant: 10).isActive = true
-         mainStack.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 10).isActive = true
+        mainStack.topAnchor.constraint(equalTo: mainView.topAnchor, constant: 10).isActive = true
         mainStack.leadingAnchor.constraint(equalTo: mainView.leadingAnchor, constant: 10).isActive = true
         mainStack.trailingAnchor.constraint(equalTo: mainView.trailingAnchor, constant: 10).isActive = true
         
@@ -287,19 +287,19 @@ class NewReminderViewController: UIViewController {
         
         
         titleLabel.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.05).isActive = true
-         reminderNameTextFiled.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.05).isActive = true
-         buttonStack.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.1).isActive = true
-         dateTimeLabel.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.1).isActive = true
+        reminderNameTextFiled.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.05).isActive = true
+        buttonStack.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.1).isActive = true
+        dateTimeLabel.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.1).isActive = true
         
-         pickerStack.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.4).isActive = true
-         descriptionStack.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.2).isActive = true
+        pickerStack.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.4).isActive = true
+        descriptionStack.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.2).isActive = true
         saveButton.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.05).isActive = true
         saveButton.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.5).isActive = true
         
         buttonStack.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
-            reminderNameTextFiled.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
-         dateTimeLabel.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
-         descriptionStack.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
+        reminderNameTextFiled.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
+        dateTimeLabel.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
+        descriptionStack.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9).isActive = true
        
     }
     
