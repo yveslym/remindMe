@@ -8,8 +8,8 @@
 
 import Foundation
 import GoogleSignIn
+import Firebase
 
-/// authenticate with google
 extension SignInViewController:  GIDSignInDelegate, GIDSignInUIDelegate{
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
@@ -58,7 +58,6 @@ extension SignInViewController:  GIDSignInDelegate, GIDSignInUIDelegate{
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         
     }
-    
     
 }
 

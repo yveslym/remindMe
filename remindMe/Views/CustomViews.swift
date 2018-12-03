@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+
+
 class CustomLabel: UILabel{
     
     override init(frame: CGRect) {
@@ -18,9 +20,8 @@ class CustomLabel: UILabel{
         self.text = text
         self.font = UIFont.boldSystemFont(ofSize: fontSize)
         self.textColor = textColor
+        self.font = UIFont(name: "HelveticaNeue-Light", size: fontSize)
         self.translatesAutoresizingMaskIntoConstraints = false
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -101,16 +102,10 @@ class CustomButton: UIButton{
         self.setTitle(title, for: .normal)
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: fontSize)
         self.setTitleColor(titleColor, for: .normal)
-       self.addTarget(target, action: action, for: event)
+        self.addTarget(target, action: action, for: event)
         self.translatesAutoresizingMaskIntoConstraints = false
-       self.isEnabled = true
-//        layer.cornerRadius = 5
-//        layer.masksToBounds = false
-//
-//        layer.shadowOpacity = 0.5
-//        layer.shadowColor = UIColor.black.cgColor
-//        layer.shadowRadius = 5
-         self.backgroundColor = UIColor.white
+        self.isEnabled = true
+        self.backgroundColor = UIColor.white
         
         
     }
@@ -120,7 +115,7 @@ class CustomButton: UIButton{
         didSet{
             if shadowLayer != nil{
             shadowLayer.fillColor = newLayerColor.cgColor
-        }
+            }
         }
     }
     
@@ -139,7 +134,6 @@ class CustomButton: UIButton{
             shadowLayer.shadowRadius = 2
             
             layer.insertSublayer(shadowLayer, at: 0)
-            //layer.insertSublayer(shadowLayer, below: nil) // also works
         }
     }
 }

@@ -142,7 +142,7 @@ class ReminderListViewController: UIViewController{
         // Styling the home page title
         titleLabel.text = userGroup.name + " Reminder"
         titleLabel.textColor = .gray
-        titleLabel.font = UIFont(name: "Rockwell", size: 20)
+        titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 20)
         titleLabel.textAlignment = .center
         titleLabel.backgroundColor = .clear
         titleLabel.adjustsFontSizeToFitWidth = true

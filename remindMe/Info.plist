@@ -34,9 +34,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>i need that</string>
+	<string>The location is needed for geofencing approximation.</string>
 	<key>NSLocationUsageDescription</key>
-	<string>The location is needed for approximation</string>
+	<string>The location is needed for geofencing approximation.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>location</string>
 	<key>UILaunchStoryboardName</key>

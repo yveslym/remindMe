@@ -71,31 +71,30 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
     
         
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
-            // delete item at indexPath
-            let alert = UIAlertController(title: "Delete", message: " This reminder will be deleted, do you want to continue?", preferredStyle: .alert)
+    
+            let alert = UIAlertController(title: "Delete", message: "This reminder will be deleted, do you want to continue?", preferredStyle: .alert)
             let cancelButton = UIAlertAction(title: "Return", style: .cancel, handler: nil)
             let deleteButton = UIAlertAction(title: "Delete", style: .default, handler: { (remove) in
                 let reminderToBeDeleted = self.sortedReminder[indexPath.row]
                 ReminderServices.delete(reminderToBeDeleted)
             })
-           alert.addAction(cancelButton)
+            alert.addAction(cancelButton)
             alert.addAction(deleteButton)
             self.present(alert, animated: true, completion: nil)
         }
         
         let update = UITableViewRowAction(style: .default, title: "Update") { (action, indexPath) in
             // share item at indexPath
-             let reminderToBeUpdated = self.sortedReminder[indexPath.row]
+            let reminderToBeUpdated = self.sortedReminder[indexPath.row]
             let destination = NewReminderViewController()
             destination.userGroup = self.userGroup
             destination.userReminder = reminderToBeUpdated
             destination.modalPresentationStyle = .overCurrentContext
             destination.modalTransitionStyle = .crossDissolve
-             self.present(destination, animated: true, completion: nil)
+            self.present(destination, animated: true, completion: nil)
         }
         
         update.backgroundColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1)
-        
         return [delete, update]
         
     }

@@ -59,8 +59,6 @@ class NewReminderViewController: UIViewController {
         titleLabel.text = userGroup.name
         reminderNameTextFiled.text = userReminder.name
         reminderDescriptionTextView.text = userReminder.description
-        
-        
     }
     
     func setupMainView(){

@@ -163,9 +163,9 @@ class GroupListViewController: UIViewController{
         // Styling the home page title
         titleLabel.text = "Dashboard"
         titleLabel.textColor = .gray
-        titleLabel.font = UIFont(name: "Rockwell", size: 20)
+        titleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 20)
         titleLabel.textAlignment = .center
-        titleLabel.backgroundColor = .clear
+        titleLabel.backgroundColor = .white
         titleLabel.adjustsFontSizeToFitWidth = true
         
         // Styling the home page navigation bar
@@ -240,7 +240,7 @@ class GroupListViewController: UIViewController{
         let label = UILabel()
         label.text = "My Groups"
         label.textColor = .gray
-        label.font = UIFont(name: "Rockwell", size: 18)
+        label.font = UIFont(name: "HelveticaNeue-Light", size: 18)
         return label
     }()
 }

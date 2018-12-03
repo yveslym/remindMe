@@ -31,15 +31,12 @@ class SignInViewController: UIViewController{
         setUpSeparatorLabel()
         setUpBUttonsStackView()
         mainStackViewAutoLayout()
-        self.view.backgroundColor = .darkWhite
-
-        
+        self.view.backgroundColor = .black
     }
     
-
     fileprivate func setUpAppTittleLabel(){
         
-        appTittleLabel = CustomLabel(fontSize: 40, text: "Remindme", textColor: .black)
+        appTittleLabel = CustomLabel(fontSize: 40, text: "Remindme", textColor: .white)
         appTittleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 40)
         appTittleLabel.textAlignment = .center
     }
@@ -55,7 +52,7 @@ class SignInViewController: UIViewController{
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self as GIDSignInDelegate
-        GIDSignIn.sharedInstance().uiDelegate = self as GIDSignInDelegate
+        GIDSignIn.sharedInstance().uiDelegate = self as GIDSignInUIDelegate
         
         googleLoginButton = CustomButton(title: "Login with Google",
                                          fontSize: 20,
@@ -148,17 +145,4 @@ class SignInViewController: UIViewController{
         print("Google sign in butotn tapped")
         GIDSignIn.sharedInstance()?.signIn()
     }
-    
-    // Toggles the signin view controller
-    @objc fileprivate func selectableSignInButtonTapped(_ sender: UIButton){
-        print("selectable Sign in button clicked")
-    }
-    
-    // Toggles the signup view controller
-    @objc fileprivate func selectableSignUpButtonTapped(_ sender: UIButton){
-        
-        print("selectable sign up button clicked")
-    }
-    
-    
 }

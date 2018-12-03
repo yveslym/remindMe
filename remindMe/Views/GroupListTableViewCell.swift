@@ -44,9 +44,9 @@ class GroupListTableViewCell: UITableViewCell {
     open var groupDescriptionLabel: UILabel = {
         
         let label = UILabel()
-        label.textColor = .lightGray
+        label.textColor = .gray
         //label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.font = UIFont(name:"Rockwell", size: 15.0)
+        label.font = UIFont(name:"HelveticaNeue-Light", size: 15.0)
         label.textAlignment = .center
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +57,7 @@ class GroupListTableViewCell: UITableViewCell {
         
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont(name: "Rockwell", size: 20)
+        label.font = UIFont(name: "HelveticaNeue-Light", size: 20)
         label.textAlignment = .center
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -85,13 +85,19 @@ class GroupListTableViewCell: UITableViewCell {
         
         
         // sets up the anchoring constraint for the thumbnail
-        groupNameLabel.anchor(top: topAnchor, left: leftAnchor, bottom: groupDescriptionLabel.topAnchor, right: nil, paddingTop: 10, paddingLeft: 15, paddingBottom: 10, paddingRight: 0, width: 90, height: 0, enableInsets: false)
+        groupNameLabel.anchor(top: topAnchor, left: leftAnchor, bottom: groupDescriptionLabel.topAnchor, right: nil, paddingTop: 10, paddingLeft: 15, paddingBottom: 10, paddingRight: 0, width: 0, height: 0, enableInsets: false)
+        groupNameLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3)
+        groupNameLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.1)
         
         // sets up the anchoring constraint for the name of the space
         groupDescriptionLabel.anchor(top: groupNameLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 15, paddingBottom: 10, paddingRight: 0, width: 0, height: 0, enableInsets: false)
+        groupDescriptionLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3)
+        groupDescriptionLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.1)
         
         // sets up the anchoring constraint for the price of the place
         remindersAmountLabel.anchor(top: topAnchor, left: nil, bottom: bottomAnchor, right: rightAnchor, paddingTop: 20, paddingLeft: 0, paddingBottom: 20, paddingRight: 10, width: 0, height: 0, enableInsets: false)
+        remindersAmountLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3)
+        remindersAmountLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.1)
     }
     
 }

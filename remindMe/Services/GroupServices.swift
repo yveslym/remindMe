@@ -103,7 +103,7 @@ struct GroupServices{
      @param group: the group to be removed
      @param completion ->Bool: The true or false value that determine wheter the group has been deleted
      */
-    static func delete(group: Group, completion: @escaping(Bool)->()){
+    static func delete(group: Group){
         
         ReminderServices.index { (reminders) in
             
@@ -116,9 +116,7 @@ struct GroupServices{
             }
         }
         let ref = Constant.showGroupRef(group.id)
-        ref.removeValue { (error, ref) in
-           return (error == nil) ? ( completion(true)) : (completion(false))
-        }
+        ref.removeValue()
     }
     
     /// method to observe added reminders on database

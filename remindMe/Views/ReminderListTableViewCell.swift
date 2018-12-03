@@ -10,13 +10,6 @@ import UIKit
 
 class ReminderListTableViewCell: UITableViewCell {
 
-    // - MARK: @IBOULETS
-    @IBOutlet weak var reminderTitleLabel: UILabel!
-    @IBOutlet weak var reminderTypeLabel: UILabel! // Entry or Leave
-    
-    
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -28,6 +21,4 @@ class ReminderListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    
-
 }

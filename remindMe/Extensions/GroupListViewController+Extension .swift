@@ -11,14 +11,12 @@ import UIKit
 extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
     
     
-    // - MARK: UITable View Methods
+    // - MARK: UITableView Delegate Methods
 
-    // This function sets the amount of cells to the amount of items in the array of groups
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userGroups.count
     }
 
-    // This Function sets up each cell with its proper data
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let groupCell = tableView.dequeueReusableCell(withIdentifier: Constant.groupTableViewCellIdentifier, for: indexPath) as! GroupListTableViewCell
@@ -37,23 +35,19 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
        
         return groupCell
     }
-
-
-    // This Function deletes a cell from the table view when dragged from right to left
-    func tableView(_ tableview : UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-
-        if editingStyle == .delete{
-            let groupToBeDeleted = userGroups[indexPath.row]
-            GroupServices.delete(group: groupToBeDeleted) { (true) in
-                self.fetchAllGroups()
-            }
-        }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let delete = deleteAction(at: indexPath)
+        let update = updateAtcion(at: indexPath)
+        
+        return UISwipeActionsConfiguration(actions: [delete, update])
     }
-
-    // This function performs a segue to the list of reminders of the selected group
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let group = userGroups[indexPath.row]
-        //self.performSegue(withIdentifier: Constant.showAllRemindersSegueIdentifier, sender: group)
         let destinationVC = ReminderListViewController()
         destinationVC.userReminders = userReminders.filter({$0.groupId == group.id})
         destinationVC.userGroup = userGroups[indexPath.row]
@@ -66,10 +60,46 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         return 85
     }
     
+    // MARK: Helper Class Methods
+    
+    
+    fileprivate func deleteAction(at indexPath: IndexPath) -> UIContextualAction{
+        
+        let groupToBeDeleted = userGroups[indexPath.row]
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
+            GroupServices.delete(group: groupToBeDeleted)
+            completion(true)
+        }
+        
+        deleteAction.title = "Delete"
+        deleteAction.backgroundColor = .red
+        
+        return deleteAction
+    }
+    
+    fileprivate func updateAtcion(at indexPath: IndexPath) -> UIContextualAction{
+        
+        let groupToBeUpdated = userGroups[indexPath.row]
+        let updateAction = UIContextualAction(style: .normal, title: "Update") { (action, view, completion) in
+            
+            let destinationVC = CreateGroupViewController()
+            destinationVC.group = groupToBeUpdated
+            destinationVC.modalTransitionStyle = .crossDissolve
+            destinationVC.modalPresentationStyle = .overCurrentContext
+            self.present(destinationVC, animated: true, completion: nil)
+            completion(true)
+        }
+        
+        updateAction.title = "Update"
+        updateAction.backgroundColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1)
+        
+        return updateAction
+    }
+    
 
     
-    // - MARK: UI Elements and AutoLayout methods
-    
+    // - MARK: Helper AutoLayout Methods
     
     
     /// Adds the view on top of the root view of the view controller
@@ -262,4 +292,5 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         tableViewContainer.addSubview(groupListTableView)
         groupListTableView.anchor(top: tableViewContainer.topAnchor, left: tableViewContainer.leftAnchor, bottom: tableViewContainer.bottomAnchor, right: tableViewContainer.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 20, paddingRight: 20, width: 0, height: 0, enableInsets: false)
     }
+
 }
