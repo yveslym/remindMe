@@ -15,20 +15,12 @@ import FBSDKLoginKit
 class SignInViewController: UIViewController{
 // This View Controller class handles functionality sign in a user from the client side
 
-//     var googleButton: GIDSignInButton!
-//     var facebookButton: FBSDKLoginButton!
-    
-    
     var mainStackView = CustomStack()
     var buttonsStackView = CustomStack()
     var facebookLoginButton = CustomButton()
     var googleLoginButton =  CustomButton()
     var appTittleLabel = CustomLabel()
     var separatorLabel = CustomLabel()
-//    var buttonContainer = UIView()
-//    var textInputStackView = UIStackView()
-//    var selectableButtonsStackView = UIStackView()
-//    var signInButtonsStackView = UIStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,8 +54,8 @@ class SignInViewController: UIViewController{
     fileprivate func setUpGoogleButton(){
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self as GIDSignInDelegate
+        GIDSignIn.sharedInstance().uiDelegate = self as GIDSignInDelegate
         
         googleLoginButton = CustomButton(title: "Login with Google",
                                          fontSize: 20,
@@ -168,58 +160,5 @@ class SignInViewController: UIViewController{
         print("selectable sign up button clicked")
     }
     
-    
-}
-
-
-/// authenticate with google
-extension SignInViewController:  GIDSignInDelegate, GIDSignInUIDelegate{
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
-        // ...
-        if let error = error {
-            print(error.localizedDescription)
-            return
-        }
-        
-        
-        guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
-        // ...
-        
-        Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
-            if error != nil {
-                self.presentAlert(title: "Login Error", message: "coun't register please try again!!!")
-                return
-            }
-            // User is signed in
-            // register user
-            UserServices.loginWithGoogle(googleUser: user, completion: { (user) in
-                if let user = user{
-                   // self.performSegue(withIdentifier: Constant.backToGroupListSegueIdentifier, sender: nil)
-                    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-                    guard let mainPageVC = storyBoard.instantiateViewController(withIdentifier: "GroupListViewController") as? GroupListViewController else { return }
-                    
-                    let navigation = UINavigationController(rootViewController: mainPageVC)
-                    
-                    User.setCurrentUser(user: user, writeToUserDefaults: true)
-                    self.present(navigation, animated: true)
-                }
-                else{
-                    self.presentAlert(title: "Login Error", message: "coun't register please try again!!!")
-                }
-            })
-        }
-    }
-    
-    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
-        print("present google UI")
-    }
-    func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
-         print("dismiss google UI")
-    }
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        
-    }
-
     
 }
