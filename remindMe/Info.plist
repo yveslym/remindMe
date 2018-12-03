@@ -36,7 +36,7 @@
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>i need that</string>
 	<key>NSLocationUsageDescription</key>
-	<string>i need it</string>
+	<string>The location is needed for approximation</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>location</string>
 	<key>UILaunchStoryboardName</key>
