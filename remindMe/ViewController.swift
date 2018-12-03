@@ -33,7 +33,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         self.view.backgroundColor = UIColor.yellow
-        region.identifier
+        
         
     }
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {

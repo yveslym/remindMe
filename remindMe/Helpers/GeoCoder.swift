@@ -12,7 +12,8 @@ import CoreLocation
 struct GeoFence{
     
     static let shared = GeoFence()
-    
+    private let locationManager = AppDelegate.shared.locationManager
+
     /// Method to convert address to coordinate
     func addressToCoordinate(_ address: String, completion: @escaping(CLLocationCoordinate2D?)->()){
         print("getting location coordinate")
@@ -44,7 +45,8 @@ struct GeoFence{
             region.notifyOnEntry = false
             region.notifyOnExit = true
         }
-        locationManager.startMonitoring(for: region)
+
+        self.locationManager?.startMonitoring(for: region)
         print("start monitoring")
         
     }
@@ -55,7 +57,7 @@ struct GeoFence{
         reminders.forEach({
             dg.enter()
             let center = CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude)
-            let region = CLCircularRegion.init(center: center, radius: 100, identifier: $0.id)
+            let region = CLCircularRegion.init(center: center, radius: 200, identifier: $0.id)
             let manager = CLLocationManager()
             addNewGeoFencing(locationManager: manager, region: region, event: $0.type!)
             dg.leave()
