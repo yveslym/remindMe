@@ -35,7 +35,7 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
                             enableInsets: false)
         
       
-        reminderCell?.contentView.backgroundColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 0.1025524401)
+        reminderCell?.contentView.backgroundColor = .lightCyan
         return reminderCell ?? UITableViewCell()
     }
     

@@ -15,6 +15,7 @@ class GroupListViewController: UIViewController{
 
     
     // Stack views variables
+    var groupListTableView =  UITableView()
     var remindersDataStackView = UIStackView()
     var totalRemindersStackView = UIStackView()
     var totalRemindersOnEntryStackView = UIStackView()
@@ -58,14 +59,18 @@ class GroupListViewController: UIViewController{
             }
         }
     }
-
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchAllGroups()
+    }
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.groupListTableView.delegate = self as UITableViewDelegate
-        self.groupListTableView.dataSource = self as UITableViewDataSource
-        groupListTableView.register(GroupListTableViewCell.self, forCellReuseIdentifier: Constant.groupTableViewCellIdentifier)
         
         // UI SET UP
         setUpNavigationBarItems()
@@ -85,18 +90,16 @@ class GroupListViewController: UIViewController{
         updateReminderLabels()
         fetchAllGroups()
         monitorReminders()
+        obserUpdatedGroup()
+        observeAddedGroup()
+        observeRemovedGroup()
         networkManager.reachability.whenUnreachable = { reachability in
             self.showOfflinePage()
         }
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        DispatchQueue.main.async {
-            self.groupListTableView.reloadData()
-        }
-    }
+    
     
     /// Pushes a view controller that tells the user that he/she is offline
     fileprivate func showOfflinePage(){
@@ -109,7 +112,9 @@ class GroupListViewController: UIViewController{
     /// Makes api call and get all teh groups created by the user
     internal func fetchAllGroups(){
         GroupServices.index(completion: { (groups) in
-            self.userGroups = groups!
+            if let groups = groups{
+                self.userGroups = groups
+            }
         })
     }
     
@@ -173,10 +178,31 @@ class GroupListViewController: UIViewController{
         navigationController?.navigationBar.alpha = 0.0
     }
     
-    ///
+    /// Shows the user a page to create a group
     @objc fileprivate func addGroupButtonTapped(){
-        
-        
+
+        let destination = CreateGroupViewController()
+        destination.modalPresentationStyle = .overCurrentContext
+        destination.modalTransitionStyle = .crossDissolve
+        self.present(destination, animated: true, completion: nil)
+    }
+    
+    fileprivate func observeAddedGroup(){
+        GroupServices.observeAddedGroup { (group) in
+            self.userGroups.append(group)
+        }
+    }
+    
+    fileprivate func observeRemovedGroup(){
+        GroupServices.observeDeletedGroup { (groups) in
+            self.userGroups = groups ?? [Group]()
+        }
+    }
+    
+    fileprivate func obserUpdatedGroup(){
+        GroupServices.observeUpdatedGroup { (groups) in
+            self.userGroups = groups ?? [Group]()
+        }
     }
     
     // - MARK: UI ELEMENTS AND METHODS
@@ -204,6 +230,7 @@ class GroupListViewController: UIViewController{
         view.layer.masksToBounds = true
         view.layer.shadowRadius = 1
         view.translatesAutoresizingMaskIntoConstraints = false
+        
         return view
     }()
     
@@ -215,15 +242,5 @@ class GroupListViewController: UIViewController{
         label.textColor = .gray
         label.font = UIFont(name: "Rockwell", size: 18)
         return label
-    }()
-    
-    
-    // The table view that will contains the list og groups
-    let groupListTableView: UITableView = {
-        
-        let tableview = UITableView()
-        tableview.backgroundColor = .clear
-        tableview.translatesAutoresizingMaskIntoConstraints = false
-        return tableview
     }()
 }

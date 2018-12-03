@@ -14,8 +14,7 @@ import FBSDKLoginKit
 
 class SignInViewController: UIViewController{
 // This View Controller class handles functionality sign in a user from the client side
-    
-    // google and facebbok button provided by the sdk
+
      //var googleButton: GIDSignInButton!
      var facebookButton: FBSDKLoginButton!
     
@@ -98,9 +97,8 @@ class SignInViewController: UIViewController{
     
     // Creates and sets up a label to display the app's name
     fileprivate let appTittleLabel: UILabel = {
-
         let label = UILabel()
-        label.text = "GeoMinder"
+        label.text = "RemindMe"
         label.font = UIFont.boldSystemFont(ofSize: 40)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -112,7 +110,6 @@ class SignInViewController: UIViewController{
     fileprivate let emailAddressTextField: UITextField = {
         let textField = UITextField()
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 25))
-        
         textField.backgroundColor = .clear
         textField.attributedPlaceholder = NSAttributedString(string: "Email Address",attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         textField.layer.borderWidth = 2.0
@@ -127,7 +124,6 @@ class SignInViewController: UIViewController{
         textField.leftViewMode = .always
         textField.leftView = imageView
         textField.translatesAutoresizingMaskIntoConstraints = false
-        
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: "textfield_avatar")
         
@@ -140,7 +136,6 @@ class SignInViewController: UIViewController{
        
         let textField = UITextField()
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 25))
-        
         textField.backgroundColor = .clear
         textField.attributedPlaceholder = NSAttributedString(string: "Password",attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         textField.textColor = .white
@@ -214,7 +209,6 @@ class SignInViewController: UIViewController{
     fileprivate let facebookSignInButton: UIButton = {
       
         let button = UIButton()
-
         button.backgroundColor = .white
         button.setTitle("Facebook", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -223,7 +217,6 @@ class SignInViewController: UIViewController{
         button.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 7)
         button.semanticContentAttribute = .forceLeftToRight
         button.titleLabel?.textAlignment = .center
-        
         button.layer.cornerRadius = 20
         button.clipsToBounds = true
         button.layer.masksToBounds = true
@@ -239,7 +232,6 @@ class SignInViewController: UIViewController{
     fileprivate let googleSignInButton: UIButton = {
         
         let button = UIButton()
-        
         button.backgroundColor = .white
         button.setTitle("Google", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -261,7 +253,7 @@ class SignInViewController: UIViewController{
     }()
     
     
-    // - MARK: FUNTIONS
+    // - MARK: CLASS METHODS
     
     
     // Funtion to layout and constraint the outer most stack view that'll contain all the views and elements in the VC
@@ -283,7 +275,22 @@ class SignInViewController: UIViewController{
                                      mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)])
     }
     
-
+    /// Funtion set up and constraint the two seletable signin and signup buttons
+    fileprivate func setUpSelectableButtonsStackView(){
+        
+        selectableButtonsStackView = UIStackView(arrangedSubviews: [selectableSignInButton, selectableSignUpButton])
+        selectableButtonsStackView.alignment = .center
+        selectableButtonsStackView.axis = .horizontal
+        selectableButtonsStackView.distribution = .fillEqually
+        selectableButtonsStackView.translatesAutoresizingMaskIntoConstraints = false
+        mainStackView.addSubview(selectableButtonsStackView)
+        
+        NSLayoutConstraint.activate([selectableButtonsStackView.topAnchor.constraint(equalTo: appTittleLabel.bottomAnchor, constant: 10),
+                                     selectableButtonsStackView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor, constant: 20),
+                                     selectableButtonsStackView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor, constant: 20),
+                                     selectableButtonsStackView.bottomAnchor.constraint(equalTo: textInputStackView.topAnchor, constant: 20)])
+    }
+    
     // Funtion to layout and constraint the two textfields
     fileprivate func setUpTextInputStackView(){
         
@@ -297,31 +304,13 @@ class SignInViewController: UIViewController{
         
         textInputStackView.anchor(top: selectableButtonsStackView.bottomAnchor, left: mainStackView.leftAnchor, bottom: signInButtonsStackView.topAnchor, right: mainStackView.rightAnchor, paddingTop: 0, paddingLeft: 20, paddingBottom: 20, paddingRight: 20, width: 0, height: 0, enableInsets: false)
         
-        emailAddressTextField.anchor(top: textInputStackView.topAnchor, left: textInputStackView.leftAnchor, bottom: passwordTextField.topAnchor, right: textInputStackView.rightAnchor, paddingTop: 10, paddingLeft: 0, paddingBottom: 10, paddingRight: 0, width: 0, height: 0, enableInsets: false)
+        emailAddressTextField.anchor(top: textInputStackView.topAnchor, left: textInputStackView.leftAnchor, bottom: passwordTextField.topAnchor, right: textInputStackView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 10, paddingRight: 0, width: 0, height: 0, enableInsets: false)
         
         passwordTextField.anchor(top: emailAddressTextField.bottomAnchor, left: textInputStackView.leftAnchor, bottom: signInButton.topAnchor, right: textInputStackView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 10, paddingRight: 0, width: 0, height: 0, enableInsets: false)
         
         signInButton.anchor(top: passwordTextField.bottomAnchor, left: textInputStackView.leftAnchor, bottom: textInputStackView.bottomAnchor, right: textInputStackView.rightAnchor, paddingTop: 0, paddingLeft: 50, paddingBottom: 0, paddingRight: 50, width: 0, height: 0, enableInsets: false)
     }
     
-    /// Funtion set up and constraint the two seletable signin and signup buttons
-    fileprivate func setUpSelectableButtonsStackView(){
-        
-        selectableButtonsStackView = UIStackView(arrangedSubviews: [selectableSignInButton, selectableSignUpButton])
-        selectableButtonsStackView.alignment = .center
-        selectableButtonsStackView.axis = .horizontal
-        selectableButtonsStackView.distribution = .fillEqually
-        selectableButtonsStackView.translatesAutoresizingMaskIntoConstraints = false
-        mainStackView.addSubview(selectableButtonsStackView)
-        
-//        selectableButtonsStackView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.15).isActive = true
-//         selectableButtonsStackView.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 1).isActive = true
-        
-        NSLayoutConstraint.activate([selectableButtonsStackView.topAnchor.constraint(equalTo: appTittleLabel.bottomAnchor, constant: 10),
-                                     selectableButtonsStackView.leadingAnchor.constraint(equalTo: mainStackView.leadingAnchor, constant: 20),
-                                     selectableButtonsStackView.trailingAnchor.constraint(equalTo: mainStackView.trailingAnchor, constant: 20),
-                                     selectableButtonsStackView.bottomAnchor.constraint(equalTo: textInputStackView.topAnchor, constant: 20)])
-    }
     
     /// Funtion to layout and constraint the signin button
     fileprivate func setUpSignInButtonsStackView(){
@@ -336,9 +325,9 @@ class SignInViewController: UIViewController{
         
         signInButtonsStackView.anchor(top: textInputStackView.bottomAnchor, left: mainStackView.leftAnchor, bottom: mainStackView.bottomAnchor, right: mainStackView.rightAnchor, paddingTop: 0, paddingLeft: 50, paddingBottom: 0, paddingRight: 50, width: 0, height: 0, enableInsets: false)
         
-        facebookSignInButton.anchor(top: signInButtonsStackView.topAnchor, left: signInButtonsStackView.leftAnchor, bottom: signInButtonsStackView.bottomAnchor, right: googleSignInButton.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 135, paddingRight: 10, width: 0, height: 0, enableInsets: false)
+        facebookSignInButton.anchor(top: signInButtonsStackView.topAnchor, left: signInButtonsStackView.leftAnchor, bottom: signInButtonsStackView.bottomAnchor, right: googleSignInButton.leftAnchor, paddingTop: 40, paddingLeft: 0, paddingBottom: 90, paddingRight: 10, width: 0, height: 0, enableInsets: false)
 
-        googleSignInButton.anchor(top: signInButtonsStackView.topAnchor, left: facebookSignInButton.rightAnchor, bottom: signInButtonsStackView.bottomAnchor, right: signInButtonsStackView.rightAnchor, paddingTop: 0, paddingLeft: 10, paddingBottom: 135, paddingRight: 0, width: 0, height: 0, enableInsets: false)
+        googleSignInButton.anchor(top: signInButtonsStackView.topAnchor, left: facebookSignInButton.rightAnchor, bottom: signInButtonsStackView.bottomAnchor, right: signInButtonsStackView.rightAnchor, paddingTop: 40, paddingLeft: 10, paddingBottom: 90, paddingRight: 0, width: 0, height: 0, enableInsets: false)
         
     }
     

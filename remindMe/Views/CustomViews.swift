@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 class CustomLabel: UILabel{
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -53,7 +54,7 @@ class CustomTextField: UITextField{
         textAlignment = alignment
         
        
-        translatesAutoresizingMaskIntoConstraints = true
+        translatesAutoresizingMaskIntoConstraints = false
     }
     override func draw(_ rect: CGRect) {
         super.draw(rect)
