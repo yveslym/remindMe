@@ -90,12 +90,11 @@ struct GroupServices{
     /* METHOD TO UPDATE A GROUP FROM THE CLIENT TO THE DATABASE
     @param group : The group to be updated by the user
     */
-    static func update(_ group: Group, completion: @escaping()->()){
+    static func update(_ group: Group){
         
         // Grabs the reference of the group from FireBase and updates it
         let ref = Constant.groupRef().child(group.id)
         ref.updateChildValues(group.toDictionary())
-        completion()
     }
     
     

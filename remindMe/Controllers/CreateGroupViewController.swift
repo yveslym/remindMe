@@ -27,6 +27,8 @@ class CreateGroupViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.4)
+        
+        
         setUpPopUpContainer()
         setUpTitleLabel()
         setUpGroupNameTextFiled()
@@ -35,19 +37,33 @@ class CreateGroupViewController: UIViewController{
         setUpSaveButton()
         mainStackViewAutoLayout()
         addSwipeToDismis()
+        setUpUpdateGroup()
     }
     
     // MARK : CLASS METHODS
     
     
     @objc fileprivate func saveButtonTapped(sender: UIButton){
+        
+        
         guard let address = groupAddressTextField.text, let name = groupNameTextField.text, let description = groupDescriptionTextView.text else {return}
+        
         GeoFence.shared.addressToCoordinate(address) { (coordinates) in
             if let coordinates = coordinates{
 
                 let latitude = coordinates.latitude
                 let longitude = coordinates.longitude
-                let createdGroup = Group(id: "", name: name, description: description, latitude: latitude, longitude: longitude)
+                var createdGroup = Group(id: "", name: name, description: description, latitude: latitude, longitude: longitude)
+                
+                if self.group != nil{
+                    if let unwrappedGroup = self.group {
+                        createdGroup.id = unwrappedGroup.id
+                        GroupServices.update(createdGroup)
+                        self.dismiss(animated: true, completion: nil)
+                        return
+                    }
+                }
+                
                 GroupServices.create(createdGroup, completion: { (newGroup) in
                     DispatchQueue.main.async {
                         self.dismiss(animated: true, completion: nil)
@@ -78,6 +94,12 @@ class CreateGroupViewController: UIViewController{
     // MARK : UI Methods
     
     
+    fileprivate func setUpUpdateGroup(){
+
+        groupNameTextField.text = self.group?.name ?? ""
+        groupAddressTextField.text = self.group?.address ?? ""
+        groupDescriptionTextView.text = self.group?.description ?? ""
+    }
     fileprivate func setUpPopUpContainer(){
         
         popUpContainer = UIView(frame: view.frame)

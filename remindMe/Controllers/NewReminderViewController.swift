@@ -64,7 +64,7 @@ class NewReminderViewController: UIViewController {
     func setupMainView(){
       
         mainView = UIView(frame: view.frame)
-       view.addSubview(mainView)
+        view.addSubview(mainView)
         mainView.anchor(top: view.topAnchor,
                         left: view.leftAnchor,
                         bottom: view.bottomAnchor,

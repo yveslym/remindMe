@@ -62,7 +62,7 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
     
     // MARK: Helper Class Methods
     
-    
+    /// Return an action to delete a Group object on the tableview row
     fileprivate func deleteAction(at indexPath: IndexPath) -> UIContextualAction{
         
         let groupToBeDeleted = userGroups[indexPath.row]
@@ -78,6 +78,7 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         return deleteAction
     }
     
+    /// Return an action to upadte a Group obejct on the tableview row
     fileprivate func updateAtcion(at indexPath: IndexPath) -> UIContextualAction{
         
         let groupToBeUpdated = userGroups[indexPath.row]
