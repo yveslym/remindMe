@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "google.png",
+      "filename" : "iconfinder_new-google-favicon_720091.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "google-1.png",
+      "filename" : "iconfinder_new-google-favicon_720091-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "google-2.png",
+      "filename" : "iconfinder_new-google-favicon_720091-2.png",
       "scale" : "3x"
     }
   ],

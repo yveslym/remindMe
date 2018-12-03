@@ -15,7 +15,9 @@ extension UIColor{
     static var gloomyGreen = UIColor(red: 0.0784, green: 0.6275, blue: 0.2157, alpha: 1.0)
     static var gloomyYellow = UIColor(red: 0.8863, green: 0.8118, blue: 0.1137, alpha: 1.0)
     static var lightGray = UIColor(white: 180/255, alpha: 1)
-    static var lightCyan = UIColor(red: 0.9686, green: 0.9843, blue: 1, alpha: 1.0) /* #f7fbff */
+    static var lightCyan = UIColor(red: 0.9686, green: 0.9843, blue: 1, alpha: 1.0)
     static var lightBlue = UIColor(red: 109/255, green: 188/255, blue: 237/255, alpha: 1.0)
-    static var lightDark = UIColor(red: 0.3765, green: 0.3765, blue: 0.3765, alpha: 1.0) /* #606060 */
+    static var lightDark = UIColor(red: 0.3765, green: 0.3765, blue: 0.3765, alpha: 1.0)
+    static var facebookBlue = UIColor(hue: 220/360, saturation: 56/100, brightness: 60/100, alpha: 1.0)
+    static var darkWhite = UIColor(hue: 128/360, saturation: 0/100, brightness: 92/100, alpha: 1.0) /* #eaeaea */
 }
