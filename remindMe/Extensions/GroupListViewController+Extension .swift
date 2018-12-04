@@ -23,7 +23,18 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         
         let customView = CustomView(frame: groupCell.contentView.frame, leftViewColor: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1))
         groupCell.contentView.addSubview(customView)
-        groupCell.backgroundColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 0.1025524401)
+        customView.anchor(top: groupCell.contentView.topAnchor,
+                          left:  groupCell.contentView.leftAnchor,
+                          bottom:  groupCell.contentView.bottomAnchor,
+                          right:  groupCell.contentView.rightAnchor,
+                          paddingTop: 10,
+                          paddingLeft: 0,
+                          paddingBottom: 10,
+                          paddingRight: 0,
+                          width: 0,
+                          height: 5,
+                          enableInsets: true)
+        groupCell.backgroundColor = .lightCyan
         
         let currentGroup = userGroups[indexPath.row]
         let counter = userReminders.filter({$0.groupId == currentGroup.id}).count

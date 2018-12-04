@@ -76,12 +76,10 @@ class GroupListTableViewCell: UITableViewCell {
 
     fileprivate func setUpViews(){
         
-        
         // Adds each subview within the root view
         addSubview(groupNameLabel)
         addSubview(groupDescriptionLabel)
         addSubview(remindersAmountLabel)
-        
         
         
         // sets up the anchoring constraint for the thumbnail

@@ -64,6 +64,7 @@ class GroupListViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchAllGroups()
+        updateReminderLabels()
     }
     
     
@@ -207,7 +208,6 @@ class GroupListViewController: UIViewController{
     
     // - MARK: UI ELEMENTS AND METHODS
     
-    // The light cyan colored rectangular container that holds the reminders boxes
     let remindersContainer: UIView = {
         
         let view = UIView()
@@ -220,7 +220,7 @@ class GroupListViewController: UIViewController{
         return view
     }()
     
-    // The lyan cyan colored rectangular container that holds the table view
+
     let tableViewContainer: UIView = {
         
         let view = UIView()
@@ -234,7 +234,7 @@ class GroupListViewController: UIViewController{
         return view
     }()
     
-    // The table view title
+  
     let tableViewTitle: UILabel = {
     
         let label = UILabel()
