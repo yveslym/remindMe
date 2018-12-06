@@ -12,6 +12,7 @@ import GoogleSignIn
 import FBSDKCoreKit
 import FBSDKLoginKit
 
+
 class SignInViewController: UIViewController{
 // This View Controller class handles functionality sign in a user from the client side
 
@@ -100,7 +101,7 @@ class SignInViewController: UIViewController{
     }
     
     // Toggles the signup view controller
-    @objc fileprivate func selectableSignUpButtonTapped(_ sender: UIButton){
+    fileprivate func  setUpSeparatorLabel(){
         
         separatorLabel = CustomLabel(fontSize: 20, text: "OR", textColor: .black)
         separatorLabel.font = UIFont(name: "HelveticaNeue-Light", size: 20)
@@ -192,30 +193,5 @@ class SignInViewController: UIViewController{
                                      buttonsStackView.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.9),
                                      buttonsStackView.centerXAnchor.constraint(equalTo: mainStackView.centerXAnchor)
                                      ])
-    }
-    
-    /// Yves -- Put your Facebook SDK Logic here!!!
-    @objc fileprivate func facebookSignInButtonTapped(_ sender: UIButton){
-        print("Facebook sign in butotn tapped")
-    }
-    
-    // Signs in the user with their Google credentials
-    @objc fileprivate func GooglesigniButtonTapped(_ sender: UIButton){
-        print("Google sign in butotn tapped")
-        GIDSignIn.sharedInstance()?.signIn()
-    }
-    func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
-         print("dismiss google UI")
-    }
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        
-    }
-
-    
-    func setUpGoogleButton(){
-        
-        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-     GIDSignIn.sharedInstance().delegate = self
-     GIDSignIn.sharedInstance().uiDelegate = self
     }
 }
