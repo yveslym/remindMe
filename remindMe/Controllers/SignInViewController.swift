@@ -73,7 +73,49 @@ class SignInViewController: UIViewController{
     /// Yves -- Put your Facebook SDK Logic here!!!
     @objc fileprivate func facebookSignInButtonTapped(_ sender: UIButton){
         print("Facebook sign in butotn tapped")
+        let facebookLoginManager = FBSDKLoginManager()
+        facebookLoginManager.logIn(withReadPermissions: ["email","public_profile"], from: self) { (result, error) in
+
+            if (error == nil){
+                let fbloginresult : FBSDKLoginManagerLoginResult = result!
+                // if user cancel the login
+                if (result?.isCancelled)!{
+                    return
+                }
+                if(fbloginresult.grantedPermissions.contains("email"))
+                {
+
+                    guard (FBSDKAccessToken.current()) != nil else {return}
+                    let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+
+                    Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
+                        if error != nil {
+                            // ...
+                            self.presentAlert(title: "Login Error", message: " Couldn't login, With Facebook at this moment")
+                            return
+                        }
+
+                    // User is signed in
+                    UserServices.loginWithFacebook(sender: self, completion: { (user) in
+                        if let user = user{
+                            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                            guard let mainPageVC = storyBoard.instantiateViewController(withIdentifier: "GroupListViewController") as? GroupListViewController else { return }
+
+                            let navigation = UINavigationController(rootViewController: mainPageVC)
+
+                            User.setCurrentUser(user: user, writeToUserDefaults: true)
+                            self.present(navigation, animated: true)
+                        }
+                        else{
+                            self.presentAlert(title: "Login Error", message: " Couldn't login, try again in a few")
+                        }
+                    })
+                }
+            }
+        }
     }
+}
+
     
     // Signs in the user with their Google credentials
     @objc fileprivate func GooglesigniButtonTapped(_ sender: UIButton){
@@ -411,16 +453,45 @@ extension SignInViewController:  GIDSignInDelegate, GIDSignInUIDelegate{
     func setUpGoogleButton(){
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-       
-        
-//         self.googleButton = GIDSignInButton()
-//        self.googleButton.colorScheme = .dark
-//        self.googleButton.style = .wide
-//        self.googleButton.layer.masksToBounds = true
-//         self.googleButton.layer.cornerRadius = 15
-//        //self.googleButton.style =
-        
      GIDSignIn.sharedInstance().delegate = self
      GIDSignIn.sharedInstance().uiDelegate = self
+    }
+}
+
+extension SignInViewController: FBSDKLoginButtonDelegate{
+
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        guard (FBSDKAccessToken.current()) != nil else {return}
+        let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+
+        Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
+            if error != nil {
+                // ...
+                return
+            }
+            // User is signed in
+            UserServices.loginWithFacebook(sender: self, completion: { (user) in
+                if let user = user{
+                    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                    guard let mainPageVC = storyBoard.instantiateViewController(withIdentifier: "GroupListViewController") as? GroupListViewController else { return }
+
+                    let navigation = UINavigationController(rootViewController: mainPageVC)
+
+                    User.setCurrentUser(user: user, writeToUserDefaults: true)
+                    self.present(navigation, animated: true)
+                }
+                else{
+                    self.presentAlert(title: "Login Error", message: " Couldn't login, try again in a few")
+                }
+            })
+        }
+    }
+
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+
     }
 }
