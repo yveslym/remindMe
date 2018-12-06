@@ -67,5 +67,3 @@ struct GeoFence{
         }
     }
 }
-
-
