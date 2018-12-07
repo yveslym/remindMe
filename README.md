@@ -29,6 +29,6 @@ This project is licenced under the MIT License - see the LICENSE file for detail
 
 ## Screenshots
 
-<img src= "screenshots\sc1.PNG" width = 250 height = 450></img><img src= "screenshots/sc2.PNG" width = 250 height = 450>
-<img src= "screenshots/sc3.PNG" width = 250 height = 450><img src= "screenshots/sc4.PNG" width = 250 height = 450>
-<img src= "screenshots/sc5.PNG" width = 250 height = 450><img src= "screenshots/sc6.PNG" width = 250 height = 450>
+<img src= "screenshots\sc8.PNG" width = 250 height = 450></img><img src= "screenshots/sc7.PNG" width = 250 height = 450>
+<img src= "screenshots/sc6.PNG" width = 250 height = 450><img src= "screenshots/sc3.PNG" width = 250 height = 450>
+<img src= "screenshots/sc4.PNG" width = 250 height = 450><img src= "screenshots/sc5.PNG" width = 250 height = 450>
