@@ -32,12 +32,12 @@ class SignInViewController: UIViewController{
         setUpSeparatorLabel()
         setUpBUttonsStackView()
         mainStackViewAutoLayout()
-        self.view.backgroundColor = .black
+        self.view.backgroundColor = .lightCyan
     }
     
     fileprivate func setUpAppTittleLabel(){
         
-        appTittleLabel = CustomLabel(fontSize: 40, text: "Remindme", textColor: .white)
+        appTittleLabel = CustomLabel(fontSize: 40, text: "Remindme", textColor: .black)
         appTittleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 40)
         appTittleLabel.textAlignment = .center
     }
