@@ -9,10 +9,6 @@ A simple, Lightweight, and easy-to-use iOS location-based reminder app that uses
 * **Medi Assumani** - *Lead iOS Developer*
 * **Yves Songolo** - *iOS Developer*
 
-
-
-Add additional notes about how to deploy this on a live system
-
 ## Project Built With
 
 * [Swift 4.2](https://developer.apple.com/swift/)
@@ -21,9 +17,8 @@ Add additional notes about how to deploy this on a live system
 * [FireBase](https://console.firebase.google.com/u/1/)
 * [Apple's Geofencing & CoreLocation API](https://developer.apple.com/documentation/corelocation)
 
-
-
 ## License
+
 This project is licenced under the MIT License - see the LICENSE file for details
 
 ## Acknowledgments
@@ -33,3 +28,7 @@ This project is licenced under the MIT License - see the LICENSE file for detail
 * Inspiration
 
 ## Screenshots
+
+<img src= "screenshots\sc1.PNG" width = 250 height = 450></img><img src= "screenshots/sc2.PNG" width = 250 height = 450>
+<img src= "screenshots/sc3.PNG" width = 250 height = 450><img src= "screenshots/sc4.PNG" width = 250 height = 450>
+<img src= "screenshots/sc5.PNG" width = 250 height = 450><img src= "screenshots/sc6.PNG" width = 250 height = 450>
