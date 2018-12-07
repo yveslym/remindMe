@@ -12,6 +12,7 @@ import CoreLocation
 import JLocationKit
 import UserNotifications
 import IQKeyboardManagerSwift
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate{
@@ -28,7 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+
+        /// observe fb token change
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.FBSDKAccessTokenDidChange, object: nil, queue: OperationQueue.main, using: { notification in
+            if notification.userInfo![FBSDKAccessTokenDidChangeUserID] != nil {
+                // Handle user change
+            }
+        })
         configureUserLocation()
         configureLocalNotification()
         FirebaseApp.configure()
@@ -38,6 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         return true
     }
     
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
     
     /// Method to get authorization from the user for sending push notifications
     fileprivate func configureLocalNotification(){

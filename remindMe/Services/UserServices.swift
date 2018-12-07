@@ -139,4 +139,39 @@ struct UserServices{
             }
         }
     }
+    static func loginWithFacebook(sender: UIViewController,completion: @escaping(User?)->()){
+        FBSDKProfile.loadCurrentProfile(completion: { profile, error in
+            if let profile = profile {
+                guard let authUser = Auth.auth().currentUser else {
+                    print("user is not auth")
+                    return completion(nil)
+
+                }
+
+                var user = User.init(profile.name, "", Auth.auth().currentUser?.email ?? "")
+                user.profileUrl = profile.imageURL(for: .square, size: CGSize(width: 100, height: 100)).absoluteString
+
+                /// fetch user from database
+                show(completion: { (databaseUser) in
+                    if let databaseUser = databaseUser{
+                        completion(databaseUser)
+                    }
+                    else{
+                        /// create user if first time login
+                        create(user: user, completion: { (createdUser) in
+
+                            if let user = createdUser as? User{
+                                completion(user)
+                            }
+                            else{
+                                print("user wasn't create in the database")
+                                completion(nil)
+                            }
+                        })
+                    }
+                })
+
+            }
+        })
+    }
 }
