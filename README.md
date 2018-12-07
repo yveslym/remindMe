@@ -1,4 +1,4 @@
-# RemindMe
+# Remindme
 
 A simple, Lightweight, and easy-to-use iOS location-based reminder app that uses apple's geofencing and CoreLocation Api  to send the user local notifications of reminders based on their locations. The main feature is the push notification reminder that alarms the user that he/she has enters within a radius of an address attached to a reminder. This will allow the user to always be on top of their non-urgent but important tasks or duties.
 
@@ -17,7 +17,7 @@ A simple, Lightweight, and easy-to-use iOS location-based reminder app that uses
 
 ## License
 
-This project is licenced under the MIT License - see the LICENSE file for details
+This project is licenced under the MIT License - see the <a href="https://github.com/yveslym/remindMe/blob/dev/LICENSE">LICENSE</a> file for details
 
 ## Acknowledgments
 
