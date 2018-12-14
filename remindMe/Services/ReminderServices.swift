@@ -141,7 +141,7 @@ struct ReminderServices{
   static func isReminderOnTimeFrame(reminder: Reminder) -> Bool{
         guard let date = Date().timeToString().toDateTime() else{return false}
         let day = Date().dayOfWeek()
-    if day == reminder.day || day == "Every day"{
+        if day == reminder.day || day == "Every day"{
         
     
          guard let timeFrom = reminder.timeFrom?.toDateTime() else{return false}

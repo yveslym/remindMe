@@ -97,6 +97,7 @@ class GroupListViewController: UIViewController{
         networkManager.reachability.whenUnreachable = { reachability in
             self.showOfflinePage()
         }
+        
     }
     
     
