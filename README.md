@@ -4,7 +4,7 @@ A simple, Lightweight, and easy-to-use iOS location-based reminder app that uses
 
 ## Authors
 
-* **Medi Assumani** - *Lead iOS Developer*
+* **<a href= "https://github.com/MediBoss">Medi Assumani</a>** - *Lead iOS Developer*
 * **Yves Songolo** - *iOS Developer*
 
 ## Project Built With
