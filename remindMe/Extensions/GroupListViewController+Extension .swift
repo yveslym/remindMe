@@ -27,9 +27,9 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
                           left:  groupCell.contentView.leftAnchor,
                           bottom:  groupCell.contentView.bottomAnchor,
                           right:  groupCell.contentView.rightAnchor,
-                          paddingTop: 10,
+                          paddingTop: 5,
                           paddingLeft: 0,
-                          paddingBottom: 10,
+                          paddingBottom:5,
                           paddingRight: 0,
                           width: 0,
                           height: 5,
@@ -302,7 +302,7 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         groupListTableView.dataSource = self
         
         tableViewContainer.addSubview(groupListTableView)
-        groupListTableView.anchor(top: tableViewContainer.topAnchor, left: tableViewContainer.leftAnchor, bottom: tableViewContainer.bottomAnchor, right: tableViewContainer.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 20, paddingRight: 20, width: 0, height: 0, enableInsets: false)
+        groupListTableView.anchor(top: tableViewContainer.topAnchor, left: tableViewContainer.leftAnchor, bottom: tableViewContainer.bottomAnchor, right: tableViewContainer.rightAnchor, paddingTop: 20, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 0, enableInsets: false)
     }
 
 }
