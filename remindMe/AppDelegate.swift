@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         FirebaseApp.configure()
         isUserLoggedIn()
 
-         IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enable = true
         return true
     }
     
