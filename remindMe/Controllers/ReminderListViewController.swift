@@ -81,6 +81,7 @@ class ReminderListViewController: UIViewController{
         
         reminderTableView = UITableView()
         reminderTableView?.separatorStyle = .none
+        
         reminderTableView?.delegate = self
         reminderTableView?.dataSource = self
         reminderTableView.register(ReminderListTableViewCell.self, forCellReuseIdentifier: Constant.reminderTableViewCellIdentifier)

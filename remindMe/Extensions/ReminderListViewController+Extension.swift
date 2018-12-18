@@ -22,7 +22,7 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
         let reminderView = ReminderCustomView(frame: (reminderCell?.frame)!, reminder: reminder)
         
         reminderCell?.addSubview(reminderView)
-
+        reminderCell?.selectionStyle = .none
         reminderView.anchor(top: reminderCell?.topAnchor,
                             left: reminderCell?.leftAnchor,
                             bottom: reminderCell?.bottomAnchor,
