@@ -139,11 +139,11 @@ struct ReminderServices{
     
     /// method to check if the reminder is on the time constrain set by the user to recieve notificartion
   static func isReminderOnTimeFrame(reminder: Reminder) -> Bool{
+    
         guard let date = Date().timeToString().toDateTime() else{return false}
         let day = Date().dayOfWeek()
-    if day == reminder.day || day == "Every day"{
-        
-    
+    if day == reminder.day || reminder.day == "Every day"{
+
          guard let timeFrom = reminder.timeFrom?.toDateTime() else{return false}
          guard let timeTo = reminder.timeTo?.toDateTime() else{return false}
         

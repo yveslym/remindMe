@@ -23,7 +23,7 @@ struct Constant{
     static let backToReminderListSegueIdentifier: String = "backToReminders"
     static let backToGroupListSegueIdentifier: String = "backToGroups"
     static let offlinePageSegueIdentifier: String = "offlinePage"
-    static let days = ["Monday","Tuesday","Wednesday","Thursday","Fridady","Saturday","Sunday","Every day"]
+    static let days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","Every day"]
     
     /// This function is used to set up an alert to show to the user in case we need to warn the user
     static func setUpAlert(alertTitle: String,

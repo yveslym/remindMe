@@ -22,13 +22,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     var locationManager: CLLocationManager!
     var notificationCenter: UNUserNotificationCenter!
     let network = NetworkManager.shared
+
     class var shared: AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+
+        let reminder = Reminder.init(groupId: "", id: "", name: "test", type: .onEntry, day: "Sunday", longitude: 123, latitude: 123, timeFrom: Date().timeToString(), timeTo: Date().timeToString())
+
+       print( ReminderServices.isReminderOnTimeFrame(reminder: reminder))
+
+
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
         /// observe fb token change
@@ -100,6 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
             self.locationManager.requestAlwaysAuthorization()
             self.locationManager.startUpdatingLocation()
+            self.locationManager.allowsBackgroundLocationUpdates = true
         }
     }
     
