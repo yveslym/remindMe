@@ -30,9 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        let reminder = Reminder.init(groupId: "", id: "", name: "test", type: .onEntry, day: "Sunday", longitude: 123, latitude: 123, timeFrom: Date().timeToString(), timeTo: Date().timeToString())
-
-       print( ReminderServices.isReminderOnTimeFrame(reminder: reminder))
+//        let reminder = Reminder.init(groupId: "", id: "", name: "test", type: .onEntry, day: "Sunday", longitude: 123, latitude: 123, timeFrom: Date().timeToString(), timeTo: Date().timeToString())
+//
+//       print( ReminderServices.isReminderOnTimeFrame(reminder: reminder))
 
 
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
