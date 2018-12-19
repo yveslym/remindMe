@@ -225,7 +225,7 @@ class GroupListViewController: UIViewController{
     let tableViewContainer: UIView = {
         
         let view = UIView()
-        view.backgroundColor = .lightCyan
+        view.backgroundColor = .white
         view.layer.cornerRadius = 15
         view.clipsToBounds = true
         view.layer.masksToBounds = true
