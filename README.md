@@ -17,7 +17,7 @@ A simple, Lightweight, and easy-to-use iOS location-based reminder app that uses
 
 ## License
 
-This project is licenced under the MIT License - see the <a href="https://github.com/yveslym/remindMe/blob/dev/LICENSE">LICENSE</a> file for details
+This project is licenced under the Apache License - see the <a href="https://github.com/yveslym/remindMe/blob/dev/LICENSE">LICENSE</a> file for details
 
 ## Acknowledgments
 
