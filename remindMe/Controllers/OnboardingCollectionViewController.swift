@@ -17,7 +17,7 @@ class OnboardingCollectionViewController: UICollectionViewController, UICollecti
         
         Page(imageName: "reminder_list", header: "Reminders", description: "Create your reminders under groups, marked as entry or exit with time constraints. Click the + button to add a reminder."),
         
-        Page(imageName: "push_notifications", header: "Push Notifications", description: "Receive notifications reminder when you enter or exit a group's location within 65 feet.")
+        Page(imageName: "notifications", header: "Get Notified", description: "Receive notifications reminder when you enter or exit a group's location within 65 feet.")
     ]
     
     

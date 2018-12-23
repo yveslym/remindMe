@@ -32,7 +32,7 @@ class SignInViewController: UIViewController{
         setUpSeparatorLabel()
         setUpBUttonsStackView()
         mainStackViewAutoLayout()
-        self.view.backgroundColor = .lightCyan
+        self.view.backgroundColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
     }
     
     fileprivate func setUpAppTittleLabel(){
