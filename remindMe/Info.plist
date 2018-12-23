@@ -51,9 +51,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>The location is needed for geofencing approximation.</string>
+	<string>The location needs to be on to calculate the distance between you and a group&apos;s location.</string>
 	<key>NSLocationUsageDescription</key>
-	<string>The location is needed for geofencing approximation.</string>
+	<string>The location needs to be on to calculate the distance between you and a group&apos;s location.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>location</string>
 	<key>UIBackgroundModes</key>

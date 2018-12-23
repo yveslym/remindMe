@@ -31,12 +31,12 @@ class OnboardingCollectionViewController: UICollectionViewController, UICollecti
     }
     
     // creates and styles the button to go backward
-    let previousButton: UIButton = {
+    let skipButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("SKIP", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(.gray, for: .normal)
-        button.addTarget(self, action: #selector(handlePrevSwipe), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleSkipButton), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -47,7 +47,7 @@ class OnboardingCollectionViewController: UICollectionViewController, UICollecti
         let button = UIButton(type: .system)
         button.setTitle("NEXT", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.setTitleColor(.gloomyBlue, for: .normal)
+        button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(handleNextSwipe), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -64,7 +64,7 @@ class OnboardingCollectionViewController: UICollectionViewController, UICollecti
         return pageController
     }()
     
-    
+    /// Swipes to the next page on the onboarding page
     @objc private func handleNextSwipe(){
         
         let nextIndex = min(pageControll.currentPage + 1, pages.count - 1)
@@ -73,20 +73,19 @@ class OnboardingCollectionViewController: UICollectionViewController, UICollecti
         collectionView!.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
-    
-    @objc private func handlePrevSwipe(){
+    /// Shows the user the signin page if onboarding is skipped
+    @objc private func handleSkipButton(){
         
-        let nextIndex = min(pageControll.currentPage - 1, pages.count + 1)
-        let indexPath = IndexPath(item: nextIndex, section: 0)
-        pageControll.currentPage = nextIndex
-        collectionView!.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        let destinationVC = SignInViewController()
+        AppDelegate.shared.window?.rootViewController = destinationVC
+        AppDelegate.shared.window?.makeKeyAndVisible()
         
     }
     
+    /// Configures and layout the skip, next button and the UIPager element
     private func setUpButtonControls(){
         
-        
-        let bottomControlsStackView = UIStackView(arrangedSubviews: [previousButton, pageControll, nextButton])
+        let bottomControlsStackView = UIStackView(arrangedSubviews: [skipButton, pageControll, nextButton])
         bottomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
         bottomControlsStackView.axis = .horizontal
         bottomControlsStackView.distribution = .fillEqually
@@ -99,7 +98,7 @@ class OnboardingCollectionViewController: UICollectionViewController, UICollecti
             bottomControlsStackView.heightAnchor.constraint(equalToConstant: 50)
             ])
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return pages.count

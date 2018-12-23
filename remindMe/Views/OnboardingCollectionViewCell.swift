@@ -15,7 +15,7 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
             
             guard let unwrappedPage = page else {return}
             
-            let attributedText = NSMutableAttributedString(string: unwrappedPage.header, attributes: [NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 18)])
+            let attributedText = NSMutableAttributedString(string: unwrappedPage.header, attributes: [NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 20)])
             
             attributedText.append(NSAttributedString(string: "\n\n\n\(unwrappedPage.description)", attributes:
                 [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18),
@@ -31,20 +31,16 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView(image: UIImage(named: ""))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.layer.masksToBounds = true
-        imageView.clipsToBounds = true
-        imageView.layer.shadowRadius = 1
-        imageView.layer.cornerRadius = 20
         return imageView
     }()
     
     private let pageDescriptionTextView: UITextView = {
         let textView = UITextView()
         let attributedText = NSMutableAttributedString(string: "",
-                                                       attributes: [NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 18)])
+                                                       attributes: [NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 23)])
         
         attributedText.append(NSAttributedString(string: "", attributes:
-            [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18),
+            [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20),
              NSAttributedString.Key.foregroundColor: UIColor.gray]))
         
         textView.attributedText = attributedText
@@ -69,28 +65,21 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
     /// Lays out all UI Components in the cell with AutoLayout
     private func layoutElements(){
      
-        let pageImageViewContainer = UIView()
+        let stack = CustomStack(subview: [pageImageView, pageDescriptionTextView],
+                                alignment: .center,
+                                axis: .vertical,
+                                distribution: .fill)
         
-        addSubview(pageImageView)
-        addSubview(pageImageViewContainer)
-        addSubview(pageDescriptionTextView)
+        addSubview(stack)
         
-        pageImageViewContainer.translatesAutoresizingMaskIntoConstraints = false
-        
-        pageImageViewContainer.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        pageImageViewContainer.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        pageImageViewContainer.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        pageImageViewContainer.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
-        
-        
-        pageImageView.centerXAnchor.constraint(equalTo: pageImageViewContainer.centerXAnchor).isActive = true
-        pageImageView.centerYAnchor.constraint(equalTo: pageImageViewContainer.centerYAnchor).isActive = true
-        pageImageView.heightAnchor.constraint(equalTo: pageImageViewContainer.heightAnchor, multiplier: 0.5).isActive = true
-        pageImageView.widthAnchor.constraint(equalTo: pageImageViewContainer.widthAnchor, multiplier: 0.5).isActive = true
-        
-        pageDescriptionTextView.topAnchor.constraint(equalTo: pageImageViewContainer.bottomAnchor).isActive = true
-        pageDescriptionTextView.leftAnchor.constraint(equalTo: leftAnchor, constant: 20).isActive = true
-        pageDescriptionTextView.rightAnchor.constraint(equalTo: rightAnchor, constant: -20).isActive = true
-        pageDescriptionTextView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
+        NSLayoutConstraint.activate([stack.topAnchor.constraint(equalTo: topAnchor, constant: 30),
+                                     stack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+                                     stack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+                                     stack.centerXAnchor.constraint(equalTo: centerXAnchor),
+                                     stack.centerYAnchor.constraint(equalTo: centerYAnchor),
+                                     pageImageView.heightAnchor.constraint(equalTo: stack.heightAnchor, multiplier: 0.7),
+                                     pageImageView.widthAnchor.constraint(equalTo: stack.widthAnchor, multiplier: 0.7),
+                                     pageDescriptionTextView.heightAnchor.constraint(equalTo: stack.heightAnchor, multiplier: 0.3),
+                                     pageDescriptionTextView.widthAnchor.constraint(equalTo: stack.widthAnchor, multiplier: 0.8)])
     }
 }
