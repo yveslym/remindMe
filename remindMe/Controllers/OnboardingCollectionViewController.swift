@@ -26,6 +26,7 @@ class OnboardingCollectionViewController: UICollectionViewController, UICollecti
         
         collectionView?.backgroundColor = .white
         collectionView?.isPagingEnabled =  true
+        collectionView?.showsHorizontalScrollIndicator = false
         self.collectionView!.register(OnboardingCollectionViewCell.self, forCellWithReuseIdentifier: Constant.onboardingViewCellIdentifier)
         setUpButtonControls()
     }
@@ -80,6 +81,12 @@ class OnboardingCollectionViewController: UICollectionViewController, UICollecti
         AppDelegate.shared.window?.rootViewController = destinationVC
         AppDelegate.shared.window?.makeKeyAndVisible()
         
+    }
+    
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        let x = targetContentOffset.pointee.x
+        pageControll.currentPage = Int(x / view.frame.width)
     }
     
     /// Configures and layout the skip, next button and the UIPager element
