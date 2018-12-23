@@ -139,6 +139,8 @@ struct UserServices{
             }
         }
     }
+    
+    
     static func loginWithFacebook(sender: UIViewController,completion: @escaping(User?)->()){
         FBSDKProfile.loadCurrentProfile(completion: { profile, error in
             if let profile = profile {

@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import CoreLocation
-import JLocationKit
 import UserNotifications
 import IQKeyboardManagerSwift
 import FBSDKCoreKit

@@ -13,10 +13,8 @@ target 'remindMe' do
     pod 'Firebase/Database'
     pod 'Firebase/Storage'
     pod 'GoogleSignIn'
-    pod 'Firebase/Messaging'
     pod 'ReachabilitySwift'
     pod 'FBSDKLoginKit'
-    pod 'JLocationKit', '~> 1.0.3'
     pod 'IQKeyboardManagerSwift'
 
   target 'remindMeTests' do

@@ -29,16 +29,12 @@ extension SignInViewController:  GIDSignInDelegate, GIDSignInUIDelegate{
                 self.presentAlert(title: "Login Error", message: "coun't register please try again!!!")
                 return
             }
-            // User is signed in
-            // register user
+
             UserServices.loginWithGoogle(googleUser: user, completion: { (user) in
                 if let user = user{
-                    // self.performSegue(withIdentifier: Constant.backToGroupListSegueIdentifier, sender: nil)
-                    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-                    guard let mainPageVC = storyBoard.instantiateViewController(withIdentifier: "GroupListViewController") as? GroupListViewController else { return }
-                    
+        
+                    let mainPageVC = GroupListViewController()
                     let navigation = UINavigationController(rootViewController: mainPageVC)
-                    
                     User.setCurrentUser(user: user, writeToUserDefaults: true)
                     self.present(navigation, animated: true)
                 }
