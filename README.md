@@ -1,4 +1,4 @@
-<img src= "screenshots/logo_github.png" width = 250 height = 450><img src= "screenshots/sc5.PNG" width = 250 height = 450>
+<img src= "screenshots/logo_github.png" width = 150 height = 150>
 # Remindme
 
 A simple, Lightweight, and easy-to-use iOS location-based reminder app that uses apple's geofencing and CoreLocation Api  to send the user local notifications of reminders based on their locations. The main feature is the push notification reminder that alarms the user that he/she has enters within a radius of an address attached to a reminder. This will allow the user to always be on top of their non-urgent but important tasks or duties.
