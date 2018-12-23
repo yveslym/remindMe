@@ -49,6 +49,8 @@
 		B8AB97D42157159500A6A3C7 /* ReminderListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB97D32157159500A6A3C7 /* ReminderListTableViewCell.swift */; };
 		B8AB97D62157164B00A6A3C7 /* ReminderListViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB97D52157164B00A6A3C7 /* ReminderListViewController+Extension.swift */; };
 		B8B990552173BECE00850027 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B990542173BECE00850027 /* SignUpViewController.swift */; };
+		B8BC2FCF21CDABBA00559223 /* OnboardingCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BC2FCE21CDABBA00559223 /* OnboardingCollectionViewController.swift */; };
+		B8BC2FD121CDABFB00559223 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BC2FD021CDABFB00559223 /* OnboardingCollectionViewCell.swift */; };
 		B8CA1FB32186712100D036DE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA1FB22186712100D036DE /* NetworkManager.swift */; };
 		B8CA1FB521867E3900D036DE /* OfflineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA1FB421867E3900D036DE /* OfflineViewController.swift */; };
 		B8E63EAB2151E9D200DC3C5C /* GroupListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E63EAA2151E9D200DC3C5C /* GroupListTableViewCell.swift */; };
@@ -116,6 +118,8 @@
 		B8AB97D32157159500A6A3C7 /* ReminderListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListTableViewCell.swift; sourceTree = "<group>"; };
 		B8AB97D52157164B00A6A3C7 /* ReminderListViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReminderListViewController+Extension.swift"; sourceTree = "<group>"; };
 		B8B990542173BECE00850027 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		B8BC2FCE21CDABBA00559223 /* OnboardingCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewController.swift; sourceTree = "<group>"; };
+		B8BC2FD021CDABFB00559223 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		B8CA1FB22186712100D036DE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B8CA1FB421867E3900D036DE /* OfflineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineViewController.swift; sourceTree = "<group>"; };
 		B8E63EAA2151E9D200DC3C5C /* GroupListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListTableViewCell.swift; sourceTree = "<group>"; };
@@ -246,6 +250,7 @@
 				B8F8C1C42173CB7F006BDBD3 /* SignInViewController.swift */,
 				B8CA1FB421867E3900D036DE /* OfflineViewController.swift */,
 				20D913B021A8904B007170A1 /* NewReminderViewController.swift */,
+				B8BC2FCE21CDABBA00559223 /* OnboardingCollectionViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -258,6 +263,7 @@
 				208AD46F21A5FF3C00F8C331 /* GoupCustomView.swift */,
 				20D913AC21A63AF5007170A1 /* CustomViews.swift */,
 				20D913AE21A763AC007170A1 /* ReminderView.swift */,
+				B8BC2FD021CDABFB00559223 /* OnboardingCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -522,6 +528,7 @@
 				B87AA691218FE20800BDB606 /* UIColor+Extension.swift in Sources */,
 				208AD47021A5FF3C00F8C331 /* GoupCustomView.swift in Sources */,
 				204B9BE3214C82CE000A1619 /* AppDelegate.swift in Sources */,
+				B8BC2FD121CDABFB00559223 /* OnboardingCollectionViewCell.swift in Sources */,
 				B85CD7B82154648D002027A5 /* ReminderListViewController.swift in Sources */,
 				B85B9B77215C876C00A52C10 /* Int+Extension.swift in Sources */,
 				B8E63EAB2151E9D200DC3C5C /* GroupListTableViewCell.swift in Sources */,
@@ -543,6 +550,7 @@
 				B8CA1FB32186712100D036DE /* NetworkManager.swift in Sources */,
 				20B38345215435790056F1DA /* Constant.swift in Sources */,
 				B8B990552173BECE00850027 /* SignUpViewController.swift in Sources */,
+				B8BC2FCF21CDABBA00559223 /* OnboardingCollectionViewController.swift in Sources */,
 				20B3834921543B860056F1DA /* GroupServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

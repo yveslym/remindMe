@@ -15,14 +15,7 @@ struct Constant{
     
     static let groupTableViewCellIdentifier: String = "groupCell"
     static let reminderTableViewCellIdentifier: String = "reminderCell"
-    static let createReminderSegueIdentifier: String  = "createSingleReminder"
-    static let createGroupSegueIdentifier: String = "createSingleGroup"
-    static let showAllRemindersSegueIdentifier: String = "showListOfReminders"
-    static let saveReminderSegueIdenfier: String = "saveReminder"
-    static let saveGroupSegueIdentifier: String = "saveGroup"
-    static let backToReminderListSegueIdentifier: String = "backToReminders"
-    static let backToGroupListSegueIdentifier: String = "backToGroups"
-    static let offlinePageSegueIdentifier: String = "offlinePage"
+    static let onboardingViewCellIdentifier: String = "onboardingCellId"
     static let days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","Every day"]
     
     /// This function is used to set up an alert to show to the user in case we need to warn the user

@@ -30,14 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-//        let reminder = Reminder.init(groupId: "", id: "", name: "test", type: .onEntry, day: "Sunday", longitude: 123, latitude: 123, timeFrom: Date().timeToString(), timeTo: Date().timeToString())
-//
-//       print( ReminderServices.isReminderOnTimeFrame(reminder: reminder))
-
-
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
-        /// observe fb token change
+        /// observe facebook token change
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FBSDKAccessTokenDidChange, object: nil, queue: OperationQueue.main, using: { notification in
             if notification.userInfo![FBSDKAccessTokenDidChangeUserID] != nil {
                 // Handle user change
@@ -141,17 +136,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
                     self.showMainPage()
                 }
             }
-        }
-        else{
+        }else{
+            
             self.showSigninPage()
         }
     }
     
     
-    /// Method to render the offline page if there is no internet connection
+    /// Render the onboarding page if the user has never logged in before
+    fileprivate func showOnboardingPage(){
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        if let window = window{
+            
+            let destinationVC = OnboardingCollectionViewController(collectionViewLayout: layout)
+            navigationController = UINavigationController(rootViewController: destinationVC)
+            window.rootViewController = navigationController
+            window.makeKeyAndVisible()
+        }
+    }
+    
+    
+    /// Rrender the offline page if there is no internet connection
     fileprivate func showOfflinePage(){
         window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window{
+            
             let destinationVC = OfflineViewController()
             navigationController = UINavigationController(rootViewController: destinationVC)
             window.rootViewController = navigationController
@@ -159,11 +172,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         }
     }
 
-    /// Method to render the main page if there is internet connection
+    /// Render the main page if there is internet connection
     fileprivate func showMainPage(){
         
         window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window {
+            
             let groupListVC = GroupListViewController()
             navigationController = UINavigationController(rootViewController: groupListVC)
             window.rootViewController = navigationController
@@ -171,7 +185,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         }
     }
     
-    /// Method to render the main page if there is internet connection
+    /// Render the main page if there is internet connection
     fileprivate func showSigninPage(){
         
         window = UIWindow(frame: UIScreen.main.bounds)
