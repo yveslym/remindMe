@@ -155,7 +155,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         if let window = window{
             
             let destinationVC = OnboardingCollectionViewController(collectionViewLayout: layout)
-            //navigationController = UINavigationController(rootViewController: destinationVC)
             window.rootViewController = destinationVC
             window.makeKeyAndVisible()
         }
