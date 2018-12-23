@@ -12,7 +12,6 @@
 		2028877D219B95AB009C517C /* UIViewControllers+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2028877B219B95AB009C517C /* UIViewControllers+Extension.swift */; };
 		204B9BE3214C82CE000A1619 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204B9BE2214C82CE000A1619 /* AppDelegate.swift */; };
 		204B9BE5214C82CE000A1619 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204B9BE4214C82CE000A1619 /* ViewController.swift */; };
-		204B9BE8214C82CE000A1619 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 204B9BE6214C82CE000A1619 /* Main.storyboard */; };
 		204B9BEA214C82D0000A1619 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 204B9BE9214C82D0000A1619 /* Assets.xcassets */; };
 		204B9BED214C82D0000A1619 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 204B9BEB214C82D0000A1619 /* LaunchScreen.storyboard */; };
 		204B9BF8214C82D0000A1619 /* remindMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204B9BF7214C82D0000A1619 /* remindMeTests.swift */; };
@@ -30,8 +29,6 @@
 		20D913AD21A63AF5007170A1 /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D913AC21A63AF5007170A1 /* CustomViews.swift */; };
 		20D913AF21A763AC007170A1 /* ReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D913AE21A763AC007170A1 /* ReminderView.swift */; };
 		20D913B121A8904B007170A1 /* NewReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D913B021A8904B007170A1 /* NewReminderViewController.swift */; };
-		B802513B2159E47A00311405 /* CreateReminderViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B802513A2159E47A00311405 /* CreateReminderViewController+Extension.swift */; };
-		B802513D2159F8AD00311405 /* CreateGroupViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B802513C2159F8AD00311405 /* CreateGroupViewController+Extension.swift */; };
 		B802513F2159FA3E00311405 /* JSONEncoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B802513E2159FA3E00311405 /* JSONEncoder+Extension.swift */; };
 		B80251412159FA7E00311405 /* JSONDecoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80251402159FA7E00311405 /* JSONDecoder+Extension.swift */; };
 		B80AA767215EE33F001BA1ED /* Date+String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80AA766215EE33F001BA1ED /* Date+String+Extension.swift */; };
@@ -43,16 +40,15 @@
 		B85B9B77215C876C00A52C10 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85B9B76215C876C00A52C10 /* Int+Extension.swift */; };
 		B85CD7B82154648D002027A5 /* ReminderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85CD7B72154648D002027A5 /* ReminderListViewController.swift */; };
 		B85CD7BB215464FB002027A5 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85CD7BA215464FB002027A5 /* CreateGroupViewController.swift */; };
-		B85CD7BD21546514002027A5 /* CreateReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85CD7BC21546514002027A5 /* CreateReminderViewController.swift */; };
 		B87AA691218FE20800BDB606 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87AA690218FE20800BDB606 /* UIColor+Extension.swift */; };
 		B87C8E6F215B1B7100560397 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C8E6E215B1B7100560397 /* Reminder.swift */; };
 		B8AB97D42157159500A6A3C7 /* ReminderListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB97D32157159500A6A3C7 /* ReminderListTableViewCell.swift */; };
 		B8AB97D62157164B00A6A3C7 /* ReminderListViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB97D52157164B00A6A3C7 /* ReminderListViewController+Extension.swift */; };
-		B8B990552173BECE00850027 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B990542173BECE00850027 /* SignUpViewController.swift */; };
 		B8BC2FCF21CDABBA00559223 /* OnboardingCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BC2FCE21CDABBA00559223 /* OnboardingCollectionViewController.swift */; };
 		B8BC2FD121CDABFB00559223 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BC2FD021CDABFB00559223 /* OnboardingCollectionViewCell.swift */; };
 		B8CA1FB32186712100D036DE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA1FB22186712100D036DE /* NetworkManager.swift */; };
 		B8CA1FB521867E3900D036DE /* OfflineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA1FB421867E3900D036DE /* OfflineViewController.swift */; };
+		B8D1E01D21CF0CDA003A9F72 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D1E01C21CF0CDA003A9F72 /* Page.swift */; };
 		B8E63EAB2151E9D200DC3C5C /* GroupListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E63EAA2151E9D200DC3C5C /* GroupListTableViewCell.swift */; };
 		B8E63EAE2151EB7D00DC3C5C /* GroupListViewController+Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E63EAD2151EB7D00DC3C5C /* GroupListViewController+Extension .swift */; };
 		B8F8C1C52173CB7F006BDBD3 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F8C1C42173CB7F006BDBD3 /* SignInViewController.swift */; };
@@ -74,7 +70,6 @@
 		204B9BDF214C82CE000A1619 /* remindMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = remindMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		204B9BE2214C82CE000A1619 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		204B9BE4214C82CE000A1619 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		204B9BE7214C82CE000A1619 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		204B9BE9214C82D0000A1619 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		204B9BEC214C82D0000A1619 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		204B9BEE214C82D0000A1619 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,8 +94,6 @@
 		50224F522EBBC67AC465D00D /* Pods-remindMeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-remindMeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-remindMeTests/Pods-remindMeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DE44E3A8AEB7625349D0263 /* Pods_remindMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_remindMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B3E3567EB1601D9E258CEE /* Pods_remindMeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_remindMeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B802513A2159E47A00311405 /* CreateReminderViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateReminderViewController+Extension.swift"; sourceTree = "<group>"; };
-		B802513C2159F8AD00311405 /* CreateGroupViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateGroupViewController+Extension.swift"; sourceTree = "<group>"; };
 		B802513E2159FA3E00311405 /* JSONEncoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONEncoder+Extension.swift"; sourceTree = "<group>"; };
 		B80251402159FA7E00311405 /* JSONDecoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Extension.swift"; sourceTree = "<group>"; };
 		B80AA766215EE33F001BA1ED /* Date+String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+String+Extension.swift"; sourceTree = "<group>"; };
@@ -112,16 +105,15 @@
 		B85B9B76215C876C00A52C10 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		B85CD7B72154648D002027A5 /* ReminderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListViewController.swift; sourceTree = "<group>"; };
 		B85CD7BA215464FB002027A5 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
-		B85CD7BC21546514002027A5 /* CreateReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderViewController.swift; sourceTree = "<group>"; };
 		B87AA690218FE20800BDB606 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		B87C8E6E215B1B7100560397 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		B8AB97D32157159500A6A3C7 /* ReminderListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListTableViewCell.swift; sourceTree = "<group>"; };
 		B8AB97D52157164B00A6A3C7 /* ReminderListViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReminderListViewController+Extension.swift"; sourceTree = "<group>"; };
-		B8B990542173BECE00850027 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B8BC2FCE21CDABBA00559223 /* OnboardingCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewController.swift; sourceTree = "<group>"; };
 		B8BC2FD021CDABFB00559223 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
 		B8CA1FB22186712100D036DE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B8CA1FB421867E3900D036DE /* OfflineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineViewController.swift; sourceTree = "<group>"; };
+		B8D1E01C21CF0CDA003A9F72 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 		B8E63EAA2151E9D200DC3C5C /* GroupListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListTableViewCell.swift; sourceTree = "<group>"; };
 		B8E63EAD2151EB7D00DC3C5C /* GroupListViewController+Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupListViewController+Extension .swift"; sourceTree = "<group>"; };
 		B8F8C1C42173CB7F006BDBD3 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -179,7 +171,6 @@
 				B83C11F62151B99800A6BAE3 /* Controllers */,
 				204B9BE2214C82CE000A1619 /* AppDelegate.swift */,
 				204B9BE4214C82CE000A1619 /* ViewController.swift */,
-				204B9BE6214C82CE000A1619 /* Main.storyboard */,
 				204B9BE9214C82D0000A1619 /* Assets.xcassets */,
 				204B9BEB214C82D0000A1619 /* LaunchScreen.storyboard */,
 				208AD46D21A5EDFE00F8C331 /* GoogleService-Info.plist */,
@@ -204,6 +195,7 @@
 				20A0E5CC2151C05100F0F049 /* User.swift */,
 				B80B5FBD2154AF0D0008675D /* EventType.swift */,
 				B87C8E6E215B1B7100560397 /* Reminder.swift */,
+				B8D1E01C21CF0CDA003A9F72 /* Page.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -245,8 +237,6 @@
 				B83C11F72151B9E800A6BAE3 /* GroupListViewController.swift */,
 				B85CD7B72154648D002027A5 /* ReminderListViewController.swift */,
 				B85CD7BA215464FB002027A5 /* CreateGroupViewController.swift */,
-				B85CD7BC21546514002027A5 /* CreateReminderViewController.swift */,
-				B8B990542173BECE00850027 /* SignUpViewController.swift */,
 				B8F8C1C42173CB7F006BDBD3 /* SignInViewController.swift */,
 				B8CA1FB421867E3900D036DE /* OfflineViewController.swift */,
 				20D913B021A8904B007170A1 /* NewReminderViewController.swift */,
@@ -276,8 +266,6 @@
 				2028877B219B95AB009C517C /* UIViewControllers+Extension.swift */,
 				B8E63EAD2151EB7D00DC3C5C /* GroupListViewController+Extension .swift */,
 				B8AB97D52157164B00A6A3C7 /* ReminderListViewController+Extension.swift */,
-				B802513A2159E47A00311405 /* CreateReminderViewController+Extension.swift */,
-				B802513C2159F8AD00311405 /* CreateGroupViewController+Extension.swift */,
 				B802513E2159FA3E00311405 /* JSONEncoder+Extension.swift */,
 				B80251402159FA7E00311405 /* JSONDecoder+Extension.swift */,
 				B85B9B76215C876C00A52C10 /* Int+Extension.swift */,
@@ -391,7 +379,6 @@
 				208AD46E21A5EDFE00F8C331 /* GoogleService-Info.plist in Resources */,
 				204B9BED214C82D0000A1619 /* LaunchScreen.storyboard in Resources */,
 				204B9BEA214C82D0000A1619 /* Assets.xcassets in Resources */,
-				204B9BE8214C82CE000A1619 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,7 +434,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-remindMe/Pods-remindMe-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-remindMe/Pods-remindMe-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
@@ -458,7 +445,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-remindMe/Pods-remindMe-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-remindMe/Pods-remindMe-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FEF2BEA47C294069E3D84D9A /* [CP] Embed Pods Frameworks */ = {
@@ -467,7 +454,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-remindMe/Pods-remindMe-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-remindMe/Pods-remindMe-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
@@ -500,7 +487,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-remindMe/Pods-remindMe-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-remindMe/Pods-remindMe-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -513,7 +500,6 @@
 				20B3834B21543BA30056F1DA /* UserServices.swift in Sources */,
 				20D913AD21A63AF5007170A1 /* CustomViews.swift in Sources */,
 				20C02DA3219F68D1009AD46E /* String+Extensions.swift in Sources */,
-				B802513B2159E47A00311405 /* CreateReminderViewController+Extension.swift in Sources */,
 				20D913AF21A763AC007170A1 /* ReminderView.swift in Sources */,
 				B83C11F82151B9E800A6BAE3 /* GroupListViewController.swift in Sources */,
 				B87C8E6F215B1B7100560397 /* Reminder.swift in Sources */,
@@ -525,6 +511,7 @@
 				2028877C219B95AB009C517C /* UIViewControllers+Extension.swift in Sources */,
 				B80251412159FA7E00311405 /* JSONDecoder+Extension.swift in Sources */,
 				20D913B121A8904B007170A1 /* NewReminderViewController.swift in Sources */,
+				B8D1E01D21CF0CDA003A9F72 /* Page.swift in Sources */,
 				B87AA691218FE20800BDB606 /* UIColor+Extension.swift in Sources */,
 				208AD47021A5FF3C00F8C331 /* GoupCustomView.swift in Sources */,
 				204B9BE3214C82CE000A1619 /* AppDelegate.swift in Sources */,
@@ -538,18 +525,15 @@
 				20919678219E2B4500BCE0F9 /* remindMeTests.swift in Sources */,
 				B8CA1FB521867E3900D036DE /* OfflineViewController.swift in Sources */,
 				B8F8C1C52173CB7F006BDBD3 /* SignInViewController.swift in Sources */,
-				B85CD7BD21546514002027A5 /* CreateReminderViewController.swift in Sources */,
 				B85CD7BB215464FB002027A5 /* CreateGroupViewController.swift in Sources */,
 				20A0E5D12151C97400F0F049 /* GeoCoder.swift in Sources */,
 				20C02DA4219F68D1009AD46E /* Date+Extensions.swift in Sources */,
 				B80B5FBE2154AF0D0008675D /* EventType.swift in Sources */,
 				B85B9B75215C71FA00A52C10 /* ReminderServices.swift in Sources */,
-				B802513D2159F8AD00311405 /* CreateGroupViewController+Extension.swift in Sources */,
 				20A0E5CF2151C05100F0F049 /* Group.swift in Sources */,
 				B8193DD82196491C007CE160 /* UIView+Extension.swift in Sources */,
 				B8CA1FB32186712100D036DE /* NetworkManager.swift in Sources */,
 				20B38345215435790056F1DA /* Constant.swift in Sources */,
-				B8B990552173BECE00850027 /* SignUpViewController.swift in Sources */,
 				B8BC2FCF21CDABBA00559223 /* OnboardingCollectionViewController.swift in Sources */,
 				20B3834921543B860056F1DA /* GroupServices.swift in Sources */,
 			);
@@ -575,14 +559,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		204B9BE6214C82CE000A1619 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				204B9BE7214C82CE000A1619 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		204B9BEB214C82D0000A1619 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

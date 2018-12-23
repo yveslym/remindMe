@@ -10,9 +10,17 @@ import UIKit
 
 class OnboardingCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+    let pages = [
+        Page(imageName: "logo", header: "Welcome to Remindme", description: "Remindme let's you group all your location-triggered reminders in one place, at all time"),
+        
+        Page(imageName: "logo", header: "Welcome to Remindme", description: "Remindme let's you group all your location-triggered reminders in one place, at all time"),
+        Page(imageName: "logo", header: "Welcome to Remindme", description: "Remindme let's you group all your location-triggered reminders in one place, at all time"),
+        Page(imageName: "logo", header: "Welcome to Remindme", description: "Remindme let's you group all your location-triggered reminders in one place, at all time"),
+    
+    ]
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.collectionView!.register(OnboardingCollectionViewCell.self, forCellWithReuseIdentifier: Constant.onboardingViewCellIdentifier)
         collectionView?.backgroundColor = .green
 

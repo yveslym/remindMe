@@ -131,14 +131,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             // Checking the internet status... will be ignored if there is connection
             NetworkManager.isUnReachable { (network, isUnreachable) in
                 if isUnreachable{
+                    // renders the onboarding page if there is no internet connectivity
                     self.showOfflinePage()
                 }else{
+                    // renders the onboarding page if there is internet connectivity
                     self.showMainPage()
                 }
             }
         }else{
-            
-            self.showSigninPage()
+            // renders the onboarding page if it's a first time user
+            self.showOnboardingPage()
         }
     }
     
@@ -153,8 +155,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         if let window = window{
             
             let destinationVC = OnboardingCollectionViewController(collectionViewLayout: layout)
-            navigationController = UINavigationController(rootViewController: destinationVC)
-            window.rootViewController = navigationController
+            //navigationController = UINavigationController(rootViewController: destinationVC)
+            window.rootViewController = destinationVC
             window.makeKeyAndVisible()
         }
     }
