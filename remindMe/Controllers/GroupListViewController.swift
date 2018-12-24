@@ -13,16 +13,13 @@ import UIKit
 class GroupListViewController: UIViewController{
 // This View Controller class handles functionality to show the list of all the groups
 
-    
-    // Stack views variables
+    // - MARK: Class Properties
     var groupListTableView =  UITableView()
     var remindersDataStackView = UIStackView()
     var totalRemindersStackView = UIStackView()
     var totalRemindersOnEntryStackView = UIStackView()
     var totalRemindersOnExitStackView = UIStackView()
     var tableViewStackView = UIStackView()
-    
-    // UI Elements variables
     var totalRemindersBox = UIView()
     var totalRemindersOnEntryBox =  UIView()
     var totalRemindersOnExitBox = UIView()
@@ -32,9 +29,6 @@ class GroupListViewController: UIViewController{
     var totalRemindersOnEntryTextView = UITextView()
     var totalRemindersOnExitAmountLable = UILabel()
     var totalRemindersOnExitTextView = UITextView()
-    
-    
-
     let networkManager = NetworkManager.shared
     var userGroups = [Group](){
         didSet {
@@ -60,36 +54,15 @@ class GroupListViewController: UIViewController{
         }
     }
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        fetchAllGroups()
-        updateReminderLabels()
-    }
-    
-    
+    // - MARK CLASS METHODS
     override func viewDidLoad() {
         
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
-        // UI SET UP
         setUpNavigationBarItems()
-        addViews()
-        createRectangularViews()
-        createCustomRemindersLabels()
-        anchorTableView()
-        anchorTableViewTitle()
-        anchorRemindersDataContainer()
-        anchorTableViewContainer()
-        anchorRemindersDataStackView()
-        anchorTotalRemindersStackView()
-        anchorEntriesReminderStackView()
-        anchorExitReminderStackView()
-        
-        // Network Set Up
-        updateReminderLabels()
         fetchAllGroups()
+        addViews()
         monitorReminders()
         obserUpdatedGroup()
         observeAddedGroup()
@@ -100,8 +73,21 @@ class GroupListViewController: UIViewController{
         
     }
     
-    
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        createRectangularViews()
+        createCustomRemindersLabels()
+        anchorTableView()
+        anchorTableViewTitle()
+        anchorRemindersDataContainer()
+        anchorTableViewContainer()
+        anchorRemindersDataStackView()
+        anchorTotalRemindersStackView()
+        anchorEntriesReminderStackView()
+        anchorExitReminderStackView()
+        updateReminderLabels()
+    }
     
     /// Pushes a view controller that tells the user that he/she is offline
     fileprivate func showOfflinePage(){
@@ -121,7 +107,8 @@ class GroupListViewController: UIViewController{
     }
     
     /// Updates all the reminders labels with proper numbers
-    fileprivate func updateReminderLabels(){
+    func updateReminderLabels(){
+        
         var entryCounter = 0
         var exitCounter = 0
         var totalRemindersCountter = 0
