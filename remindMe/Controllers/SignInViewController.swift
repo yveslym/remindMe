@@ -95,10 +95,6 @@ class SignInViewController: UIViewController{
         GIDSignIn.sharedInstance()?.signIn()
     }
     
-    // Toggles the signin view controller
-    @objc fileprivate func selectableSignInButtonTapped(_ sender: UIButton){
-        print("selectable Sign in button clicked")
-    }
     
     // Toggles the signup view controller
     fileprivate func  setUpSeparatorLabel(){
