@@ -145,9 +145,8 @@ struct UserServices{
         FBSDKProfile.loadCurrentProfile(completion: { profile, error in
             if let profile = profile {
                 guard let authUser = Auth.auth().currentUser else {
-                    print("user is not auth")
+                    
                     return completion(nil)
-
                 }
 
                 var user = User.init(profile.name, "", Auth.auth().currentUser?.email ?? "")

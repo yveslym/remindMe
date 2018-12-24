@@ -40,7 +40,8 @@ class NetworkManager: NSObject{
     do {
         try? reachability.startNotifier()
     } catch {
-    print("Error Found : Unable to start notifier")
+        
+        print("Error Found : Unable to start notifier")
     }
     
 }
