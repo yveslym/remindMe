@@ -17,13 +17,14 @@ struct Group: Codable{
     var latitude: Double
     var address: String?
     
-    init(id: String, name: String,description: String, latitude: Double, longitude: Double) {
+    init(id: String, name: String,description: String, latitude: Double, longitude: Double, address: String = "") {
         
         self.id = id
         self.name = name
         self.description = description
         self.latitude = latitude
         self.longitude = longitude
+        self.address = address
     }
    
     func toDictionary() ->[String: Any]{

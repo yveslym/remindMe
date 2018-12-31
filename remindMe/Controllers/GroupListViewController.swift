@@ -9,11 +9,19 @@
 
 import Foundation
 import UIKit
+import CoreLocation
+
+
+protocol GroupDelegate: class {
+    func didRescievedNewNotification(reminder: Reminder)
+}
 
 class GroupListViewController: UIViewController{
 // This View Controller class handles functionality to show the list of all the groups
 
     // - MARK: Class Properties
+
+
     var groupListTableView =  UITableView()
     var remindersDataStackView = UIStackView()
     var totalRemindersStackView = UIStackView()
@@ -30,6 +38,7 @@ class GroupListViewController: UIViewController{
     var totalRemindersOnExitAmountLable = UILabel()
     var totalRemindersOnExitTextView = UITextView()
     let networkManager = NetworkManager.shared
+    var locationManager = AppDelegate.shared.locationManager
     var userGroups = [Group](){
         didSet {
             DispatchQueue.global().async {
@@ -59,7 +68,8 @@ class GroupListViewController: UIViewController{
         
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        
+
+        configureUserLocation()
         setUpNavigationBarItems()
         fetchAllGroups()
         addViews()
@@ -72,6 +82,25 @@ class GroupListViewController: UIViewController{
         }
         
     }
+
+    /// This functions requests the needed access from the user in order to use the user'slocation
+    fileprivate func configureUserLocation(){
+
+        self.locationManager = CLLocationManager()
+        //self.locationManager.delegate = self
+
+        // Configuring User Location
+        if (CLLocationManager.locationServicesEnabled())
+        {
+            self.locationManager = CLLocationManager()
+            //self.locationManager?.delegate = self
+            self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager?.requestAlwaysAuthorization()
+            self.locationManager?.startUpdatingLocation()
+            self.locationManager?.allowsBackgroundLocationUpdates = true
+        }
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

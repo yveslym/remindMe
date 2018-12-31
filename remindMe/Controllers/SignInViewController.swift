@@ -25,19 +25,29 @@ class SignInViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        setUpBackground()
         setUpGoogleButton()
         setUpFacebookButton()
         setUpAppTittleLabel()
         setUpSeparatorLabel()
         setUpBUttonsStackView()
         mainStackViewAutoLayout()
-        self.view.backgroundColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+        //self.view.backgroundColor = #colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1)
+    }
+
+    func setUpBackground (){
+
+        let image = UIImage.init(named: "don-t-forget")
+        let backgroundImage = UIImageView.init(image: image)
+        backgroundImage.frame = view.frame
+        self.view.addSubview(backgroundImage)
+        backgroundImage.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0, enableInsets: false)
     }
     
     fileprivate func setUpAppTittleLabel(){
         
-        appTittleLabel = CustomLabel(fontSize: 40, text: "Remindme", textColor: .black)
+        appTittleLabel = CustomLabel(fontSize: 40, text: "Remindme", textColor: .white)
         appTittleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 40)
         appTittleLabel.textAlignment = .center
     }
@@ -99,7 +109,7 @@ class SignInViewController: UIViewController{
     // Toggles the signup view controller
     fileprivate func  setUpSeparatorLabel(){
         
-        separatorLabel = CustomLabel(fontSize: 20, text: "OR", textColor: .black)
+        separatorLabel = CustomLabel(fontSize: 20, text: "OR", textColor: .white)
         separatorLabel.font = UIFont(name: "HelveticaNeue-Light", size: 20)
         separatorLabel.textAlignment = .center
     }
@@ -159,13 +169,13 @@ class SignInViewController: UIViewController{
         buttonsStackView = CustomStack(subview: [facebookLoginButton, separatorLabel, googleLoginButton],
                                        alignment: .center,
                                        axis: .vertical,
-                                       distribution: .fillEqually)
+                                       distribution: .fill)
         
         NSLayoutConstraint.activate([facebookLoginButton.heightAnchor.constraint(equalTo: buttonsStackView.heightAnchor, multiplier: 0.4),
                                      facebookLoginButton.widthAnchor.constraint(equalTo: buttonsStackView.widthAnchor, multiplier: 0.8),
                                      googleLoginButton.heightAnchor.constraint(equalTo: buttonsStackView.heightAnchor, multiplier: 0.4),
                                      googleLoginButton.widthAnchor.constraint(equalTo: buttonsStackView.widthAnchor, multiplier: 0.8),
-                                     separatorLabel.heightAnchor.constraint(equalTo: buttonsStackView.heightAnchor, multiplier: 0.2),
+                                     //separatorLabel.heightAnchor.constraint(equalTo: buttonsStackView.heightAnchor, multiplier: 0.1),
                                      separatorLabel.widthAnchor.constraint(equalTo: buttonsStackView.widthAnchor, multiplier: 0.8)])
     }
     
@@ -178,14 +188,14 @@ class SignInViewController: UIViewController{
                                     distribution: .fill)
         view.addSubview(mainStackView)
         
-        NSLayoutConstraint.activate([mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+        NSLayoutConstraint.activate([mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
                                      mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
                                      mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10),
                                      mainStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95),
-                                     mainStackView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95),
+                                     mainStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.95),
                                      mainStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                      appTittleLabel.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.09),
-                                     buttonsStackView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.4),
+                                     buttonsStackView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.2),
                                      buttonsStackView.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.9),
                                      buttonsStackView.centerXAnchor.constraint(equalTo: mainStackView.centerXAnchor)
                                      ])

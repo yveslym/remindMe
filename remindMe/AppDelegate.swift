@@ -37,7 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
                 // Handle user change
             }
         })
-        configureUserLocation()
+        //configureUserLocation()
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
         configureLocalNotification()
         FirebaseApp.configure()
         isUserLoggedIn()
@@ -86,25 +88,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     }
     
     
-    /// This functions requests the needed access from the user in order to use the user'slocation
-    fileprivate func configureUserLocation(){
-        
-        self.locationManager = CLLocationManager()
-        self.locationManager.delegate = self
-        
-        // Configuring User Location
-        if (CLLocationManager.locationServicesEnabled())
-        {
-            self.locationManager = CLLocationManager()
-            self.locationManager.delegate = self
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            self.locationManager.requestAlwaysAuthorization()
-            self.locationManager.startUpdatingLocation()
-            self.locationManager.allowsBackgroundLocationUpdates = true
-        }
-    }
-    
-    
+//    /// This functions requests the needed access from the user in order to use the user'slocation
+//    fileprivate func configureUserLocation(){
+//
+//        self.locationManager = CLLocationManager()
+//        self.locationManager.delegate = self
+//
+//        // Configuring User Location
+//        if (CLLocationManager.locationServicesEnabled())
+//        {
+//            self.locationManager = CLLocationManager()
+//            self.locationManager.delegate = self
+//            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//            self.locationManager.requestAlwaysAuthorization()
+//            self.locationManager.startUpdatingLocation()
+//            self.locationManager.allowsBackgroundLocationUpdates = true
+//        }
+//    }
+//
+
     /// Method to make the api call to Firebase and retrieve the reminder and group to show on the notification
     fileprivate func prepareForNotification(forRegion region: CLRegion){
         

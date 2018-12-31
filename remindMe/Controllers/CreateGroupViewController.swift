@@ -54,6 +54,7 @@ class CreateGroupViewController: UIViewController{
                 let latitude = coordinates.latitude
                 let longitude = coordinates.longitude
                 var createdGroup = Group(id: "", name: name, description: description, latitude: latitude, longitude: longitude)
+                createdGroup.address = address
                 
                 if self.group != nil{
                     if let unwrappedGroup = self.group {
