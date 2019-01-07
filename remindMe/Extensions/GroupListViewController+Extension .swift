@@ -308,10 +308,15 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
 }
 
 extension GroupListViewController: GroupDelegate{
+
     func didRescievedNewNotification(reminder: Reminder) {
+        
         GroupServices.show(reminder.groupId) { (group) in
             guard let group = group else {return}
-            var alert = UIAlertController.init(title: reminder.name, message: reminder.description! + "\(group.name) reminder" ?? "", preferredStyle: .alert)
+            let alert = UIAlertController.init(title: reminder.name, message: reminder.description! + "\(group.name) reminder" , preferredStyle: .alert)
+            let button = UIAlertAction(title: "Done", style: .cancel, handler: nil)
+            alert.addAction(button)
+            self.present(alert,animated: true)
         }
     }
 
