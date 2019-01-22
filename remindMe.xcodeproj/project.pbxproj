@@ -12,7 +12,7 @@
 		204B9BEA214C82D0000A1619 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 204B9BE9214C82D0000A1619 /* Assets.xcassets */; };
 		204B9BED214C82D0000A1619 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 204B9BEB214C82D0000A1619 /* LaunchScreen.storyboard */; };
 		204B9BF8214C82D0000A1619 /* remindMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204B9BF7214C82D0000A1619 /* remindMeTests.swift */; };
-		208AD46E21A5EDFE00F8C331 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 208AD46D21A5EDFE00F8C331 /* GoogleService-Info.plist */; };
+		2053312121F79AC80055ECFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2053312021F79AC80055ECFF /* GoogleService-Info.plist */; };
 		208AD47021A5FF3C00F8C331 /* GoupCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208AD46F21A5FF3C00F8C331 /* GoupCustomView.swift */; };
 		20919678219E2B4500BCE0F9 /* remindMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204B9BF7214C82D0000A1619 /* remindMeTests.swift */; };
 		20A0E5CE2151C05100F0F049 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A0E5CC2151C05100F0F049 /* User.swift */; };
@@ -72,7 +72,7 @@
 		204B9BF3214C82D0000A1619 /* remindMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = remindMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		204B9BF7214C82D0000A1619 /* remindMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = remindMeTests.swift; sourceTree = "<group>"; };
 		204B9BF9214C82D0000A1619 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		208AD46D21A5EDFE00F8C331 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2053312021F79AC80055ECFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		208AD46F21A5FF3C00F8C331 /* GoupCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoupCustomView.swift; sourceTree = "<group>"; };
 		209B3253C77C7CA9A185BC92 /* Pods-remindMeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-remindMeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-remindMeTests/Pods-remindMeTests.release.xcconfig"; sourceTree = "<group>"; };
 		20A0E5CC2151C05100F0F049 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -168,8 +168,8 @@
 				B83C11F62151B99800A6BAE3 /* Controllers */,
 				204B9BE2214C82CE000A1619 /* AppDelegate.swift */,
 				204B9BE9214C82D0000A1619 /* Assets.xcassets */,
+				2053312021F79AC80055ECFF /* GoogleService-Info.plist */,
 				204B9BEB214C82D0000A1619 /* LaunchScreen.storyboard */,
-				208AD46D21A5EDFE00F8C331 /* GoogleService-Info.plist */,
 				204B9BEE214C82D0000A1619 /* Info.plist */,
 			);
 			path = remindMe;
@@ -372,9 +372,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				208AD46E21A5EDFE00F8C331 /* GoogleService-Info.plist in Resources */,
 				204B9BED214C82D0000A1619 /* LaunchScreen.storyboard in Resources */,
 				204B9BEA214C82D0000A1619 /* Assets.xcassets in Resources */,
+				2053312121F79AC80055ECFF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,7 +686,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yveslym.remindMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yveslym.medi.remindMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -705,7 +705,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yveslym.remindMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yveslym.medi.remindMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

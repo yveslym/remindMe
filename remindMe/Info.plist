@@ -34,6 +34,14 @@
 				<string>com.googleusercontent.apps.516383180122-mrgt92itpplifv4nfm9g385b9op7c67a</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.516383180122-bqansneil27vtapepb6ub2fbdt32rri4</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
@@ -51,9 +59,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>The location needs to be on to calculate the distance between you and a group&apos;s location.</string>
+	<string>The location needs to be on to calculate the distance between you and a group's location.</string>
 	<key>NSLocationUsageDescription</key>
-	<string>The location needs to be on to calculate the distance between you and a group&apos;s location.</string>
+	<string>The location needs to be on to calculate the distance between you and a group's location.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>location</string>
 	<key>UIBackgroundModes</key>
