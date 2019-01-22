@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 import Firebase
 import GoogleSignIn
+import FBSDKCoreKit
 import FBSDKLoginKit
 
 struct UserServices{
@@ -142,6 +143,8 @@ struct UserServices{
     
     
     static func loginWithFacebook(sender: UIViewController,completion: @escaping(User?)->()){
+
+
         FBSDKProfile.loadCurrentProfile(completion: { profile, error in
             if let profile = profile {
                 guard let authUser = Auth.auth().currentUser else {
