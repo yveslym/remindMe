@@ -73,6 +73,7 @@
 		204B9BF7214C82D0000A1619 /* remindMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = remindMeTests.swift; sourceTree = "<group>"; };
 		204B9BF9214C82D0000A1619 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2053312021F79AC80055ECFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2053312421FA3CF90055ECFF /* remindMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = remindMe.entitlements; sourceTree = "<group>"; };
 		208AD46F21A5FF3C00F8C331 /* GoupCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoupCustomView.swift; sourceTree = "<group>"; };
 		209B3253C77C7CA9A185BC92 /* Pods-remindMeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-remindMeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-remindMeTests/Pods-remindMeTests.release.xcconfig"; sourceTree = "<group>"; };
 		20A0E5CC2151C05100F0F049 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -160,6 +161,7 @@
 		204B9BE1214C82CE000A1619 /* remindMe */ = {
 			isa = PBXGroup;
 			children = (
+				2053312421FA3CF90055ECFF /* remindMe.entitlements */,
 				B80251372159D79F00311405 /* Helpers */,
 				208053852151B7FE002CAAE4 /* Services */,
 				208053842151B7F6002CAAE4 /* Models */,
@@ -338,6 +340,9 @@
 						CreatedOnToolsVersion = 9.4.1;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -679,6 +684,7 @@
 			baseConfigurationReference = 485997FAB326B9B07BEDF111 /* Pods-remindMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = remindMe/remindMe.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K7R433H2CL;
 				INFOPLIST_FILE = remindMe/Info.plist;
@@ -698,6 +704,7 @@
 			baseConfigurationReference = E32CFE63E4E49BB60953C9FF /* Pods-remindMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = remindMe/remindMe.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K7R433H2CL;
 				INFOPLIST_FILE = remindMe/Info.plist;
