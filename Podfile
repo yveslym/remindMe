@@ -16,6 +16,7 @@ target 'remindMe' do
     pod 'ReachabilitySwift'
     pod 'FBSDKLoginKit'
     pod 'IQKeyboardManagerSwift'
+    pod 'GeoFire'
 
 
   target 'remindMeTests' do

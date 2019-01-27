@@ -13,6 +13,7 @@
 		204B9BED214C82D0000A1619 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 204B9BEB214C82D0000A1619 /* LaunchScreen.storyboard */; };
 		204B9BF8214C82D0000A1619 /* remindMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204B9BF7214C82D0000A1619 /* remindMeTests.swift */; };
 		2053312121F79AC80055ECFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2053312021F79AC80055ECFF /* GoogleService-Info.plist */; };
+		2053312621FA5F380055ECFF /* GeofireServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053312521FA5F380055ECFF /* GeofireServices.swift */; };
 		208AD47021A5FF3C00F8C331 /* GoupCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208AD46F21A5FF3C00F8C331 /* GoupCustomView.swift */; };
 		20919678219E2B4500BCE0F9 /* remindMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204B9BF7214C82D0000A1619 /* remindMeTests.swift */; };
 		20A0E5CE2151C05100F0F049 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A0E5CC2151C05100F0F049 /* User.swift */; };
@@ -74,6 +75,7 @@
 		204B9BF9214C82D0000A1619 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2053312021F79AC80055ECFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2053312421FA3CF90055ECFF /* remindMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = remindMe.entitlements; sourceTree = "<group>"; };
+		2053312521FA5F380055ECFF /* GeofireServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofireServices.swift; sourceTree = "<group>"; };
 		208AD46F21A5FF3C00F8C331 /* GoupCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoupCustomView.swift; sourceTree = "<group>"; };
 		209B3253C77C7CA9A185BC92 /* Pods-remindMeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-remindMeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-remindMeTests/Pods-remindMeTests.release.xcconfig"; sourceTree = "<group>"; };
 		20A0E5CC2151C05100F0F049 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				20B3834821543B860056F1DA /* GroupServices.swift */,
 				B85B9B74215C71FA00A52C10 /* ReminderServices.swift */,
 				B8CA1FB22186712100D036DE /* NetworkManager.swift */,
+				2053312521FA5F380055ECFF /* GeofireServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				20C02DA4219F68D1009AD46E /* Date+Extensions.swift in Sources */,
 				B80B5FBE2154AF0D0008675D /* EventType.swift in Sources */,
 				B85B9B75215C71FA00A52C10 /* ReminderServices.swift in Sources */,
+				2053312621FA5F380055ECFF /* GeofireServices.swift in Sources */,
 				20A0E5CF2151C05100F0F049 /* Group.swift in Sources */,
 				B8193DD82196491C007CE160 /* UIView+Extension.swift in Sources */,
 				B8CA1FB32186712100D036DE /* NetworkManager.swift in Sources */,

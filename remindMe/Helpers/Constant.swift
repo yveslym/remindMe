@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import GeoFire
 
 struct Constant{
     
@@ -64,6 +65,13 @@ struct Constant{
     static func reminderRef() -> DatabaseReference{
         let ref = Database.database().reference().child("Reminders").child((Auth.auth().currentUser?.uid)!)
         return ref
+    }
+    static func geofireCurrentUser(groupId: String) -> GeoFire{
+
+        let geofireRef = Database.database().reference().child(User.current.id).child(groupId)
+        let geofire = GeoFire.init(firebaseRef: geofireRef)
+
+        return geofire
     }
     
 }
