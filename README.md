@@ -2,7 +2,7 @@
 
 # Remindme
 
-A simple, Lightweight, and easy-to-use iOS location-based reminder app that uses apple's geofencing and CoreLocation Api  to send the user local notifications of reminders based on their locations. The main feature is the push notification reminder that alarms the user that he/she has enters within a radius of an address attached to a reminder. This will allow the user to always be on top of their non-urgent but important tasks or duties.
+A simple, Lightweight, and easy-to-use iOS location-based reminder app that uses apple's geofencing and CoreLocation Api  to send the user local notifications of reminders based on their locations. The main feature is the push notification reminder that alarms the user that he/she has enters within a radius of an address attached to a reminder. This will allow the user to always be on top of their non-urgent but important tasks or duties. Live product on TestFlight can be found <a href="https://www.hackerrank.com/challenges/find-the-merge-point-of-two-joined-linked-lists/problem?h_l=interview&h_r=next-challenge&h_v=zen&playlist_slugs%5B%5D%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D%5B%5D=linked-lists">here</a>
 
 ## Authors
 
