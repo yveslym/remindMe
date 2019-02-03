@@ -27,6 +27,10 @@ This project is licenced under the Apache License 2.0 - see the <a href="https:/
 * Facebook and Google SDKs
 * Inspiration
 
+## Link to Test App:
+
+#### [remindMe](https://testflight.apple.com/join/do291tga)
+
 ## Screenshots
 
 <img src= "screenshots\sc8.PNG" width = 250 height = 450></img><img src= "screenshots/sc7.PNG" width = 250 height = 450>
