@@ -12,6 +12,7 @@ import CoreLocation
 import UserNotifications
 import IQKeyboardManagerSwift
 import FBSDKCoreKit
+import SquareRegion
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate{
@@ -21,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     var locationManager: CLLocationManager!
     var notificationCenter: UNUserNotificationCenter!
     let network = NetworkManager.shared
+
+
+    var squareRegionDelegate: RegionProtocol!
 
     class var shared: AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
@@ -40,10 +44,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         //configureUserLocation()
         locationManager = CLLocationManager()
         locationManager.delegate = self
+        squareRegionDelegate = self
         configureLocalNotification()
         FirebaseApp.configure()
         isUserLoggedIn()
-
+        
         IQKeyboardManager.shared.enable = true
         return true
     }
@@ -67,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     }
     
     /// Method to handle and set up the local notification
-    fileprivate func handleEvent(forRegion region: CLRegion!, reminder: Reminder, group: Group){
+    fileprivate func handleEvent(forRegion region: CKSquareRegion, reminder: Reminder, group: Group){
         
         let content = UNMutableNotificationContent()
         content.title = group.name
@@ -75,9 +80,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         content.body = reminder.description ?? ""
         content.sound = UNNotificationSound.default()
         content.badge = 1
+         UIApplication.shared.applicationIconBadgeNumber += 1
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
-        let identifier = region.identifier
+        guard let identifier = region.identifier else {return}
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         
         notificationCenter.add(request, withCompletionHandler: { (error) in
@@ -88,29 +94,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     }
     
     
-//    /// This functions requests the needed access from the user in order to use the user'slocation
-//    fileprivate func configureUserLocation(){
-//
-//        self.locationManager = CLLocationManager()
-//        self.locationManager.delegate = self
-//
-//        // Configuring User Location
-//        if (CLLocationManager.locationServicesEnabled())
-//        {
-//            self.locationManager = CLLocationManager()
-//            self.locationManager.delegate = self
-//            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//            self.locationManager.requestAlwaysAuthorization()
-//            self.locationManager.startUpdatingLocation()
-//            self.locationManager.allowsBackgroundLocationUpdates = true
-//        }
-//    }
-//
 
     /// Method to make the api call to Firebase and retrieve the reminder and group to show on the notification
-    fileprivate func prepareForNotification(forRegion region: CLRegion){
-        
-        let identifier = region.identifier
+    public func prepareForNotification(forRegion region: CKSquareRegion, reminder: Reminder? = nil){
+        if let reminder = reminder{
+
+            if !ReminderServices.isReminderOnTimeFrame(reminder: reminder) {return}
+
+            GroupServices.show(reminder.groupId, completion: { (group) in
+                guard let group = group else {return}
+                self.handleEvent(forRegion: region, reminder: reminder, group:group)
+            })
+        }
+            
+        else{
+        guard let identifier = region.identifier else {return}
         ReminderServices.show(identifier) { (reminder) in
             guard let reminder = reminder else {return}
             
@@ -122,6 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
             })
         }
     }
+}
     
     
     // This function checks if the user has logged in before on the app to avoid re-showing the login screen
@@ -210,7 +209,7 @@ extension AppDelegate: CLLocationManagerDelegate{
         
         // checks if the user is re-connected after entering the region
         network.reachability.whenReachable = { reachability in
-            self.prepareForNotification(forRegion: region)
+            //self.prepareForNotification(forRegion: region)
         }
     }
 
@@ -219,7 +218,7 @@ extension AppDelegate: CLLocationManagerDelegate{
         
         // checks if the user is re-connected after entering the region
         network.reachability.whenReachable = { reachability in
-            self.prepareForNotification(forRegion: region)
+            //self.prepareForNotification(forRegion: region)
         }
     }
 }
@@ -238,6 +237,32 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         // do what you need to do
         print(identifier)
+
+        ReminderServices.show(identifier) { (reminder) in
+
+
+            let homeVC = GroupListViewController()
+            self.window?.rootViewController = homeVC
+            self.window?.makeKeyAndVisible()
+            self.window?.rootViewController?.presentAlert(title: "\(reminder?.name ?? "") Reminder", message: "\(reminder?.description ?? "")")
+             UIApplication.shared.applicationIconBadgeNumber = 0
+            completionHandler()
+
+        }
+
         // ...
     }
+}
+
+
+extension AppDelegate: RegionProtocol{
+    func didEnterRegion(region: CKSquareRegion) {
+
+    }
+
+    func didExitRegion(region: CKSquareRegion) {
+        
+    }
+
+
 }

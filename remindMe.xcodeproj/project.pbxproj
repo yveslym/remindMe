@@ -13,6 +13,9 @@
 		204B9BED214C82D0000A1619 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 204B9BEB214C82D0000A1619 /* LaunchScreen.storyboard */; };
 		204B9BF8214C82D0000A1619 /* remindMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204B9BF7214C82D0000A1619 /* remindMeTests.swift */; };
 		2053312121F79AC80055ECFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2053312021F79AC80055ECFF /* GoogleService-Info.plist */; };
+		2053312621FA5F380055ECFF /* GeofireServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2053312521FA5F380055ECFF /* GeofireServices.swift */; };
+		205AEBCA2213A54600DD17C0 /* Natoma.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 205AEBC92213A54600DD17C0 /* Natoma.gpx */; };
+		205AEBCB2213A54600DD17C0 /* Natoma.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 205AEBC92213A54600DD17C0 /* Natoma.gpx */; };
 		208AD47021A5FF3C00F8C331 /* GoupCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208AD46F21A5FF3C00F8C331 /* GoupCustomView.swift */; };
 		20919678219E2B4500BCE0F9 /* remindMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204B9BF7214C82D0000A1619 /* remindMeTests.swift */; };
 		20A0E5CE2151C05100F0F049 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A0E5CC2151C05100F0F049 /* User.swift */; };
@@ -74,6 +77,8 @@
 		204B9BF9214C82D0000A1619 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2053312021F79AC80055ECFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2053312421FA3CF90055ECFF /* remindMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = remindMe.entitlements; sourceTree = "<group>"; };
+		2053312521FA5F380055ECFF /* GeofireServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofireServices.swift; sourceTree = "<group>"; };
+		205AEBC92213A54600DD17C0 /* Natoma.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Natoma.gpx; sourceTree = "<group>"; };
 		208AD46F21A5FF3C00F8C331 /* GoupCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoupCustomView.swift; sourceTree = "<group>"; };
 		209B3253C77C7CA9A185BC92 /* Pods-remindMeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-remindMeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-remindMeTests/Pods-remindMeTests.release.xcconfig"; sourceTree = "<group>"; };
 		20A0E5CC2151C05100F0F049 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -161,6 +166,7 @@
 		204B9BE1214C82CE000A1619 /* remindMe */ = {
 			isa = PBXGroup;
 			children = (
+				205AEBC82213A52600DD17C0 /* Location File */,
 				2053312421FA3CF90055ECFF /* remindMe.entitlements */,
 				B80251372159D79F00311405 /* Helpers */,
 				208053852151B7FE002CAAE4 /* Services */,
@@ -186,6 +192,14 @@
 			path = remindMeTests;
 			sourceTree = "<group>";
 		};
+		205AEBC82213A52600DD17C0 /* Location File */ = {
+			isa = PBXGroup;
+			children = (
+				205AEBC92213A54600DD17C0 /* Natoma.gpx */,
+			);
+			path = "Location File";
+			sourceTree = "<group>";
+		};
 		208053842151B7F6002CAAE4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +219,7 @@
 				20B3834821543B860056F1DA /* GroupServices.swift */,
 				B85B9B74215C71FA00A52C10 /* ReminderServices.swift */,
 				B8CA1FB22186712100D036DE /* NetworkManager.swift */,
+				2053312521FA5F380055ECFF /* GeofireServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -380,6 +395,7 @@
 				204B9BED214C82D0000A1619 /* LaunchScreen.storyboard in Resources */,
 				204B9BEA214C82D0000A1619 /* Assets.xcassets in Resources */,
 				2053312121F79AC80055ECFF /* GoogleService-Info.plist in Resources */,
+				205AEBCA2213A54600DD17C0 /* Natoma.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +403,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				205AEBCB2213A54600DD17C0 /* Natoma.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,12 +476,12 @@
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SquareRegion/SquareRegion.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -473,12 +490,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SquareRegion.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -526,6 +543,7 @@
 				20C02DA4219F68D1009AD46E /* Date+Extensions.swift in Sources */,
 				B80B5FBE2154AF0D0008675D /* EventType.swift in Sources */,
 				B85B9B75215C71FA00A52C10 /* ReminderServices.swift in Sources */,
+				2053312621FA5F380055ECFF /* GeofireServices.swift in Sources */,
 				20A0E5CF2151C05100F0F049 /* Group.swift in Sources */,
 				B8193DD82196491C007CE160 /* UIView+Extension.swift in Sources */,
 				B8CA1FB32186712100D036DE /* NetworkManager.swift in Sources */,
