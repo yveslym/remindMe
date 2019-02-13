@@ -247,10 +247,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             self.window?.rootViewController?.presentAlert(title: "\(reminder?.name ?? "") Reminder", message: "\(reminder?.description ?? "")")
              UIApplication.shared.applicationIconBadgeNumber = 0
             completionHandler()
-
         }
-
-        // ...
     }
 }
 
