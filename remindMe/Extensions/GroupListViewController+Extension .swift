@@ -43,7 +43,7 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         groupCell.groupDescriptionLabel.text = currentGroup.description
         groupCell.remindersAmountLabel.text = counter.convertIntToString()
         
-       
+
         return groupCell
     }
     
