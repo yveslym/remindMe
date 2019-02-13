@@ -80,6 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
         content.body = reminder.description ?? ""
         content.sound = UNNotificationSound.default()
         content.badge = 1
+         UIApplication.shared.applicationIconBadgeNumber += 1
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
         guard let identifier = region.identifier else {return}
@@ -93,24 +94,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     }
     
     
-//    /// This functions requests the needed access from the user in order to use the user'slocation
-//    fileprivate func configureUserLocation(){
-//
-//        self.locationManager = CLLocationManager()
-//        self.locationManager.delegate = self
-//
-//        // Configuring User Location
-//        if (CLLocationManager.locationServicesEnabled())
-//        {
-//            self.locationManager = CLLocationManager()
-//            self.locationManager.delegate = self
-//            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//            self.locationManager.requestAlwaysAuthorization()
-//            self.locationManager.startUpdatingLocation()
-//            self.locationManager.allowsBackgroundLocationUpdates = true
-//        }
-//    }
-//
 
     /// Method to make the api call to Firebase and retrieve the reminder and group to show on the notification
     public func prepareForNotification(forRegion region: CKSquareRegion, reminder: Reminder? = nil){
@@ -238,12 +221,6 @@ extension AppDelegate: CLLocationManagerDelegate{
             //self.prepareForNotification(forRegion: region)
         }
     }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-
-        }
-    }
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
@@ -260,6 +237,19 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         // do what you need to do
         print(identifier)
+
+        ReminderServices.show(identifier) { (reminder) in
+
+
+            let homeVC = GroupListViewController()
+            self.window?.rootViewController = homeVC
+            self.window?.makeKeyAndVisible()
+            self.window?.rootViewController?.presentAlert(title: "\(reminder?.name ?? "") Reminder", message: "\(reminder?.description ?? "")")
+             UIApplication.shared.applicationIconBadgeNumber = 0
+            completionHandler()
+
+        }
+
         // ...
     }
 }
