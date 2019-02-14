@@ -22,11 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     var locationManager: CLLocationManager!
     var notificationCenter: UNUserNotificationCenter!
     let network = NetworkManager.shared
-
-
     var squareRegionDelegate: RegionProtocol!
 
     class var shared: AppDelegate {
+        
         return UIApplication.shared.delegate as! AppDelegate
     }
     
@@ -37,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
 
         /// observe facebook token change
         NotificationCenter.default.addObserver(forName: NSNotification.Name.FBSDKAccessTokenDidChange, object: nil, queue: OperationQueue.main, using: { notification in
-            if notification.userInfo![FBSDKAccessTokenDidChangeUserID] != nil {
+            if notification.userInfo![FBSDKAccessTokenDidChangeUserIDKey] != nil {
                 // Handle user change
             }
         })

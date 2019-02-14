@@ -39,7 +39,7 @@ class GroupListViewController: UIViewController{
     var totalRemindersOnEntryTextView = UITextView()
     var totalRemindersOnExitAmountLable = UILabel()
     var totalRemindersOnExitTextView = UITextView()
-    var squareRegionDelegate: RegionProtocol!
+    var squareRegionDelegate = AppDelegate.shared.squareRegionDelegate
     let networkManager = NetworkManager.shared
     var locationManager = AppDelegate.shared.locationManager
     var reminders = [Reminder]()
@@ -70,7 +70,6 @@ class GroupListViewController: UIViewController{
     
     // - MARK CLASS METHODS
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         self.view.backgroundColor = .white
 
@@ -142,7 +141,7 @@ class GroupListViewController: UIViewController{
     
     /// Updates all the reminders labels with proper numbers
     func updateReminderLabels(){
-        
+
         var entryCounter = 0
         var exitCounter = 0
         var totalRemindersCountter = 0
@@ -294,7 +293,7 @@ extension GroupListViewController: RegionProtocol, CLLocationManagerDelegate{
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first{
-            squareRegionDelegate.updateRegion(location: location)
+            squareRegionDelegate?.updateRegion(location: location)
         }
     }
 
