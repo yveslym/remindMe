@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MapKit
 
 class CreateGroupViewController: UIViewController{
 // This View Controller class handles functionality to create a new group
@@ -22,6 +23,8 @@ class CreateGroupViewController: UIViewController{
     var popUpContainer = UIView()
     var mainStackView = CustomStack()
     var groupDescriptionStackView = CustomStack()
+    var mapView: MKMapView!
+    var locationManager = AppDelegate.shared.locationManager
     
     
     override func viewDidLoad() {
@@ -31,6 +34,7 @@ class CreateGroupViewController: UIViewController{
         
         setUpPopUpContainer()
         setUpTitleLabel()
+        setUpMapview()
         setUpGroupNameTextFiled()
         setUpGroupAddressTextfield()
         setUpGroupDescriptionTextView()
@@ -93,7 +97,18 @@ class CreateGroupViewController: UIViewController{
 
     
     // MARK : UI Methods
-    
+
+    fileprivate func setUpMapview(){
+
+        mapView = MKMapView.init()
+        mapView.showsUserLocation = true
+        mapView.delegate = self
+
+        let center =  locationManager?.location?.coordinate
+        let region =  MKCoordinateRegionMakeWithDistance(center!, 400, 400)
+        mapView.setRegion(region, animated: true)
+        mapView.userTrackingMode = .follow
+    }
     
     fileprivate func setUpUpdateGroup(){
 
@@ -122,7 +137,7 @@ class CreateGroupViewController: UIViewController{
     
     fileprivate func setUpGroupNameTextFiled(){
         
-        groupNameTextField = CustomTextField(placeHolder: "Name",
+        groupNameTextField = CustomTextField(placeHolder: "Home",
                                              border: 1,
                                              cornerRadius: 5,
                                              borderColor: #colorLiteral(red: 0.07895455509, green: 0.1626217663, blue: 0.2949268222, alpha: 1),
@@ -133,13 +148,14 @@ class CreateGroupViewController: UIViewController{
     
     fileprivate func setUpGroupAddressTextfield(){
         
-        groupAddressTextField = CustomTextField(placeHolder: "Address",
+        groupAddressTextField = CustomTextField(placeHolder: "555 post st, San Francisco, CA",
                                                 border: 1,
                                                 cornerRadius: 5,
                                                 borderColor: #colorLiteral(red: 0.07895455509, green: 0.1626217663, blue: 0.2949268222, alpha: 1),
                                                 textColor: #colorLiteral(red: 0.07895455509, green: 0.1626217663, blue: 0.2949268222, alpha: 1),
                                                 alignment: .left,
                                                 borderStyle: .none)
+        groupAddressTextField.delegate = self
     }
 
     fileprivate func setUpGroupDescriptionTextView(){
@@ -173,16 +189,17 @@ class CreateGroupViewController: UIViewController{
     
     fileprivate func mainStackViewAutoLayout(){
         
-        mainStackView = CustomStack(subview: [titleLabel, groupNameTextField, groupAddressTextField, groupDescriptionStackView, saveButton],
+        mainStackView = CustomStack(subview: [titleLabel, groupNameTextField, groupAddressTextField, groupDescriptionStackView, mapView ,saveButton],
                                     alignment: .center,
                                     axis: .vertical,
                                     distribution: .fill)
+        mainStackView.spacing = 5
         popUpContainer.addSubview(mainStackView)
         
         NSLayoutConstraint.activate([popUpContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                      popUpContainer.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                                     popUpContainer.widthAnchor.constraint(equalToConstant: self.view.frame.height/2.5),
-                                     popUpContainer.heightAnchor.constraint(equalToConstant: self.view.frame.height/2),
+                                     popUpContainer.widthAnchor.constraint(equalToConstant: self.view.frame.height/2),
+                                     popUpContainer.heightAnchor.constraint(equalToConstant: self.view.frame.height/1.3),
                                      mainStackView.topAnchor.constraint(equalTo: popUpContainer.topAnchor, constant: 10),
                                      mainStackView.leadingAnchor.constraint(equalTo: popUpContainer.leadingAnchor, constant: 10),
                                      mainStackView.trailingAnchor.constraint(equalTo: popUpContainer.trailingAnchor, constant: 10),
@@ -193,11 +210,38 @@ class CreateGroupViewController: UIViewController{
                                      groupNameTextField.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.9),
                                      groupAddressTextField.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.09),
                                      groupAddressTextField.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.9),
-                                     groupDescriptionStackView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.4),
+                                     groupDescriptionStackView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.2),
                                      groupDescriptionStackView.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.9),
-                                     saveButton.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.095),
+                                     mapView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.4),
+                                      mapView.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.9),
+                                       //saveButton.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.08),
+                                     //saveButton.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.095),
+
                                      saveButton.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.5)
             ])
     }
 
+}
+
+extension CreateGroupViewController: MKMapViewDelegate{
+
+}
+extension CreateGroupViewController: UITextFieldDelegate{
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        GeoFence.shared.addressToCoordinate(textField.text!) { (coordinate) in
+
+            let center =  coordinate
+            let region =  MKCoordinateRegionMakeWithDistance(center!, 200, 200)
+            self.mapView.setRegion(region, animated: true)
+            //self.mapView.userTrackingMode = .follow
+
+            // add annotation
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = coordinate!
+            annotation.title = self.groupNameTextField.text!
+            self.mapView.addAnnotation(annotation)
+
+            
+        }
+    }
 }
