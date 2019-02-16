@@ -224,16 +224,21 @@ class CreateGroupViewController: UIViewController{
 }
 
 extension CreateGroupViewController: MKMapViewDelegate{
-
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+                let circleRenderer = MKCircleRenderer(overlay: overlay)
+                circleRenderer.strokeColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 0.5)
+                circleRenderer.lineWidth = 1.0
+        circleRenderer.fillColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 0.5)
+        return circleRenderer
+    }
 }
 extension CreateGroupViewController: UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
         GeoFence.shared.addressToCoordinate(textField.text!) { (coordinate) in
 
-            let center =  coordinate
-            let region =  MKCoordinateRegionMakeWithDistance(center!, 200, 200)
+            if let center =  coordinate {
+            let region =  MKCoordinateRegionMakeWithDistance(center, 200, 200)
             self.mapView.setRegion(region, animated: true)
-            //self.mapView.userTrackingMode = .follow
 
             // add annotation
             let annotation = MKPointAnnotation()
@@ -241,7 +246,9 @@ extension CreateGroupViewController: UITextFieldDelegate{
             annotation.title = self.groupNameTextField.text!
             self.mapView.addAnnotation(annotation)
 
-            
+            let circle = MKCircle(center: coordinate!, radius: 25)
+            self.mapView.add(circle)
+            }
         }
     }
 }
