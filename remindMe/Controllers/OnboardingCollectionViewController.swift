@@ -11,13 +11,12 @@ import UIKit
 class OnboardingCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     let pages = [
-        Page(imageName: "logo", header: "Welcome to Geominder", description: "Geominder let's you group all your location-triggered reminders in one place, at all time."),
-        
-        Page(imageName: "home_page", header: "Groups", description: "Categorize your reminders into groups based on their locations. Click the + button to add a group."),
-        
-        Page(imageName: "reminder_list", header: "Reminders", description: "Select on a specific group to see its reminders. Click the + button to create a new reminder."),
-        
-        Page(imageName: "notifications", header: "Get Notified", description: "Receive notifications reminder when you enter or exit a group's location within 65 feet.")
+        Page(imageName: "gm_github", header: "Welcome to Geominder", description: "Geominder let's you group all your location-triggered reminders in one place, accessible at all time."),
+        Page(imageName: "home_page", header: "Groups", description: "Categorize your reminders into groups based on their locations."),
+        Page(imageName: "reminder_list", header: "Reminders", description: "Within each group, create reminders that are related to the group."),
+        Page(imageName: "edit_cell", header: "Edit & Update", description: "Swipe a group or reminder from the right to edit or delete them."),
+        Page(imageName: "swipe_dismiss", header: "Dismiss", description: "Swipe your finger from the top of the view to dismiss a group or reminder intended to be created."),
+        Page(imageName: "notifications", header: "Get Notified", description: "Receive notifications reminder when you enter or exit a group within 65 feet.")
     ]
     
     
