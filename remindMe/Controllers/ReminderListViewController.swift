@@ -67,11 +67,11 @@ class ReminderListViewController: UIViewController{
     }
    
     func setupButtonSwitch(){
-        todayButton = CustomButton(title: "today", fontSize: 15, titleColor: UIColor.black, target: self, action: #selector(actionButtonTapped(sender:)), event: .touchUpInside)
+        todayButton = CustomButton(title: "All", fontSize: 18, titleColor: UIColor.black, target: self, action: #selector(actionButtonTapped(sender:)), event: .touchUpInside)
         
-        onExitButton = CustomButton(title: "Exit", fontSize: 15, titleColor: UIColor.black, target: self, action: #selector(actionButtonTapped(sender:)), event: .touchUpInside)
+        onExitButton = CustomButton(title: "Exit", fontSize: 18, titleColor: UIColor.black, target: self, action: #selector(actionButtonTapped(sender:)), event: .touchUpInside)
         
-        onEntryButton = CustomButton(title: "Entry", fontSize: 15, titleColor: UIColor.black, target: self, action: #selector(actionButtonTapped(sender:)), event: .touchUpInside)
+        onEntryButton = CustomButton(title: "Entry", fontSize: 18, titleColor: UIColor.black, target: self, action: #selector(actionButtonTapped(sender:)), event: .touchUpInside)
         
         todayButton.tag = 1
         todayButton.newLayerColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1)
@@ -94,9 +94,6 @@ class ReminderListViewController: UIViewController{
         stack.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.1).isActive = true
         
         reminderTableView.widthAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 1).isActive = true
-       // reminderTableView.heightAnchor.constraint(equalTo: mainStack.heightAnchor, multiplier: 0.8).isActive = true
-        
-      
         stack.spacing = 10
         
         self.view.addSubview(mainStack)
@@ -155,7 +152,7 @@ class ReminderListViewController: UIViewController{
 
     }
     
-    ///
+    /// Show the view controller to create a reminder
     @objc fileprivate func addReminderButtonTapped(){
         
         let destination = NewReminderViewController()
@@ -165,6 +162,8 @@ class ReminderListViewController: UIViewController{
        
         self.present(destination, animated: true, completion: nil)
     }
+    
+    /// Add a created reminder on the list to be monitored
     func observeEntryReminder(){
         ReminderServices.observeAddedReminder { (reminder) in
             self.userReminders.append(reminder)
@@ -172,12 +171,16 @@ class ReminderListViewController: UIViewController{
             AppDelegate.shared.squareRegionDelegate.addRegionToMonitor(region: region!)
         }
     }
+    
+    /// Monitor a reminder that has been deleted
     func observeRemovedReminder(){
         ReminderServices.observeRemovedReminder { (reminders) in
             self.userReminders = reminders ?? [Reminder]()
            
         }
     }
+    
+    /// Monitor a reminder that has been updated
     func obserUpdatedReminder(){
         ReminderServices.observeUpdatedReminder { (reminders) in
             self.userReminders = reminders!

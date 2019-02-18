@@ -40,12 +40,10 @@ class ReminderCustomView: CustomView{
             self.init(frame: frame, leftViewColor: #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1))
         }
         
-        
-       
-        
+
         reminderNameLabel = CustomLabel(fontSize: 18, text: reminder.name!, textColor: UIColor.black)
         var day = String()
-        (reminder.day == "Every day") ? (day = reminder.day ?? "") : (day = "every  \(reminder.day ?? "")")
+        (reminder.day == "Every day") ? (day = reminder.day ?? "") : (day = "Every  \(reminder.day ?? "")")
         reminderDayLabel = CustomLabel(fontSize: 12, text: day  , textColor: UIColor.darkGray)
         reminderTimeLabel = CustomLabel(fontSize: 10, text: "\(reminder.timeFrom?.toDateTime()?.timeToPrettyString() ?? "") to: \(reminder.timeTo?.toDateTime()?.timeToPrettyString() ?? "")", textColor: UIColor.darkGray)
         

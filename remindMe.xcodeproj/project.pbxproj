@@ -42,7 +42,7 @@
 		B85CD7BB215464FB002027A5 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85CD7BA215464FB002027A5 /* CreateGroupViewController.swift */; };
 		B87AA691218FE20800BDB606 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87AA690218FE20800BDB606 /* UIColor+Extension.swift */; };
 		B87C8E6F215B1B7100560397 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87C8E6E215B1B7100560397 /* Reminder.swift */; };
-		B8AB97D42157159500A6A3C7 /* ReminderListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB97D32157159500A6A3C7 /* ReminderListTableViewCell.swift */; };
+		B8A238E9221B542E000613C3 /* ReminderListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A238E8221B542E000613C3 /* ReminderListTableViewCell.swift */; };
 		B8AB97D62157164B00A6A3C7 /* ReminderListViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AB97D52157164B00A6A3C7 /* ReminderListViewController+Extension.swift */; };
 		B8BC2FCF21CDABBA00559223 /* OnboardingCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BC2FCE21CDABBA00559223 /* OnboardingCollectionViewController.swift */; };
 		B8BC2FD121CDABFB00559223 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BC2FD021CDABFB00559223 /* OnboardingCollectionViewCell.swift */; };
@@ -109,7 +109,7 @@
 		B85CD7BA215464FB002027A5 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		B87AA690218FE20800BDB606 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		B87C8E6E215B1B7100560397 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
-		B8AB97D32157159500A6A3C7 /* ReminderListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListTableViewCell.swift; sourceTree = "<group>"; };
+		B8A238E8221B542E000613C3 /* ReminderListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderListTableViewCell.swift; sourceTree = "<group>"; };
 		B8AB97D52157164B00A6A3C7 /* ReminderListViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReminderListViewController+Extension.swift"; sourceTree = "<group>"; };
 		B8BC2FCE21CDABBA00559223 /* OnboardingCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewController.swift; sourceTree = "<group>"; };
 		B8BC2FD021CDABFB00559223 /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -262,7 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				B8E63EAA2151E9D200DC3C5C /* GroupListTableViewCell.swift */,
-				B8AB97D32157159500A6A3C7 /* ReminderListTableViewCell.swift */,
+				B8A238E8221B542E000613C3 /* ReminderListTableViewCell.swift */,
 				208AD46F21A5FF3C00F8C331 /* GoupCustomView.swift */,
 				20D913AC21A63AF5007170A1 /* CustomViews.swift */,
 				20D913AE21A763AC007170A1 /* ReminderView.swift */,
@@ -534,7 +534,6 @@
 				B85B9B77215C876C00A52C10 /* Int+Extension.swift in Sources */,
 				B8E63EAB2151E9D200DC3C5C /* GroupListTableViewCell.swift in Sources */,
 				B8E63EAE2151EB7D00DC3C5C /* GroupListViewController+Extension .swift in Sources */,
-				B8AB97D42157159500A6A3C7 /* ReminderListTableViewCell.swift in Sources */,
 				20A0E5CE2151C05100F0F049 /* User.swift in Sources */,
 				20919678219E2B4500BCE0F9 /* remindMeTests.swift in Sources */,
 				B8CA1FB521867E3900D036DE /* OfflineViewController.swift in Sources */,
@@ -542,6 +541,7 @@
 				B85CD7BB215464FB002027A5 /* CreateGroupViewController.swift in Sources */,
 				B8D1E01F21CF6017003A9F72 /* UIViewControllers+Extension.swift in Sources */,
 				20A0E5D12151C97400F0F049 /* GeoCoder.swift in Sources */,
+				B8A238E9221B542E000613C3 /* ReminderListTableViewCell.swift in Sources */,
 				20C02DA4219F68D1009AD46E /* Date+Extensions.swift in Sources */,
 				B80B5FBE2154AF0D0008675D /* EventType.swift in Sources */,
 				B85B9B75215C71FA00A52C10 /* ReminderServices.swift in Sources */,

@@ -33,7 +33,6 @@ class GroupListTableViewCell: UITableViewCell {
         
         let label = UILabel()
         label.textColor = .lightDark
-        //label.font = UIFont.boldSystemFont(ofSize: 20)aa
         label.font = UIFont(name: "Helvetica-Bold", size: 20)
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -45,7 +44,6 @@ class GroupListTableViewCell: UITableViewCell {
         
         let label = UILabel()
         label.textColor = .gray
-        //label.font = UIFont.boldSystemFont(ofSize: 15)
         label.font = UIFont(name:"HelveticaNeue-Light", size: 15.0)
         label.textAlignment = .center
         label.numberOfLines = 0
