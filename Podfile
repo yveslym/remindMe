@@ -18,6 +18,7 @@ target 'remindMe' do
     pod 'IQKeyboardManagerSwift'
     pod 'GeoFire'
     pod 'SquareRegion'
+    pod 'UIEmptyState'
 
 
   target 'remindMeTests' do

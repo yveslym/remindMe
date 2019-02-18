@@ -68,6 +68,12 @@ class OnboardingCollectionViewController: UICollectionViewController, UICollecti
     /// Swipes to the next page on the onboarding page
     @objc private func handleNextSwipe(){
         
+        if nextButton.titleLabel?.text == "LOGIN"{
+            self.handleSkipButton()
+        } else if pageControll.currentPage == 2 {
+            nextButton.setTitle("LOGIN", for: .normal)
+        }
+        
         let nextIndex = min(pageControll.currentPage + 1, pages.count - 1)
         let indexPath = IndexPath(item: nextIndex, section: 0)
         pageControll.currentPage = nextIndex

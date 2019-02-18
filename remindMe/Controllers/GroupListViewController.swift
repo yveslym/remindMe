@@ -12,18 +12,23 @@ import UIKit
 import CoreLocation
 import SquareRegion
 import Reachability
-
+import UIEmptyState
 
 protocol GroupDelegate: class {
     func didRescievedNewNotification(reminder: Reminder)
 }
 
-class GroupListViewController: UIViewController{
+class GroupListViewController: UIViewController, UIEmptyStateDelegate, UIEmptyStateDataSource{
 // This View Controller class handles functionality to show the list of all the groups
 
     // - MARK: Class Properties
 
-
+    var emptyImage = UIImage(named: "empty")
+    var emptyStateTitle: NSAttributedString {
+        let attrs = [NSAttributedString.Key.foregroundColor: UIColor(red: 0.882, green: 0.890, blue: 0.859, alpha: 1.00),
+                     NSAttributedString.Key.font: UIFont.systemFont(ofSize: 27)]
+        return NSAttributedString(string: "No Groups Created. Tap + to add a group.", attributes: attrs)
+    }
     var groupListTableView =  UITableView()
     var remindersDataStackView = UIStackView()
     var totalRemindersStackView = UIStackView()
@@ -54,6 +59,7 @@ class GroupListViewController: UIViewController{
                     else{
                         DispatchQueue.main.async {
                             self.groupListTableView.reloadData()
+                            self.reloadEmptyStateForTableView(self.groupListTableView)
                         }
                     }
                 })
@@ -64,15 +70,21 @@ class GroupListViewController: UIViewController{
         didSet{
             DispatchQueue.main.async {
                 self.groupListTableView.reloadData()
+                self.reloadEmptyStateForTableView(self.groupListTableView)
             }
         }
     }
     
-    // - MARK CLASS METHODS
+    // - MARK: VIEW CONTROLLER LIFE CYCLE METHODS
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-
+        self.emptyStateDataSource = self
+        self.emptyStateDelegate = self
+        self.groupListTableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        self.reloadEmptyStateForTableView(groupListTableView)
         configureUserLocation()
         setUpNavigationBarItems()
         fetchAllGroups()
@@ -87,22 +99,10 @@ class GroupListViewController: UIViewController{
         
     }
 
-    /// This functions requests the needed access from the user in order to use the user'slocation
-    fileprivate func configureUserLocation(){
-
-        self.locationManager = CLLocationManager()
-        //self.locationManager.delegate = self
-
-        // Configuring User Location
-        if (CLLocationManager.locationServicesEnabled())
-        {
-            self.locationManager = CLLocationManager()
-            self.locationManager?.delegate = self
-            self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-            self.locationManager?.requestAlwaysAuthorization()
-            self.locationManager?.startUpdatingLocation()
-            self.locationManager?.allowsBackgroundLocationUpdates = true
-        }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.reloadEmptyStateForTableView(groupListTableView)
     }
 
     
@@ -121,6 +121,25 @@ class GroupListViewController: UIViewController{
         anchorExitReminderStackView()
         updateReminderLabels()
     }
+    
+    
+    /// This functions requests the needed access from the user in order to use the user'slocation
+    fileprivate func configureUserLocation(){
+        
+        self.locationManager = CLLocationManager()
+        
+        // Configuring User Location
+        if (CLLocationManager.locationServicesEnabled())
+        {
+            self.locationManager = CLLocationManager()
+            self.locationManager?.delegate = self
+            self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager?.requestAlwaysAuthorization()
+            self.locationManager?.startUpdatingLocation()
+            self.locationManager?.allowsBackgroundLocationUpdates = true
+        }
+    }
+    
     
     /// Pushes a view controller that tells the user that he/she is offline
     fileprivate func showOfflinePage(){

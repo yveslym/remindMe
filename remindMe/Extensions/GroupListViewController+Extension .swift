@@ -34,7 +34,7 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
                           width: 0,
                           height: 5,
                           enableInsets: true)
-        groupCell.backgroundColor = .lightCyan
+        groupCell.contentView.backgroundColor = .lightCyan
         
         let currentGroup = userGroups[indexPath.row]
         let counter = userReminders.filter({$0.groupId == currentGroup.id}).count
@@ -62,6 +62,7 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource{
         let destinationVC = ReminderListViewController()
         destinationVC.userReminders = userReminders.filter({$0.groupId == group.id})
         destinationVC.userGroup = userGroups[indexPath.row]
+        tableView.deselectRow(at: indexPath, animated: true)
         self.navigationController?.pushViewController(destinationVC, animated: true)
         
     }

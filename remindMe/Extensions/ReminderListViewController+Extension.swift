@@ -58,7 +58,7 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
             let reminderHeaderLabel = UILabel()
             reminderHeaderLabel.frame = CGRect(x: 10, y: 0, width: self.view.frame.width, height: 31)
             reminderHeaderLabel.text = "\(sortedReminder.count) \(reminder)"
-            reminderHeaderLabel.font = UIFont(name: "Rockwell", size: 18)
+            reminderHeaderLabel.font = UIFont(name: "HelveticaNeue", size: 18)
             reminderHeaderLabel.textColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
             reminderHeaderLabel.textAlignment = .left
 
