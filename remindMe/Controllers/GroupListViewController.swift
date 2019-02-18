@@ -10,6 +10,8 @@
 import Foundation
 import UIKit
 import CoreLocation
+import SquareRegion
+import Reachability
 
 
 protocol GroupDelegate: class {
@@ -37,8 +39,11 @@ class GroupListViewController: UIViewController{
     var totalRemindersOnEntryTextView = UITextView()
     var totalRemindersOnExitAmountLable = UILabel()
     var totalRemindersOnExitTextView = UITextView()
+    var squareRegionDelegate = AppDelegate.shared.squareRegionDelegate
     let networkManager = NetworkManager.shared
     var locationManager = AppDelegate.shared.locationManager
+    var reminders = [Reminder]()
+    let network = NetworkManager.shared
     var userGroups = [Group](){
         didSet {
             DispatchQueue.global().async {
@@ -65,7 +70,6 @@ class GroupListViewController: UIViewController{
     
     // - MARK CLASS METHODS
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         self.view.backgroundColor = .white
 
@@ -93,7 +97,7 @@ class GroupListViewController: UIViewController{
         if (CLLocationManager.locationServicesEnabled())
         {
             self.locationManager = CLLocationManager()
-            //self.locationManager?.delegate = self
+            self.locationManager?.delegate = self
             self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
             self.locationManager?.requestAlwaysAuthorization()
             self.locationManager?.startUpdatingLocation()
@@ -137,7 +141,7 @@ class GroupListViewController: UIViewController{
     
     /// Updates all the reminders labels with proper numbers
     func updateReminderLabels(){
-        
+
         var entryCounter = 0
         var exitCounter = 0
         var totalRemindersCountter = 0
@@ -165,10 +169,13 @@ class GroupListViewController: UIViewController{
     
     /// Triggers the Geofence API to start monitoring the groups' addresses
     fileprivate func monitorReminders(){
+        squareRegionDelegate = self
         ReminderServices.index { (reminders) in
+
             guard let reminders = reminders else {return}
-            GeoFence.shared.startMonitor(reminders, completion: { (true) in
-                print("Start Monitoring")
+            self.reminders = reminders
+            GeoFence.shared.startMonitor(reminders, squareRegionDelegate: self.squareRegionDelegate, completion: { (_) in
+                print("start monitoring")
             })
         }
     }
@@ -260,4 +267,35 @@ class GroupListViewController: UIViewController{
         label.font = UIFont(name: "HelveticaNeue-Light", size: 18)
         return label
     }()
+}
+
+extension GroupListViewController: RegionProtocol, CLLocationManagerDelegate{
+    func didEnterRegion(region: CKSquareRegion) {
+
+        let reminder = self.reminders.filter({$0.id == region.identifier}).first
+         print("enter to reminder \(reminder?.name ?? "")")
+
+        // checks if the user is re-connected after entering the region
+       // network.reachability.whenReachable = { reachability in
+            AppDelegate.shared.prepareForNotification(forRegion: region, reminder: reminder)
+        //}
+    }
+
+    func didExitRegion(region: CKSquareRegion) {
+
+        let reminder = self.reminders.filter({$0.id == region.identifier}).first
+        print("leave to reminder \(reminder?.name ?? "")")
+        // checks if the user is re-connected after entering the region
+       // network.reachability.whenReachable = { reachability in
+            AppDelegate.shared.prepareForNotification(forRegion: region, reminder: reminder)
+        //}
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first{
+            squareRegionDelegate?.updateRegion(location: location)
+        }
+    }
+
+
 }

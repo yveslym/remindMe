@@ -8,11 +8,14 @@
 
 import Foundation
 import CoreLocation
+import SquareRegion
 
 struct GeoFence{
     
     static let shared = GeoFence()
     private let locationManager = AppDelegate.shared.locationManager
+
+
 
     /// Method to convert address to coordinate
     func addressToCoordinate(_ address: String, completion: @escaping(CLLocationCoordinate2D?)->()){
@@ -33,7 +36,8 @@ struct GeoFence{
             
         }
     }
-    
+
+
     /// Method to add a single geo fancing within a given region
     private func addNewGeoFencing(locationManager: CLLocationManager, region: CLCircularRegion,event: EventType){
         
@@ -52,12 +56,17 @@ struct GeoFence{
     }
     
     /// Method to start monitoring
-    func startMonitor(_ reminders: [Reminder], completion: @escaping(Bool)->()){
+    func startMonitor(_ reminders: [Reminder], squareRegionDelegate: RegionProtocol? = nil, completion: @escaping(Bool)->()){
         let dg = DispatchGroup()
         reminders.forEach({
             dg.enter()
             let center = CLLocationCoordinate2D(latitude: $0.latitude, longitude: $0.longitude)
             let region = CLCircularRegion.init(center: center, radius: 20, identifier: $0.id)
+            let squareRegion = CKSquareRegion.init(regionWithCenter: center, sideLength: 0.045, identifier: $0.id)
+
+            if let delegate = squareRegionDelegate{
+                delegate.addRegionToMonitor(region: squareRegion!)
+            }
             let manager = CLLocationManager()
             addNewGeoFencing(locationManager: manager, region: region, event: $0.type!)
             dg.leave()

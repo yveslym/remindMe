@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SquareRegion
 
 class ReminderListViewController: UIViewController{
     // This View Controller class handles functionality to show the list of all the reminders
@@ -167,7 +168,8 @@ class ReminderListViewController: UIViewController{
     func observeEntryReminder(){
         ReminderServices.observeAddedReminder { (reminder) in
             self.userReminders.append(reminder)
-            
+            let region = CKSquareRegion.init(regionWithCenter: CLLocationCoordinate2D.init(latitude: reminder.latitude, longitude: reminder.longitude), sideLength: 0.045, identifier: reminder.id)
+            AppDelegate.shared.squareRegionDelegate.addRegionToMonitor(region: region!)
         }
     }
     func observeRemovedReminder(){

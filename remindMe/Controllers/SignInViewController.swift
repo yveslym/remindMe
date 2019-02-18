@@ -80,16 +80,15 @@ class SignInViewController: UIViewController{
                     // User is signed in
                     UserServices.loginWithFacebook(sender: self, completion: { (user) in
                         if let user = user{
-                            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-                            guard let mainPageVC = storyBoard.instantiateViewController(withIdentifier: "GroupListViewController") as? GroupListViewController else { return }
 
-                            let navigation = UINavigationController(rootViewController: mainPageVC)
-
+                            let destinationVC = GroupListViewController()
+                            self.navigationController?.pushViewController(destinationVC, animated: true)
                             User.setCurrentUser(user: user, writeToUserDefaults: true)
-                            self.present(navigation, animated: true)
+                            // Add a little animation or loading after signin with FBK if u can
                         }
                         else{
                             self.presentAlert(title: "Login Error", message: " Couldn't login, try again in a few")
+                            return
                         }
                     })
                 }

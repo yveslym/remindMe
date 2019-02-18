@@ -131,6 +131,8 @@ struct ReminderServices{
         
         let reference = Constant.showReminderRef(reminder.id)
         reference.removeValue()
+        AppDelegate.shared.squareRegionDelegate.removeRegionFromMonitor(identifier: reminder.id)
+
     }
     
     static func update(_ reminder: Reminder){

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SquareRegion
 
 extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource{
     
@@ -77,6 +78,7 @@ extension ReminderListViewController: UITableViewDelegate, UITableViewDataSource
             let deleteButton = UIAlertAction(title: "Delete", style: .default, handler: { (remove) in
                 let reminderToBeDeleted = self.sortedReminder[indexPath.row]
                 ReminderServices.delete(reminderToBeDeleted)
+               
             })
             alert.addAction(cancelButton)
             alert.addAction(deleteButton)
