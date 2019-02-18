@@ -11,7 +11,7 @@ import UIKit
 class OnboardingCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     let pages = [
-        Page(imageName: "logo", header: "Welcome to Remindme", description: "Remindme let's you group all your location-triggered reminders in one place, at all time."),
+        Page(imageName: "logo", header: "Welcome to Geominder", description: "Geominder let's you group all your location-triggered reminders in one place, at all time."),
         
         Page(imageName: "home_page", header: "Groups", description: "Categorize your reminders into groups based on their locations. Click the + button to add a group."),
         

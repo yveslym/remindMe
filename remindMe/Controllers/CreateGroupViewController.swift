@@ -196,15 +196,15 @@ class CreateGroupViewController: UIViewController{
         mainStackView.spacing = 5
         popUpContainer.addSubview(mainStackView)
         
-        NSLayoutConstraint.activate([popUpContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                                     popUpContainer.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        NSLayoutConstraint.activate([popUpContainer.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+                                     popUpContainer.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
                                      popUpContainer.widthAnchor.constraint(equalToConstant: self.view.frame.height/2),
                                      popUpContainer.heightAnchor.constraint(equalToConstant: self.view.frame.height/1.3),
-                                     mainStackView.topAnchor.constraint(equalTo: popUpContainer.topAnchor, constant: 10),
-                                     mainStackView.leadingAnchor.constraint(equalTo: popUpContainer.leadingAnchor, constant: 10),
-                                     mainStackView.trailingAnchor.constraint(equalTo: popUpContainer.trailingAnchor, constant: 10),
-                                     mainStackView.heightAnchor.constraint(equalTo: popUpContainer.heightAnchor, multiplier: 0.95),
-                                     mainStackView.widthAnchor.constraint(equalTo: popUpContainer.widthAnchor, multiplier: 0.95),
+                                     mainStackView.topAnchor.constraint(equalTo: popUpContainer.safeAreaLayoutGuide.topAnchor, constant: 10),
+                                     mainStackView.leadingAnchor.constraint(equalTo: popUpContainer.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+                                     mainStackView.trailingAnchor.constraint(equalTo: popUpContainer.safeAreaLayoutGuide.trailingAnchor, constant: 10),
+                                     mainStackView.heightAnchor.constraint(equalTo: popUpContainer.safeAreaLayoutGuide.heightAnchor, multiplier: 0.95),
+                                     mainStackView.widthAnchor.constraint(equalTo: popUpContainer.safeAreaLayoutGuide.widthAnchor, multiplier: 0.95),
                                      titleLabel.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.085),
                                      groupNameTextField.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.09),
                                      groupNameTextField.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.9),
@@ -214,8 +214,6 @@ class CreateGroupViewController: UIViewController{
                                      groupDescriptionStackView.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.9),
                                      mapView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.4),
                                       mapView.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.9),
-                                       //saveButton.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.08),
-                                     //saveButton.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.095),
 
                                      saveButton.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.5)
             ])

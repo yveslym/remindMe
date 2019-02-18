@@ -47,7 +47,7 @@ class SignInViewController: UIViewController{
     
     fileprivate func setUpAppTittleLabel(){
         
-        appTittleLabel = CustomLabel(fontSize: 40, text: "Remindme", textColor: .white)
+        appTittleLabel = CustomLabel(fontSize: 40, text: "Geominder", textColor: .white)
         appTittleLabel.font = UIFont(name: "HelveticaNeue-Light", size: 40)
         appTittleLabel.textAlignment = .center
     }
@@ -188,11 +188,11 @@ class SignInViewController: UIViewController{
         view.addSubview(mainStackView)
         
         NSLayoutConstraint.activate([mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-                                     mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-                                     mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10),
-                                     mainStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95),
-                                     mainStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.95),
-                                     mainStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                                     mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+                                     mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 10),
+                                     mainStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.95),
+                                     mainStackView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.95),
+                                     mainStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
                                      appTittleLabel.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.09),
                                      buttonsStackView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.2),
                                      buttonsStackView.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.9),
