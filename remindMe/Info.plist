@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>RemindMe</string>
+	<string>Remindme</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -51,9 +51,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>The location needs to be on to calculate the distance between you and a group&apos;s location.</string>
+	<string>The location needs to be on to calculate the distance between you and a group's location.</string>
 	<key>NSLocationUsageDescription</key>
-	<string>The location needs to be on to calculate the distance between you and a group&apos;s location.</string>
+	<string>The location needs to be on to calculate the distance between you and a group's location.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>location</string>
 	<key>UIBackgroundModes</key>
