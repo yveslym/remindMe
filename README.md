@@ -35,4 +35,4 @@ This project is licenced under the Apache License 2.0 - see the <a href="https:/
 
 <img src= "screenshots/sc1.PNG" width = 255 height = 450></img><img src= "screenshots/sc2.PNG" width = 255 height = 450>
 <img src= "screenshots/sc3.PNG" width = 255 height = 450><img src= "screenshots/sc4.jpg" width = 255 height = 450>
-<img src= "screenshots/sc5.PNG" width = 255 height = 450><img src= "screenshots/sc6.PNG" width = 250 height = 450>5
+<img src= "screenshots/sc5.PNG" width = 255 height = 450><img src= "screenshots/sc6.PNG" width = 255 height = 450>
