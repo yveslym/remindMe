@@ -189,6 +189,8 @@ class ReminderListViewController: UIViewController, UIEmptyStateDataSource, UIEm
             self.userReminders.append(reminder)
             let region = CKSquareRegion.init(regionWithCenter: CLLocationCoordinate2D.init(latitude: reminder.latitude, longitude: reminder.longitude), sideLength: 0.045, identifier: reminder.id)
             AppDelegate.shared.squareRegionDelegate.addRegionToMonitor(region: region!)
+            
+
         }
     }
     

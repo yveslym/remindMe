@@ -118,6 +118,7 @@ class GroupListViewController: UIViewController, UIEmptyStateDelegate, UIEmptySt
         anchorEntriesReminderStackView()
         anchorExitReminderStackView()
         updateReminderLabels()
+         fetchAllGroups()
     }
     
     
