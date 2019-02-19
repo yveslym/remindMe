@@ -104,10 +104,11 @@ class CreateGroupViewController: UIViewController{
         mapView.showsUserLocation = true
         mapView.delegate = self
 
-        let center =  locationManager?.location?.coordinate
-        let region =  MKCoordinateRegionMakeWithDistance(center!, 400, 400)
+        if let center =  locationManager?.location?.coordinate{
+        let region =  MKCoordinateRegionMakeWithDistance(center, 400, 400)
         mapView.setRegion(region, animated: true)
         mapView.userTrackingMode = .follow
+        }
     }
     
     fileprivate func setUpUpdateGroup(){
@@ -196,15 +197,15 @@ class CreateGroupViewController: UIViewController{
         mainStackView.spacing = 5
         popUpContainer.addSubview(mainStackView)
         
-        NSLayoutConstraint.activate([popUpContainer.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-                                     popUpContainer.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-                                     popUpContainer.widthAnchor.constraint(equalToConstant: self.view.frame.height/2),
-                                     popUpContainer.heightAnchor.constraint(equalToConstant: self.view.frame.height/1.3),
-                                     mainStackView.topAnchor.constraint(equalTo: popUpContainer.safeAreaLayoutGuide.topAnchor, constant: 10),
-                                     mainStackView.leadingAnchor.constraint(equalTo: popUpContainer.safeAreaLayoutGuide.leadingAnchor, constant: 10),
-                                     mainStackView.trailingAnchor.constraint(equalTo: popUpContainer.safeAreaLayoutGuide.trailingAnchor, constant: 10),
-                                     mainStackView.heightAnchor.constraint(equalTo: popUpContainer.safeAreaLayoutGuide.heightAnchor, multiplier: 0.95),
-                                     mainStackView.widthAnchor.constraint(equalTo: popUpContainer.safeAreaLayoutGuide.widthAnchor, multiplier: 0.95),
+        NSLayoutConstraint.activate([popUpContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                                     popUpContainer.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                                     popUpContainer.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.1),
+                                     popUpContainer.heightAnchor.constraint(equalToConstant: self.view.frame.height/1.5),
+                                     mainStackView.topAnchor.constraint(equalTo: popUpContainer.topAnchor, constant: 10),
+                                     mainStackView.leadingAnchor.constraint(equalTo: popUpContainer.leadingAnchor, constant: 10),
+                                     mainStackView.trailingAnchor.constraint(equalTo: popUpContainer.trailingAnchor, constant: 10),
+                                     mainStackView.heightAnchor.constraint(equalTo: popUpContainer.heightAnchor, multiplier: 0.95),
+                                     mainStackView.widthAnchor.constraint(equalTo: popUpContainer.widthAnchor, multiplier: 0.95),
                                      titleLabel.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.085),
                                      groupNameTextField.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.09),
                                      groupNameTextField.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.9),
@@ -214,7 +215,9 @@ class CreateGroupViewController: UIViewController{
                                      groupDescriptionStackView.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.9),
                                      mapView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.4),
                                       mapView.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.9),
-
+                                       //saveButton.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.08),
+                                     //saveButton.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.095),
+                                    saveButton.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.08),
                                      saveButton.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.5)
             ])
     }
@@ -222,16 +225,21 @@ class CreateGroupViewController: UIViewController{
 }
 
 extension CreateGroupViewController: MKMapViewDelegate{
-
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+                let circleRenderer = MKCircleRenderer(overlay: overlay)
+                circleRenderer.strokeColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 0.5)
+                circleRenderer.lineWidth = 1.0
+        circleRenderer.fillColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 0.5)
+        return circleRenderer
+    }
 }
 extension CreateGroupViewController: UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
         GeoFence.shared.addressToCoordinate(textField.text!) { (coordinate) in
 
-            let center =  coordinate
-            let region =  MKCoordinateRegionMakeWithDistance(center!, 200, 200)
+            if let center =  coordinate {
+            let region =  MKCoordinateRegionMakeWithDistance(center, 200, 200)
             self.mapView.setRegion(region, animated: true)
-            //self.mapView.userTrackingMode = .follow
 
             // add annotation
             let annotation = MKPointAnnotation()
@@ -239,7 +247,9 @@ extension CreateGroupViewController: UITextFieldDelegate{
             annotation.title = self.groupNameTextField.text!
             self.mapView.addAnnotation(annotation)
 
-            
+            let circle = MKCircle(center: coordinate!, radius: 25)
+            self.mapView.add(circle)
+            }
         }
     }
 }
