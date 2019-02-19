@@ -16,10 +16,10 @@ class ReminderListViewController: UIViewController, UIEmptyStateDataSource, UIEm
     
     var emptyStateTitle: NSAttributedString {
         let attrs = [NSAttributedString.Key.foregroundColor: UIColor(red: 0.882, green: 0.890, blue: 0.859, alpha: 1.00),
-                     NSAttributedString.Key.font: UIFont.systemFont(ofSize: 27)]
-        return NSAttributedString(string: "No Groups Created. Tap + to add a group.", attributes: attrs)
+                     NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25)]
+        return NSAttributedString(string: "No Reminders Created. Tap + to add a reminder.", attributes: attrs)
     }
-    var reminderTableView: UITableView!
+    var reminderTableView = UITableView()
     var mainStack: UIStackView!
     var todayButton: CustomButton!
     var onEntryButton: CustomButton!
@@ -49,16 +49,16 @@ class ReminderListViewController: UIViewController, UIEmptyStateDataSource, UIEm
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.white
         
         // Setting up Empty Table view of reminders
+        self.setupButtonSwitch()
         self.emptyStateDataSource = self
         self.emptyStateDelegate = self
         self.reminderTableView.tableFooterView = UIView(frame: CGRect.zero)
         self.reloadEmptyStateForTableView(reminderTableView)
         
-        
-        self.view.backgroundColor = UIColor.white
-        self.setupButtonSwitch()
+//        self.setupButtonSwitch()
         self.reminderTableView.reloadData()
         setUpNavigationBarItems()
         observeEntryReminder()
@@ -101,10 +101,10 @@ class ReminderListViewController: UIViewController, UIEmptyStateDataSource, UIEm
         let stack = CustomStack(subview: [todayButton,onEntryButton,onExitButton], alignment: .center, axis: .horizontal, distribution: .fillEqually)
         
         reminderTableView = UITableView()
-        reminderTableView?.separatorStyle = .none
+        reminderTableView.separatorStyle = .none
         
-        reminderTableView?.delegate = self
-        reminderTableView?.dataSource = self
+        reminderTableView.delegate = self
+        reminderTableView.dataSource = self
         reminderTableView.register(ReminderListTableViewCell.self, forCellReuseIdentifier: Constant.reminderTableViewCellIdentifier)
 
         
