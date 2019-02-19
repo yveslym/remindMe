@@ -14,9 +14,9 @@ class OnboardingCollectionViewController: UICollectionViewController, UICollecti
         Page(imageName: "gm_github", header: "Welcome to Geominder", description: "Geominder let's you group all your location-triggered reminders in one place, accessible at all time."),
         Page(imageName: "home_page", header: "Groups", description: "Categorize your reminders into groups based on their locations."),
         Page(imageName: "reminder_list", header: "Reminders", description: "Within each group, create reminders that are related to the group."),
+        Page(imageName: "notifications", header: "Get Notified", description: "Receive notification reminders when you enter or exit within 65 feet of a group"),
         Page(imageName: "edit_cell", header: "Edit & Update", description: "Swipe a group or reminder from the right to edit or delete them."),
         Page(imageName: "swipe_dismiss", header: "Dismiss", description: "Swipe your finger from the top of the view to dismiss a group or reminder intended to be created."),
-        Page(imageName: "notifications", header: "Get Notified", description: "Receive notifications reminder when you enter or exit a group within 65 feet.")
     ]
     
     
@@ -69,7 +69,8 @@ class OnboardingCollectionViewController: UICollectionViewController, UICollecti
         
         if nextButton.titleLabel?.text == "LOGIN"{
             self.handleSkipButton()
-        } else if pageControll.currentPage == 2 {
+        }
+        if pageControll.currentPage == 4 {
             nextButton.setTitle("LOGIN", for: .normal)
         }
         

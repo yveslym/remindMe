@@ -22,8 +22,6 @@ class GroupListViewController: UIViewController, UIEmptyStateDelegate, UIEmptySt
 // This View Controller class handles functionality to show the list of all the groups
 
     // - MARK: Class Properties
-
-    var emptyImage = UIImage(named: "empty")
     var emptyStateTitle: NSAttributedString {
         let attrs = [NSAttributedString.Key.foregroundColor: UIColor(red: 0.882, green: 0.890, blue: 0.859, alpha: 1.00),
                      NSAttributedString.Key.font: UIFont.systemFont(ofSize: 27)]

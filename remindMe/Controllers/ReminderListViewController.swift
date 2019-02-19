@@ -7,11 +7,18 @@
 //
 
 import Foundation
-import UIKit
 import SquareRegion
+import UIEmptyState
+import UIKit
 
-class ReminderListViewController: UIViewController{
+class ReminderListViewController: UIViewController, UIEmptyStateDataSource, UIEmptyStateDelegate{
     // This View Controller class handles functionality to show the list of all the reminders
+    
+    var emptyStateTitle: NSAttributedString {
+        let attrs = [NSAttributedString.Key.foregroundColor: UIColor(red: 0.882, green: 0.890, blue: 0.859, alpha: 1.00),
+                     NSAttributedString.Key.font: UIFont.systemFont(ofSize: 27)]
+        return NSAttributedString(string: "No Groups Created. Tap + to add a group.", attributes: attrs)
+    }
     var reminderTableView: UITableView!
     var mainStack: UIStackView!
     var todayButton: CustomButton!
@@ -21,8 +28,8 @@ class ReminderListViewController: UIViewController{
     var sortedReminder = [Reminder](){
         didSet{
             DispatchQueue.main.async {
-                 self.reminderTableView.reloadData()
-                
+                self.reminderTableView.reloadData()
+                self.reloadEmptyStateForTableView(self.reminderTableView)
             }
         }
     }
@@ -34,6 +41,7 @@ class ReminderListViewController: UIViewController{
     }
     
     
+    // - MARK: VIEW CONTROLLER LIFE CYCLE METHODS
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchAllReminder()
@@ -42,16 +50,28 @@ class ReminderListViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Setting up Empty Table view of reminders
+        self.emptyStateDataSource = self
+        self.emptyStateDelegate = self
+        self.reminderTableView.tableFooterView = UIView(frame: CGRect.zero)
+        self.reloadEmptyStateForTableView(reminderTableView)
+        
+        
         self.view.backgroundColor = UIColor.white
-       
         self.setupButtonSwitch()
-       
         self.reminderTableView.reloadData()
         setUpNavigationBarItems()
         observeEntryReminder()
         obserUpdatedReminder()
         observeRemovedReminder()
     }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.reloadEmptyStateForTableView(reminderTableView)
+    }
+    
     
     func fetchAllReminder(){
         ReminderServices.indexByGroupId(groupId: userGroup.id) { (reminders) in
