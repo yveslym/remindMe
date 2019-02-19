@@ -104,10 +104,11 @@ class CreateGroupViewController: UIViewController{
         mapView.showsUserLocation = true
         mapView.delegate = self
 
-        let center =  locationManager?.location?.coordinate
-        let region =  MKCoordinateRegionMakeWithDistance(center!, 400, 400)
+        if let center =  locationManager?.location?.coordinate{
+        let region =  MKCoordinateRegionMakeWithDistance(center, 400, 400)
         mapView.setRegion(region, animated: true)
         mapView.userTrackingMode = .follow
+        }
     }
     
     fileprivate func setUpUpdateGroup(){
@@ -198,8 +199,8 @@ class CreateGroupViewController: UIViewController{
         
         NSLayoutConstraint.activate([popUpContainer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                      popUpContainer.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                                     popUpContainer.widthAnchor.constraint(equalToConstant: self.view.frame.height/2),
-                                     popUpContainer.heightAnchor.constraint(equalToConstant: self.view.frame.height/1.3),
+                                     popUpContainer.widthAnchor.constraint(equalToConstant: self.view.frame.width/1.1),
+                                     popUpContainer.heightAnchor.constraint(equalToConstant: self.view.frame.height/1.5),
                                      mainStackView.topAnchor.constraint(equalTo: popUpContainer.topAnchor, constant: 10),
                                      mainStackView.leadingAnchor.constraint(equalTo: popUpContainer.leadingAnchor, constant: 10),
                                      mainStackView.trailingAnchor.constraint(equalTo: popUpContainer.trailingAnchor, constant: 10),
@@ -216,7 +217,7 @@ class CreateGroupViewController: UIViewController{
                                       mapView.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.9),
                                        //saveButton.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.08),
                                      //saveButton.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.095),
-
+                                    saveButton.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.08),
                                      saveButton.widthAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.5)
             ])
     }
