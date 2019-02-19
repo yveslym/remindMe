@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import MapKit
+import NVActivityIndicatorView
 
 class CreateGroupViewController: UIViewController{
 // This View Controller class handles functionality to create a new group
@@ -25,6 +26,7 @@ class CreateGroupViewController: UIViewController{
     var groupDescriptionStackView = CustomStack()
     var mapView: MKMapView!
     var locationManager = AppDelegate.shared.locationManager
+    var coordinate : CLLocationCoordinate2D?
     
     
     override func viewDidLoad() {
@@ -49,14 +51,21 @@ class CreateGroupViewController: UIViewController{
     
     @objc fileprivate func saveButtonTapped(sender: UIButton){
         
-        
+
+        let origin = CGPoint.init(x: mapView.frame.midX , y: mapView.frame.maxY - 30)
+        let rect = CGRect.init(origin: origin, size: CGSize.init(width: 30, height: 30))
+        let activity = NVActivityIndicatorView.init(frame: rect, type: .lineScale, color: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1) , padding: 0)
+
+        self.popUpContainer.addSubview(activity)
+        activity.startAnimating()
+
         guard let address = groupAddressTextField.text, let name = groupNameTextField.text, let description = groupDescriptionTextView.text else {return}
         
-        GeoFence.shared.addressToCoordinate(address) { (coordinates) in
-            if let coordinates = coordinates{
 
-                let latitude = coordinates.latitude
-                let longitude = coordinates.longitude
+            if let coordinate = self.coordinate{
+
+                let latitude = coordinate.latitude
+                let longitude = coordinate.longitude
                 var createdGroup = Group(id: "", name: name, description: description, latitude: latitude, longitude: longitude)
                 createdGroup.address = address
                 
@@ -71,11 +80,12 @@ class CreateGroupViewController: UIViewController{
                 
                 GroupServices.create(createdGroup, completion: { (newGroup) in
                     DispatchQueue.main.async {
+                        activity.stopAnimating()
                         self.dismiss(animated: true, completion: nil)
                     }
                 })
             }
-        }
+
     }
     
     fileprivate func addSwipeToDismis() {
@@ -113,9 +123,24 @@ class CreateGroupViewController: UIViewController{
     
     fileprivate func setUpUpdateGroup(){
 
-        groupNameTextField.text = self.group?.name ?? ""
-        groupAddressTextField.text = self.group?.address ?? ""
-        groupDescriptionTextView.text = self.group?.description ?? ""
+        if let group = group {
+        groupNameTextField.text = group.name
+        groupAddressTextField.text = group.address
+        groupDescriptionTextView.text = group.description
+
+            self.coordinate = CLLocationCoordinate2D.init(latitude: (group.latitude), longitude: (group.longitude))
+        let region =  MKCoordinateRegionMakeWithDistance(self.coordinate!, 250, 250)
+        self.mapView.setRegion(region, animated: true)
+
+        // add annotation
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate!
+        annotation.title = group.name
+        self.mapView.addAnnotation(annotation)
+
+        let circle = MKCircle(center: coordinate!, radius: 25)
+        self.mapView.add(circle)
+        }
     }
     fileprivate func setUpPopUpContainer(){
         
@@ -228,16 +253,27 @@ extension CreateGroupViewController: MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
                 let circleRenderer = MKCircleRenderer(overlay: overlay)
                 circleRenderer.strokeColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 0.5)
-                circleRenderer.lineWidth = 1.0
-        circleRenderer.fillColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 0.5)
+                circleRenderer.lineWidth = 0.5
+        circleRenderer.fillColor = #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 0.1952857449)
         return circleRenderer
     }
 }
 extension CreateGroupViewController: UITextFieldDelegate{
+
     func textFieldDidEndEditing(_ textField: UITextField) {
+        let origin = CGPoint.init(x: mapView.frame.midX , y: mapView.frame.maxY - 30)
+
+
+        let rect = CGRect.init(origin: origin, size: CGSize.init(width: 30, height: 30))
+        let activity = NVActivityIndicatorView.init(frame: rect, type: .lineScale, color: #colorLiteral(red: 0.1803921569, green: 0.368627451, blue: 0.6666666667, alpha: 1) , padding: 0)
+
+        self.popUpContainer.addSubview(activity)
+        activity.startAnimating()
         GeoFence.shared.addressToCoordinate(textField.text!) { (coordinate) in
 
+
             if let center =  coordinate {
+            self.coordinate = center
             let region =  MKCoordinateRegionMakeWithDistance(center, 200, 200)
             self.mapView.setRegion(region, animated: true)
 
@@ -249,6 +285,7 @@ extension CreateGroupViewController: UITextFieldDelegate{
 
             let circle = MKCircle(center: coordinate!, radius: 25)
             self.mapView.add(circle)
+                activity.stopAnimating()
             }
         }
     }

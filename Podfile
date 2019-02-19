@@ -19,6 +19,7 @@ target 'remindMe' do
     pod 'GeoFire'
     pod 'SquareRegion'
     pod 'UIEmptyState'
+    pod 'NVActivityIndicatorView'
 
 
   target 'remindMeTests' do

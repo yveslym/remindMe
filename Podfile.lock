@@ -101,6 +101,9 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - NVActivityIndicatorView (4.6.1):
+    - NVActivityIndicatorView/Presenter (= 4.6.1)
+  - NVActivityIndicatorView/Presenter (4.6.1)
   - ReachabilitySwift (4.3.0)
   - SquareRegion (1.0.3.2)
   - UIEmptyState (4.0.1)
@@ -115,6 +118,7 @@ DEPENDENCIES:
   - GeoFire
   - GoogleSignIn
   - IQKeyboardManagerSwift
+  - NVActivityIndicatorView
   - ReachabilitySwift
   - SquareRegion
   - UIEmptyState
@@ -142,6 +146,7 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - leveldb-library
     - nanopb
+    - NVActivityIndicatorView
     - ReachabilitySwift
     - SquareRegion
     - UIEmptyState
@@ -168,10 +173,11 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
   ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
   SquareRegion: 55c30078b2441573b5dcd99863924d0f987bbaef
   UIEmptyState: 767376694d9402452fb3c0a5a5283176c6a53c92
 
-PODFILE CHECKSUM: 3bd5fcccaa4b3c3550dc92aa9ed3ca6f0461e244
+PODFILE CHECKSUM: 8b1ec84fe696c2ae271c696e868926c956998721
 
 COCOAPODS: 1.6.0
