@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate{
     fileprivate func handleEvent(forRegion region: CKSquareRegion, reminder: Reminder, group: Group){
         
         let content = UNMutableNotificationContent()
-        content.title = group.name
+        content.title = group.name + " Reminder"
         content.subtitle = reminder.name ?? ""
         content.body = reminder.description ?? ""
         content.sound = UNNotificationSound.default()

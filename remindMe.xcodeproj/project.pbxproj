@@ -707,7 +707,7 @@
 				CODE_SIGN_ENTITLEMENTS = remindMe/remindMe.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 966X5T4Q98;
+				DEVELOPMENT_TEAM = K7R433H2CL;
 				INFOPLIST_FILE = remindMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -729,7 +729,7 @@
 				CODE_SIGN_ENTITLEMENTS = remindMe/remindMe.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 966X5T4Q98;
+				DEVELOPMENT_TEAM = K7R433H2CL;
 				INFOPLIST_FILE = remindMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
